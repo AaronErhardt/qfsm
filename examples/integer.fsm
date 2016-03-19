@@ -1,0 +1,62 @@
+<?xml version = '1.0'?>
+<!DOCTYPE qfsmproject SYSTEM "qfsm.dtd">
+<qfsmproject version="0.44" author="Qfsm" >
+  <machine arrowtype="1" statefont="Helvetica" transfontitalic="0" statefontitalic="0" statefontsize="8" initialstate="0" numin="8" transfont="Helvetica" numout="8" nummooreout="8" statefontweight="50" type="1" version="" transfontsize="8" numbits="2" name="klee" transfontweight="50" >
+    <outputnames_moore>s_out7, s_out6, s_out5, s_out4, s_out3, s_out2, s_out1, s_out0</outputnames_moore>
+    <inputnames>i_7, i_6, i_5, i_4, i_3, i_2, i_1, i_0</inputnames>
+    <outputnames>o_7, o_6, o_5, o_4, o_3, o_2, o_1, o_0</outputnames>
+    <itransition endx="140" ypos="180" endy="180" xpos="80" />
+    <state linewidth="1" pencolor="0" radius="40" endstate="0" moore_outputs="" ypos="180" xpos="180" code="0" description="" >first</state>
+    <state linewidth="1" pencolor="0" radius="40" endstate="0" moore_outputs="" ypos="180" xpos="460" code="1" description="" >plus_minus</state>
+    <state linewidth="1" pencolor="0" radius="40" endstate="1" moore_outputs="" ypos="340" xpos="320" code="2" description="" >integer</state>
+    <state linewidth="1" pencolor="0" radius="40" endstate="0" moore_outputs="" ypos="340" xpos="560" code="3" description="" >no_int</state>
+    <transition c2y="180" c1x="286.667" c1y="180" straight="1" type="1" endx="420" ypos="180" endy="180" xpos="220" description="" c2x="353.333" >
+      <from>0</from>
+      <to>1</to>
+      <inputs any="0" invert="0" default="0" >\-+</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c2y="277.845" c1x="234.799" c1y="243.974" straight="1" type="1" endx="291.716" ypos="210.103" endy="311.716" xpos="206.34" description="" c2x="263.257" >
+      <from>0</from>
+      <to>2</to>
+      <inputs any="0" invert="0" default="0" >\d</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c2y="41.5565" c1x="329.195" c1y="22.3972" straight="0" type="1" endx="588.284" ypos="151.716" endy="311.716" xpos="208.284" description="" c2x="588.239" >
+      <from>0</from>
+      <to>3</to>
+      <inputs any="0" invert="1" default="0" >\d+\-</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c2y="277.845" c1x="405.201" c1y="243.974" straight="1" type="1" endx="348.284" ypos="210.103" endy="311.716" xpos="433.66" description="" c2x="376.743" >
+      <from>1</from>
+      <to>2</to>
+      <inputs any="0" invert="0" default="0" >\d</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c2y="279.117" c1x="498.039" c1y="246.519" straight="1" type="1" endx="531.716" ypos="213.92" endy="311.716" xpos="481.2" description="" c2x="514.877" >
+      <from>1</from>
+      <to>3</to>
+      <inputs any="0" invert="1" default="0" >\d</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c2y="388.214" c1x="327.722" c1y="459.751" straight="1" type="1" endx="288.778" ypos="379.223" endy="365.004" xpos="312.155" description="" c2x="210.112" >
+      <from>2</from>
+      <to>2</to>
+      <inputs any="0" invert="0" default="0" >\d</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c2y="340" c1x="413.333" c1y="340" straight="1" type="1" endx="520" ypos="340" endy="340" xpos="360" description="" c2x="466.667" >
+      <from>2</from>
+      <to>3</to>
+      <inputs any="0" invert="1" default="0" >\d</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c2y="447.681" c1x="643.074" c1y="426.595" straight="1" type="1" endx="552.238" ypos="375.049" endy="379.24" xpos="579.277" description="" c2x="507.04" >
+      <from>3</from>
+      <to>3</to>
+      <inputs any="1" invert="0" default="0" >\000-\0FF</inputs>
+      <outputs></outputs>
+    </transition>
+  </machine>
+</qfsmproject>

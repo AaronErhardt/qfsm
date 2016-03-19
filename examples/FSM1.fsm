@@ -1,0 +1,37 @@
+<?xml version='1.0'?>
+<!DOCTYPE qfsmproject SYSTEM 'qfsm.dtd'>
+<qfsmproject version="0.54" author="Qfsm">
+  <machine nummooreout="0" transfontitalic="0" draw_it="1" statefontsize="8" transfont="Helvetica" statefontitalic="0" author="" description="" version="" name="FSM1" arrowtype="1" numbits="2" statefontweight="50" statefont="Helvetica" numin="0" transfontsize="8" transfontweight="50" type="2" numout="0" initialstate="0">
+    <outputnames_moore></outputnames_moore>
+    <inputnames></inputnames>
+    <outputnames></outputnames>
+    <itransition ypos="177" endx="117" xpos="57" endy="177"/>
+    <state pencolor="0" exit_actions="" radius="40" description="" finalstate="0" entry_actions="" moore_outputs="" ypos="177" code="0" xpos="157" linewidth="1">A</state>
+    <state pencolor="0" exit_actions="exiting()" radius="55" description="" finalstate="0" entry_actions="entering()" moore_outputs="" ypos="109" code="1" xpos="443" linewidth="1">B</state>
+    <state pencolor="0" exit_actions="bb()" radius="40" description="" finalstate="0" entry_actions="aa()" moore_outputs="" ypos="333" code="2" xpos="287" linewidth="1">C</state>
+    <transition c1x="260,4281533152043" c2y="141,7188228512022" c1y="152,1000300694649" description="" straight="1" type="2" ypos="162,4812372877276" endx="392,7403648258859" xpos="194,2720475598635" endy="131,3376156329396" c2x="326,5842590705451">
+      <from>0</from>
+      <to>1</to>
+      <inputs default="0" any="0" invert="0">init()[ctxt.a>0]</inputs>
+      <outputs>action1()</outputs>
+    </transition>
+    <transition c1x="385,0113530165042" c2y="250,3140205156353" c1y="206,2185938807799" description="" straight="1" type="2" ypos="162,1231672459245" endx="297,5246962316843" xpos="428,7546814089141" endy="294,4094471504907" c2x="341,2680246240942">
+      <from>1</from>
+      <to>2</to>
+      <inputs default="0" any="0" invert="0">run()</inputs>
+      <outputs>do1(),do2()</outputs>
+    </transition>
+    <transition c1x="234,0006842248403" c2y="237,4172865192422" c1y="271,8029181002457" description="" straight="1" type="2" ypos="306,1885496812492" endx="187,3702640946119" xpos="257,3158942899545" endy="203,0316549382387" c2x="210,6854741597261">
+      <from>2</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0">delete()</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="377,1379649647899" c2y="444,7953890874489" c1y="412,2158271559813" description="" straight="1" type="2" ypos="366,2820117735138" endx="282,6037353230674" xpos="309,1880078490092" endy="372,7576767038814" c2x="243,3904714679703">
+      <from>2</from>
+      <to>2</to>
+      <inputs default="1" any="0" invert="0"></inputs>
+      <outputs>default_action()</outputs>
+    </transition>
+  </machine>
+</qfsmproject>

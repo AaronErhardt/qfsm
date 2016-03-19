@@ -1,0 +1,858 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Qfsm User Manual</title><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="book"><div class="titlepage"><div><div><h1 class="title"><a name="idp1384994148"></a>Qfsm User Manual</h1></div><div><div class="author"><h3 class="author"><span class="firstname">Stefan</span> <span class="surname">Duffner</span></h3></div></div><div><div class="author"><h3 class="author"><span class="firstname">Camille</span> <span class="surname">Decock</span></h3></div></div><div><p class="releaseinfo">Version 0.54</p></div><div><p class="copyright">Copyright © 2000-2015 Stefan Duffner, Rainer Strobel</p></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl class="toc"><dt><span class="chapter"><a href="#ch:introduction">1. Introduction</a></span></dt><dd><dl><dt><span class="section"><a href="#sec:whats">What is Qfsm?</a></span></dt><dt><span class="section"><a href="#sec:copyright">Copyright and license information</a></span></dt><dt><span class="section"><a href="#sec:install">Installing  the Qfsm software</a></span></dt><dd><dl><dt><span class="section"><a href="#sec:bin_install">Binary installation</a></span></dt><dt><span class="section"><a href="#sec:source_install">Installing from source code</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#ch:using_qfsm">2. Using Qfsm</a></span></dt><dd><dl><dt><span class="section"><a href="#sec:main_menu">Using the main menu</a></span></dt><dd><dl><dt><span class="section"><a href="#sec:menu_file">File</a></span></dt><dt><span class="section"><a href="#sec:menu_edit">Edit</a></span></dt><dt><span class="section"><a href="#sec:menu_view">View</a></span></dt><dt><span class="section"><a href="#sec:menu_machine">Machine</a></span></dt><dt><span class="section"><a href="#sec:menu_state">State</a></span></dt><dt><span class="section"><a href="#sec:menu_transition">Transition</a></span></dt></dl></dd><dt><span class="section"><a href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a></span></dt><dt><span class="section"><a href="#sec:working_area">Using the Working Area</a></span></dt><dd><dl><dt><span class="section"><a href="#sec:select">Using the Select mode</a></span></dt><dt><span class="section"><a href="#sec:pan">Using the Pan mode</a></span></dt><dt><span class="section"><a href="#sec:zoom">Using the Zoom mode</a></span></dt><dt><span class="section"><a href="#sec:addstate_mode">Using the Add State mode</a></span></dt><dt><span class="section"><a href="#sec:addtrans_mode">Using the Add Transition mode</a></span></dt><dt><span class="section"><a href="#sec:simulate_mode">Using the Simulate mode</a></span></dt></dl></dd><dt><span class="section"><a href="#sec:add_states">Adding and modifying states</a></span></dt><dt><span class="section"><a href="#sec:add_trans">Adding and modifying transitions</a></span></dt><dt><span class="section"><a href="#sec:inp_cond">Using input ASCII conditions</a></span></dt><dd><dl><dt><span class="section"><a href="#sec:single_char">Single character</a></span></dt><dt><span class="section"><a href="#sec:multiple_char">Multiple characters</a></span></dt><dt><span class="section"><a href="#sec:escape_char">Escape sequences</a></span></dt><dt><span class="section"><a href="#sec:ranges">Ranges</a></span></dt><dt><span class="section"><a href="#sec:mixed">Mixed formats</a></span></dt></dl></dd><dt><span class="section"><a href="#sec:check">Checking the integrity of a FSM</a></span></dt><dt><span class="section"><a href="#sec:simulate">Simulating a FSM</a></span></dt><dt><span class="section"><a href="#sec:export">Exporting</a></span></dt><dd><dl><dt><span class="section"><a href="#sec:state_diagram">State diagrams</a></span></dt><dt><span class="section"><a href="#sec:hdl">Hardware description languages</a></span></dt><dt><span class="section"><a href="#sec:state_tables">State Tables</a></span></dt><dt><span class="section"><a href="#sec:codegen">Code generation languages</a></span></dt><dt><span class="section"><a href="#sec:hardwaretest">Hardware test code</a></span></dt><dt><span class="section"><a href="#sec:iodesc">I/O description</a></span></dt><dt><span class="section"><a href="#sec:vvvv">vvvv Automata code</a></span></dt><dt><span class="section"><a href="#sec:scxml">State Chart XML</a></span></dt></dl></dd><dt><span class="section"><a href="#sec:import">Importing</a></span></dt><dt><span class="section"><a href="#sec:options">Setting the options</a></span></dt><dd><dl><dt><span class="section"><a href="#sec:general">Changing language</a></span></dt><dt><span class="section"><a href="#sec:display">Changing the display</a></span></dt><dt><span class="section"><a href="#sec:printing">Printing</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#ch:contact">3. Contact</a></span></dt><dt><span class="index"><a href="#idp1385351596">Index</a></span></dt></dl></div><div class="list-of-tables"><p><b>List of Tables</b></p><dl><dt>2.1. <a href="#idp1385121156">Attributes of a Finite State Machine</a></dt><dt>2.2. <a href="#idp1385177628">Attributes of a state</a></dt><dt>2.3. <a href="#idp1385201276">Attributes of a transition</a></dt><dt>2.4. <a href="#tab:escape">Recognized escape sequences</a></dt></dl></div>
+  
+  <div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="ch:introduction"></a>Chapter 1. Introduction</h1></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl class="toc"><dt><span class="section"><a href="#sec:whats">What is Qfsm?</a></span></dt><dt><span class="section"><a href="#sec:copyright">Copyright and license information</a></span></dt><dt><span class="section"><a href="#sec:install">Installing  the Qfsm software</a></span></dt><dd><dl><dt><span class="section"><a href="#sec:bin_install">Binary installation</a></span></dt><dt><span class="section"><a href="#sec:source_install">Installing from source code</a></span></dt></dl></dd></dl></div>
+    
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec:whats"></a>What is Qfsm?</h2></div></div></div>
+      
+      <p>
+        Qfsm is a graphical editor for finite state machines<a class="indexterm" name="idp1384962012"></a> written in C++<a class="indexterm" name="idp1384963212"></a> using Qt <a class="indexterm" name="idp1384975060"></a>the graphical Toolkit from<a class="ulink" href="http://www.trolltech.com" target="_top">Trolltech</a>.
+      </p>
+      <p>Finite state machines are models to describe complex objects or systems in terms of the states they may be in. In practice they can be used to create regular expressions, scanners or other program code as well as for integrated curcuit design.</p>
+      <p>
+        Current features of Qfsm are:
+        </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">Drawing, editing and printing of states diagrams</li><li class="listitem">Binary,ASCII and "free text" condition codes</li><li class="listitem">Integrity check</li><li class="listitem">Interactive simulation</li><li class="listitem">Diagram export (EPS, SVG and PNG format)</li><li class="listitem">AHDL/VHDL/Verilog HDL/KISS/vvvv Automata code export</li><li class="listitem">State table export in Latex, HTML and plain text format</li><li class="listitem">Ragel file export (used for C/C++, Java or Ruby code generation, for example for string parsers)</li><li class="listitem">State Chart XML (SCXML) export</li><li class="listitem">State Machine Compiler (SMC) export</li></ul></div><p>
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec:copyright"></a>Copyright and license information</h2></div></div></div>
+      <p>Copyright (C) 2000-2015 Stefan Duffner, Rainer Strobel</p>
+      <p>
+        This program is free software; you can redistribute it and/or modify it under the terms of the <a class="ulink" href="LICENSE" target="_top">GNU General Public License</a> as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
+      </p>
+      <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p><p>You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.</p>
+    </div>
+
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec:install"></a>Installing <a class="indexterm" name="idp1385016588"></a> the Qfsm software</h2></div></div></div>
+      
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:bin_install"></a>Binary installation<a class="indexterm" name="idp1385017284"></a></h3></div></div></div>
+        
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="sec:bin_install_win"></a>Windows<a class="indexterm" name="idp1385018044"></a></h4></div></div></div>
+	  
+	  <p>
+	    There exists a (graphical) Windows installer that can be downloaded from <a class="ulink" href="http://www.sourceforge.net/projects/qfsm" target="_top">here</a>. The installation should be straightforward and doesn't require any other software to be installed.
+	  </p>
+
+	</div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="sec:bin_install_linux"></a>Linux<a class="indexterm" name="idp1385019572"></a></h4></div></div></div>
+	  
+	    <p>
+	    An RPM <a class="indexterm" name="idp1385020084"></a>package for openSUSE<a class="indexterm" name="idp1385020340"></a> is provided <a class="ulink" href="http://www.sourceforge.net/projects/qfsm" target="_top">here</a>. RPM packages for other Linux distributions might be provided on other websites.
+	    </p>
+	</div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="sec:bin_install_macosx"></a>Mac OS X<a class="indexterm" name="idp1385021508"></a></h4></div></div></div>
+	  
+	    <p>
+	      Binary packages for MacOS X may be provided by third-party websites. 
+	    </p>
+	</div>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:source_install"></a>Installing from source code<a class="indexterm" name="idp1385022764"></a></h3></div></div></div>
+        
+	  <p>
+	  Qfsm has to be compiled using the CMake buildsystem<a class="indexterm" name="idp1385023340"></a>. 
+	  Among the advantages of CMake are that it provides excellent cross-platform support, that it can create project files for various IDEs such as KDevelop, XCode and MS Visual Studio and that it builds out-of-source, keeping the source tree clean of temporary files.
+	  </p>
+	  <div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="sec:source_install_req"></a>Requirements<a class="indexterm" name="idp1385024316"></a></h4></div></div></div>
+	    
+	    <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+	        <a class="ulink" href="http://www.cmake.org" target="_top">CMake</a>, version 2.6 or higher
+	      </li><li class="listitem">
+	        <a class="ulink" href="http://qt.nokia.com" target="_top">Qt SDK</a>, version 4.8 
+	      </li><li class="listitem">
+	        <a class="ulink" href="http://graphviz.org" target="_top">Graphviz</a>, version 2.38 or higher 	      
+	      </li></ul></div>
+	    See the documentation of these tools/libraries for an explanation how to install them.
+
+	  </div>
+	  <div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="sec:source_install_platforms"></a>Supported Platforms</h4></div></div></div>
+	    
+	    In principal, Qfsm compiles and runs on any platform supported by the Qt<a class="indexterm" name="idp1385027980"></a> library version 4.8 (or higher), i.e. Linux<a class="indexterm" name="idp1385028292"></a>/Unix <a class="indexterm" name="idp1385028596"></a>(e.g. AIX<a class="indexterm" name="idp1385028868"></a>, FreeBSD<a class="indexterm" name="idp1385029212"></a>, HP-UX<a class="indexterm" name="idp1385029468"></a>, IRIX<a class="indexterm" name="idp1385029756"></a>, Solaris<a class="indexterm" name="idp1385030100"></a>), Windows<a class="indexterm" name="idp1385030356"></a> (98, NT 4.0, ME, 2000, XP and Vista) and Mac OS X<a class="indexterm" name="idp1385030684"></a> (version 10.3.9 and higher).
+	  </div>
+
+	  <div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="sec:source_install_linux"></a>Building under GNU Linux/Unix<a class="indexterm" name="idp1385031340"></a><a class="indexterm" name="idp1385031692"></a></h4></div></div></div>
+	    
+	    <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
+		Install the above-mentioned required software. If you install them via a package manager make sure you install the development packages (...-dev).
+	      </li><li class="listitem">
+		Unpack the source code into the current directory
+		<p>
+		  <span class="command"><strong>tar xvfz qfsm-0.54.0-Source.tar.gz --directory .</strong></span>
+		</p>
+		and change to that directory.
+	      </li><li class="listitem">
+		  Before invoking CMake you have to make sure that the program qmake is in your global PATH environment variable.
+		  The location of qmake depends on your operating system or Linux distribution. On openSUSE for example it is under: /usr/lib/qt4/bin/ (or simply under /usr/bin on more recent distributions).
+		  Thus, if you are using bash, you would have to type:
+		  <p>
+		    <span class="command"><strong>export PATH=/usr/lib/qt4/bin:$PATH</strong></span>
+		  </p>
+	      </li><li class="listitem">
+		Type:
+		<p>
+		  <span class="command"><strong>cmake .</strong></span>
+		</p>
+	      </li><li class="listitem">
+		Then:
+		<p>
+		  <span class="command"><strong>make</strong></span>
+		</p>
+	      </li><li class="listitem">
+		Finally, install Qfsm (as root):
+		<p>
+		  <span class="command"><strong>make install</strong></span>
+		</p>
+	      </li></ol></div>
+
+	    <p>
+	      This will install the executable "qfsm" to /usr/bin/ and the documentation to /usr/share/doc/qfsm/.
+	    </p>
+
+	    <p>
+	      If CMake fails to find any of the dependencies but you know you have the development headers/libraries installed, add -DLIBRARY_SEARCH_DIRS=&lt;path/to/lib&gt; and -DINCLUDE_SEARCH_DIRS=&lt;path/to/include&gt; to the cmake command.
+	    </p>
+	  </div>
+
+            <p>
+	      <a class="indexterm" name="idp1385037556"></a>
+	      If you want to create a project file for your IDE (e.g. KDevelop), add -GKDevelop3 to the cmake command above. This will create a .kdevelop file in the build directory which can be opened by KDevelop.
+	    </p>
+
+
+	  <div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="sec:source_install_win"></a>Building under Windows<a class="indexterm" name="idp1385038548"></a></h4></div></div></div>
+	    
+	    <p>
+	      In order to build Qfsm under Windows you have to execute the program CMakeSetup, specify input (source) and output directory and click on "Configure". 
+	      You may choose between different development environments (e.g. Visual Studio) and CMake will create the respective project files.
+	      You can then compile Qfsm as usual with your preferred build tool.
+	      For more details, refer to the CMake documentation: http://www.cmake.org/HTML/Documentation.html.
+	    </p>
+	  </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="ch:using_qfsm"></a>Chapter 2. Using Qfsm</h1></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl class="toc"><dt><span class="section"><a href="#sec:main_menu">Using the main menu</a></span></dt><dd><dl><dt><span class="section"><a href="#sec:menu_file">File</a></span></dt><dt><span class="section"><a href="#sec:menu_edit">Edit</a></span></dt><dt><span class="section"><a href="#sec:menu_view">View</a></span></dt><dt><span class="section"><a href="#sec:menu_machine">Machine</a></span></dt><dt><span class="section"><a href="#sec:menu_state">State</a></span></dt><dt><span class="section"><a href="#sec:menu_transition">Transition</a></span></dt></dl></dd><dt><span class="section"><a href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a></span></dt><dt><span class="section"><a href="#sec:working_area">Using the Working Area</a></span></dt><dd><dl><dt><span class="section"><a href="#sec:select">Using the Select mode</a></span></dt><dt><span class="section"><a href="#sec:pan">Using the Pan mode</a></span></dt><dt><span class="section"><a href="#sec:zoom">Using the Zoom mode</a></span></dt><dt><span class="section"><a href="#sec:addstate_mode">Using the Add State mode</a></span></dt><dt><span class="section"><a href="#sec:addtrans_mode">Using the Add Transition mode</a></span></dt><dt><span class="section"><a href="#sec:simulate_mode">Using the Simulate mode</a></span></dt></dl></dd><dt><span class="section"><a href="#sec:add_states">Adding and modifying states</a></span></dt><dt><span class="section"><a href="#sec:add_trans">Adding and modifying transitions</a></span></dt><dt><span class="section"><a href="#sec:inp_cond">Using input ASCII conditions</a></span></dt><dd><dl><dt><span class="section"><a href="#sec:single_char">Single character</a></span></dt><dt><span class="section"><a href="#sec:multiple_char">Multiple characters</a></span></dt><dt><span class="section"><a href="#sec:escape_char">Escape sequences</a></span></dt><dt><span class="section"><a href="#sec:ranges">Ranges</a></span></dt><dt><span class="section"><a href="#sec:mixed">Mixed formats</a></span></dt></dl></dd><dt><span class="section"><a href="#sec:check">Checking the integrity of a FSM</a></span></dt><dt><span class="section"><a href="#sec:simulate">Simulating a FSM</a></span></dt><dt><span class="section"><a href="#sec:export">Exporting</a></span></dt><dd><dl><dt><span class="section"><a href="#sec:state_diagram">State diagrams</a></span></dt><dt><span class="section"><a href="#sec:hdl">Hardware description languages</a></span></dt><dt><span class="section"><a href="#sec:state_tables">State Tables</a></span></dt><dt><span class="section"><a href="#sec:codegen">Code generation languages</a></span></dt><dt><span class="section"><a href="#sec:hardwaretest">Hardware test code</a></span></dt><dt><span class="section"><a href="#sec:iodesc">I/O description</a></span></dt><dt><span class="section"><a href="#sec:vvvv">vvvv Automata code</a></span></dt><dt><span class="section"><a href="#sec:scxml">State Chart XML</a></span></dt></dl></dd><dt><span class="section"><a href="#sec:import">Importing</a></span></dt><dt><span class="section"><a href="#sec:options">Setting the options</a></span></dt><dd><dl><dt><span class="section"><a href="#sec:general">Changing language</a></span></dt><dt><span class="section"><a href="#sec:display">Changing the display</a></span></dt><dt><span class="section"><a href="#sec:printing">Printing</a></span></dt></dl></dd></dl></div>
+    
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec:main_menu"></a>Using the main menu</h2></div></div></div>
+      This section briefly explains the functions available through the main menu.
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:menu_file"></a>File<a class="indexterm" name="idp1385041580"></a></h3></div></div></div>
+        
+        <div class="informaltable">
+			<table border="1"><colgroup><col><col></colgroup><tbody><tr><td>To create<a class="indexterm" name="idp1385043300"></a> a new file: </td><td> select &#8220;New&#8221;<a class="indexterm" name="idp1385043820"></a>. For more details, see <a class="xref" href="#sec:creating_fsm" title="Creating and modifying a Finite State Machine">the section called &#8220;Creating and modifying a Finite State Machine&#8221;</a></td></tr><tr><td> To open<a class="indexterm" name="idp1385044876"></a> an existing Qfsm file: </td><td> select &#8220;Open&#8221;<a class="indexterm" name="idp1385045420"></a>.</td></tr><tr><td> To open<a class="indexterm" name="idp1385046308"></a> the most recently opened Qfsm files: </td><td> select &#8220;Open Recent&#8221;<a class="indexterm" name="idp1385046844"></a>.</td></tr><tr><td> To save<a class="indexterm" name="idp1385047732"></a> the current FSM to a Qfsm file: </td><td> select &#8220;Save&#8221;<a class="indexterm" name="idp1385048300"></a>.</td></tr><tr><td> To save <a class="indexterm" name="idp1385049140"></a>the current FSM under a different name: </td><td> select &#8220;Save As&#8221;<a class="indexterm" name="idp1385049676"></a>.</td></tr><tr><td> To export <a class="indexterm" name="idp1385050596"></a>the current FSM to a foreign file format: </td><td> select &#8220;Export&#8221;<a class="indexterm" name="idp1385051132"></a>.
+					 For more details, see <a class="xref" href="#sec:export" title="Exporting">the section called &#8220;Exporting&#8221;</a> </td></tr><tr><td> To print<a class="indexterm" name="idp1385052316"></a> the current FSM: </td><td> select &#8220;Print&#8221;<a class="indexterm" name="idp1385052820"></a>.</td></tr><tr><td> To open <a class="indexterm" name="idp1385053708"></a>a new window with a separate working area where a different FSM can be edited: </td><td>  select &#8220;New Window&#8221;<a class="indexterm" name="idp1385054340"></a>. 
+					 Note that you can copy, cut and paste states and transitions from/to different FSMs.</td></tr><tr><td> To close<a class="indexterm" name="idp1385055284"></a> the current FSM: </td><td>  select &#8220;Close&#8221;<a class="indexterm" name="idp1385055820"></a>.</td></tr><tr><td> To quit <a class="indexterm" name="idp1385056740"></a>Qfsm: </td><td> select &#8220;Quit&#8221;<a class="indexterm" name="idp1385057276"></a>.</td></tr></tbody></table>
+        </div>
+     
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:menu_edit"></a>Edit<a class="indexterm" name="idp1385058364"></a></h3></div></div></div>
+        
+        <div class="informaltable">
+      	  <table border="1"><colgroup><col><col></colgroup><tbody><tr><td> To undo <a class="indexterm" name="idp1385059948"></a>the last action: </td><td> select &#8220;Undo&#8221;<a class="indexterm" name="idp1385060452"></a>.</td></tr><tr><td> To cut<a class="indexterm" name="idp1385061364"></a> the currently selected states and transitions to the clipboard: </td><td> select &#8220;Cut&#8221;<a class="indexterm" name="idp1385061932"></a>.
+			</td></tr><tr><td> To copy <a class="indexterm" name="idp1385062820"></a>the currently selected states and transitions to the clipboard: </td><td> select &#8220;Copy&#8221;<a class="indexterm" name="idp1384979412"></a>.</td></tr><tr><td> To paste<a class="indexterm" name="idp1385063836"></a> the clipboard into the current FSM: </td><td> select &#8220;Paste&#8221;<a class="indexterm" name="idp1385064284"></a>.
+			</td></tr><tr><td> To delete<a class="indexterm" name="idp1385065052"></a> the currently selected states and transitions: </td><td> select &#8220;Delete&#8221;<a class="indexterm" name="idp1385065556"></a>.
+			</td></tr><tr><td> To switch to the select<a class="indexterm" name="idp1385066324"></a> mode: </td><td>  select &#8220;Select&#8221;<a class="indexterm" name="idp1385066772"></a>. For more details, see <a class="xref" href="#sec:select" title="Using the Select mode">the section called &#8220;Using the Select mode&#8221;</a>
+
+			</td></tr><tr><td> To select all<a class="indexterm" name="idp1385067788"></a> states and transitions of the current FSM: </td><td> select &#8220;Select All&#8221;<a class="indexterm" name="idp1385068292"></a>.
+			</td></tr><tr><td> To deselect all<a class="indexterm" name="idp1385069060"></a> objects: </td><td> select &#8220;Deselect All&#8221;<a class="indexterm" name="idp1385069508"></a>.
+			</td></tr><tr><td> To open the options<a class="indexterm" name="idp1385070276"></a> dialog: </td><td>select &#8220;Options&#8221;<a class="indexterm" name="idp1385070724"></a>. For more details, see <a class="xref" href="#sec:options" title="Setting the options">the section called &#8220;Setting the options&#8221;</a>
+
+			</td></tr></tbody></table>
+
+        </div>
+
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:menu_view"></a>View<a class="indexterm" name="idp1385072052"></a></h3></div></div></div>
+        
+        <div class="informaltable">
+         	 <table border="1"><colgroup><col><col></colgroup><tbody><tr><td> To show/hide the state codes inside the states<a class="indexterm" name="idp1385073476"></a>: </td><td> select &#8220;State Codes&#8221;<a class="indexterm" name="idp1385073980"></a>. Each state has a unique identifier, called state code, which is an integer that is automatically determined by Qfsm.
+			</td></tr><tr><td> To show/hide the Moore outputs<a class="indexterm" name="idp1385074988"></a> inside the states: </td><td> select &#8220;Moore Outputs&#8221;<a class="indexterm" name="idp1385075596"></a>. Each state defines its Moore outputs which are the values that are sent to the outputs of the FSM when the respective state is reached.
+			</td></tr><tr><td> To show/hide the Mealy input <a class="indexterm" name="idp1385076596"></a>conditions on the transitions: </td><td> select &#8220;Mealy Inputs&#8221;<a class="indexterm" name="idp1385077212"></a>. Mealy inputs are asynchronous inputs to the FSM. They can trigger transitions from one state to another if the condition of the respective transition is satisfied.
+			</td></tr><tr><td>To show/hide the Mealy outputs on the transitions: </td><td> select &#8220;Mealy Outputs&#8221;. Mealy outputs are outputs of the FSM that were sent when a transition is triggered. Thus, each transition can define the Moore outputs that are sent when it is triggered.
+			</td></tr><tr><td> To show/hide the shadows <a class="indexterm" name="idp1385079076"></a>of the states: </td><td> select &#8220;Shadows&#8221;<a class="indexterm" name="idp1385079692"></a>.
+			</td></tr><tr><td> To show/hide the grid <a class="indexterm" name="idp1385080524"></a>on the working area: </td><td> select &#8220;Grid&#8221;<a class="indexterm" name="idp1385081124"></a>.
+			</td></tr><tr><td> To show/hide the window displaying the names of the inputs and outputs<a class="indexterm" name="idp1385082068"></a> of a finite state machine: </td><td> select &#8220;IO View&#8221;<a class="indexterm" name="idp1385082652"></a>.
+			</td></tr><tr><td> To switch to the pan mode<a class="indexterm" name="idp1385083516"></a>: </td><td> select &#8220;Pan View&#8221;<a class="indexterm" name="idp1385084060"></a>. For more details, see <a class="xref" href="#sec:pan" title="Using the Pan mode">the section called &#8220;Using the Pan mode&#8221;</a>
+			</td></tr><tr><td> To switch to the zoom<a class="indexterm" name="idp1385085308"></a> mode: </td><td> select &#8220;Zoom&#8221;<a class="indexterm" name="idp1385085820"></a>. For more details, see <a class="xref" href="#sec:zoom" title="Using the Zoom mode">the section called &#8220;Using the Zoom mode&#8221;</a>
+			</td></tr><tr><td> To zoom the view in<a class="indexterm" name="idp1385087036"></a>: </td><td>select &#8220;zoom in&#8221;<a class="indexterm" name="idp1385087588"></a>. The current zoom value is shown in the leftmost part of the status bar.
+			</td></tr><tr><td> To zoom the view out<a class="indexterm" name="idp1385088612"></a>: </td><td>select &#8220;zoom out&#8221;<a class="indexterm" name="idp1385089156"></a>. The current zoom value is shown in the leftmost part of the status bar.
+			</td></tr><tr><td> To set the zoom to the original value (100%)<a class="indexterm" name="idp1385090108"></a>: </td><td> select &#8220;Zoom 100%&#8221;<a class="indexterm" name="idp1385090236"></a>. The current zoom value is shown in the leftmost part of the status bar.
+			</td></tr></tbody></table>
+        </div>
+        
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:menu_machine"></a>Machine<a class="indexterm" name="idp1385091876"></a></h3></div></div></div>
+        
+        <div class="informaltable">
+        	<table border="1"><colgroup><col><col></colgroup><tbody><tr><td> To modify<a class="indexterm" name="idp1385093324"></a> the properties of the current FSM: </td><td>select &#8220;Edit&#8221;<a class="indexterm" name="idp1385094172"></a>. It opens a dialog in which you can modify the properties of the FSM. For more details, see <a class="xref" href="#sec:creating_fsm" title="Creating and modifying a Finite State Machine">the section called &#8220;Creating and modifying a Finite State Machine&#8221;</a>
+
+        			</td></tr><tr><td>To correct automatically<a class="indexterm" name="idp1385095268"></a> the codes (or identifiers) of all states such that each state code is unique:</td><td>select &#8220;Auto correct State Codes&#8221;<a class="indexterm" name="idp1385095908"></a></td></tr><tr><td> To switch to the simulation<a class="indexterm" name="idp1385096732"></a> mode:</td><td>select &#8220;Simulate&#8221;<a class="indexterm" name="idp1385097252"></a>. For more details, see <a class="xref" href="#sec:simulate_mode" title="Using the Simulate mode">the section called &#8220;Using the Simulate mode&#8221;</a>and<a class="xref" href="#sec:simulate" title="Simulating a FSM">the section called &#8220;Simulating a FSM&#8221;</a>
+
+        			</td></tr><tr><td> To perform an integrity check<a class="indexterm" name="idp1385098700"></a> on the current FSM: </td><td>  select &#8220;Integrity Check&#8221;<a class="indexterm" name="idp1385099324"></a>. For more details, see <a class="xref" href="#sec:check" title="Checking the integrity of a FSM">the section called &#8220;Checking the integrity of a FSM&#8221;</a>
+        			</td></tr></tbody></table>
+        
+        </div>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:menu_state"></a>State<a class="indexterm" name="idp1385101028"></a></h3></div></div></div>
+        
+        <div class="informaltable">
+        	<table border="1"><colgroup><col><col></colgroup><tbody><tr><td>To switch to the "add state" mode<a class="indexterm" name="idp1385102388"></a> and create a new state: </td><td>select &#8220;New&#8221;<a class="indexterm" name="idp1385102948"></a>. For more details, see <a class="xref" href="#sec:addstate_mode" title="Using the Add State mode">the section called &#8220;Using the Add State mode&#8221;</a> and <a class="xref" href="#sec:add_states" title="Adding and modifying states">the section called &#8220;Adding and modifying states&#8221;</a>
+        			</td></tr><tr><td> To modify<a class="indexterm" name="idp1385104436"></a> the properties of the currently selected state: </td><td>  select &#8220;Edit&#8221;<a class="indexterm" name="idp1385105228"></a>. It opens a dialog in which you can modify the properties of the state. For more details, see <a class="xref" href="#sec:add_states" title="Adding and modifying states">the section called &#8220;Adding and modifying states&#8221;</a>
+
+        			</td></tr><tr><td>To define the currently selected state as the initial state<a class="indexterm" name="idp1385106484"></a><a class="indexterm" name="idp1385106948"></a> of the FSM:</td><td> select &#8220;Set Initial State&#8221;.
+        			</td></tr><tr><td>To define the currently selected state as a final<a class="indexterm" name="idp1385107868"></a><a class="indexterm" name="idp1385108356"></a> or non-final state: </td><td>select &#8220;Toggle Final State&#8221;<a class="indexterm" name="idp1385109020"></a>.
+        			</td></tr></tbody></table>
+        </div>
+      </div>
+      
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:menu_transition"></a>Transition<a class="indexterm" name="idp1385110380"></a></h3></div></div></div>
+        
+        <div class="informaltable">
+        <table border="1"><colgroup><col><col></colgroup><tbody><tr><td>To switch to the "add transition" mode<a class="indexterm" name="idp1385111796"></a> and create a new transition:</td><td> select &#8220;New&#8221;<a class="indexterm" name="idp1385112404"></a>. For more details, see <a class="xref" href="#sec:addtrans_mode" title="Using the Add Transition mode">the section called &#8220;Using the Add Transition mode&#8221;</a> and <a class="xref" href="#sec:add_trans" title="Adding and modifying transitions">the section called &#8220;Adding and modifying transitions&#8221;</a>
+
+    			</td></tr><tr><td> To modify<a class="indexterm" name="idp1385113884"></a> the properties of the currently selected transition: </td><td>select &#8220;Edit&#8221;<a class="indexterm" name="idp1385114620"></a>. It opens a dialog in which you can modify the properties of the transition. For more details, see <a class="xref" href="#sec:add_trans" title="Adding and modifying transitions">the section called &#8220;Adding and modifying transitions&#8221;</a>
+
+    			</td></tr><tr><td>To straighten<a class="indexterm" name="idp1385115844"></a> the currently selected transition: </td><td>select &#8220;Straighten&#8221;<a class="indexterm" name="idp1385116460"></a>.
+    			</td></tr></tbody></table>
+        </div>
+    </div>
+  </div>
+    
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec:creating_fsm"></a>Creating<a class="indexterm" name="idp1385117804"></a> and modifying <a class="indexterm" name="idp1385118188"></a>a Finite State Machine</h2></div></div></div>
+      To create a new Finite State Machine (FSM), choose the menu item <span class="emphasis"><em> File-&gt;New </em></span>. The "Machine properties" dialog opens and lets you specify the properties of the FSM. Here is an explanation of each item of the dialog.
+      <div class="screenshot">
+        
+        <div class="mediaobject" align="center"><table border="0" summary="manufactured viewport for HTML img" style="cellpadding: 0; cellspacing: 0;" width="50%"><tr><td align="center"><img src="machine_properties.png" align="middle"></td></tr></table></div>
+      </div>
+      
+      <div class="table"><a name="idp1385121156"></a><p class="title"><b>Table 2.1. Attributes of a Finite State Machine</b></p><div class="table-contents">
+        
+      	<table summary="Attributes of a Finite State Machine" border="1"><colgroup><col><col></colgroup><tbody><tr><td>Name <a class="indexterm" name="idp1385122724"></a><a class="indexterm" name="idp1385123212"></a></td><td>Enter a name for the FSM. The name is used for example when exporting to the following formats: VHDL<a class="indexterm" name="idp1385123916"></a>, Verilog HDL<a class="indexterm" name="idp1385124172"></a> or Ragel<a class="indexterm" name="idp1385124460"></a>.
+      			</td></tr><tr><td>Version <a class="indexterm" name="idp1385125180"></a></td><td>You can enter the version of the FSM. This is a free character string that is only used when printing the diagram.
+      			</td></tr><tr><td> Type<a class="indexterm" name="idp1385126324"></a></td><td><p>Select the type. The type attribute determines which type of information is processed by the FSM, i.e. the inputs, the outputs etc. Binary<a class="indexterm" name="idp1385127188"></a> FSMs process zeros and ones at the inputs or outputs. This is the main type used for hardware design.</p><p>ASCII<a class="indexterm" name="idp1385127780"></a> FSMs process characters (i.e. letters, digits etc.). These characters are coded in ASCII<a class="indexterm" name="idp1385128180"></a> format using 8 bits. This type of FSM can be used either for hardware design or to create string parsers.</p><p>The "Free Text"<a class="indexterm" name="idp1385128676"></a> type allows to specify inputs and outputs using any kind of character string of variable length. This type of FSM cannot be simulated afterwards because the input conditions won't be interpreted.</p>
+
+      			</td></tr><tr><td> Moore outputs and Mealy inputs/outputs<a class="indexterm" name="idp1385129540"></a><a class="indexterm" name="idp1385129820"></a><a class="indexterm" name="idp1385130012"></a></td><td>If you are creating a "binary" <a class="indexterm" name="idp1385130436"></a>FSM you can specify the number of bits of the moore output and mealy input/output and their respective names. The names are lists of character strings separated by commas. If you do not want to choose the names you can leave these fields blank and they will be automatically set.
+      			</td></tr><tr><td>Fonts <a class="indexterm" name="idp1385131444"></a></td><td> You can specify the font to use for the state names and for the input conditions and outputs displayed on the transitions<a class="indexterm" name="idp1385131996"></a>.
+      			</td></tr><tr><td> Arrow Type<a class="indexterm" name="idp1385132740"></a></td><td>You can choose the type of arrow to use for drawing transitions.<a class="indexterm" name="idp1385133188"></a> </td></tr><tr><td> Draw initial transition<a class="indexterm" name="idp1385133916"></a></td><td> You can tick or not this option if you want to draw or not the initial transition or if you want to reset or start the transition<a class="indexterm" name="idp1385134652"></a>.
+      			</td></tr></tbody></table>
+      </div></div><br class="table-break">
+      <p>
+        When you want to modify the properties of an existing FSM you can select <span class="emphasis"><em> Machine-&gt;Edit</em></span> from the main menu and the same dialog box displays. As soon as you click OK the changes take effect.
+      </p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec:working_area"></a>Using the Working Area<a class="indexterm" name="idp1385136356"></a></h2></div></div></div>
+      
+      <p>
+        The working area denotes the area of the Qfsm window that shows the state diagram. Once you have created a new FSM you see a blank working area and you are in the <span class="emphasis"><em> select</em></span>mode.
+        </p><div class="screenshot">
+          
+          <div class="mediaobject" align="center"><table border="0" summary="manufactured viewport for HTML img" style="cellpadding: 0; cellspacing: 0;" width="100%"><tr><td align="center"><img src="working_area2.png" align="middle"></td></tr></table></div>
+        </div><p>
+        There are six different modes you can be in and which determine what happens when you click or drag the mouse inside the working area of Qfsm.
+        </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">Select<a class="indexterm" name="idp1385139708"></a></li><li class="listitem">Pan<a class="indexterm" name="idp1385140236"></a></li><li class="listitem">Zoom<a class="indexterm" name="idp1385140788"></a></li><li class="listitem">Add State<a class="indexterm" name="idp1385141252"></a></li><li class="listitem">Add Transition<a class="indexterm" name="idp1385141804"></a></li><li class="listitem">Simulate<a class="indexterm" name="idp1385142252"></a></li></ol></div><p>
+        Only one mode can be activated at a time. To change the mode, click on one of the icons in the middle of the toolbar.</p><p>When a diagram is larger the working area<a class="indexterm" name="idp1385143012"></a>, you have the possibility to move the view of a diagram. To move the view of a diagram, click on the middle mouse button and drag the mouse pointer. As soon as you release the middle mouse button the application reverts to the selected mode.</p><p>
+        </p><div class="mediaobject"><table border="0" summary="manufactured viewport for HTML img" style="cellpadding: 0; cellspacing: 0;" width="142"><tr><td><img src="toolbar.png"></td></tr></table></div><p>
+      </p>
+      <p>Alternatively, you can select the respective menu entry or press the respective short cut. The active mode is indicated by a highlighted toolbar button. In some modes, the form of the mouse cursor also changes, e.g. a magnifier for the zoom mode.</p>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:select"></a>Using the Select mode<a class="indexterm" name="idp1385145540"></a></h3></div></div></div>
+        <div class="mediaobject"></div>
+        <p>In this mode you can select, move or modify graphical objects.</p>
+        <p>To <span class="bold"><strong>select a state<a class="indexterm" name="idp1385146844"></a> or a transition</strong></span><a class="indexterm" name="idp1385147196"></a>, click on it with the left mouse button.</p>
+        <p>To <span class="bold"><strong>select several states <a class="indexterm" name="idp1385147924"></a>or transitions <a class="indexterm" name="idp1385148196"></a>at the same time</strong></span>, hold down the shift key. You can then apply further actions on selected graphical objects, i.e. copy or edit, by using the menu.</p>
+        <p>To <span class="bold"><strong>unselect all the selected graphical objects</strong></span>, click on the background.</p>
+        <p>To <span class="bold"><strong>show the context menu for a state or a transition</strong></span>, click with the right mouse button on the state or transition.</p>
+        <p>To<span class="bold"><strong> modify the properties of a state or a transition</strong></span>, double-click on the state or transition. It opens a dialog in which you can modify the properties.</p>
+        <p>To <span class="bold"><strong>select multiple graphical objects</strong></span>, draw a rectangle holding the left mouse button around the graphical objects you want to select.</p>
+        <p>To <span class="bold"><strong>move state  <a class="indexterm" name="idp1385151852"></a>or transitions</strong></span><a class="indexterm" name="idp1385152212"></a>, select them and drag them to 
+the desired position.</p>
+<p>To<span class="bold"><strong> move the transition control points<a class="indexterm" name="idp1385153044"></a></strong></span>, select the respective transition and then drag one of the control points. The transition control points are indicated by small red and green points when a transition is selected. The red points control the form of the transition, i.e. the bend. The green ones are used to attach them to a starting and end state.</p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:pan"></a>Using the Pan mode<a class="indexterm" name="idp1385154084"></a></h3></div></div></div>
+        
+        <div class="mediaobject"><table border="0" summary="manufactured viewport for HTML img" style="cellpadding: 0; cellspacing: 0;" width="18"><tr><td><img src="pan.png"></td></tr></table></div>
+        <p>In this mode, you can move the view to a different part of your diagram when your diagram is larger than the working area of the window.</p><p>To move the view, drag the mouse pointer.</p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:zoom"></a>Using the Zoom mode<a class="indexterm" name="idp1385156420"></a></h3></div></div></div>
+        
+        <div class="mediaobject"><table border="0" summary="manufactured viewport for HTML img" style="cellpadding: 0; cellspacing: 0;" width="18"><tr><td><img src="zoom.png"></td></tr></table></div>
+        <p>In this mode you can zoom in <a class="indexterm" name="idp1385157940"></a>the view.</p><p>To zoom in <a class="indexterm" name="idp1385158372"></a>the view, click with the left mouse button on the working area.</p><p>To zoom out<a class="indexterm" name="idp1385158860"></a>, keep the CTRL key pressed at the same time you click.</p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:addstate_mode"></a>Using the Add State mode<a class="indexterm" name="idp1385159772"></a></h3></div></div></div>
+        
+        <div class="mediaobject"><table border="0" summary="manufactured viewport for HTML img" style="cellpadding: 0; cellspacing: 0;" width="18"><tr><td><img src="addstate.png"></td></tr></table></div>
+        <p>In this mode you can add states<a class="indexterm" name="idp1385161244"></a> and specify their properties.</p>
+        <p>
+          To create a new state<a class="indexterm" name="idp1385161844"></a>, click with the left mouse button and fill the dialog with the properties. For more details, see <a class="xref" href="#sec:add_states" title="Adding and modifying states">the section called &#8220;Adding and modifying states&#8221;</a>
+        </p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:addtrans_mode"></a>Using the Add Transition mode<a class="indexterm" name="idp1385163180"></a></h3></div></div></div>
+        
+        <div class="mediaobject"><table border="0" summary="manufactured viewport for HTML img" style="cellpadding: 0; cellspacing: 0;" width="18"><tr><td><img src="addtrans.png"></td></tr></table></div>
+        <p>In this mode you can add transitions<a class="indexterm" name="idp1385164636"></a> and specify their properties.</p><p>To add a transition<a class="indexterm" name="idp1385165116"></a>:</p><p>1) click on a state and drag the mouse pointer to another state.</p><p>2) fill the dialog with the properties of the transition.</p>
+        <p>
+          For more details, see <a class="xref" href="#sec:add_trans" title="Adding and modifying transitions">the section called &#8220;Adding and modifying transitions&#8221;</a>
+        </p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:simulate_mode"></a>Using the Simulate mode<a class="indexterm" name="idp1385166844"></a></h3></div></div></div>
+        
+        <div class="mediaobject"><table border="0" summary="manufactured viewport for HTML img" style="cellpadding: 0; cellspacing: 0;" width="18"><tr><td><img src="simulate.png"></td></tr></table></div>
+        <p>In the simulate mode, you can test the behaviour <a class="indexterm" name="idp1385168364"></a>of your state machine with respect to external input.</p>
+        <p>
+          When you enter this state, the simulator dialog opens and all interaction with the state diagram is disabled until you close the dialog. For more details, see <a class="xref" href="#sec:simulate" title="Simulating a FSM">the section called &#8220;Simulating a FSM&#8221;</a>
+        </p>
+      </div>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec:add_states"></a>Adding<a class="indexterm" name="idp1385170260"></a> and modifying<a class="indexterm" name="idp1385170732"></a> states</h2></div></div></div>
+      
+      <p>To create a state<a class="indexterm" name="idp1385171388"></a>:</p><p>1) first you need to:</p><p>- create a new FSM or;</p><p>- open an existing file.</p>
+      <p>
+        To create a new FSM<a class="indexterm" name="idp1385172548"></a>, select  <span class="emphasis"><em> File-&gt;New </em></span> (see <a class="xref" href="#sec:creating_fsm" title="Creating and modifying a Finite State Machine">the section called &#8220;Creating and modifying a Finite State Machine&#8221;</a>)
+      </p>
+      <p>
+        To open an existing file<a class="indexterm" name="idp1385173772"></a>, select <span class="emphasis"><em> File-&gt;Open </em></span>
+      </p>
+      and choose the desired file.
+      <p>
+        2) Switch to the "add state" mode (see <a class="xref" href="#sec:addstate_mode" title="Using the Add State mode">the section called &#8220;Using the Add State mode&#8221;</a>).
+      </p>
+      <p>3) Click at the position of the working area where you want the new state to be.</p><p>The following dialog opens.</p>
+      <p>
+        To specify or modify the properties of the state, fill the "State properties" dialog:
+        </p><div class="screenshot">
+          
+          <div class="mediaobject" align="center"><table border="0" summary="manufactured viewport for HTML img" style="cellpadding: 0; cellspacing: 0;" width="40%"><tr><td align="center"><img src="state_properties.png" align="middle"></td></tr></table></div>
+        </div><p>
+      </p>
+      <div class="table"><a name="idp1385177628"></a><p class="title"><b>Table 2.2. Attributes of a state</b></p><div class="table-contents">
+	<a class="indexterm" name="idp1385177788"></a>
+	<a class="indexterm" name="idp1385178124"></a>
+        
+      	<table summary="Attributes of a state" border="1"><colgroup><col><col></colgroup><tbody><tr><td> Name<a class="indexterm" name="idp1385179900"></a></td><td>Enter a name for the state.
+      			</td></tr><tr><td>Code<a class="indexterm" name="idp1385180980"></a></td><td>Normally you do not need to fill this field. This is a unique identifier of the state you create, it is filled automatically.
+      			</td></tr><tr><td> Moore Outputs<a class="indexterm" name="idp1385182100"></a></td><td>Enter the outputs sent by the FSM. In "binary"<a class="indexterm" name="idp1385182772"></a> FSMs this is a string of zeros and ones and in "ASCII"<a class="indexterm" name="idp1385183092"></a> FSMs this is just one character.
+      			</td></tr><tr><td>Entry actions<a class="indexterm" name="idp1385183788"></a></td><td>Enter the actions (functions, e.g. "doThis()") that shall be executed when entering the state. Used only for "free text" machines and the SMC export.
+      			</td></tr><tr><td>Exit actions<a class="indexterm" name="idp1385185036"></a></td><td>Enter the actions (functions, e.g. "doThat()") that shall be executed when exiting the state. Used only for "free text" machines and the SMC export.
+      			</td></tr><tr><td>Radius<a class="indexterm" name="idp1385186236"></a></td><td>Enter the radius of the drawn circle of the state, in pixels.
+      			</td></tr><tr><td>Line width<a class="indexterm" name="idp1385187268"></a> </td><td>Enter the line width of the outline of the state.
+      			</td></tr><tr><td>Colour<a class="indexterm" name="idp1385188284"></a></td><td>If you want to change the colour of the outline of the state, click on the &#8220;Colour&#8221; button<a class="indexterm" name="idp1385188908"></a>.
+      			</td></tr><tr><td> Description<a class="indexterm" name="idp1385189748"></a></td><td>You can enter a description of the state. This is only for documentation purposes.
+      			</td></tr></tbody></table>
+      </div></div><br class="table-break">
+      
+      <p>To modify an existing state<a class="indexterm" name="idp1385190788"></a>:</p>
+      <p>
+        1) switch to the "select mode" <a class="indexterm" name="idp1385191452"></a>(see <a class="xref" href="#sec:select" title="Using the Select mode">the section called &#8220;Using the Select mode&#8221;</a>).
+      </p>
+      <p>2) double-click on the respective state</p><p>Or</p>
+      <p>
+        2) select one state and select<span class="emphasis"><em> State-&gt;Edit </em></span> from the main menu.
+      </p>
+    </div>
+
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec:add_trans"></a>Adding <a class="indexterm" name="idp1385193540"></a>and modifying<a class="indexterm" name="idp1385194012"></a> transitions</h2></div></div></div>
+      
+        <p>To create a new transition<a class="indexterm" name="idp1385194604"></a>:</p><p>1) you need first to:</p><p>- create a FSM or</p><p>- open an existing file.</p>
+      <p>
+        To create a FSM, select <span class="emphasis"><em> File-&gt;New </em></span>(see <a class="xref" href="#sec:creating_fsm" title="Creating and modifying a Finite State Machine">the section called &#8220;Creating and modifying a Finite State Machine&#8221;</a>)
+      </p>
+      <p>
+        To open an existing file, select<span class="emphasis"><em> File-&gt;Open </em></span>from the main menu and choose the desired file.
+      </p>
+      <p>
+        2) create at least one state (see <a class="xref" href="#sec:add_states" title="Adding and modifying states">the section called &#8220;Adding and modifying states&#8221;</a>).
+      </p>
+      <p>
+        3) switch to the "add transition" mode (see <a class="xref" href="#sec:addtrans_mode" title="Using the Add Transition mode">the section called &#8220;Using the Add Transition mode&#8221;</a>).
+      </p>
+      <p>To create a transition from state A to state B, press and hold the left mouse button on state A and release it on state B.</p>
+      <p>To draw loops<a class="indexterm" name="idp1385198420"></a>, i.e. transitions that go from one state to itself, press and release the mouse button on the same state.</p>
+      <p>
+        The "Transition properties" dialog opens.To specify or modify the properties of the state, fill the dialog.
+        </p><div class="screenshot">
+          
+          <div class="mediaobject" align="center"><table border="0" summary="manufactured viewport for HTML img" style="cellpadding: 0; cellspacing: 0;" width="40%"><tr><td align="center"><img src="transition_properties.png" align="middle"></td></tr></table></div>
+        </div><p>
+      </p>
+      <div class="table"><a name="idp1385201276"></a><p class="title"><b>Table 2.3. Attributes of a transition</b></p><div class="table-contents">
+        
+	<a class="indexterm" name="idp1385201708"></a>
+	<a class="indexterm" name="idp1385201964"></a>
+      	<table summary="Attributes of a transition" border="1"><colgroup><col><col></colgroup><tbody><tr><td>Condition Type <a class="indexterm" name="idp1385203500"></a><a class="indexterm" name="idp1385203996"></a></td><td>Choose the type of the condition. The type of the condition determines the format in which you enter the input condition in the next field.
+      			</td></tr><tr><td>Input <a class="indexterm" name="idp1385205076"></a><a class="indexterm" name="idp1385205492"></a></td><td><p>If the condition type is binary, enter a string of zeros and ones representing the Mealy input that should trigger this transition. You can also use the character 'x' meaning: "don't care". You can also specify several alternative sets of inputs linked with "|" (OR).
+	    </p>
+            <p>
+              If the condition type is ASCII <a class="indexterm" name="idp1385206396"></a>enter a character or specify an expression in a specific format which is explained in detail in <a class="xref" href="#sec:inp_cond" title="Using input ASCII conditions">the section called &#8220;Using input ASCII conditions&#8221;</a>.
+            </p>
+            <p>For "free text" <a class="indexterm" name="idp1385207340"></a>conditions enter any input character string. However, it has no logical meaning and won't be interpreted, for example when simulating the machine. For SMC export, put function names here (e.g. "suspend()").</p>
+
+      			</td></tr><tr><td>Output <a class="indexterm" name="idp1385208284"></a><a class="indexterm" name="idp1385208628"></a></td><td>Enter the Mealy output sent from the FSM when the transition is activated, i.e. the input condition is satisfied. Depending on the type of the condition the format is either a string of zeros and ones (binary) <a class="indexterm" name="idp1385209244"></a>a character (ASCII)<a class="indexterm" name="idp1385209572"></a> or any character string (free text)<a class="indexterm" name="idp1385209876"></a>. Note that in case of an ASCII character it can also be an escape sequence. For more details on escape sequences, see <a class="xref" href="#sec:inp_cond" title="Using input ASCII conditions">the section called &#8220;Using input ASCII conditions&#8221;</a>
+For SMC export, put function names here (e.g. "suspend()").
+      			</td></tr><tr><td>Description<a class="indexterm" name="idp1385210956"></a> </td><td>You can enter a description of the transition. This is only for documentation purposes.
+      			</td></tr></tbody></table>
+      </div></div><br class="table-break">
+  
+      <p>To modify the properties of an existing transition<a class="indexterm" name="idp1385212196"></a>:</p>
+      <p>
+        1) switch to the "select mode"<a class="indexterm" name="idp1385212828"></a> (see <a class="xref" href="#sec:select" title="Using the Select mode">the section called &#8220;Using the Select mode&#8221;</a>).
+      </p>
+      <p>2) double-click on the respective transition</p><p>Or</p>
+      <p>
+        2) select one transition and select<span class="emphasis"><em>Transition-&gt;Edit</em></span>from the main menu.
+      </p>
+      <p>To change the bend of the transition as well as its start state and end state:</p><p>1) switch to the &#8220;Select mode&#8221;</p><p>2) click on the transition.</p><p>Four control points appear. You can drag them around with the left mouse button.</p><p>The green ones allow you to change the start and end state. With the red ones you can change the bend of the transition.</p>
+    </div>
+
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec:inp_cond"></a>Using input ASCII conditions<a class="indexterm" name="idp1385215828"></a><a class="indexterm" name="idp1385216292"></a></h2></div></div></div>
+      
+      <p>
+        When you create a transition of FSM that processes ASCII characters you have to enter an input condition. This condition can be a simple character, e.g. '<code class="literal">a</code>', or several characters that are expressed by a special notation explained in the following.
+      </p>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:single_char"></a>Single character<a class="indexterm" name="idp1385217588"></a></h3></div></div></div>
+        
+        <p>
+          This is the most simple form of condition. It contains one ASCII<a class="indexterm" name="idp1385218228"></a> character, e.g. '<code class="literal">a</code>' or '<code class="literal">z</code>'.
+        </p>
+        <p>
+          Note that for special characters, e.g. '<code class="literal">-</code>' (minus sign) or the space character you need to use an escape sequence (see <a class="xref" href="#sec:escape_char" title="Escape sequences">the section called &#8220;Escape sequences&#8221;</a>).
+        </p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:multiple_char"></a>Multiple characters<a class="indexterm" name="idp1385220348"></a></h3></div></div></div>
+        
+        <p>
+          If you want the condition to contain multiple characters, i.e. '<code class="literal">a</code>' or '<code class="literal">f</code>' or '<code class="literal">+</code>' you just enter the string: '<code class="literal">af+</code>'.Clearly, the order is not important.
+        </p>
+        <p>
+          Note that it is<span class="emphasis"><em>not</em></span>possible to use a concatenation of characters as input condition, for example '<code class="literal">print</code>' in order to recognize the word "print". To do this, you have to create a transition and a state for each character and build a chain with the respective characters.
+        </p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:escape_char"></a>Escape sequences<a class="indexterm" name="idp1385223332"></a></h3></div></div></div>
+        
+        <p>
+          Special characters like the newline character need to be escaped, i.e. backslash + some character. The following table shows the recognized escape sequences.
+          </p><div class="table"><a name="tab:escape"></a><p class="title"><b>Table 2.4. Recognized escape sequences<a class="indexterm" name="idp1385224644"></a></b></p><div class="table-contents">
+            
+            <table summary="Recognized escape sequencesEscape sequences" border="1"><colgroup><col><col></colgroup><thead><tr><th>escape sequence</th><th>meaning</th></tr></thead><tbody><tr><td>
+                    <code class="literal">\t</code>
+                  </td><td>tab</td></tr><tr><td>
+                    <code class="literal">\n</code>
+                  </td><td>newline</td></tr><tr><td>
+                    <code class="literal">\r</code>
+                  </td><td>carriage return</td></tr><tr><td>
+                    <code class="literal">\s</code>
+                  </td><td>space</td></tr><tr><td>
+                    <code class="literal">\-</code>
+                  </td><td>minus</td></tr><tr><td>
+                    <code class="literal">\d</code>
+                  </td><td>digit (0-9)</td></tr></tbody></table>
+          </div></div><p><br class="table-break">
+          Note that the last escape sequence '<code class="literal">\d</code>' actually represents 10 characters.
+        </p>
+        <p>
+          Characters that are neither printable nor in the above table can be specified by '<code class="literal">\0</code>' (backslash zero) followed by their hexadecimal code. For example, '<code class="literal">\0CF</code>' would represent the ASCII character 207 (decimal).
+        </p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:ranges"></a>Ranges<a class="indexterm" name="idp1385234276"></a></h3></div></div></div>
+        
+        <p>
+          You can further specify ranges by using the minus sign. Thus, '<code class="literal">a-z</code>' means one of the characters between '<code class="literal">a</code>' and '<code class="literal">z</code>' (including). Any character, even escaped ones, can be used as start or end point of a range.
+        </p>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:mixed"></a>Mixed formats<a class="indexterm" name="idp1385236028"></a></h3></div></div></div>
+        <p>You can combine several conditions, each of them in one of the above mentioned notations, into one long condition by just concatenating them. Note that you must not separate them by any character, like white space or comma.</p>
+        <p>
+          Here are some examples:
+          </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+              <code class="literal">A-F0-9</code>
+            </li><li class="listitem">
+              <code class="literal">+\-\d</code>
+            </li><li class="listitem">
+              <code class="literal">\n\r\tXYZ</code>
+            </li><li class="listitem">
+              <code class="literal">xyz0-3\010A-Z</code>
+            </li></ul></div><p>
+        </p>
+      </div>
+    </div>
+
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec:check"></a>Checking the integrity of a FSM<a class="indexterm" name="idp1385239620"></a><a class="indexterm" name="idp1385240068"></a></h2></div></div></div>
+      
+      <p>
+        To check the integrity of a FSM, select <span class="emphasis"><em>Machine-&gt;Integrity Check</em></span> from the main menu.</p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3>This may take a long time for larger FSMs, be careful not to interrupt the procedure.</div><p>
+      </p>
+      <p>The following tests are performed:</p>
+      <div class="informaltable">
+      	<table border="1"><colgroup><col><col></colgroup><tbody><tr><td> Unambigous Conditions<a class="indexterm" name="idp1385242708"></a></td><td>Checks if the FSM has transitions with conditions that are ambiguous, i.e. transitions that are activated simultaniously by the same input (in the same state). Note that ambiguous transitions are only allowed in<span class="emphasis"><em>non-deterministic</em></span>FSMs, which are currently not supported by Qfsm.
+
+      			</td></tr><tr><td>Initial state <a class="indexterm" name="idp1385243940"></a><a class="indexterm" name="idp1385244292"></a></td><td>Checks if the FSM has an initial state.
+      			</td></tr><tr><td>Final state <a class="indexterm" name="idp1385245084"></a><a class="indexterm" name="idp1385245372"></a></td><td>Checks if the FSM has a final state.
+      			</td></tr><tr><td>No dead locks<a class="indexterm" name="idp1385246252"></a></td><td>Checks if the FSM has states where it can get of out, i.e. states with no transitions going out.
+      			</td></tr><tr><td>Completeness <a class="indexterm" name="idp1385247076"></a></td><td>Checks if for every possible input in every state there exists a transition that is activated.
+      			</td></tr><tr><td>States reachable<a class="indexterm" name="idp1385247972"></a></td><td>Checks if all the states of the FSM are reachable.
+      			</td></tr><tr><td>Final states reachable <a class="indexterm" name="idp1385248732"></a></td><td>Checks if all the final states of the FSM are reachable.
+      			</td></tr><tr><td>Transitions connected<a class="indexterm" name="idp1385249524"></a></td><td>Checks if all the transitions of the diagram are actually connected to a start end an end state. Note that sometimes a transition looks as if it is connected to a state but in fact the connection point is slightly away from it.
+      			</td></tr></tbody></table>
+      </div>
+      <p>A log of the checks that have been performed is printed in the protocol<a class="indexterm" name="idp1385250636"></a> field at the bottom of the window.</p>
+    </div>
+
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec:simulate"></a>Simulating<a class="indexterm" name="idp1385251500"></a> a FSM</h2></div></div></div>
+      
+      <p>Once you have created a FSM with some states and transitions you can simulate its behaviour with respect to varying input signals.</p>
+      <p>
+        To start the simulation of an FSM, select <span class="emphasis"><em>Machine-&gt;Simulate</em></span> from the main menu.
+      </p>
+      <p>The "simulator" dialog opens allowing you to input data to the machine while displaying its current state and output.</p>
+      <div class="screenshot">
+        
+        <div class="mediaobject" align="center"><table border="0" summary="manufactured viewport for HTML img" style="cellpadding: 0; cellspacing: 0;" width="100%"><tr><td align="center"><img src="simulation.png" align="middle"></td></tr></table></div>
+      </div>
+      <div class="informaltable">
+      	<table border="1"><colgroup><col><col></colgroup><tbody><tr><td>Input<a class="indexterm" name="idp1385255956"></a></td><td><p>
+1) Enter the input data in the text field </p> <p>2) select one of the formats: binary<a class="indexterm" name="idp1385256852"></a>, hexadecimal<a class="indexterm" name="idp1385257268"></a> or ASCII<a class="indexterm" name="idp1385257044"></a>.</p><p> 3) you can set or unset input bits using the buttons 0 to 15. </p> <p>When you choose the ASCII format you can also use escape sequences as detailed in <a class="xref" href="#sec:escape_char" title="Escape sequences">the section called &#8220;Escape sequences&#8221;</a>. However, you can only enter a single character. Thus,<code class="literal">'\d'</code>or ranges, for example, are not allowed.
+      </p>
+      			</td></tr><tr><td> Output<a class="indexterm" name="idp1385259316"></a></td><td> Choose the format of the current FSM, i.e. binary<a class="indexterm" name="idp1385259940"></a>, hexadecimal or ASCII<a class="indexterm" name="idp1385260284"></a>.
+      			</td></tr><tr><td> <span class="emphasis"><em> State Name<a class="indexterm" name="idp1385261068"></a> </em></span> and <span class="emphasis"><em>State Code</em></span> fields </td><td>display the current state of the FSM. The red or green point next to it indicates if the FSM is in a final state or not, i.e. green for final state and red otherwise.
+      			</td></tr></tbody></table>	
+      </div>
+      
+      <p>There are two modes to send input data:</p>
+      <p>
+        - click on the <span class="emphasis"><em> Send</em></span> button <a class="indexterm" name="idp1385263220"></a>or, press the <span class="emphasis"><em> Enter </em></span> key)
+      </p>
+      <p>
+        - click on the <span class="emphasis"><em> Clock </em></span> button<a class="indexterm" name="idp1385264236"></a>.
+      </p>
+      <p>In the clock mode, Qfsm periodically sends the data in the input text field on the top of the dialog to the FSM.</p><p>You can specify the frequency of the clock in the input field at the bottom right. 
+	For ASCII input, the input text field is cleared after each clock signal, which allows to simulate the behaviour of ASCII FSMs in real-time by pressing different keys.</p>
+      <p>
+        To exit the <span class="emphasis"><em> Clock </em></span> Mode<a class="indexterm" name="idp1385265844"></a>, click once again on the Clock button.
+      </p>
+      <p>
+        To reset the FSM, click on the <span class="emphasis"><em> Reset </em></span> Button<a class="indexterm" name="idp1385266764"></a>.
+      </p>
+      <p>This sets the FSM to its initial state.</p>
+    </div>
+
+
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec:export"></a>Exporting<a class="indexterm" name="idp1385268004"></a></h2></div></div></div>
+      <p>There are several export functions in Qfsm.</p>
+      <p>
+        To export, select <span class="emphasis"><em> File-&gt;Export </em></span> in the main menu.
+      </p>
+      <p>They can be divided into the following categories:</p>
+      <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">state diagrams,</li><li class="listitem">hardware description languages,</li><li class="listitem">state tables,</li><li class="listitem">code generation languages,</li><li class="listitem">hardware test code,</li><li class="listitem">I/O description,</li><li class="listitem">vvvv Automata code</li><li class="listitem">State Chart XML (SCXML)</li></ol></div>
+<p>Here are some explanations about the different export functions:</p>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:state_diagram"></a>State diagrams<a class="indexterm" name="idp1385271988"></a></h3></div></div></div>
+        
+	A state diagram as it is seen in the working area can be exported in various graphics formats.
+	The formats that are supported are:
+	<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">Encapsulated Postscript (EPS)</li><li class="listitem">Scalable Vector Graphics (SVG)</li><li class="listitem">Portable Network Graphics (PNG)</li></ul></div>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:hdl"></a>Hardware description languages<a class="indexterm" name="idp1385273940"></a></h3></div></div></div>
+        
+	  Hardware description languages are high level descriptions that can be synthesized into integrated circuits like FPGAs using special software. The languages supported are the following:
+        <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">AHDL<a class="indexterm" name="idp1385274764"></a></li><li class="listitem">VHDL<a class="indexterm" name="idp1385275188"></a></li><li class="listitem">Verilog HDL<a class="indexterm" name="idp1385275540"></a></li><li class="listitem">KISS<a class="indexterm" name="idp1385275948"></a></li></ol></div>
+        Some of the export functions open a dialog allowing you to specify additional export options. However, they should be self-contained for the users having experience with hardware description languages.
+      </div>
+
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:state_tables"></a>State Tables<a class="indexterm" name="idp1385276948"></a></h3></div></div></div>
+        
+        <p>
+          State tables can be exported in the formats: ASCII <a class="indexterm" name="idp1385277532"></a>(plain text), Latex<a class="indexterm" name="idp1385278020"></a> or HTML<a class="indexterm" name="idp1385278404"></a>. State tables show for each possible state and input (here called<span class="emphasis"><em>event</em></span>)<a class="indexterm" name="idp1385279156"></a> the respective resulting states.
+        </p>
+        <p>To change the options concerning the layout of the state table, a dialog allows you to change some options.</p>
+        <div class="informaltable">
+        	<table border="1"><colgroup><col><col></colgroup><tbody><tr><td> Include asynchronous output<a class="indexterm" name="idp1385280996"></a></td><td>Tick this option if you want the asynchronous outputs (Mealy outputs) to be printed in the table cells together with the resulting states.
+        			</td></tr><tr><td> Resolve inverted conditions<a class="indexterm" name="idp1385281964"></a></td><td>Tick this option if you want the inverted conditions to be printed using the inversion descriptor, e.g.<code class="literal">'NOT a'</code>, or without it, i.e. printing every character (or binary string) except the ones in the condition. <p>In the case of<code class="literal">'NOT a'</code>this would be the two ranges<code class="literal">'\000-`'</code>and<code class="literal">'b-\0FF'</code>.</p>
+<p>Which one is clearest depends on the respective FSM.</p>
+        			</td></tr><tr><td>Orientation<a class="indexterm" name="idp1385284300"></a></td><td>Tick the different options in order to determine the orientation of the table, i.e. if current states represent the different rows of the table and the events the columns or vice-versa.
+        			</td></tr></tbody></table>
+
+        </div>
+     
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:codegen"></a>Code generation languages<a class="indexterm" name="idp1385285700"></a></h3></div></div></div>
+        
+        <p>
+	  There are two different types of files that can be used by other code-generating software: 
+	  </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">Ragel (.rl)</li><li class="listitem">State Machine Compiler (SMC) (.sm)</li></ol></div><p>
+	</p>
+        <div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="sec:ragel"></a>Ragel file export<a class="indexterm" name="idp1385287556"></a></h4></div></div></div>
+        
+        <p>
+	  For the <span class="emphasis"><em>ragel</em></span> (.rl) file format only ASCII<a class="indexterm" name="idp1385288276"></a> FSMs can be exported. The resulting file serves as an input for the ragel state machine compiler. The ragel state machine compiler is a compiler that generates code from a high-level state machine description language. In this way, you can create string parsers for example. 
+	  For details refer to the <a class="ulink" href="http://www.cs.queensu.ca/~thurston/ragel/" target="_top"> ragel homepage</a>.
+        </p>
+        <p>
+          A dialog allows you to create a so-called <span class="emphasis"><em>action file</em></span><a class="indexterm" name="idp1385289692"></a>. 
+	  That means, the ragel state machine specification is divided into two files. One that contains the state machine logic (which I will call FSM file here) and an action file that contains the action definitions and a framework calling the state machine. Thus, the action file actually includes the FSM file. The name of the action file is determined automatically by appending<code class="literal">'_action'</code>at the end of the file name.
+        </p>
+	<p>
+	  The idea is that you create the action file only once at the beginning, and then edit this file manually to define the specific actions.
+	  You can then modify your FSM logic in Qfsm as many times as you want and regenerate the FSM file without losing your own action definitions.
+	</p>
+        <p>
+          <span class="emphasis"><em>Example: </em></span> suppose you have created an ASCII<a class="indexterm" name="idp1385291740"></a> FSM and you export it under the name <code class="literal"> myFSM.rl</code>. If you check the option <span class="emphasis"><em> 'Create action file' </em></span> the action file will be created under the name<code class="literal">myFSM_actions.rl</code>.
+        </p>
+        <p>
+          Using ragel you can compile the action file: <span class="command"><strong> ragel -C -o myFSM.c myFSM_actions.rl</strong></span>
+        </p>
+        <p>
+          This will create a file, called myFSM.c with the C code of the FSM. It will contain a function:<code class="literal">int parse(char* string)</code>that parses an input string and returns 1 if the FSM accepts it, i.e. finishes in a final state, and 0 otherwise.
+        </p>
+      </div>
+
+
+      <div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="sec:smc"></a>SMC file export<a class="indexterm" name="idp1385294476"></a></h4></div></div></div>
+        
+        <p>
+	  Similarly to ragel, the State Machine Compiler (SMC) transforms a textual state machine description (a .sm file) into code in one of the following languages: C, C++, C#, Groovy, Java, JavaScript, Lua, Objective-C, Perl, PHP, Python, Ruby, Scala, TCL, VB.net.
+	  Again, there is a separation into two parts of code, i.e. two classes. One class defines the FSM and is generated by SMC from the .sm file. The other is called the application class, or "AppClass", which you have to write yourself and which should contain an instance of the FSM class. 
+	  In the AppClass, you can issue events by calling the respective methods of your FSM class, i.e. the events/actions that you have defined as inputs in the FSM. 
+	  And you have to define the actions/events (i.e. methods) that the FSM will call, i.e. the FSM transition outputs and entry/exit actions. 
+	  For details refer to the <a class="ulink" href="http://smc.sourceforge.net/" target="_top"> SMC homepage</a>.
+        </p>
+	<p>
+	  Qfsm can generate the .sm file from your graphical state diagram. This only works for "free text" FSMs, and the inputs and outputs of the machine are not simple ASCII symbols or binary bits but <span class="emphasis"><em>method names</em></span>, for example "run()" or "suspend()". Several output actions (or events) can be specified by a comma-separated list.
+        </p>
+	<p>
+	  Qfsm also supports state entry and exit actions, as well as default transitions (but not default states). Transition guards can also be added after the input events, for example "doThis() [ctxt.isValid()]". The object "ctxt" refers to your AppClass.
+        </p>
+	<p>
+	Here is a screenshot of a FSM for the purpose of exporting to SMC.
+      </p><div class="screenshot">
+        
+        <div class="mediaobject" align="center"><table border="0" summary="manufactured viewport for HTML img" style="cellpadding: 0; cellspacing: 0;" width="60%"><tr><td align="center"><object type="image/svg+xml" data="smc_example.svg" align="middle"></object></td></tr></table></div>
+      </div><p>
+        </p>
+        <p>
+	  Once you have exported your FSM to a .sm file, let's say FSM1.sm, you can compile it for example to Java code with the command: 
+        </p>
+        <p>
+	  <span class="command"><strong> java -jar /usr/local/bin/smc/bin/Smc.jar -java FSM1.sm</strong></span>
+        </p>
+        <p>
+	  replacing the path of Smc.jar corresponding to your smc installation. This creates the file FSM1Context.java - your FSM class file.
+        </p>
+        <p>
+	  Here is an example of how to write a corresponding application class (AppClass). Note that the name of the class ("FSM1") has to be the same as the FSM name.
+
+</p><div class="informaltable">
+<table border="1"><colgroup><col></colgroup><tbody><tr><td>
+<pre class="programlisting">
+public class FSM1
+{
+  private final FSM1Context fsm;
+  public int a;
+
+  FSM1()
+  {
+    fsm = new FSM1Context(this);
+  }
+
+  public void action1() { System.out.println("executing action1()"); }
+  public void do1() { System.out.println("executing do1()"); }
+  public void do2() { System.out.println("executing do2()"); }
+  public void entering() { System.out.println("entering State"); }
+  public void exiting() { System.out.println("exiting State"); }
+  public void aa() { System.out.println("executing aa()"); }
+  public void bb() { System.out.println("executing bb()"); }
+  public void default_action() 
+    { System.out.println("executing default_action()"); }
+
+  public void testit()
+  {
+    a=1;
+    fsm.init();
+    fsm.run();
+    fsm.init();
+  }
+
+  public static void main(String[] args)
+  {
+    FSM1 f = new FSM1();
+    f.testit();
+  }
+}
+</pre>
+</td></tr></tbody></table>
+</div><p>
+        </p>
+        <p>
+	You can then compile everything with the java compiler:
+        </p>
+        <p>
+	  <span class="command"><strong>javac *.java -cp /usr/local/bin/smc/lib/statemap.jar</strong></span>
+        </p>
+        <p>
+	  making sure to put statemap.jar in your class path.
+        </p>
+      </div>
+
+
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:hardwaretest"></a>Hardware test code<a class="indexterm" name="idp1385305100"></a></h3></div></div></div>
+        
+        <p>
+          The hardware test code is used together with the output of a hardware description export. The supported language for test code is <a class="indexterm" name="idp1385305636"></a>VHDL. The VHDL testbench export will create a set of files that enables a hardware simulation <a class="indexterm" name="idp1385306124"></a> and debugging software to analyse the VHDL code exported by Qfsm.
+        </p>
+	<p>
+	  The following files are generated:
+
+	  </p><div class="informaltable">
+	    <table border="1"><colgroup><col><col></colgroup><tbody><tr><td>t_fsmname.vhd</td><td>The VHDL testbench<a class="indexterm" name="idp1385308436"></a> instantiating the FSM module, a clock generation process, an initial reset and a stimuli_observer process.</td></tr><tr><td>p_fsmname.vhd</td><td>A VHDL package declaration and body with all the necessary subprograms used in the testbench.</td></tr><tr><td>fsmname_stimuli.vec</td><td>The file includes all the stimuli<a class="indexterm" name="idp1385310516"></a> and expected results necessary for a complete verification of a finite state machine.</td></tr><tr><td>fsmname_result.log</td><td>Errors are documented in this file.</td></tr></tbody></table>
+	  </div><p>
+        </p>
+
+	<p>
+	  Per default, these files can be written to different directories within a clearly structured design directory. 
+	  Therefore, in the export options a 'Base Directory' input string is asked, first:
+	  </p><pre class="programlisting">
+	   Base_directory
+	   |
+	   +-src
+	   |   fsmname.fsm
+	   |   e_fsmname.vhd
+	   |   a_fsmname_architecturename.vhd
+	   |   t_fsmname.vhd
+	   |   p_fsmname.vhd
+	   |
+	   +-stimuli
+	   |   fsmname_stimuli.vec
+	   |
+	   +-log
+	      fsmname_result.log
+	  </pre><p>
+	</p>
+      </div>
+
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:iodesc"></a>I/O description<a class="indexterm" name="idp1385313452"></a></h3></div></div></div>
+	
+	<p>
+	When exporting the I/O description of the state diagram a file containing the names of all the inputs and outputs of the FSM is created.
+	The description is stored in a comma separated value (CSV)<a class="indexterm" name="idp1385313852"></a> format, where the separator is a semicolon and the values are inside double quotes. The first value of each line is a textual description of the values in that line, i.e. "Inputs", "Mealy Outputs" and so on.
+	</p>
+	<p>
+	The following lines are written:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">"Inputs": the names of the (Mealy) inputs</li><li class="listitem">"Mealy Outputs": the names of the Mealy outputs</li><li class="listitem">"State/Output": the names of the Moore outputs</li><li class="listitem">Finally a line for each state containing its name and its Moore outputs</li></ul></div><p>
+	</p>
+      </div>
+
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:vvvv"></a>vvvv Automata code<a class="indexterm" name="idp1385316612"></a></h3></div></div></div>
+	
+	<p>
+	A "free text" FSM can be exported to vvvv Automata code. This code can be used in conjunction with the tool <a class="ulink" href="http://vvvv.org/tiki-index.php" target="_top">vvvv</a>, a toolkit for real-time video synthesis. This textual format is a list of quadrupels<a class="indexterm" name="idp1385317708"></a>, where each item/line describes a transition and is composed of:
+	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">start state,</li><li class="listitem">event,<a class="indexterm" name="idp1385318604"></a></li><li class="listitem">end state,</li><li class="listitem">action.</li></ul></div><p>
+	</p>
+	<p>
+	When selecting this export function from the menu a non-modal dialog box is opened that displays the resulting code. This is automatically updated as the diagram is modified. 
+	An additional reset transition<a class="indexterm" name="idp1385319892"></a> can optionally be added for each state by checking the box at the bottom of the dialog. There you can also specify the name of the reset event and the name of the respective action to be triggered.
+	</p>
+      </div>
+
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:scxml"></a>State Chart XML<a class="indexterm" name="idp1385321036"></a><a class="indexterm" name="idp1385321332"></a></h3></div></div></div>
+	
+	<p>
+	A "free text" FSM can be exported in the State Chart XML format as proposed by the W3C. The specification of SCXML can be found <a class="ulink" href="http://www.w3.org/TR/scxml/" target="_top">here</a>.
+	Note that each transition is triggered by an event<a class="indexterm" name="idp1385322228"></a>. And the text that is entered as transition input is used as the name of the event.
+	The text that is entered as the transition output is interpreted as the name of an event that is to be sent when the transition is triggered. Thus, if the output linked to a transition is non-empty a corresponding <span class="emphasis"><em>&lt;send&gt;</em></span> tag will be written. 
+	</p>
+      </div>
+      
+    </div>
+
+    
+
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec:import"></a>Importing<a class="indexterm" name="idp1385323564"></a></h2></div></div></div>
+      
+      <p>Qfsm can import files written in the <a class="ulink" href="http://www.graphviz.org/content/dot-language" target="_top">DOT language</a><a class="indexterm" name="idp1385324340"></a> using <a class="ulink" href="http://www.graphviz.org" target="_top">Graphviz</a>.
+      </p>
+      <p>
+        To import a DOT file (with extension .gv), select <span class="emphasis"><em> File-&gt;Import-&gt;Graphviz...</em></span> in the main menu.
+      </p>
+      <p>
+	Qfsm uses Graphviz<a class="indexterm" name="idp1385325732"></a> to transform the textual description of the FSM into a graphical layout of the state diagram.
+      </p>
+      <p>
+	When writing a DOT file make sure you respect the following syntax rules:
+	</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">the type of the diagram needs to be a directed graph (<span class="emphasis"><em>digraph</em></span>),</li><li class="listitem">the rankdir must be "LR" (left-right) or "TB" (top-bottom).</li></ul></div><p>
+	Here is an example of a dot file describing a binary FSM. The file is included in the Qfsm package in the <span class="emphasis"><em>examples</em></span> folder.
+	</p><pre class="programlisting">
+digraph binary_finite_state_machine {
+	rankdir=LR;
+	size="8,5"
+	node [shape = doublecircle]; LR_0 LR_3;
+	node [shape = circle];
+	LR_0 [ label = "State_1" moore = "01"];
+	LR_0 -&gt; LR_1 [ label = "0000|0001###11" ];
+	LR_1 -&gt; LR_2 [ label = "NOT 0000###00" ];
+	LR_1 -&gt; LR_3 [ label = "DEF###01" ];
+	LR_0 -&gt; LR_2 [ label = "ANY###10" ];
+	LR_2 -&gt; LR_3 [ label = "1111###11" ];
+}
+	</pre><p>
+      </p>
+      <p>
+	Qfsm automatically determines the type of FSM: binary, ASCII, or Free Text.
+	In the above example, "LR_0", "LR_1", &#8230; denote the states. It can be given any name by specifying the <code class="literal">label</code> attribute. If you don't do this, the node name (here: "LR_1", &#8230;) is used as the state name.
+
+	The <code class="literal">moore</code> attribute is used to specify the Moore outputs of a state.
+      </p>
+      <p>
+	Transitions are written as 
+	</p><pre class="programlisting">State1 -&gt; State2;</pre><p> 
+	or 
+	</p><pre class="programlisting">State1 -&gt; State2 [ label = "00###11" ];</pre><p> 
+	where the <code class="literal">label</code> attribute specifies the Mealy inputs, and optionally the Moore outputs separated by the string <code class="literal">###</code>. <code class="literal">NOT</code> denotes negation, <code class="literal">DEF</code> a default transition, and <code class="literal">ANY</code> transitions that accept any input.
+      </p>
+      <p>
+	To define end states, use the <code class="literal">shape = doublecircle</code> node attribute as illustrated in the above example.
+      </p>
+    </div>
+
+
+
+
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec:options"></a>Setting the options<a class="indexterm" name="idp1385331212"></a></h2></div></div></div>
+      To display the options dialog select <span class="emphasis"><em> Edit-&gt;Options </em></span> from the main menu.
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:general"></a>Changing language<a class="indexterm" name="idp1385333316"></a></h3></div></div></div>
+        
+        <div class="variablelist"><dl class="variablelist"><dt></dt><dd>
+              To change the language:<p> 1) select Edit&gt;Options&gt;General</p><p> 2) select the language</p><p> 3) click on OK</p><p> 4) restart the application</p><p> The language change is now effective.</p>
+            </dd></dl></div>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:display"></a>Changing the display<a class="indexterm" name="idp1385335932"></a></h3></div></div></div>
+        
+        <p>To change the display, select Edit&gt;Options&gt;Display from the main menu</p>
+      <div class="informaltable">
+      	<table border="1"><colgroup><col><col></colgroup><tbody><tr><td>Grid <a class="indexterm" name="idp1385337980"></a></td><td>You can choose the colour and size of the grid displayed on the working area. You can activate the grid via the main menu entry <span class="emphasis"><em> View-&gt;Grid </em></span>.
+
+      			</td></tr><tr><td> Shadows<a class="indexterm" name="idp1385339236"></a></td><td>You can determine if shadows are to be drawn and the their colour.
+      			</td></tr><tr><td>Transitions<a class="indexterm" name="idp1385340188"></a></td><td>You can determine the appearance of input conditions and outputs drawn on top of the transitions.
+      			</td></tr><tr><td>Tooltips<a class="indexterm" name="idp1385341180"></a></td><td>You can determine if tooltips should be shown or not when moving the mouse pointer over a state or a transition.
+      			</td></tr><tr><td>Initial transition descriptor <a class="indexterm" name="idp1385342124"></a><a class="indexterm" name="idp1385342580"></a></td><td>Enter the text that is displayed next to the initial transition. Default: "Reset"<a class="indexterm" name="idp1385343180"></a>.
+      			</td></tr><tr><td>Inversion descriptor <a class="indexterm" name="idp1385343932"></a></td><td>Enter the text that is displayed before inverted transition conditions. Default: "NOT".
+      			</td></tr><tr><td>"Any input" descriptor <a class="indexterm" name="idp1385344908"></a></td><td>Enter the text that is displayed for transitions that are activated by any input. Default: "any".
+      			</td></tr><tr><td> Default transition descriptor<a class="indexterm" name="idp1385345980"></a></td><td>Enter the text that is displayed for default transitions. Default: "default".
+      			</td></tr></tbody></table>
+      </div>
+      
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec:printing"></a>Printing<a class="indexterm" name="idp1385347396"></a></h3></div></div></div>
+        <p> To change the printing options, select Edit&gt;Options&gt;Printing from the main menu.</p>
+        <div class="informaltable">
+        	<table border="1"><colgroup><col><col></colgroup><tbody><tr><td>Print header <a class="indexterm" name="idp1385348956"></a></td><td>Tick this option if you want to print a header with the FSM name and version at the top of the diagram.
+        			</td></tr></tbody></table>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  <div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="ch:contact"></a>Chapter 3. Contact</h1></div></div></div>
+    <p>If you have questions or suggestions concerning Qfsm feel free to contact me at:</p>
+    <p>
+      <code class="email">&lt;<a class="email" href="mailto:qfsm(at)duffner(dash)net(dot)de">qfsm(at)duffner(dash)net(dot)de</a>&gt;</code>
+    </p>
+    (replace the expressions between parentheses).<p>I'm also glad about any contribution you want to make to the project, e.g. code, bug fixes, documentation, packaging, testing etc.</p>
+  </div>
+  <div class="index"><div class="titlepage"><div><div><h1 class="title"><a name="idp1385351596"></a>Index</h1></div></div></div><div class="index"><div class="indexdiv"><h3>A</h3><dl><dt>Add state mode, <a class="indexterm" href="#sec:menu_state">State</a></dt><dt>Add transition mode, <a class="indexterm" href="#sec:menu_transition">Transition</a></dt><dt>AHDL, <a class="indexterm" href="#sec:hdl">Hardware description languages</a></dt><dt>AIX, <a class="indexterm" href="#sec:source_install_platforms">Supported Platforms</a></dt><dt>Arrow Type, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a></dt><dt>ASCII, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a>, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a>, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a>, <a class="indexterm" href="#sec:inp_cond">Using input ASCII conditions</a>, <a class="indexterm" href="#sec:single_char">Single character</a>, <a class="indexterm" href="#sec:simulate">Simulating a FSM</a>, <a class="indexterm" href="#sec:ragel">Ragel file export</a></dt><dd><dl><dt>State table, <a class="indexterm" href="#sec:state_tables">State Tables</a></dt></dl></dd></dl></div><div class="indexdiv"><h3>B</h3><dl><dt>Behaviour</dt><dd><dl><dt>testing, <a class="indexterm" href="#sec:simulate_mode">Using the Simulate mode</a></dt></dl></dd><dt>Binary, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a>, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a>, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a>, <a class="indexterm" href="#sec:simulate">Simulating a FSM</a></dt></dl></div><div class="indexdiv"><h3>C</h3><dl><dt>C++, <a class="indexterm" href="#sec:whats">What is Qfsm?</a></dt><dt>Clock</dt><dd><dl><dt>Button, <a class="indexterm" href="#sec:simulate">Simulating a FSM</a></dt><dt>Mode, <a class="indexterm" href="#sec:simulate">Simulating a FSM</a></dt></dl></dd><dt>Close, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>CMake, <a class="indexterm" href="#sec:source_install">Installing from source code</a></dt><dt>Code</dt><dd><dl><dt>State, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt></dl></dd><dt>Code generation languages, <a class="indexterm" href="#sec:codegen">Code generation languages</a></dt><dt>Colour</dt><dd><dl><dt>Button, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt><dt>State, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt></dl></dd><dt>Comma Separated Values (CSV), <a class="indexterm" href="#sec:iodesc">I/O description</a></dt><dt>Completeness, <a class="indexterm" href="#sec:check">Checking the integrity of a FSM</a></dt><dt>Condition</dt><dd><dl><dt>ASCII, <a class="indexterm" href="#sec:inp_cond">Using input ASCII conditions</a></dt><dt>Type, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt></dl></dd><dt>Copy, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt><dt>Correct automatically, <a class="indexterm" href="#sec:menu_machine">Machine</a></dt><dt>Create, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>Cut, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt></dl></div><div class="indexdiv"><h3>D</h3><dl><dt>Delete, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt><dt>Description</dt><dd><dl><dt>state, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt><dt>Transition, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt></dl></dd><dt>Deselect all, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt><dt>Display</dt><dd><dl><dt>"Any input" descriptor, <a class="indexterm" href="#sec:display">Changing the display</a></dt><dt>Changing the display, <a class="indexterm" href="#sec:display">Changing the display</a></dt><dt>Default transition descriptor, <a class="indexterm" href="#sec:display">Changing the display</a></dt><dt>Grid, <a class="indexterm" href="#sec:display">Changing the display</a></dt><dt>Initial transition descriptor, <a class="indexterm" href="#sec:display">Changing the display</a></dt><dt>Inversion descriptor, <a class="indexterm" href="#sec:display">Changing the display</a></dt><dt>Shadows, <a class="indexterm" href="#sec:display">Changing the display</a></dt><dt>Tooltips, <a class="indexterm" href="#sec:display">Changing the display</a></dt><dt>Transitions, <a class="indexterm" href="#sec:display">Changing the display</a></dt></dl></dd><dt>DOT, <a class="indexterm" href="#sec:import">Importing</a></dt></dl></div><div class="indexdiv"><h3>E</h3><dl><dt>Edit, <a class="indexterm" href="#sec:menu_edit">Edit</a> (see Copy)</dt><dd><dl><dt>Cut, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt><dt>Delete, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt><dt>Deselect all, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt><dt>Options, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt><dt>Paste, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt><dt>Select, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt><dt>Select all, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt><dt>Undo, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt></dl></dd><dt>Entry actions</dt><dd><dl><dt>State, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt></dl></dd><dt>Escape sequences, <a class="indexterm" href="#sec:escape_char">Escape sequences</a></dt><dt>Event, <a class="indexterm" href="#sec:state_tables">State Tables</a>, <a class="indexterm" href="#sec:vvvv">vvvv Automata code</a>, <a class="indexterm" href="#sec:scxml">State Chart XML</a></dt><dt>Exit actions</dt><dd><dl><dt>State, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt></dl></dd><dt>Export, <a class="indexterm" href="#sec:menu_file">File</a>, <a class="indexterm" href="#sec:export">Exporting</a></dt></dl></div><div class="indexdiv"><h3>F</h3><dl><dt>File, <a class="indexterm" href="#sec:menu_file">File</a></dt><dd><dl><dt>Close, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>Export, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>New, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>New window, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>Open, <a class="indexterm" href="#sec:menu_file">File</a>, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt><dt>Open Recent, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>Print, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>Quit, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>Save, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>Save as, <a class="indexterm" href="#sec:menu_file">File</a></dt></dl></dd><dt>Final state, <a class="indexterm" href="#sec:check">Checking the integrity of a FSM</a></dt><dt>Final states reachable , <a class="indexterm" href="#sec:check">Checking the integrity of a FSM</a></dt><dt>Finite state machine, <a class="indexterm" href="#sec:whats">What is Qfsm?</a></dt><dd><dl><dt>Creating, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a>, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt><dt>Integrity check, <a class="indexterm" href="#sec:check">Checking the integrity of a FSM</a></dt><dt>Modifying, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a></dt><dt>Properties, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a></dt></dl></dd><dt>Fonts, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a></dt><dt>Free text, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a>, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt><dt>FreeBSD, <a class="indexterm" href="#sec:source_install_platforms">Supported Platforms</a></dt></dl></div><div class="indexdiv"><h3>G</h3><dl><dt>Graphviz, <a class="indexterm" href="#sec:source_install_req">Requirements</a>, <a class="indexterm" href="#sec:import">Importing</a></dt><dt>Grid, <a class="indexterm" href="#sec:menu_view">View</a></dt></dl></div><div class="indexdiv"><h3>H</h3><dl><dt>Hardware description languages, <a class="indexterm" href="#sec:hdl">Hardware description languages</a></dt><dt>Hardware test code, <a class="indexterm" href="#sec:hardwaretest">Hardware test code</a></dt><dt>Hexadecimal, <a class="indexterm" href="#sec:simulate">Simulating a FSM</a></dt><dt>HP-UX, <a class="indexterm" href="#sec:source_install_platforms">Supported Platforms</a></dt><dt>HTML</dt><dd><dl><dt>State table, <a class="indexterm" href="#sec:state_tables">State Tables</a></dt></dl></dd></dl></div><div class="indexdiv"><h3>I</h3><dl><dt>I/O description, <a class="indexterm" href="#sec:iodesc">I/O description</a></dt><dt>IDE project file, <a class="indexterm" href="#sec:source_install">Installing from source code</a></dt><dt>Import, <a class="indexterm" href="#sec:import">Importing</a></dt><dt>Include asynchronous output, <a class="indexterm" href="#sec:state_tables">State Tables</a></dt><dt>Initial state, <a class="indexterm" href="#sec:menu_state">State</a>, <a class="indexterm" href="#sec:check">Checking the integrity of a FSM</a></dt><dt>Input</dt><dd><dl><dt>Transition property, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt></dl></dd><dt>Installation, <a class="indexterm" href="#sec:install">Installing  the Qfsm software</a></dt><dd><dl><dt>binary, <a class="indexterm" href="#sec:bin_install">Binary installation</a></dt><dt>from source, <a class="indexterm" href="#sec:source_install">Installing from source code</a></dt><dt>Linux, <a class="indexterm" href="#sec:bin_install_linux">Linux</a></dt><dt>Mac OS X, <a class="indexterm" href="#sec:bin_install_macosx">Mac OS X</a></dt><dt>Windows, <a class="indexterm" href="#sec:bin_install_win">Windows</a></dt></dl></dd><dt>Integrity check, <a class="indexterm" href="#sec:menu_machine">Machine</a>, <a class="indexterm" href="#sec:check">Checking the integrity of a FSM</a></dt><dt>IO view, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>IRIX, <a class="indexterm" href="#sec:source_install_platforms">Supported Platforms</a></dt></dl></div><div class="indexdiv"><h3>K</h3><dl><dt>KISS, <a class="indexterm" href="#sec:hdl">Hardware description languages</a></dt></dl></div><div class="indexdiv"><h3>L</h3><dl><dt>Language</dt><dd><dl><dt>Changing language, <a class="indexterm" href="#sec:general">Changing language</a></dt></dl></dd><dt>Latex</dt><dd><dl><dt>State table, <a class="indexterm" href="#sec:state_tables">State Tables</a></dt></dl></dd><dt>Line width</dt><dd><dl><dt>State, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt></dl></dd><dt>Linux, <a class="indexterm" href="#sec:source_install_platforms">Supported Platforms</a></dt><dd><dl><dt>building under, <a class="indexterm" href="#sec:source_install_linux">Building under GNU Linux/Unix</a></dt></dl></dd><dt>Loop</dt><dd><dl><dt>Draw loops, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt></dl></dd></dl></div><div class="indexdiv"><h3>M</h3><dl><dt>Mac OS X, <a class="indexterm" href="#sec:source_install_platforms">Supported Platforms</a></dt><dt>Machine, <a class="indexterm" href="#sec:menu_machine">Machine</a></dt><dd><dl><dt>Auto correct State Codes, <a class="indexterm" href="#sec:menu_machine">Machine</a></dt><dt>Edit, <a class="indexterm" href="#sec:menu_machine">Machine</a></dt><dt>Integrity check, <a class="indexterm" href="#sec:menu_machine">Machine</a></dt><dt>Simulate, <a class="indexterm" href="#sec:menu_machine">Machine</a></dt></dl></dd><dt>Mealy input , <a class="indexterm" href="#sec:menu_view">View</a>, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a>, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt><dt>Mealy output, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a>, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt><dt>Mixed formats, <a class="indexterm" href="#sec:mixed">Mixed formats</a></dt><dt>Mode</dt><dd><dl><dt>Add state, <a class="indexterm" href="#sec:working_area">Using the Working Area</a>, <a class="indexterm" href="#sec:addstate_mode">Using the Add State mode</a></dt><dt>Add transition, <a class="indexterm" href="#sec:working_area">Using the Working Area</a>, <a class="indexterm" href="#sec:addtrans_mode">Using the Add Transition mode</a></dt><dt>Pan, <a class="indexterm" href="#sec:working_area">Using the Working Area</a>, <a class="indexterm" href="#sec:pan">Using the Pan mode</a></dt><dt>Select, <a class="indexterm" href="#sec:working_area">Using the Working Area</a>, <a class="indexterm" href="#sec:select">Using the Select mode</a>, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt><dt>Simulate, <a class="indexterm" href="#sec:working_area">Using the Working Area</a>, <a class="indexterm" href="#sec:simulate_mode">Using the Simulate mode</a></dt><dt>Zoom, <a class="indexterm" href="#sec:working_area">Using the Working Area</a>, <a class="indexterm" href="#sec:zoom">Using the Zoom mode</a></dt></dl></dd><dt>Moore output, <a class="indexterm" href="#sec:menu_view">View</a>, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a></dt><dd><dl><dt>State, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt></dl></dd><dt>Multiple characters, <a class="indexterm" href="#sec:multiple_char">Multiple characters</a></dt></dl></div><div class="indexdiv"><h3>N</h3><dl><dt>Name</dt><dd><dl><dt>Finite state machine, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a></dt><dt>State, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt></dl></dd><dt>New window, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>No dead locks, <a class="indexterm" href="#sec:check">Checking the integrity of a FSM</a></dt></dl></div><div class="indexdiv"><h3>O</h3><dl><dt>Open, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>Open recent, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>openSUSE, <a class="indexterm" href="#sec:bin_install_linux">Linux</a></dt><dt>Options, <a class="indexterm" href="#sec:menu_edit">Edit</a>, <a class="indexterm" href="#sec:options">Setting the options</a></dt><dt>Orientation, <a class="indexterm" href="#sec:state_tables">State Tables</a></dt><dt>Output</dt><dd><dl><dt>Transition property, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt></dl></dd></dl></div><div class="indexdiv"><h3>P</h3><dl><dt>Pan view, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>Paste, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt><dt>Print, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>Printing, <a class="indexterm" href="#sec:printing">Printing</a></dt><dd><dl><dt>Print header, <a class="indexterm" href="#sec:printing">Printing</a></dt></dl></dd><dt>Properties</dt><dd><dl><dt>Finite state machine, <a class="indexterm" href="#sec:menu_machine">Machine</a></dt><dt>State, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt><dt>Transition, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt></dl></dd><dt>Protocol, <a class="indexterm" href="#sec:check">Checking the integrity of a FSM</a></dt></dl></div><div class="indexdiv"><h3>Q</h3><dl><dt>Qt, <a class="indexterm" href="#sec:whats">What is Qfsm?</a>, <a class="indexterm" href="#sec:source_install_req">Requirements</a>, <a class="indexterm" href="#sec:source_install_platforms">Supported Platforms</a></dt><dt>Quadrupels, <a class="indexterm" href="#sec:vvvv">vvvv Automata code</a></dt><dt>Quit, <a class="indexterm" href="#sec:menu_file">File</a></dt></dl></div><div class="indexdiv"><h3>R</h3><dl><dt>Radius</dt><dd><dl><dt>State, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt></dl></dd><dt>Ragel, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a>, <a class="indexterm" href="#sec:ragel">Ragel file export</a></dt><dd><dl><dt>Action file, <a class="indexterm" href="#sec:ragel">Ragel file export</a></dt></dl></dd><dt>Ranges, <a class="indexterm" href="#sec:ranges">Ranges</a></dt><dt>Requirements, <a class="indexterm" href="#sec:source_install_req">Requirements</a></dt><dt>Reset</dt><dd><dl><dt>Button, <a class="indexterm" href="#sec:simulate">Simulating a FSM</a></dt><dt>Transition, <a class="indexterm" href="#sec:vvvv">vvvv Automata code</a>, <a class="indexterm" href="#sec:display">Changing the display</a></dt></dl></dd><dt>Resolve inverted conditions, <a class="indexterm" href="#sec:state_tables">State Tables</a></dt><dt>RPM, <a class="indexterm" href="#sec:bin_install_linux">Linux</a></dt></dl></div><div class="indexdiv"><h3>S</h3><dl><dt>Save, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>Save as, <a class="indexterm" href="#sec:menu_file">File</a></dt><dt>SCXML, <a class="indexterm" href="#sec:scxml">State Chart XML</a></dt><dt>Select, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt><dt>Select all, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt><dt>Select mode, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt><dt>Send button, <a class="indexterm" href="#sec:simulate">Simulating a FSM</a></dt><dt>Shadows, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>Simulation, <a class="indexterm" href="#sec:menu_machine">Machine</a>, <a class="indexterm" href="#sec:simulate">Simulating a FSM</a></dt><dd><dl><dt>VHDL, <a class="indexterm" href="#sec:hardwaretest">Hardware test code</a></dt></dl></dd><dt>Simulator dialog</dt><dd><dl><dt>Input, <a class="indexterm" href="#sec:simulate">Simulating a FSM</a></dt><dt>Output, <a class="indexterm" href="#sec:simulate">Simulating a FSM</a></dt><dt>State name and state code fields, <a class="indexterm" href="#sec:simulate">Simulating a FSM</a></dt></dl></dd><dt>Single character, <a class="indexterm" href="#sec:single_char">Single character</a></dt><dt>SMC, <a class="indexterm" href="#sec:smc">SMC file export</a></dt><dt>Solaris, <a class="indexterm" href="#sec:source_install_platforms">Supported Platforms</a></dt><dt>State, <a class="indexterm" href="#sec:menu_state">State</a>, <a class="indexterm" href="#sec:select">Using the Select mode</a>, <a class="indexterm" href="#sec:addstate_mode">Using the Add State mode</a></dt><dd><dl><dt>Adding, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt><dt>Creating, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt><dt>Edit, <a class="indexterm" href="#sec:menu_state">State</a></dt><dt>Final, <a class="indexterm" href="#sec:menu_state">State</a>, <a class="indexterm" href="#sec:check">Checking the integrity of a FSM</a></dt><dt>Initial, <a class="indexterm" href="#sec:menu_state">State</a>, <a class="indexterm" href="#sec:check">Checking the integrity of a FSM</a></dt><dt>Modifying, <a class="indexterm" href="#sec:menu_state">State</a>, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt><dt>New, <a class="indexterm" href="#sec:menu_state">State</a></dt><dt>Non final state, <a class="indexterm" href="#sec:menu_state">State</a></dt><dt>Toggle final state, <a class="indexterm" href="#sec:menu_state">State</a></dt></dl></dd><dt>State Chart XML, <a class="indexterm" href="#sec:scxml">State Chart XML</a></dt><dt>State codes, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>State diagrams, <a class="indexterm" href="#sec:state_diagram">State diagrams</a></dt><dt>State properties, <a class="indexterm" href="#sec:add_states">Adding and modifying states</a></dt><dt>State table, <a class="indexterm" href="#sec:state_tables">State Tables</a></dt><dt>States reachable, <a class="indexterm" href="#sec:check">Checking the integrity of a FSM</a></dt><dt>Stimuli, <a class="indexterm" href="#sec:hardwaretest">Hardware test code</a></dt><dt>Straighten, <a class="indexterm" href="#sec:menu_transition">Transition</a></dt></dl></div><div class="indexdiv"><h3>T</h3><dl><dt>Testbench</dt><dd><dl><dt>VHDL, <a class="indexterm" href="#sec:hardwaretest">Hardware test code</a></dt></dl></dd><dt>Transition, <a class="indexterm" href="#sec:menu_transition">Transition</a>, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a>, <a class="indexterm" href="#sec:select">Using the Select mode</a>, <a class="indexterm" href="#sec:addtrans_mode">Using the Add Transition mode</a></dt><dd><dl><dt>Adding, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt><dt>Creating, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt><dt>Edit, <a class="indexterm" href="#sec:menu_transition">Transition</a></dt><dt>Initial, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a>, <a class="indexterm" href="#sec:display">Changing the display</a></dt><dt>Modifying, <a class="indexterm" href="#sec:menu_transition">Transition</a>, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt><dt>New, <a class="indexterm" href="#sec:menu_transition">Transition</a></dt><dt>Straighten, <a class="indexterm" href="#sec:menu_transition">Transition</a></dt></dl></dd><dt>Transition control point, <a class="indexterm" href="#sec:select">Using the Select mode</a></dt><dt>Transition properties, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt><dt>Transitions connected, <a class="indexterm" href="#sec:check">Checking the integrity of a FSM</a></dt><dt>Type</dt><dd><dl><dt>Condition, <a class="indexterm" href="#sec:add_trans">Adding and modifying transitions</a></dt><dt>Finite state machine, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a></dt></dl></dd></dl></div><div class="indexdiv"><h3>U</h3><dl><dt>Unambigous Conditions, <a class="indexterm" href="#sec:check">Checking the integrity of a FSM</a></dt><dt>Undo, <a class="indexterm" href="#sec:menu_edit">Edit</a></dt><dt>Unix, <a class="indexterm" href="#sec:source_install_platforms">Supported Platforms</a></dt><dd><dl><dt>building under, <a class="indexterm" href="#sec:source_install_linux">Building under GNU Linux/Unix</a></dt></dl></dd></dl></div><div class="indexdiv"><h3>V</h3><dl><dt>Verilog HDL, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a>, <a class="indexterm" href="#sec:hdl">Hardware description languages</a></dt><dt>Version</dt><dd><dl><dt>Finite state machine, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a></dt></dl></dd><dt>VHDL, <a class="indexterm" href="#sec:creating_fsm">Creating and modifying a Finite State Machine</a>, <a class="indexterm" href="#sec:hdl">Hardware description languages</a></dt><dd><dl><dt>text code, <a class="indexterm" href="#sec:hardwaretest">Hardware test code</a></dt></dl></dd><dt>View, <a class="indexterm" href="#sec:menu_view">View</a></dt><dd><dl><dt>Grid, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>IO view, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>Mealy input , <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>Moore outputs, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>Pan view, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>Shadows, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>State codes, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>Zoom, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>Zoom 100%, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>Zoom in, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>Zoom out, <a class="indexterm" href="#sec:menu_view">View</a></dt></dl></dd><dt>vvvv Automata code, <a class="indexterm" href="#sec:vvvv">vvvv Automata code</a></dt></dl></div><div class="indexdiv"><h3>W</h3><dl><dt>Windows, <a class="indexterm" href="#sec:source_install_platforms">Supported Platforms</a></dt><dd><dl><dt>building under, <a class="indexterm" href="#sec:source_install_win">Building under Windows</a></dt></dl></dd><dt>Working area, <a class="indexterm" href="#sec:working_area">Using the Working Area</a></dt></dl></div><div class="indexdiv"><h3>Z</h3><dl><dt>Zoom, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>Zoom 100%, <a class="indexterm" href="#sec:menu_view">View</a></dt><dt>Zoom in, <a class="indexterm" href="#sec:menu_view">View</a>, <a class="indexterm" href="#sec:zoom">Using the Zoom mode</a></dt><dt>Zoom out, <a class="indexterm" href="#sec:menu_view">View</a>, <a class="indexterm" href="#sec:zoom">Using the Zoom mode</a></dt></dl></div></div></div>
+</div></body></html>

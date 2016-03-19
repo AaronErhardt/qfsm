@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Qfsm
+GenericName=Qt Finite State Machine Designer
+Comment=Qt Finite State Machine Designer
+Exec=qfsm
+TryExec=qfsm
+Icon=qfsm.png
+MimeType=application/x-qfsm;
+Type=Application
+Terminal=false
+Encoding=UTF-8
+Categories=Graphics;Development;

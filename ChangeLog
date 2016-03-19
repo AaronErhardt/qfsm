@@ -1,0 +1,225 @@
+Change log for Qfsm (c) 2000-2015 Stefan Duffner
+-------------------------------------------------
+
+Version 0.54
+------------
+
+* added State Machine Compiler (SMC) export function
+
+* added option ('add default transitions to every state') for ragel export
+
+* more convenient usage of simulator with clock on
+
+* improved simulation efficiency for binary FSMs with lots of "don't care"
+bits
+
+* ported to Graphviz 2.38
+
+* updated documentation
+
+* minor bug fixes
+
+
+Version 0.53
+------------
+
+* added Graphviz import function
+
+* VHDL export: added possibility to output state code for debugging purposes
+(thanks to Rogier Wolff)
+
+* other bug fixes
+
+* updated user manual
+
+
+Version 0.52
+------------
+
+* implemented initial version of SCXML export (for 'free text' machines)
+
+* implemented export of vvvv Automata code (for 'free text' machines)
+
+* implemented VHDL test bench export
+
+* Overhauled documentation (thanks to Camille Decock)
+
+* Russian translation (thanks to Nick Shaforostoff)
+
+* Improvments in VHDL export 
+
+* Bug fixes
+
+
+Version 0.51
+------------
+
+* Support of logic statements and vectors in VHDL export
+
+* Ported dialog windows to Qt 4
+
+* On-line error check
+
+* Protocol output in integrity check
+
+* Fixed minor bugs in VHDL export, image export and state table generation
+
+
+Version 0.50
+------------
+
+* Updated documentation
+
+* Windows-specific enhancements + NSIS installer
+
+* Ported to Qt4 using Qt3 support classes (thanks to Rainer Strobel)
+
+* Enhanced VHDL export functionality
+
+* Optimized integrity check 
+
+* Added PNG export function 
+
+* Fixed several minor bugs
+
+
+Version 0.46
+------------
+
+* Updated the file qfsm.pro to allow building with qmake
+
+* Various improvements of the autotools-based build system
+
+* Environment variable $QFSM_DIR needs no longer be set at execution time, i.e. files are installed to /usr/bin, /usr/share/qfsm, /usr/share/doc etc.
+
+
+Version 0.45
+------------
+
+* Added SVG export function
+
+* Made initial transition optional
+
+* Added EPS export function
+
+* Fixed bug concerning drawing arrow head of initial transition
+
+* Minor bug fixes
+
+
+Version 0.44
+------------
+
+* Wrote (English) user documentation 
+
+* Introduced possibility of default transition
+
+* Added Ragel file export
+
+* Introduced input condition "any" 
+
+* Introduced possibility to invert transition conditions
+
+* Added more arrow types
+
+* Added "Free Text" type
+
+* Added "print header" option
+
+
+Version 0.43
+------------
+
+* Added ASCII state table export
+
+* Modified way that IO ranges are split in state table export
+
+* Fixed some Verilog HDL export bugs
+
+* Added option to draw box around inputs/outputs over transitions
+
+* Added intput/output name display over transitions and in state table
+
+* Added option to display asynchronous outputs in state tables 
+
+* Removed compiler warnings due to iostream etc.
+
+* Fixed compilation bug
+
+
+Version 0.42
+------------
+
+* Changed Moore outputs to ASCII format in ASCII machines
+
+* Added panning function
+
+* Added shadows for the states
+
+* Changed appearance when dragging states (because of font problems)
+
+* Added French translation
+
+* Introduced export options (dialogs)
+
+* Introduced separate Moore outputs (No longer identical to state encoding)
+
+* More verbose tooltips for states
+
+* '?' and '!' to mark inputs and outputs on transitions (optionally)
+
+* Minor visual improvements
+
+
+Version 0.41
+------------
+
+* Improved VHDL export (thanks to Edwin Naroska)
+
+* Added Verilog HDL export
+
+* Fixed FreeBSD problems
+
+* Fixed gcc 3.x compilation problems
+
+* Added ability to assign a version string to a machine (thanks to Martin Schiller)
+
+* Added the ability to assign descriptions to states and transitions (thanks to Martin Schiller)
+
+
+Version 0.40
+------------
+
+* Ported to Qt 3.0.x
+
+* Fixed bug in conversion from ascii transitions with ranges to binary format
+
+* Added KISS export
+
+* Fixed compilation bugs under FreeBSD
+
+
+Version 0.30
+------------
+
+* Fixed bug when loading machines.
+
+* Added VHDL export
+
+
+Version 0.26
+------------
+
+* Changed values true,false to TRUE,FALSE for compilers that don't support
+  the bool type natively
+
+* Fixed bug in binary string conversion
+
+* Added state table export to Latex and HTML
+
+
+Version 0.25
+------------
+
+* Initial release. Changes will be logged from now on.
+

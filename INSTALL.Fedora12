@@ -1,0 +1,63 @@
+#
+## This procedure works on FC12 (Fedora 12) x64 (64 bits,
+## It should work with other distros, like openSUSE with no or minor adjustments.
+## Download the qt-sdk installer 
+## Here the code for Qfsm is installed and build in the home directory:
+## change as needed.
+#
+
+cd ~/Download			# This directory exists by default on FC12
+
+# Downlod Qfsm (change version accordingly)
+wget --continue http://prdownloads.sourceforge.net/qfsm/qfsm-0.52.0-Source.tar.gz
+
+# extract here in the home directory
+tar xvfz qfsm-0.52.0-Source.tar.gz --directory ~/
+
+# Download and run the QTSDK Installer (this is the 64 bits version, adjust for 32 bit or newer version as req.)
+wget --continue http://get.qt.nokia.com/qtsdk/qt-sdk-linux-x86_64-opensource-2009.05.bin 
+
+# Set the execute flag
+chmod u+x ./qt-sdk-linux-x86_64-opensource-2009.05.bin
+
+su
+<password>
+
+#run the qt-sdk installer,  (will install by default the sdk on /opt/qtsdk-2009.05)
+. ./qt-sdk-linux-x86_64-opensource-2009.05.bin
+
+# Install cmake if necessary (as root)
+yum install cmake
+
+exit  # (exit from root)
+
+# Now add the following two lines to your login script ( edit file ~/.bashrc or equivalent)
+
+export PATH=$PATH:/opt/qtsdk2009.05/bin
+export PATH=$PATH:/opt/qtsdk-2009.05/qt/bin/
+export QFSMDIR=~/qfsm-0.52.0-Source    	# Qfsm requires this (see documentation) 
+
+# now need to exit bash and re-enter to have the environment variables set
+   --- HERE ---
+
+# cd to where we have extracted the code 
+cd ~/qfsm-0.52.0-Source 
+
+# run cmake  (This will create the Makefile)
+cmake .
+
+# Now make (compile) the code.(this takes about three minute on my machine)
+make
+
+su 
+<password>
+
+# Install the programm
+make install
+
+# Qfsm can now be run from the command line typing
+qfsm
+
+# Or it should be accessible from the program menu of your desktop environment (possibly after re-logging in)
+
+

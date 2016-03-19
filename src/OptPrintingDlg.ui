@@ -1,0 +1,47 @@
+<ui version="4.0" >
+ <author>Stefan Duffner</author>
+ <class>OptPrintingDlg</class>
+ <widget class="QDialog" name="OptPrintingDlg" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>405</width>
+    <height>282</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Printing</string>
+  </property>
+  <layout class="QHBoxLayout" >
+   <item>
+    <widget class="QCheckBox" name="cb_print_header" >
+     <property name="text" >
+      <string>Print header</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>cb_print_header</sender>
+   <signal>clicked()</signal>
+   <receiver>OptPrintingDlg</receiver>
+   <slot>printHeaderClicked()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

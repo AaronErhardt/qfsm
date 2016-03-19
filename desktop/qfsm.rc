@@ -1,0 +1,6 @@
+#include "resource.h"
+
+#ifdef _WIN32
+IDI_ICON1               ICON                    "qfsm.ico"
+IDI_ICON2               ICON                    "x-qfsm.ico"
+#endif    

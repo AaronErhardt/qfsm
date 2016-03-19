@@ -1,0 +1,23 @@
+/* XPM */
+static const char *editcopyoff[]={
+"16 16 4 1",
+"# c None",
+". c #a0a0a0",
+"b c #aaaaaa",
+"a c #d5d5d5",
+".......#########",
+".aaaaa..########",
+".a..aa.#.#######",
+".aaaa.......####",
+".a....aaaaa..###",
+".aaaa.a..aa.#.##",
+".a..a.aaaaa....#",
+".aaaa.a....aaa.#",
+".a....aaaaaaaa.#",
+".a.aa.a..a...a.#",
+".bbbb.aaaaaaaa.#",
+"......a...a..a.#",
+"#####.a.aaaaaa.#",
+"#####.bbbbbbbb.#",
+"#####..........#",
+"################"};

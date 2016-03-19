@@ -1,0 +1,37 @@
+<?xml version='1.0'?>
+<!DOCTYPE qfsmproject SYSTEM 'qfsm.dtd'>
+<qfsmproject version="0.45" author="Qfsm" >
+  <machine transfontitalic="0" nummooreout="0" draw_it="1" statefontsize="8" transfont="Helvetica" statefontitalic="0" version="1.0" arrowtype="2" name="Free Text Machine" numbits="2" statefontweight="50" statefont="Helvetica" numin="1" transfontsize="8" transfontweight="50" type="2" numout="0" initialstate="0" >
+    <outputnames_moore></outputnames_moore>
+    <inputnames>i_0</inputnames>
+    <outputnames></outputnames>
+    <itransition ypos="186" endx="124" xpos="64" endy="186" />
+    <state pencolor="0" endstate="0" radius="40" description="" moore_outputs="" ypos="186" code="0" xpos="164" linewidth="1" >State_0</state>
+    <state pencolor="0" endstate="0" radius="40" description="" moore_outputs="" ypos="123" code="1" xpos="414" linewidth="1" >State_1</state>
+    <state pencolor="0" endstate="1" radius="40" description="" moore_outputs="" ypos="311" code="2" xpos="362" linewidth="1" >State_2</state>
+    <transition c1x="260.090033341575" c2y="140.4200863520724" c1y="159.0517377697756" description="" straight="1" type="2" ypos="177.6833891874788" endx="374.0183528341847" xpos="203.1258735952701" endy="121.7884349343692" c2x="317.0541930878799" >
+      <from>0</from>
+      <to>1</to>
+      <inputs default="0" any="0" invert="0" >Button A pressed</inputs>
+      <outputs>a</outputs>
+    </transition>
+    <transition c1x="394.6955091614852" c2y="236.576771460846" c1y="199.0646081355069" description="" straight="1" type="2" ypos="161.5524448101679" endx="377.4134118475273" xpos="403.3365578184642" endy="274.088934786185" c2x="386.0544605045063" >
+      <from>1</from>
+      <to>2</to>
+      <inputs default="0" any="0" invert="0" >ButtonBpressed</inputs>
+      <outputs>b</outputs>
+    </transition>
+    <transition c1x="342.1148044247074" c2y="22.58666599787799" c1y="26.91400384498304" description="" straight="1" type="2" ypos="85.86093236458963" endx="426.492461957548" xpos="399.1443729458359" endy="85.0008106107615" c2x="479.7051166544759" >
+      <from>1</from>
+      <to>1</to>
+      <inputs default="0" any="0" invert="0" ></inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="282.316643648777" c2y="240.4664108996785" c1y="265.0565593796937" description="" straight="1" type="2" ypos="289.6467078597088" endx="190.5971604467735" xpos="328.1763852497788" endy="215.8762624196634" c2x="236.4569020477753" >
+      <from>2</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0" >Reset button pressed</inputs>
+      <outputs></outputs>
+    </transition>
+  </machine>
+</qfsmproject>

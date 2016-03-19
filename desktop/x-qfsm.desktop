@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=MimeType
+MimeType=application/x-qfsm
+Icon=x-qfsm
+Patterns=*.fsm;
+Comment=Qfsm File
+DefaultApp=qfsm

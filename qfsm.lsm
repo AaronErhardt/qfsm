@@ -1,0 +1,14 @@
+Begin4
+Title:          Qfsm 
+Version:        0.54
+Entered-date:   2015-01-01
+Description:    A graphical tool for designing finite state machines
+Keywords:       graphical editor, design, finite state machine, state chart, diagram, FSM, AHDL, VHDL, Verilog DHL, KISS, Ragel, SCXML, vvvv, automata, code generation, state table, graphviz
+Author:         qfsm@duffner-net.de (Stefan Duffner, Rainer Strobel)
+Maintained-by:  qfsm@duffner-net.de (Stefan Duffner, Rainer Strobel)
+Primary-site:   http://prdownloads.sourceforge.net/qfsm/qfsm-0.54.0-Source.tar.bz2
+Home-page:      http://qfsm.sourceforge.net 
+Original-site:  
+Platforms:      Linux and other Unices
+Copying-policy: GPL
+End

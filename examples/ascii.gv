@@ -1,0 +1,14 @@
+digraph ascii_finite_state_machine {
+	rankdir=LR;
+	size="8,5"
+	node [shape = doublecircle]; LR_0 LR_3;
+	node [shape = circle];
+	LR_0 [ label = "State_A" ];
+	LR_3 [ label = "State_B" ];
+	LR_0 -> LR_1 [ label = "a-c###0" ];
+	LR_1 -> LR_2 [ label = "NOT \n###a" ];
+	LR_1 -> LR_3 [ label = "DEF###ab" ];
+	LR_0 -> LR_2 [ label = "ANY###." ];
+	LR_2 -> LR_3 [ label = "\0ff###F" ];
+}
+

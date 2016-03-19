@@ -1,0 +1,13 @@
+digraph binary_finite_state_machine {
+	rankdir=LR;
+	size="8,5"
+	node [shape = doublecircle]; LR_0 LR_3;
+	node [shape = circle];
+	LR_0 [ label = "State_1" moore = "01"];
+	LR_0 -> LR_1 [ label = "0000|0001###11" ];
+	LR_1 -> LR_2 [ label = "NOT 0000###00" ];
+	LR_1 -> LR_3 [ label = "DEF###01" ];
+	LR_0 -> LR_2 [ label = "ANY###10" ];
+	LR_2 -> LR_3 [ label = "1111###11" ];
+}
+

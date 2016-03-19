@@ -1,0 +1,577 @@
+The system is: CYGWIN - 2.4.1(0.293/5/3) - i686
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/cc 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
+
+The C compiler identification is GNU, found in "/cygdrive/z/git/qfsm/build/CMakeFiles/3.3.2/CompilerIdC/a.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/c++.exe 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.exe"
+
+The CXX compiler identification is GNU, found in "/cygdrive/z/git/qfsm/build/CMakeFiles/3.3.2/CompilerIdCXX/a.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make.exe" "cmTC_f6f7c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f6f7c.dir/build.make CMakeFiles/cmTC_f6f7c.dir/build
+make[1] : on entre dans le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+Building C object CMakeFiles/cmTC_f6f7c.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_f6f7c.dir/testCCompiler.c.o   -c /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_f6f7c.exe
+/usr/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_f6f7c.dir/link.txt --verbose=1
+/usr/bin/cc     -Wl,--enable-auto-import  CMakeFiles/cmTC_f6f7c.dir/testCCompiler.c.o  -o cmTC_f6f7c.exe -Wl,--out-implib,libcmTC_f6f7c.dll.a -Wl,--major-image-version,0,--minor-image-version,0  
+make[1] : on quitte le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make.exe" "cmTC_45137/fast"
+/usr/bin/make -f CMakeFiles/cmTC_45137.dir/build.make CMakeFiles/cmTC_45137.dir/build
+make[1] : on entre dans le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+Building C object CMakeFiles/cmTC_45137.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_45137.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.3.2/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_45137.exe
+/usr/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_45137.dir/link.txt --verbose=1
+/usr/bin/cc     -Wl,--enable-auto-import -v CMakeFiles/cmTC_45137.dir/CMakeCCompilerABI.c.o  -o cmTC_45137.exe -Wl,--out-implib,libcmTC_45137.dll.a -Wl,--major-image-version,0,--minor-image-version,0   
+Utilisation des specs internes.
+COLLECT_GCC=/usr/bin/cc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/i686-pc-cygwin/5.3.0/lto-wrapper.exe
+Cible : i686-pc-cygwin
+Configuré avec: /cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-3.i686/src/gcc-5.3.0/configure --srcdir=/cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-3.i686/src/gcc-5.3.0 --prefix=/usr --exec-prefix=/usr --localstatedir=/var --sysconfdir=/etc --docdir=/usr/share/doc/gcc --htmldir=/usr/share/doc/gcc/html -C --build=i686-pc-cygwin --host=i686-pc-cygwin --target=i686-pc-cygwin --without-libiconv-prefix --without-libintl-prefix --libexecdir=/usr/lib --enable-shared --enable-shared-libgcc --enable-static --enable-version-specific-runtime-libs --enable-bootstrap --enable-__cxa_atexit --with-dwarf2 --with-arch=i686 --with-tune=generic --disable-sjlj-exceptions --enable-languages=ada,c,c++,fortran,java,lto,objc,obj-c++ --enable-graphite --enable-threads=posix --enable-libatomic --enable-libcilkrts --enable-libgomp --enable-libitm --enable-libquadmath --enable-libquadmath-support --enable-libssp --enable-libada --enable-libjava --enable-libgcj-sublibs --disable-java-awt --disable-symvers --with-ecj-jar=/usr/share/java/ecj.jar --with-gnu-ld --with-gnu-as --with-cloog-include=/usr/include/cloog-isl --without-libiconv-prefix --without-libintl-prefix --with-system-zlib --enable-linker-build-id --with-default-libstdcxx-abi=gcc4-compatible
+Modèle de thread: posix
+gcc version 5.3.0 (GCC) 
+COMPILER_PATH=/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/bin/
+LIBRARY_PATH=/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/lib/:/usr/lib/:/lib/:/usr/lib/w32api/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_45137.exe' '-mtune=generic' '-march=i686'
+ /usr/lib/gcc/i686-pc-cygwin/5.3.0/collect2.exe -plugin /usr/lib/gcc/i686-pc-cygwin/5.3.0/cyglto_plugin.dll -plugin-opt=/usr/lib/gcc/i686-pc-cygwin/5.3.0/lto-wrapper.exe -plugin-opt=-fresolution=/tmp/ccqQiU5u.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lcygwin -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --wrap _Znwj --wrap _Znaj --wrap _ZdlPv --wrap _ZdaPv --wrap _ZnwjRKSt9nothrow_t --wrap _ZnajRKSt9nothrow_t --wrap _ZdlPvRKSt9nothrow_t --wrap _ZdaPvRKSt9nothrow_t -Bdynamic --dll-search-prefix=cyg --large-address-aware --tsaware -o cmTC_45137.exe /usr/lib/crt0.o /usr/lib/gcc/i686-pc-cygwin/5.3.0/crtbegin.o -L/usr/lib/gcc/i686-pc-cygwin/5.3.0 -L/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/lib -L/usr/lib/w32api --enable-auto-import CMakeFiles/cmTC_45137.dir/CMakeCCompilerABI.c.o --out-implib libcmTC_45137.dll.a --major-image-version 0 --minor-image-version 0 -lgcc_s -lgcc -lcygwin -ladvapi32 -lshell32 -luser32 -lkernel32 -lgcc_s -lgcc /usr/lib/default-manifest.o /usr/lib/gcc/i686-pc-cygwin/5.3.0/crtend.o
+make[1] : on quitte le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld\.exe|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make.exe" "cmTC_45137/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_45137.dir/build.make CMakeFiles/cmTC_45137.dir/build]
+  ignore line: [make[1] : on entre dans le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »]
+  ignore line: [Building C object CMakeFiles/cmTC_45137.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_45137.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.3.2/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_45137.exe]
+  ignore line: [/usr/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_45137.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -Wl,--enable-auto-import -v CMakeFiles/cmTC_45137.dir/CMakeCCompilerABI.c.o  -o cmTC_45137.exe -Wl,--out-implib,libcmTC_45137.dll.a -Wl,--major-image-version,0,--minor-image-version,0   ]
+  ignore line: [Utilisation des specs internes.]
+  ignore line: [COLLECT_GCC=/usr/bin/cc]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/i686-pc-cygwin/5.3.0/lto-wrapper.exe]
+  ignore line: [Cible : i686-pc-cygwin]
+  ignore line: [Configuré avec: /cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-3.i686/src/gcc-5.3.0/configure --srcdir=/cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-3.i686/src/gcc-5.3.0 --prefix=/usr --exec-prefix=/usr --localstatedir=/var --sysconfdir=/etc --docdir=/usr/share/doc/gcc --htmldir=/usr/share/doc/gcc/html -C --build=i686-pc-cygwin --host=i686-pc-cygwin --target=i686-pc-cygwin --without-libiconv-prefix --without-libintl-prefix --libexecdir=/usr/lib --enable-shared --enable-shared-libgcc --enable-static --enable-version-specific-runtime-libs --enable-bootstrap --enable-__cxa_atexit --with-dwarf2 --with-arch=i686 --with-tune=generic --disable-sjlj-exceptions --enable-languages=ada,c,c++,fortran,java,lto,objc,obj-c++ --enable-graphite --enable-threads=posix --enable-libatomic --enable-libcilkrts --enable-libgomp --enable-libitm --enable-libquadmath --enable-libquadmath-support --enable-libssp --enable-libada --enable-libjava --enable-libgcj-sublibs --disable-java-awt --disable-symvers --with-ecj-jar=/usr/share/java/ecj.jar --with-gnu-ld --with-gnu-as --with-cloog-include=/usr/include/cloog-isl --without-libiconv-prefix --without-libintl-prefix --with-system-zlib --enable-linker-build-id --with-default-libstdcxx-abi=gcc4-compatible]
+  ignore line: [Modèle de thread: posix]
+  ignore line: [gcc version 5.3.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/bin/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/lib/:/usr/lib/:/lib/:/usr/lib/w32api/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_45137.exe' '-mtune=generic' '-march=i686']
+  link line: [ /usr/lib/gcc/i686-pc-cygwin/5.3.0/collect2.exe -plugin /usr/lib/gcc/i686-pc-cygwin/5.3.0/cyglto_plugin.dll -plugin-opt=/usr/lib/gcc/i686-pc-cygwin/5.3.0/lto-wrapper.exe -plugin-opt=-fresolution=/tmp/ccqQiU5u.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lcygwin -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --wrap _Znwj --wrap _Znaj --wrap _ZdlPv --wrap _ZdaPv --wrap _ZnwjRKSt9nothrow_t --wrap _ZnajRKSt9nothrow_t --wrap _ZdlPvRKSt9nothrow_t --wrap _ZdaPvRKSt9nothrow_t -Bdynamic --dll-search-prefix=cyg --large-address-aware --tsaware -o cmTC_45137.exe /usr/lib/crt0.o /usr/lib/gcc/i686-pc-cygwin/5.3.0/crtbegin.o -L/usr/lib/gcc/i686-pc-cygwin/5.3.0 -L/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/lib -L/usr/lib/w32api --enable-auto-import CMakeFiles/cmTC_45137.dir/CMakeCCompilerABI.c.o --out-implib libcmTC_45137.dll.a --major-image-version 0 --minor-image-version 0 -lgcc_s -lgcc -lcygwin -ladvapi32 -lshell32 -luser32 -lkernel32 -lgcc_s -lgcc /usr/lib/default-manifest.o /usr/lib/gcc/i686-pc-cygwin/5.3.0/crtend.o]
+    arg [/usr/lib/gcc/i686-pc-cygwin/5.3.0/collect2.exe] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/lib/gcc/i686-pc-cygwin/5.3.0/cyglto_plugin.dll] ==> ignore
+    arg [-plugin-opt=/usr/lib/gcc/i686-pc-cygwin/5.3.0/lto-wrapper.exe] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccqQiU5u.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lcygwin] ==> ignore
+    arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
+    arg [-plugin-opt=-pass-through=-luser32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_Znwj] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_Znaj] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_ZdlPv] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_ZdaPv] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_ZnwjRKSt9nothrow_t] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_ZnajRKSt9nothrow_t] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_ZdlPvRKSt9nothrow_t] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_ZdaPvRKSt9nothrow_t] ==> ignore
+    arg [-Bdynamic] ==> ignore
+    arg [--dll-search-prefix=cyg] ==> ignore
+    arg [--large-address-aware] ==> ignore
+    arg [--tsaware] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_45137.exe] ==> ignore
+    arg [/usr/lib/crt0.o] ==> ignore
+    arg [/usr/lib/gcc/i686-pc-cygwin/5.3.0/crtbegin.o] ==> ignore
+    arg [-L/usr/lib/gcc/i686-pc-cygwin/5.3.0] ==> dir [/usr/lib/gcc/i686-pc-cygwin/5.3.0]
+    arg [-L/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/lib] ==> dir [/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/lib]
+    arg [-L/usr/lib/w32api] ==> dir [/usr/lib/w32api]
+    arg [--enable-auto-import] ==> ignore
+    arg [CMakeFiles/cmTC_45137.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [--out-implib] ==> ignore
+    arg [libcmTC_45137.dll.a] ==> ignore
+    arg [--major-image-version] ==> ignore
+    arg [0] ==> ignore
+    arg [--minor-image-version] ==> ignore
+    arg [0] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lcygwin] ==> lib [cygwin]
+    arg [-ladvapi32] ==> lib [advapi32]
+    arg [-lshell32] ==> lib [shell32]
+    arg [-luser32] ==> lib [user32]
+    arg [-lkernel32] ==> lib [kernel32]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/usr/lib/default-manifest.o] ==> ignore
+    arg [/usr/lib/gcc/i686-pc-cygwin/5.3.0/crtend.o] ==> ignore
+  remove lib [gcc_s]
+  remove lib [gcc]
+  remove lib [gcc_s]
+  remove lib [gcc]
+  collapse library dir [/usr/lib/gcc/i686-pc-cygwin/5.3.0] ==> [/usr/lib/gcc/i686-pc-cygwin/5.3.0]
+  collapse library dir [/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/lib] ==> [/usr/i686-pc-cygwin/lib]
+  collapse library dir [/usr/lib/w32api] ==> [/usr/lib/w32api]
+  implicit libs: [cygwin;advapi32;shell32;user32;kernel32]
+  implicit dirs: [/usr/lib/gcc/i686-pc-cygwin/5.3.0;/usr/i686-pc-cygwin/lib;/usr/lib/w32api]
+  implicit fwks: []
+
+
+
+
+Detecting C [-std=c11] compiler features compiled with the following output:
+Change Dir: /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make.exe" "cmTC_2cebd/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2cebd.dir/build.make CMakeFiles/cmTC_2cebd.dir/build
+make[1] : on entre dans le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+Building C object CMakeFiles/cmTC_2cebd.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_2cebd.dir/feature_tests.c.o   -c /cygdrive/z/git/qfsm/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_2cebd.exe
+/usr/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_2cebd.dir/link.txt --verbose=1
+/usr/bin/cc     -Wl,--enable-auto-import  CMakeFiles/cmTC_2cebd.dir/feature_tests.c.o  -o cmTC_2cebd.exe -Wl,--out-implib,libcmTC_2cebd.dll.a -Wl,--major-image-version,0,--minor-image-version,0  
+make[1] : on quitte le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:1c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c99] compiler features compiled with the following output:
+Change Dir: /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make.exe" "cmTC_c1e84/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c1e84.dir/build.make CMakeFiles/cmTC_c1e84.dir/build
+make[1] : on entre dans le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+Building C object CMakeFiles/cmTC_c1e84.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_c1e84.dir/feature_tests.c.o   -c /cygdrive/z/git/qfsm/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_c1e84.exe
+/usr/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_c1e84.dir/link.txt --verbose=1
+/usr/bin/cc     -Wl,--enable-auto-import  CMakeFiles/cmTC_c1e84.dir/feature_tests.c.o  -o cmTC_c1e84.exe -Wl,--out-implib,libcmTC_c1e84.dll.a -Wl,--major-image-version,0,--minor-image-version,0  
+make[1] : on quitte le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c90] compiler features compiled with the following output:
+Change Dir: /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make.exe" "cmTC_059ec/fast"
+/usr/bin/make -f CMakeFiles/cmTC_059ec.dir/build.make CMakeFiles/cmTC_059ec.dir/build
+make[1] : on entre dans le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+Building C object CMakeFiles/cmTC_059ec.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_059ec.dir/feature_tests.c.o   -c /cygdrive/z/git/qfsm/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_059ec.exe
+/usr/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_059ec.dir/link.txt --verbose=1
+/usr/bin/cc     -Wl,--enable-auto-import  CMakeFiles/cmTC_059ec.dir/feature_tests.c.o  -o cmTC_059ec.exe -Wl,--out-implib,libcmTC_059ec.dll.a -Wl,--major-image-version,0,--minor-image-version,0  
+make[1] : on quitte le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:0c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:0c_variadic_macros
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make.exe" "cmTC_47140/fast"
+/usr/bin/make -f CMakeFiles/cmTC_47140.dir/build.make CMakeFiles/cmTC_47140.dir/build
+make[1] : on entre dans le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+Building CXX object CMakeFiles/cmTC_47140.dir/testCXXCompiler.cxx.o
+/usr/bin/c++.exe     -o CMakeFiles/cmTC_47140.dir/testCXXCompiler.cxx.o -c /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_47140.exe
+/usr/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_47140.dir/link.txt --verbose=1
+/usr/bin/c++.exe     -Wl,--enable-auto-import  CMakeFiles/cmTC_47140.dir/testCXXCompiler.cxx.o  -o cmTC_47140.exe -Wl,--out-implib,libcmTC_47140.dll.a -Wl,--major-image-version,0,--minor-image-version,0  
+make[1] : on quitte le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make.exe" "cmTC_6a21b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_6a21b.dir/build.make CMakeFiles/cmTC_6a21b.dir/build
+make[1] : on entre dans le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+Building CXX object CMakeFiles/cmTC_6a21b.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++.exe     -o CMakeFiles/cmTC_6a21b.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.3.2/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_6a21b.exe
+/usr/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_6a21b.dir/link.txt --verbose=1
+/usr/bin/c++.exe     -Wl,--enable-auto-import -v CMakeFiles/cmTC_6a21b.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_6a21b.exe -Wl,--out-implib,libcmTC_6a21b.dll.a -Wl,--major-image-version,0,--minor-image-version,0   
+Utilisation des specs internes.
+COLLECT_GCC=/usr/bin/c++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/i686-pc-cygwin/5.3.0/lto-wrapper.exe
+Cible : i686-pc-cygwin
+Configuré avec: /cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-3.i686/src/gcc-5.3.0/configure --srcdir=/cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-3.i686/src/gcc-5.3.0 --prefix=/usr --exec-prefix=/usr --localstatedir=/var --sysconfdir=/etc --docdir=/usr/share/doc/gcc --htmldir=/usr/share/doc/gcc/html -C --build=i686-pc-cygwin --host=i686-pc-cygwin --target=i686-pc-cygwin --without-libiconv-prefix --without-libintl-prefix --libexecdir=/usr/lib --enable-shared --enable-shared-libgcc --enable-static --enable-version-specific-runtime-libs --enable-bootstrap --enable-__cxa_atexit --with-dwarf2 --with-arch=i686 --with-tune=generic --disable-sjlj-exceptions --enable-languages=ada,c,c++,fortran,java,lto,objc,obj-c++ --enable-graphite --enable-threads=posix --enable-libatomic --enable-libcilkrts --enable-libgomp --enable-libitm --enable-libquadmath --enable-libquadmath-support --enable-libssp --enable-libada --enable-libjava --enable-libgcj-sublibs --disable-java-awt --disable-symvers --with-ecj-jar=/usr/share/java/ecj.jar --with-gnu-ld --with-gnu-as --with-cloog-include=/usr/include/cloog-isl --without-libiconv-prefix --without-libintl-prefix --with-system-zlib --enable-linker-build-id --with-default-libstdcxx-abi=gcc4-compatible
+Modèle de thread: posix
+gcc version 5.3.0 (GCC) 
+COMPILER_PATH=/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/bin/
+LIBRARY_PATH=/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/lib/:/usr/lib/:/lib/:/usr/lib/w32api/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_6a21b.exe' '-shared-libgcc' '-mtune=generic' '-march=i686'
+ /usr/lib/gcc/i686-pc-cygwin/5.3.0/collect2.exe -plugin /usr/lib/gcc/i686-pc-cygwin/5.3.0/cyglto_plugin.dll -plugin-opt=/usr/lib/gcc/i686-pc-cygwin/5.3.0/lto-wrapper.exe -plugin-opt=-fresolution=/tmp/ccgIf0DR.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lcygwin -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --wrap _Znwj --wrap _Znaj --wrap _ZdlPv --wrap _ZdaPv --wrap _ZnwjRKSt9nothrow_t --wrap _ZnajRKSt9nothrow_t --wrap _ZdlPvRKSt9nothrow_t --wrap _ZdaPvRKSt9nothrow_t -Bdynamic --dll-search-prefix=cyg --large-address-aware --tsaware -o cmTC_6a21b.exe /usr/lib/crt0.o /usr/lib/gcc/i686-pc-cygwin/5.3.0/crtbegin.o -L/usr/lib/gcc/i686-pc-cygwin/5.3.0 -L/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/lib -L/usr/lib/w32api --enable-auto-import CMakeFiles/cmTC_6a21b.dir/CMakeCXXCompilerABI.cpp.o --out-implib libcmTC_6a21b.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lgcc_s -lgcc -lcygwin -ladvapi32 -lshell32 -luser32 -lkernel32 -lgcc_s -lgcc /usr/lib/default-manifest.o /usr/lib/gcc/i686-pc-cygwin/5.3.0/crtend.o
+make[1] : on quitte le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld\.exe|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make.exe" "cmTC_6a21b/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_6a21b.dir/build.make CMakeFiles/cmTC_6a21b.dir/build]
+  ignore line: [make[1] : on entre dans le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »]
+  ignore line: [Building CXX object CMakeFiles/cmTC_6a21b.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++.exe     -o CMakeFiles/cmTC_6a21b.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.3.2/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_6a21b.exe]
+  ignore line: [/usr/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_6a21b.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++.exe     -Wl,--enable-auto-import -v CMakeFiles/cmTC_6a21b.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_6a21b.exe -Wl,--out-implib,libcmTC_6a21b.dll.a -Wl,--major-image-version,0,--minor-image-version,0   ]
+  ignore line: [Utilisation des specs internes.]
+  ignore line: [COLLECT_GCC=/usr/bin/c++]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/i686-pc-cygwin/5.3.0/lto-wrapper.exe]
+  ignore line: [Cible : i686-pc-cygwin]
+  ignore line: [Configuré avec: /cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-3.i686/src/gcc-5.3.0/configure --srcdir=/cygdrive/i/szsz/tmpp/gcc/gcc-5.3.0-3.i686/src/gcc-5.3.0 --prefix=/usr --exec-prefix=/usr --localstatedir=/var --sysconfdir=/etc --docdir=/usr/share/doc/gcc --htmldir=/usr/share/doc/gcc/html -C --build=i686-pc-cygwin --host=i686-pc-cygwin --target=i686-pc-cygwin --without-libiconv-prefix --without-libintl-prefix --libexecdir=/usr/lib --enable-shared --enable-shared-libgcc --enable-static --enable-version-specific-runtime-libs --enable-bootstrap --enable-__cxa_atexit --with-dwarf2 --with-arch=i686 --with-tune=generic --disable-sjlj-exceptions --enable-languages=ada,c,c++,fortran,java,lto,objc,obj-c++ --enable-graphite --enable-threads=posix --enable-libatomic --enable-libcilkrts --enable-libgomp --enable-libitm --enable-libquadmath --enable-libquadmath-support --enable-libssp --enable-libada --enable-libjava --enable-libgcj-sublibs --disable-java-awt --disable-symvers --with-ecj-jar=/usr/share/java/ecj.jar --with-gnu-ld --with-gnu-as --with-cloog-include=/usr/include/cloog-isl --without-libiconv-prefix --without-libintl-prefix --with-system-zlib --enable-linker-build-id --with-default-libstdcxx-abi=gcc4-compatible]
+  ignore line: [Modèle de thread: posix]
+  ignore line: [gcc version 5.3.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/bin/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/i686-pc-cygwin/5.3.0/:/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/lib/:/usr/lib/:/lib/:/usr/lib/w32api/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_6a21b.exe' '-shared-libgcc' '-mtune=generic' '-march=i686']
+  link line: [ /usr/lib/gcc/i686-pc-cygwin/5.3.0/collect2.exe -plugin /usr/lib/gcc/i686-pc-cygwin/5.3.0/cyglto_plugin.dll -plugin-opt=/usr/lib/gcc/i686-pc-cygwin/5.3.0/lto-wrapper.exe -plugin-opt=-fresolution=/tmp/ccgIf0DR.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lcygwin -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --wrap _Znwj --wrap _Znaj --wrap _ZdlPv --wrap _ZdaPv --wrap _ZnwjRKSt9nothrow_t --wrap _ZnajRKSt9nothrow_t --wrap _ZdlPvRKSt9nothrow_t --wrap _ZdaPvRKSt9nothrow_t -Bdynamic --dll-search-prefix=cyg --large-address-aware --tsaware -o cmTC_6a21b.exe /usr/lib/crt0.o /usr/lib/gcc/i686-pc-cygwin/5.3.0/crtbegin.o -L/usr/lib/gcc/i686-pc-cygwin/5.3.0 -L/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/lib -L/usr/lib/w32api --enable-auto-import CMakeFiles/cmTC_6a21b.dir/CMakeCXXCompilerABI.cpp.o --out-implib libcmTC_6a21b.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lgcc_s -lgcc -lcygwin -ladvapi32 -lshell32 -luser32 -lkernel32 -lgcc_s -lgcc /usr/lib/default-manifest.o /usr/lib/gcc/i686-pc-cygwin/5.3.0/crtend.o]
+    arg [/usr/lib/gcc/i686-pc-cygwin/5.3.0/collect2.exe] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/lib/gcc/i686-pc-cygwin/5.3.0/cyglto_plugin.dll] ==> ignore
+    arg [-plugin-opt=/usr/lib/gcc/i686-pc-cygwin/5.3.0/lto-wrapper.exe] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccgIf0DR.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lcygwin] ==> ignore
+    arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
+    arg [-plugin-opt=-pass-through=-luser32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_Znwj] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_Znaj] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_ZdlPv] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_ZdaPv] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_ZnwjRKSt9nothrow_t] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_ZnajRKSt9nothrow_t] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_ZdlPvRKSt9nothrow_t] ==> ignore
+    arg [--wrap] ==> ignore
+    arg [_ZdaPvRKSt9nothrow_t] ==> ignore
+    arg [-Bdynamic] ==> ignore
+    arg [--dll-search-prefix=cyg] ==> ignore
+    arg [--large-address-aware] ==> ignore
+    arg [--tsaware] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_6a21b.exe] ==> ignore
+    arg [/usr/lib/crt0.o] ==> ignore
+    arg [/usr/lib/gcc/i686-pc-cygwin/5.3.0/crtbegin.o] ==> ignore
+    arg [-L/usr/lib/gcc/i686-pc-cygwin/5.3.0] ==> dir [/usr/lib/gcc/i686-pc-cygwin/5.3.0]
+    arg [-L/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/lib] ==> dir [/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/lib]
+    arg [-L/usr/lib/w32api] ==> dir [/usr/lib/w32api]
+    arg [--enable-auto-import] ==> ignore
+    arg [CMakeFiles/cmTC_6a21b.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [--out-implib] ==> ignore
+    arg [libcmTC_6a21b.dll.a] ==> ignore
+    arg [--major-image-version] ==> ignore
+    arg [0] ==> ignore
+    arg [--minor-image-version] ==> ignore
+    arg [0] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lcygwin] ==> lib [cygwin]
+    arg [-ladvapi32] ==> lib [advapi32]
+    arg [-lshell32] ==> lib [shell32]
+    arg [-luser32] ==> lib [user32]
+    arg [-lkernel32] ==> lib [kernel32]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/usr/lib/default-manifest.o] ==> ignore
+    arg [/usr/lib/gcc/i686-pc-cygwin/5.3.0/crtend.o] ==> ignore
+  remove lib [gcc_s]
+  remove lib [gcc]
+  remove lib [gcc_s]
+  remove lib [gcc]
+  collapse library dir [/usr/lib/gcc/i686-pc-cygwin/5.3.0] ==> [/usr/lib/gcc/i686-pc-cygwin/5.3.0]
+  collapse library dir [/usr/lib/gcc/i686-pc-cygwin/5.3.0/../../../../i686-pc-cygwin/lib] ==> [/usr/i686-pc-cygwin/lib]
+  collapse library dir [/usr/lib/w32api] ==> [/usr/lib/w32api]
+  implicit libs: [stdc++;cygwin;advapi32;shell32;user32;kernel32]
+  implicit dirs: [/usr/lib/gcc/i686-pc-cygwin/5.3.0;/usr/i686-pc-cygwin/lib;/usr/lib/w32api]
+  implicit fwks: []
+
+
+
+
+Detecting CXX [-std=c++14] compiler features compiled with the following output:
+Change Dir: /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make.exe" "cmTC_847b7/fast"
+/usr/bin/make -f CMakeFiles/cmTC_847b7.dir/build.make CMakeFiles/cmTC_847b7.dir/build
+make[1] : on entre dans le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+Building CXX object CMakeFiles/cmTC_847b7.dir/feature_tests.cxx.o
+/usr/bin/c++.exe    -std=c++14 -o CMakeFiles/cmTC_847b7.dir/feature_tests.cxx.o -c /cygdrive/z/git/qfsm/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_847b7.exe
+/usr/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_847b7.dir/link.txt --verbose=1
+/usr/bin/c++.exe     -Wl,--enable-auto-import  CMakeFiles/cmTC_847b7.dir/feature_tests.cxx.o  -o cmTC_847b7.exe -Wl,--out-implib,libcmTC_847b7.dll.a -Wl,--major-image-version,0,--minor-image-version,0  
+make[1] : on quitte le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+
+
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++11] compiler features compiled with the following output:
+Change Dir: /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make.exe" "cmTC_cd8b3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_cd8b3.dir/build.make CMakeFiles/cmTC_cd8b3.dir/build
+make[1] : on entre dans le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+Building CXX object CMakeFiles/cmTC_cd8b3.dir/feature_tests.cxx.o
+/usr/bin/c++.exe    -std=c++11 -o CMakeFiles/cmTC_cd8b3.dir/feature_tests.cxx.o -c /cygdrive/z/git/qfsm/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_cd8b3.exe
+/usr/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_cd8b3.dir/link.txt --verbose=1
+/usr/bin/c++.exe     -Wl,--enable-auto-import  CMakeFiles/cmTC_cd8b3.dir/feature_tests.cxx.o  -o cmTC_cd8b3.exe -Wl,--out-implib,libcmTC_cd8b3.dll.a -Wl,--major-image-version,0,--minor-image-version,0  
+make[1] : on quitte le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
+Detecting CXX [-std=c++98] compiler features compiled with the following output:
+Change Dir: /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make.exe" "cmTC_af07f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_af07f.dir/build.make CMakeFiles/cmTC_af07f.dir/build
+make[1] : on entre dans le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+Building CXX object CMakeFiles/cmTC_af07f.dir/feature_tests.cxx.o
+/usr/bin/c++.exe    -std=c++98 -o CMakeFiles/cmTC_af07f.dir/feature_tests.cxx.o -c /cygdrive/z/git/qfsm/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_af07f.exe
+/usr/bin/cmake.exe -E cmake_link_script CMakeFiles/cmTC_af07f.dir/link.txt --verbose=1
+/usr/bin/c++.exe     -Wl,--enable-auto-import  CMakeFiles/cmTC_af07f.dir/feature_tests.cxx.o  -o cmTC_af07f.exe -Wl,--out-implib,libcmTC_af07f.dll.a -Wl,--major-image-version,0,--minor-image-version,0  
+make[1] : on quitte le répertoire « /cygdrive/z/git/qfsm/build/CMakeFiles/CMakeTmp »
+
+
+    Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:0cxx_alias_templates
+    Feature record: CXX_FEATURE:0cxx_alignas
+    Feature record: CXX_FEATURE:0cxx_alignof
+    Feature record: CXX_FEATURE:0cxx_attributes
+    Feature record: CXX_FEATURE:0cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:0cxx_auto_type
+    Feature record: CXX_FEATURE:0cxx_binary_literals
+    Feature record: CXX_FEATURE:0cxx_constexpr
+    Feature record: CXX_FEATURE:0cxx_contextual_conversions
+    Feature record: CXX_FEATURE:0cxx_decltype
+    Feature record: CXX_FEATURE:0cxx_decltype_auto
+    Feature record: CXX_FEATURE:0cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:0cxx_default_function_template_args
+    Feature record: CXX_FEATURE:0cxx_defaulted_functions
+    Feature record: CXX_FEATURE:0cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:0cxx_delegating_constructors
+    Feature record: CXX_FEATURE:0cxx_deleted_functions
+    Feature record: CXX_FEATURE:0cxx_digit_separators
+    Feature record: CXX_FEATURE:0cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:0cxx_explicit_conversions
+    Feature record: CXX_FEATURE:0cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:0cxx_extern_templates
+    Feature record: CXX_FEATURE:0cxx_final
+    Feature record: CXX_FEATURE:0cxx_func_identifier
+    Feature record: CXX_FEATURE:0cxx_generalized_initializers
+    Feature record: CXX_FEATURE:0cxx_generic_lambdas
+    Feature record: CXX_FEATURE:0cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:0cxx_inline_namespaces
+    Feature record: CXX_FEATURE:0cxx_lambdas
+    Feature record: CXX_FEATURE:0cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:0cxx_local_type_template_args
+    Feature record: CXX_FEATURE:0cxx_long_long_type
+    Feature record: CXX_FEATURE:0cxx_noexcept
+    Feature record: CXX_FEATURE:0cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:0cxx_nullptr
+    Feature record: CXX_FEATURE:0cxx_override
+    Feature record: CXX_FEATURE:0cxx_range_for
+    Feature record: CXX_FEATURE:0cxx_raw_string_literals
+    Feature record: CXX_FEATURE:0cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:0cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:0cxx_return_type_deduction
+    Feature record: CXX_FEATURE:0cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:0cxx_rvalue_references
+    Feature record: CXX_FEATURE:0cxx_sizeof_member
+    Feature record: CXX_FEATURE:0cxx_static_assert
+    Feature record: CXX_FEATURE:0cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:0cxx_thread_local
+    Feature record: CXX_FEATURE:0cxx_trailing_return_types
+    Feature record: CXX_FEATURE:0cxx_unicode_literals
+    Feature record: CXX_FEATURE:0cxx_uniform_initialization
+    Feature record: CXX_FEATURE:0cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:0cxx_user_literals
+    Feature record: CXX_FEATURE:0cxx_variable_templates
+    Feature record: CXX_FEATURE:0cxx_variadic_macros
+    Feature record: CXX_FEATURE:0cxx_variadic_templates

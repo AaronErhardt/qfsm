@@ -1,0 +1,41 @@
+IMAGES =  \
+	  addstate.png \
+	  addtrans.png \
+	  copy.png \
+	  cut.png \
+	  integrity_check.png \
+	  machine_properties.png \
+	  new.png \
+	  open.png \
+	  pan.png \
+	  paste.png \
+	  print.png \
+	  save.png \
+	  select.png \
+	  simulate.png \
+	  simulation.png \
+	  state_properties.png \
+	  straighten.png \
+	  toolbar.png \
+	  transition_properties.png \
+	  undo.png \
+	  working_area2.png \
+	  zoomin.png \
+	  zoomout.png \
+	  zoom.png
+
+
+all: qfsm.html qfsm.pdf
+	
+
+qfsm.html: qfsm.docbook $(IMAGES)
+	xsltproc --nonet --novalid -o qfsm.html html_stylesheet.xsl qfsm.docbook 
+#xsltproc --nonet --novalid -o qfsm.html /usr/share/xml/docbook/stylesheet/nwalsh/current/html/docbook.xsl qfsm.docbook 
+
+qfsm.fo: qfsm.docbook $(IMAGES)
+	xsltproc --nonet --novalid -o qfsm.fo fo_stylesheet.xsl qfsm.docbook 
+#xsltproc --nonet --novalid -o qfsm.fo /usr/share/xml/docbook/stylesheet/nwalsh/current/fo/docbook.xsl qfsm.docbook 
+
+qfsm.pdf: qfsm.fo
+	fop qfsm.fo qfsm.pdf
+
