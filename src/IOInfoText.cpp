@@ -52,25 +52,25 @@ void IOInfoText::setRangeInfo(IOInfo* rstart, IOInfo* rend)
   Convert conv;
   QString ss, se;
 
-  rstart->convertToASCII(as, MAX_CHARARRAY_LENGTH, lena, TRUE);
-  rend->convertToASCII(ae, MAX_CHARARRAY_LENGTH, lene, TRUE);
+  rstart->convertToASCII(as, MAX_CHARARRAY_LENGTH, lena, true);
+  rend->convertToASCII(ae, MAX_CHARARRAY_LENGTH, lene, true);
 
   ss = conv.asciiToReadableStr(as, lena);
   se = conv.asciiToReadableStr(ae, lene);
   if (ss==se)
   {
     info = ss;
-    range=FALSE;
+    range=false;
   }
   else
   {
     info = ss + "-" + se;
-    range=TRUE;
+    range=true;
     range_start = int((unsigned char)as[0]);
     range_end = int((unsigned char)ae[0]);
   }
   type = rstart->getType();
-  role = FALSE;
+  role = false;
 }
 
 /// Destructor
@@ -88,7 +88,7 @@ QString IOInfoText::convertToComparableString(Machine* /*m=NULL*/, Options* /*op
 {
   /*
   IOInfoList list;
-  list.setAutoDelete(TRUE);
+  list.setAutoDelete(true);
   split(list);
   IOInfo* io;
 
@@ -105,7 +105,7 @@ QString IOInfoText::convertToComparableString(Machine* /*m=NULL*/, Options* /*op
 }
 
 
-QString IOInfoText::convertToBinStr(Machine* /*m=TRUE*/, Options* /*opt=NULL*/) const
+QString IOInfoText::convertToBinStr(Machine* /*m=true*/, Options* /*opt=NULL*/) const
 {
   unsigned char ascii[MAX_CHARARRAY_LENGTH];
   int alen;
@@ -150,7 +150,7 @@ int IOInfoText::convertToInt() const
   return conv.binStrToInt(binstr);
 }
   
-void IOInfoText::convertToBinList(IOInfoList& list, bool resolve_invert/*=TRUE*/) const
+void IOInfoText::convertToBinList(IOInfoList& list, bool resolve_invert/*=true*/) const
 {
   unsigned char ascii[MAX_CHARARRAY_LENGTH];
   int calen;
@@ -189,7 +189,7 @@ void IOInfoText::setBin(QString bin, int )
   unsigned char ascii[MAX_CHARARRAY_LENGTH];
   int length;
 
-  if (conv.binStrToASCII(bin, ascii, MAX_CHARARRAY_LENGTH, length, FALSE))
+  if (conv.binStrToASCII(bin, ascii, MAX_CHARARRAY_LENGTH, length, false))
     info = conv.asciiToReadableStr(ascii, length);
 }
 
@@ -208,7 +208,7 @@ void IOInfoText::setString(QString string, int )
 
 
 bool IOInfoText::convertToASCII(unsigned char* ascii, int maxlen, int& length, bool
-    singlechar/*=FALSE*/) const
+    singlechar/*=false*/) const
 {
   Convert conv;
   if (singlechar)
@@ -224,7 +224,7 @@ bool IOInfoText::convertToASCII(unsigned char* ascii, int maxlen, int& length, b
   else
     conv.resolveEscapes(info, ascii, maxlen, length);
 
-  return TRUE;
+  return true;
 }
 
 
@@ -233,51 +233,51 @@ bool IOInfoText::convertToASCII(unsigned char* ascii, int maxlen, int& length, b
 
 bool IOInfoText::isSingle() const
 {
-  return TRUE;
+  return true;
 
   /*
   QString stmp;
   int ccount=0;
   int i=0, len;
   char ctmp;
-  bool escprev=FALSE;
+  bool escprev=false;
 
   if (info.isEmpty())
-    return FALSE;
+    return false;
 
-  stmp = info.stripWhiteSpace();
+  stmp = info.trimmed();
   len = stmp.length();
 
   while(i<len)
   {
-    ctmp=info[i].latin1();
-    if (ctmp=='\\' && escprev==FALSE)
+    ctmp=info[i].toLatin1();
+    if (ctmp=='\\' && escprev==false)
     {
-      escprev=TRUE;
+      escprev=true;
 
       if (i<len-1)
       {
 	if (info[(i+1)]=='0')
 	{
           if (i>=len-3)
-	    return FALSE;
+	    return false;
 	  i+=2;
 	}
       }
     }
 //    else if (ctmp=='-')
-//      return FALSE;
+//      return false;
     else
       ccount++;
 
     i++;
-    escprev=FALSE;
+    escprev=false;
   }
 
   if (ccount==1)
-    return TRUE;
+    return true;
   else
-    return FALSE;
+    return false;
     */
 }
 
@@ -293,60 +293,60 @@ QList<IOInfo*> IOInfoText::getSingles()
   int len;
 //  char lc, rc;
   char ctmp=0, cprev=0, cnext;
-  bool nextisescape=FALSE;
-  bool previsdigit=FALSE, nextisdigit=FALSE;
+  bool nextisescape=false;
+  bool previsdigit=false, nextisdigit=false;
   QString sinf;
   Convert conv;
-  bool firstadded=FALSE;
+  bool firstadded=false;
 
   len = info.length();
 
   while (i<len)
   {
 
-    ctmp = info[i].latin1();
+    ctmp = info[i].toLatin1();
     if (ctmp=='\\')		// escape sequence
     {
       if(i==len-1)
         break;
       
-      bool append=TRUE;
-//      ctmp = escapeToChar(info[i+1].latin1());
+      bool append=true;
+//      ctmp = escapeToChar(info[i+1].toLatin1());
       QString sesc;
       //QString cnext;
-      cnext = info[(i+1)].latin1();
+      cnext = info[(i+1)].toLatin1();
       if (cnext=='0')
       {
 	if (i>=len-3)
 	{
-	  append=FALSE;
+	  append=false;
 	  i=len;
 	}
 	else
 	{
-	  sesc.sprintf("\\0%c%c", info[(i+2)].latin1(), info[(i+3)].latin1());
+	  sesc.sprintf("\\0%c%c", info[(i+2)].toLatin1(), info[(i+3)].toLatin1());
           i+=2;
 
 	  int asciilen;
 	  conv.resolveEscapes(sesc, &ctmp, 1, asciilen);
 	}
-	previsdigit=FALSE;
+	previsdigit=false;
       }
       else if (cnext=='d')
       {
-	previsdigit=TRUE;
-	if (i>=len-2 || (info[(i+2)].latin1()!='-'))	// append just 10 digits
+	previsdigit=true;
+	if (i>=len-2 || (info[(i+2)].toLatin1()!='-'))	// append just 10 digits
 	{
 	  for(char r='0'; r<='9'; r++)
 	  {
 	    list.append(new IOInfoText(type, r));
 	  }
 	}
-	append=FALSE;
+	append=false;
       }
       else
       {
-	previsdigit=FALSE;
+	previsdigit=false;
         //sesc = "\\" + cnext;
         sesc.sprintf("\\%c",cnext);
       }
@@ -354,17 +354,17 @@ QList<IOInfo*> IOInfoText::getSingles()
       if (append)
       {
         list.append(new IOInfoText(type, sesc));
-	firstadded=TRUE;
+	firstadded=true;
       }
       else
-	firstadded=FALSE;
+	firstadded=false;
 
       i++;
     }
     else if (ctmp=='-')
     {
       char cnext;
-      bool includefirst=FALSE;
+      bool includefirst=false;
 
       if (len==1)
       {
@@ -374,23 +374,23 @@ QList<IOInfo*> IOInfoText::getSingles()
       if (i==0 || i==len-1)
 	break;
 
-      cnext = info[(i+1)].latin1();
+      cnext = info[(i+1)].toLatin1();
       if (cnext=='\\')
       {
-	nextisescape=TRUE;
+	nextisescape=true;
 
 	if (i==len-2)
 	  break;
 
 
-	if (info[(i+2)].latin1()=='d')
+	if (info[(i+2)].toLatin1()=='d')
 	{
-	  nextisdigit=TRUE;
+	  nextisdigit=true;
 	  if (previsdigit)
 	  {
 	    cprev='0';
 	    cnext='9';
-	    includefirst=TRUE;
+	    includefirst=true;
 	  }
 	  else if (cprev<'0')
 	  {
@@ -399,27 +399,27 @@ QList<IOInfo*> IOInfoText::getSingles()
 	  else if (cprev>'9')
 	  {
 	    cnext='0';
-	    //includefirst=TRUE;
+	    //includefirst=true;
 	  }
 	  else
 	  {
 	    cprev='0';
 	    cnext='9';
-	    includefirst=TRUE;
+	    includefirst=true;
 	  }
 	}
-	else if (info[(i+2)].latin1()=='0')
+	else if (info[(i+2)].toLatin1()=='0')
 	{
 	  if (i>=len-4)
 	  {
-//	    append=FALSE;
+//	    append=false;
 	    cnext=cprev;
 	    i=len;
 	  }
 	  else
 	  {
 	    QString sesc;
-	    sesc.sprintf("\\0%c%c", info[(i+3)].latin1(), info[(i+4)].latin1());
+	    sesc.sprintf("\\0%c%c", info[(i+3)].toLatin1(), info[(i+4)].toLatin1());
 	    i+=2;
 
 	    int asciilen;
@@ -427,11 +427,11 @@ QList<IOInfo*> IOInfoText::getSingles()
 	  }
 	}
 	else
-	  cnext = IOInfoASCII::escapeToChar(info[(i+2)].latin1());
+	  cnext = IOInfoASCII::escapeToChar(info[(i+2)].toLatin1());
       }
       else
       {
-	nextisescape=FALSE;
+	nextisescape=false;
       }
 
       if (previsdigit)
@@ -446,7 +446,7 @@ QList<IOInfo*> IOInfoText::getSingles()
 	{
 	  cprev='0';
 	  cnext='9';
-	  includefirst=TRUE;
+	  includefirst=true;
 	}
       }
 
@@ -457,7 +457,7 @@ QList<IOInfo*> IOInfoText::getSingles()
 	cnext=cprev;
 	cprev=chartmp;
 	if (firstadded)
-	  includefirst=TRUE;
+	  includefirst=true;
       }
       if (!firstadded || includefirst)
 	cprev--;
@@ -466,7 +466,7 @@ QList<IOInfo*> IOInfoText::getSingles()
 	list.append(new IOInfoText(type, r));
 
       }
-      firstadded=TRUE;
+      firstadded=true;
 
       i++;
       if (nextisescape)
@@ -477,10 +477,10 @@ QList<IOInfo*> IOInfoText::getSingles()
       list.append(new IOInfoText(type, ctmp));
 
       if (ctmp>='0' && ctmp<='9')
-	previsdigit=TRUE;
+	previsdigit=true;
       else if (ctmp!='\\')
-	previsdigit=FALSE;
-      firstadded=TRUE;
+	previsdigit=false;
+      firstadded=true;
     }
 
     i++;
@@ -555,7 +555,7 @@ IOInfo* IOInfoText::getPlus1()
   if (!isSingle())
     return NULL;
 
-  if (!convertToASCII(&c, 1, len, TRUE))
+  if (!convertToASCII(&c, 1, len, true))
     return NULL;
 
   if (c=='\255')
@@ -580,7 +580,7 @@ IOInfo* IOInfoText::getMinus1()
   if (!isSingle())
     return NULL;
 
-  if (!convertToASCII(&c, 1, len, TRUE))
+  if (!convertToASCII(&c, 1, len, true))
     return NULL;
 
   if (c==0)

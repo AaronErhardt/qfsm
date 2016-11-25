@@ -29,7 +29,7 @@ removed setAutoDelete calls from constructor
 #include <qxml.h>
 #include <qmap.h>
 //Added by qt3to4:
-#include <Q3ValueList>
+//#include <Q3ValueList>
 
 #include "GState.h"
 #include "GTransition.h"
@@ -49,7 +49,7 @@ class XMLHandler : public QObject, public QXmlDefaultHandler
 {
   Q_OBJECT
   public:
-    XMLHandler(Project* newProject, Selection* sel=NULL,bool keepquiet=TRUE, bool createnewmachine=TRUE);
+    XMLHandler(Project* newProject, Selection* sel=NULL,bool keepquiet=true, bool createnewmachine=true);
     bool startDocument();
     bool startElement ( const QString & namespaceURI, const QString & localName, const
 	QString & qName, const QXmlAttributes & atts );
@@ -67,9 +67,9 @@ class XMLHandler : public QObject, public QXmlDefaultHandler
     Project* project;
     /// Pointer to the machine
     Machine* machine;
-    /// If TRUE, no error messages are print (or dialog boxes opened) during parsing 
+    /// If true, no error messages are print (or dialog boxes opened) during parsing 
     bool quiet;
-    /// If TRUE a new machine is created, otherwise an existing one is used
+    /// If true a new machine is created, otherwise an existing one is used
     bool create_new_machine;
     /// Pointer to the selection object
     Selection* selection;
@@ -100,7 +100,7 @@ class XMLHandler : public QObject, public QXmlDefaultHandler
     bool monamescont;
     /// deprecated
     bool snamecont;
-    /// TRUE is the current state has a code 
+    /// true is the current state has a code 
     bool hascode;
     /// Transition tyoe
     int ttype;
@@ -122,21 +122,21 @@ class XMLHandler : public QObject, public QXmlDefaultHandler
     bool tincont;
     /// deprecated
     bool toutcont;
-    /// TRUE if the transition has a starting state
+    /// true if the transition has a starting state
     bool hasfrom;
-    /// TRUE if the transition has an end state
+    /// true if the transition has an end state
     bool hasto;
     /// Starting state
     QString from;
     /// End state
     QString to;
     /// List of removed states
-    Q3ValueList<int> rstatelist;
+    QList<int> rstatelist;
     /// Mapping of old state codes to new state codes
     QMap<int, int> codemap;
-    /// If TRUE the current state will be added to the machine
+    /// If true the current state will be added to the machine
     bool addstate;
-    /// TRUE if there is ann initial state
+    /// true if there is ann initial state
     bool hasinitialstate;
     /// List of added states (used for undo)
     QList<GState*> undostatelist;

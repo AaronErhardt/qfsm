@@ -63,7 +63,7 @@ void ExportVerilog::writeModule()
   QString mname = machine->getName();
   mname.replace(QRegExp("\\s"), "_");
 
-  *out << "module " << mname.latin1() << " (clock, reset, in, ";
+  *out << "module " << mname.toLatin1().toStdString() << " (clock, reset, in, ";
   if (machine->getNumOutputs()>0)
     *out << "out, ";
   *out << "state";
@@ -90,7 +90,7 @@ void ExportVerilog::writeModule()
   QList<GState*> slist = machine->getSList();
   QString stmp;
   QMutableListIterator<GState*> it(slist);
-  bool first=TRUE;
+  bool first=true;
   for(; it.hasNext();)
   {
     GState* st = it.next();
@@ -100,9 +100,9 @@ void ExportVerilog::writeModule()
       stmp += ", ";
     stmp += Utils::noWS(st->getStateName());
     stmp += " = " + QString::number(machine->getNumEncodingBits()) + "\'b" + Convert::intToBinStr(st->getEncoding(), machine->getNumEncodingBits());
-    first=FALSE;
+    first=false;
   }
-  *out << stmp.latin1() << ";" << endl << endl;
+  *out << stmp.toLatin1().toStdString() << ";" << endl << endl;
 
   writeClockProcess();
   writeStateProcess();
@@ -134,7 +134,7 @@ void ExportVerilog::writeClockProcess()
 
   *out << "    if (reset)" << endl;
   *out << "      begin" << endl;
-  *out << "        state <= " << Utils::noWS(stmp->getStateName()).latin1() << ";" << endl;
+  *out << "        state <= " << Utils::noWS(stmp->getStateName()).toLatin1().toStdString() << ";" << endl;
   if (machine->getNumMooreOutputs()>0)
   {
     mout = stmp->getMooreOutputs();
@@ -143,7 +143,7 @@ void ExportVerilog::writeClockProcess()
     if (!smout.isEmpty())
     {
       *out << "        moore <= " << machine->getNumMooreOutputs() <<  "\'b";
-      *out << smout.latin1() << ";" << endl;
+      *out << smout.toLatin1().toStdString() << ";" << endl;
     }
   }
   *out << "      end;" << endl;
@@ -168,7 +168,7 @@ void ExportVerilog::writeClockProcess()
       sn.replace(QRegExp(" "), "_");
       //if (s->countTransitions()>0)
       {
-	*out << "          " << Utils::noWS(s->getStateName()).latin1() << ":" << endl;
+	*out << "          " << Utils::noWS(s->getStateName()).toLatin1().toStdString() << ":" << endl;
       }
       //*out << "          begin" << endl;
       if (machine->getNumMooreOutputs()>0)
@@ -179,7 +179,7 @@ void ExportVerilog::writeClockProcess()
 	if (!smout.isEmpty())
 	{
 	  *out << "            moore <= " << machine->getNumMooreOutputs() << "\'b";
-	  *out << smout.latin1() << ";" << endl;
+	  *out << smout.toLatin1().toStdString() << ";" << endl;
 	}
       }
 
@@ -221,7 +221,7 @@ void ExportVerilog::writeStateProcess()
     *out << "  always @ (reset or in or state) begin" << endl;
     *out << "    if (reset)" << endl;
     *out << "      nextstate = " <<
-      Utils::noWS(sinit->getStateName()).latin1() << ";" << endl;
+      Utils::noWS(sinit->getStateName()).toLatin1().toStdString() << ";" << endl;
     *out << "    else begin" << endl;
   }
   else
@@ -250,7 +250,7 @@ void ExportVerilog::writeStateProcess()
     sn.replace(QRegExp(" "), "_");
     //if (s->countTransitions()>0)
     {
-      *out << "        " << Utils::noWS(s->getStateName()).latin1() << ":" << endl;
+      *out << "        " << Utils::noWS(s->getStateName()).toLatin1().toStdString() << ":" << endl;
     }
     *out << "        begin" << endl;
     /*
@@ -268,7 +268,7 @@ void ExportVerilog::writeStateProcess()
 
     QMutableListIterator<GTransition*> it(s->tlist);
 
-    first_trans=TRUE;
+    first_trans=true;
 
     for(; it.hasNext();)
     {
@@ -279,8 +279,8 @@ void ExportVerilog::writeStateProcess()
       if (!t->isDeleted() && t->getEnd())
       {
 	IOInfoList iolist;
-	tioinfo->convertToBinList(iolist, FALSE);
-//	iolist.setAutoDelete(TRUE);
+	tioinfo->convertToBinList(iolist, false);
+//	iolist.setAutoDelete(true);
 	
 	QMutableListIterator<IOInfo*> ioit(iolist);
 
@@ -293,9 +293,9 @@ void ExportVerilog::writeStateProcess()
 	else
 	  *out << "==";
 	*out << machine->getNumInputs() << "\'b";
-	first_trans=FALSE;
+	first_trans=false;
 
-	first = TRUE;
+	first = true;
 	for(; ioit.hasNext();)
 	{
 
@@ -323,8 +323,8 @@ void ExportVerilog::writeStateProcess()
 	    for(int k=slen; k<numin; k++)
 	      *out << "0";
 
-	    *out << tinfoi.latin1();
-	    first=FALSE;
+	    *out << tinfoi.toLatin1();
+	    first=false;
 	  }
 	}
 	*out << ")" << endl;
@@ -340,7 +340,7 @@ void ExportVerilog::writeStateProcess()
 	  for(int l=slen; l<numout; l++)
 	    *out << "0";
 
-	  *out << tinfoo.latin1() << ";" << endl;
+	  *out << tinfoo.toLatin1().toStdString() << ";" << endl;
 	}
 	stmp = t->getEnd();
 	if (stmp)
@@ -351,7 +351,7 @@ void ExportVerilog::writeStateProcess()
 	if (stmp!=s)
 	{
 	  *out << "            nextstate = " <<
-	    Utils::noWS(stmp->getStateName()).latin1() << ";" << endl;
+	    Utils::noWS(stmp->getStateName()).toLatin1().toStdString() << ";" << endl;
 	}
 	*out << "          end" << endl;
       }

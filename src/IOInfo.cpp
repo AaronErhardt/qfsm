@@ -29,14 +29,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 /// Constructor
-IOInfo::IOInfo(IOType t, bool inv/*=FALSE*/)
+IOInfo::IOInfo(IOType t, bool inv/*=false*/)
 {
   type = t;
-  role = FALSE;
+  role = false;
   invert = inv;
-  range = FALSE;
-  any = FALSE;
-  def = FALSE;
+  range = false;
+  any = false;
+  def = false;
   range_start = 0;
   range_end = 0;
 }
@@ -47,17 +47,17 @@ IOInfo::~IOInfo()
 }
 
 
-/// Returns TRUE if @a io equals this object
+/// Returns true if @a io equals this object
 bool IOInfo::equals(IOInfo* io)
 {
   if(io==NULL)
-    return FALSE;
+    return false;
   if (io->type!=type)
-    return FALSE;
+    return false;
   if (io->isInverted()!=invert)
-    return FALSE;
-  if ((io->any && any)==TRUE)
-    return TRUE;
+    return false;
+  if ((io->any && any)==true)
+    return true;
 
   IOInfoBin b1(type), b2(type);
   int len1, len2, maxlen;
@@ -78,15 +78,15 @@ bool IOInfo::equals(IOInfo* io)
     for(i2=l2.constBegin(); i2!=l2.constEnd(); ++i2)
     {
       if(((IOInfoBin*)(*i1))->getInfo() != ((IOInfoBin*)(*i2))->getInfo())
-        return FALSE;
+        return false;
     }
   }
-  return TRUE;
+  return true;
 
 }
 
 
-/// Returns TRUE if @a io matches this object (i.e. this I/O info contains @a io)
+/// Returns true if @a io matches this object (i.e. this I/O info contains @a io)
 bool IOInfo::matches(IOInfo* io)
 {
   bool io_matches;
@@ -103,13 +103,13 @@ bool IOInfo::matches(IOInfo* io)
 
   //if ((any && io->getAnyInput()))
   if (any) // any input is accepted
-    return TRUE;
+    return true;
 
   if(def && io->isDefault())   // can this case occur? 
-    return FALSE;
+    return false;
 
-  //qDebug("b1: %s", b1.convertToString().latin1());
-  //qDebug("b2: %s", b2.convertToString().latin1());
+  //qDebug("b1: %s", b1.convertToString().toLatin1());
+  //qDebug("b2: %s", b2.convertToString().toLatin1());
 
   b1.split(l1,true);
   b2.split(l2,true);
@@ -125,7 +125,7 @@ bool IOInfo::matches(IOInfo* io)
     {
       if(((IOInfoBin*)(*i1))->getInfo() == ((IOInfoBin*)(*i2))->getInfo())
       {
-        //qDebug("match: %s (in %s) matches %s", (*i1)->convertToString().latin1(), convertToString().latin1(), (*i2)->convertToString().latin1());
+        //qDebug("match: %s (in %s) matches %s", (*i1)->convertToString().toLatin1(), convertToString().toLatin1(), (*i2)->convertToString().toLatin1());
         io_matches=true;
 	break;
       }
@@ -147,7 +147,7 @@ void IOInfo::expandList(IOInfoList& input, IOInfoList& list, bool resolve_invert
 {
   // creating eventlist (with events that could change a state) using all input conditions
   IOInfoList eventlist;
-//  eventlist.setAutoDelete(TRUE);
+//  eventlist.setAutoDelete(true);
   IOInfo *io;
   IOInfo *start, *end;
   IOInfo *new_start, *new_end;
@@ -155,24 +155,24 @@ void IOInfo::expandList(IOInfoList& input, IOInfoList& list, bool resolve_invert
   for(; inputit.hasNext();)
   {
     IOInfoList iolist;
-//    iolist.setAutoDelete(TRUE);
+//    iolist.setAutoDelete(true);
     inputit.next()->split(iolist, resolve_invert);
 
     /*
     if (inputit.current()->isInverted())
-    qDebug("NOT %s\n", inputit.current()->convertToString().latin1());
+    qDebug("NOT %s\n", inputit.current()->convertToString().toLatin1());
     else
-    qDebug("%s\n", inputit.current()->convertToString().latin1());
+    qDebug("%s\n", inputit.current()->convertToString().toLatin1());
     */
 
     QMutableListIterator<IOInfo*> it(iolist);
     for(; it.hasNext();)
     {
       io = it.next();
-      //qDebug("io: %s", io->convertToString().latin1());
+      //qDebug("io: %s", io->convertToString().toLatin1());
 
       QList<IOInfo*> list;
- //     list.setAutoDelete(TRUE);
+ //     list.setAutoDelete(true);
       if (resolve_invert || !io->isInverted())
       {
         list = io->getSinglesInversion();
@@ -184,8 +184,8 @@ void IOInfo::expandList(IOInfoList& input, IOInfoList& list, bool resolve_invert
 
           new_start = start->clone();
           new_end = end->clone();
-          new_start->setRole(TRUE);
-          new_end->setRole(FALSE);
+          new_start->setRole(true);
+          new_end->setRole(false);
 
           eventlist.append(new_start);
           eventlist.append(new_end);
@@ -233,7 +233,7 @@ void IOInfo::expandList(IOInfoList& input, IOInfoList& list, bool resolve_invert
     }
     else // not inverted
     {
-      if (io->getRole()==TRUE)	// start event
+      if (io->getRole()==true)	// start event
       {
         if (open_counter==0)
           start = io;

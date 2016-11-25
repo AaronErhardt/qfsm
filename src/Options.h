@@ -35,31 +35,31 @@ class Options : public QObject
   public:
     Options(QObject* parent=NULL, const char* name=0);
     
-    /// Returns TRUE if states encoding should be displayed otherwise FALSE
+    /// Returns true if states encoding should be displayed otherwise false
     bool getViewStateEncoding() { return viewStateEncoding; }
-    /// If @a v is TRUE moore outputs will be displayed otherwise not
+    /// If @a v is true moore outputs will be displayed otherwise not
     void setViewStateEncoding(bool s) { viewStateEncoding = s; }
-    /// Returns TRUE if moore outputs should be displayed otherwise FALSE
+    /// Returns true if moore outputs should be displayed otherwise false
     bool getViewMoore() { return viewMoore; }
-    /// If @a v is TRUE moore outputs will be displayed otherwise not
+    /// If @a v is true moore outputs will be displayed otherwise not
     void setViewMoore(bool v) { viewMoore = v; }
-    /// Returns TRUE if mealy inputs should be displayed otherwise FALSE
+    /// Returns true if mealy inputs should be displayed otherwise false
     bool getViewMealyIn() { return viewMealyIn; }
-    /// If @a v is TRUE mealy inputs will be displayed otherwise not
+    /// If @a v is true mealy inputs will be displayed otherwise not
     void setViewMealyIn(bool v) { viewMealyIn = v; }
-    /// Returns TRUE if mealy outputs should be displayed otherwise FALSE
+    /// Returns true if mealy outputs should be displayed otherwise false
     bool getViewMealyOut() { return viewMealyOut; }
-    /// If @a v is TRUE mealy outputs will be displayed otherwise not
+    /// If @a v is true mealy outputs will be displayed otherwise not
     void setViewMealyOut(bool v) { viewMealyOut = v; }
 
-    /// Returns TRUE if the IO view dialog is displayed otherwise FALSE
+    /// Returns true if the IO view dialog is displayed otherwise false
     bool getViewIOView() { return viewIOView; }
-    /// If @a v is TRUE the IO view dialog will be displayed otherwise not
+    /// If @a v is true the IO view dialog will be displayed otherwise not
     void setViewIOView(bool v) { viewIOView = v; }
 
-    /// Returns TRUE if the grid is displayed otherwise FALSE
+    /// Returns true if the grid is displayed otherwise false
     bool getViewGrid() { return viewGrid; }
-    /// If @a v is TRUE the grid will be displayed otherwise not
+    /// If @a v is true the grid will be displayed otherwise not
     void setViewGrid(bool v) { viewGrid = v; }
     /// Gets the color of the grid
     QColor getGridColor() { return gridColor; }
@@ -69,18 +69,18 @@ class Options : public QObject
     int getGridSize() { return gridSize; }
     /// Sets the grid size 
     void setGridSize(int s) { gridSize = s; }
-    /// Returns TRUE if states are locked to the grid
+    /// Returns true if states are locked to the grid
     bool getLockStates() { return lockstates; }
-    /// If @a ls is TRUE states are locked to the grid
+    /// If @a ls is true states are locked to the grid
     void setLockStates(bool ls) { lockstates = ls; }
-    /// Returns TRUE if transitions are locked to the grid
+    /// Returns true if transitions are locked to the grid
     bool getLockTransitions() { return locktransitions; }
-    /// If @a lt is TRUE transitions are locked to the grid
+    /// If @a lt is true transitions are locked to the grid
     void setLockTransitions(bool lt) { locktransitions = lt; }
 
-    /// Returns TRUE if state shadows should be displayed
+    /// Returns true if state shadows should be displayed
     bool getStateShadows() { return stateShadows; }
-    /// If @a sh is TRUE states are displayed with shadows
+    /// If @a sh is true states are displayed with shadows
     void setStateShadows(bool sh) { stateShadows = sh; }
     /// Returns the color of the state shadows
     QColor getStateShadowColor() { return stateShadowColor; }
@@ -91,15 +91,15 @@ class Options : public QObject
     bool getToolTips() { return tooltips; }
     /// Sets the 'show tooltips' flag
     void setToolTips(bool t) { tooltips = t; }
-    /// Returns TRUE if ?/! shall be shown, otherwise FALSE
+    /// Returns true if ?/! shall be shown, otherwise false
     bool getIOMark() { return iomark; }
     /// Sets/clears the 'show ?/!' flag
     void setIOMark(bool m) { iomark = m; }
-    /// Returns TRUE if I/O names (e.g. in1=...) shall be shown over the transitions
+    /// Returns true if I/O names (e.g. in1=...) shall be shown over the transitions
     bool getDisplayIONames() { return ionames; }
     /// Sets/clears the 'Display I/O names' flag
     void setDisplayIONames(bool dio) { ionames = dio; }
-    /// Returns TRUE if a box shall be drawn around the I/O over transitions
+    /// Returns true if a box shall be drawn around the I/O over transitions
     bool getDrawBox() { return bdrawbox; }
     /// Sets/clears the 'Draw Box' flag
     void setDrawBox(bool db) { bdrawbox = db; }
@@ -303,38 +303,38 @@ class Options : public QObject
 
     void applyOptions(MainWindow* ); 
   private:
-    /// If TRUE, state encodings are shown
+    /// If true, state encodings are shown
     bool viewStateEncoding;
-    /// If TRUE, moore outputs are shown
+    /// If true, moore outputs are shown
     bool viewMoore;
-    /// If TRUE, mealy inputs are shown
+    /// If true, mealy inputs are shown
     bool viewMealyIn;
-    /// If TRUE, mealy outputs are shown
+    /// If true, mealy outputs are shown
     bool viewMealyOut;
-    /// If TRUE, the grid is shown
+    /// If true, the grid is shown
     bool viewGrid;
-    /// If TRUE; the IO view dialog is shown
+    /// If true; the IO view dialog is shown
     bool viewIOView;
     /// Grid color
     QColor gridColor;
     /// Grid size
     int gridSize;
-    /// If TRUE, states are locked to the grid
+    /// If true, states are locked to the grid
     bool lockstates;
-    /// If TRUE, transitions are locked to the grid
+    /// If true, transitions are locked to the grid
     bool locktransitions;
-    /// If TRUE, state are displayed with shadows
+    /// If true, state are displayed with shadows
     bool stateShadows;
     /// State shadow color
     QColor stateShadowColor;
 
-    /// If TRUE tooltips are shown
+    /// If true tooltips are shown
     bool tooltips;
-    /// If TRUE ?/! are shown
+    /// If true ?/! are shown
     bool iomark;
-    /// If TRUE I/O names are displayed over the transitions
+    /// If true I/O names are displayed over the transitions
     bool ionames;
-    /// If TRUE a box is drawn around the I/O over transitions
+    /// If true a box is drawn around the I/O over transitions
     bool bdrawbox;
     /// Initial transition descriptor 
     QString initial_descriptor;
@@ -345,26 +345,26 @@ class Options : public QObject
     /// Default transition descriptor
     QString default_descriptor;
 
-    /// ExportAHDL: If TRUE use synchronous reset, otherwise asynchronous reset
+    /// ExportAHDL: If true use synchronous reset, otherwise asynchronous reset
     bool ahdl_sync_reset;
-    /// ExportAHDL: If TRUE use moore outputs, otherwise use state codes
+    /// ExportAHDL: If true use moore outputs, otherwise use state codes
     bool ahdl_use_moore;
 
-    /// ExportVHDL: If TRUE use symbolic names for states
+    /// ExportVHDL: If true use symbolic names for states
     bool vhdl_symbolic_states;
-    /// ExportVHDL: If TRUE use synchronous reset, otherwise asynchronous reset
+    /// ExportVHDL: If true use synchronous reset, otherwise asynchronous reset
     bool vhdl_sync_reset;
-    /// ExportVHDL: If TRUE add synchronous enable port
+    /// ExportVHDL: If true add synchronous enable port
     bool vhdl_sync_enable;
-    /// ExportVHDL: If TRUE use negated reset
+    /// ExportVHDL: If true use negated reset
     bool vhdl_neg_reset;
-    /// ExportVHDL: if TRUE use std_logic_1164 package
+    /// ExportVHDL: if true use std_logic_1164 package
     bool vhdl_stdlogic;
-    /// ExportVHDL: if TRUE use I/O names instead of vectors a,o,q
+    /// ExportVHDL: if true use I/O names instead of vectors a,o,q
     bool vhdl_inout_names;
-    /// ExportVHDL: if TRUE write I/O description into header
+    /// ExportVHDL: if true write I/O description into header
     bool vhdl_io_header;
-    /// ExportVHDL: if TRUE write Alliance compliant code
+    /// ExportVHDL: if true write Alliance compliant code
     bool vhdl_alliance;
     /// ExportVHDL: 0: IF-THEN condition notation  1: CASE-WHEN notation
     int vhdl_cond_notation;
@@ -372,7 +372,7 @@ class Options : public QObject
     bool vhdl_state_code;
     /// ExportVHDL: architecture name
     QString vhdl_architecture_name;
-    /// ExportVHDL: if TRUE, export architecture and entity in separate files
+    /// ExportVHDL: if true, export architecture and entity in separate files
     bool vhdl_sep_files;
     /// ExportVHDL: export state machine with synchronous look-ahead-buffer
     bool vhdl_sync_look_ahead;
@@ -383,22 +383,22 @@ class Options : public QObject
     /// EXPORTVHDL: if this is true, the state will be exported for debugging the state. 
     bool vhdl_state_debug;
 
-    /// ExportVerilog: If TRUE use synchronous reset, otherwise asynchronous reset
+    /// ExportVerilog: If true use synchronous reset, otherwise asynchronous reset
     bool ver_sync_reset;
 
-    /// ExportTestbench: If TRUE use std_logic_1164 package
+    /// ExportTestbench: If true use std_logic_1164 package
     bool testbench_stdlogic;
-    /// ExportTestbench: if TRUE use synchronous reset
+    /// ExportTestbench: if true use synchronous reset
     bool testbench_synchronousreset;
-    /// ExportTestbench: if TRUE write I/O description into header
+    /// ExportTestbench: if true write I/O description into header
     bool testbench_io_header;
     /// ExportTestbench: 0: Use algorithm 0 1: Use algorithm 1
     int testbench_algorithm;
-    /// ExportTestbench: if TRUE write testbench with input and output names
+    /// ExportTestbench: if true write testbench with input and output names
     bool testbench_ionames;
-    /// ExportTestbench: if TRUE export testbench with synchronous enable
+    /// ExportTestbench: if true export testbench with synchronous enable
     bool testbench_synchronousenable;
-    /// ExportTestbench: if TRUE export testbench with negated reset
+    /// ExportTestbench: if true export testbench with negated reset
     bool testbench_negatedreset;
     /// ExportTestbench: Testbench export file path
     QString testbench_vhdl_path;
@@ -411,21 +411,21 @@ class Options : public QObject
     /// ExportTestbench: VHDL testbench base directory
     QString testbench_base_directory;
 
-    /// Export State table: If TRUE include asynchronous outputs
+    /// Export State table: If true include asynchronous outputs
     bool statetable_includeout;
-    /// Export State table: If TRUE resolve inverted conditions
+    /// Export State table: If true resolve inverted conditions
     bool statetable_resolve_inverted;
     /// Export State table: If 0 events are columns and states are rows, otherwise the inverse
     int statetable_orientation;
 
-    /// Export Ragel: If TRUE create action file
+    /// Export Ragel: If true create action file
     bool ragel_create_action;
     /// Export Ragel: Language of action file:  0: C/C++   1: Java  2: Ruby 
     int ragel_lang_action;
-    /// Export Ragel: If TRUE adds a default transition to every state for exporting 
+    /// Export Ragel: If true adds a default transition to every state for exporting 
     bool ragel_default_transitions;
 
-    //// Export VVVV: If TRUE outputs an reset transition for each state
+    //// Export VVVV: If true outputs an reset transition for each state
     bool vvvv_reset;
     /// Export VVVV: reset event name
     QString vvvv_reset_event;;
@@ -433,7 +433,7 @@ class Options : public QObject
     QString vvvv_reset_action;;
 
 
-    /// If TRUE a header is printed at the top of the page when printing a diagram
+    /// If true a header is printed at the top of the page when printing a diagram
     bool print_header;
 };
 

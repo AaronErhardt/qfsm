@@ -38,7 +38,7 @@ TransitionManager::TransitionManager(MainWindow* m)
 {
   main = m;
 //  trans_props = new DTransitionProperties;
-  trans_props = new TransitionPropertiesDlgImpl((QWidget*)m, 0, TRUE);
+  trans_props = new TransitionPropertiesDlgImpl((QWidget*)m, 0, true);
 }
 
 /// Destructor
@@ -95,9 +95,9 @@ bool TransitionManager::addTransition(GState* from, GState* to, int numin,
   trans_props->setBinMaxLength(MAX_BIN_INPUTLENGTH, numout);
   trans_props->selectFirst();  
   trans_props->setDescription(""); //"Enter your description here...");
-  trans_props->setInvert(FALSE);
-  trans_props->setDefaultTransition(FALSE);
-  trans_props->setAnyInput(FALSE);
+  trans_props->setInvert(false);
+  trans_props->setDefaultTransition(false);
+  trans_props->setAnyInput(false);
   trans_props->setType(mtype); // once more to properly enable/disable fields
 
   if (trans_props->exec())
@@ -154,9 +154,9 @@ bool TransitionManager::addTransition(GState* from, GState* to, int numin,
     from->addTransition(main->project, to, info, sx, sy, ex, ey, 
       c1x, c1y, c2x, c2y, description);
 
-    return TRUE;
+    return true;
   }
-  return FALSE;
+  return false;
 }
 
 

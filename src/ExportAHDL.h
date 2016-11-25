@@ -25,8 +25,8 @@ replaced Qt 3 interator through Qt 4 iterators
 #define EXPORTAHDL_H
 
 #include "Export.h"
-#include <Q3PtrList>
-#include <Q3PtrListIterator>
+//#include <Q3PtrList>
+//#include <Q3PtrListIterator>
 
 /**
  * @class ExportAHDL

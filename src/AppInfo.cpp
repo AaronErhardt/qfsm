@@ -70,7 +70,7 @@ void AppInfo::about()
   QMessageBox mbox(parent_widget);
 
   mbox.setIconPixmap(parent_widget->windowIcon().pixmap(64.64));
-  mbox.setCaption(tr("About Qfsm"));
+//  mbox.setCaption(tr("About Qfsm"));
   mbox.setText(text);
   mbox.exec();
 }

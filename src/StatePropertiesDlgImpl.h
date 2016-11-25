@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <qvalidator.h>
 #include <qlineedit.h>
-#include <q3textedit.h>
+//#include <q3textedit.h>
 #include <qlabel.h>
 #include <qcolor.h>
 
@@ -42,7 +42,7 @@ class StatePropertiesDlgImpl : public QDialog
         Ui::StatePropertiesDlg statePropertiesDlg;
 
 public:
-    StatePropertiesDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    StatePropertiesDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~StatePropertiesDlgImpl();
 
     /// Dialog mode

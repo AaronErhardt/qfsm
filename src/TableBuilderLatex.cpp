@@ -53,7 +53,7 @@ QString TableBuilderLatex::getHead()
   IOInfo* info;
   GState* s;
   QString sheadhead, shead;
-  bool first=FALSE;
+  bool first=false;
   QString col_label=tr("Events");
   QString row_label=tr("States");
   int rowcount = eventlist.count();
@@ -89,7 +89,7 @@ QString TableBuilderLatex::getHead()
       else
 	nottmp="";
       shead += nottmp + " " + info->convertToString(machine, options);
-      first=FALSE;
+      first=false;
     }
   }
   else
@@ -102,7 +102,7 @@ QString TableBuilderLatex::getHead()
 	if (!first)
 	  shead+=" & ";
 	shead += s->getStateName();
-	first=FALSE;
+	first=false;
       }
     }
   }
@@ -139,7 +139,7 @@ QString TableBuilderLatex::getRow(GState* s)
   IOInfo* io;
   IOInfo* io_out;
   GState* next;
-  bool first=FALSE;
+  bool first=false;
   QString srow, srow_out;
 
   srow = s->getStateName(); // + " & ";
@@ -154,7 +154,7 @@ QString TableBuilderLatex::getRow(GState* s)
     }
     else
       srow += "-";
-    first=FALSE;
+    first=false;
   }
 
 
@@ -194,7 +194,7 @@ QString TableBuilderLatex::getRow(IOInfo* io)
   //IOInfo* io;
   IOInfo* io_out;
   GState *s, *next;
-  bool first=FALSE;
+  bool first=false;
   QString srow, srow_out;
   QString notstr = options->getInversionDescriptor();
   QString nottmp;
@@ -220,7 +220,7 @@ QString TableBuilderLatex::getRow(IOInfo* io)
       }
       else
 	srow += "-";
-      first=FALSE;
+      first=false;
     }
   }
   srow.replace(QRegExp("\\\\"), "$\\backslash$");

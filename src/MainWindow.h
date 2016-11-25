@@ -56,7 +56,6 @@ All buttons must be added to the toolbar by calling addWidget.
 #include <QMainWindow>
 #include <qmenubar.h>
 #include <qmessagebox.h>
-#include <q3tabdialog.h>
 #include <qtoolbutton.h>
 #include <qcursor.h>
 #include <QKeyEvent>
@@ -86,6 +85,7 @@ All buttons must be added to the toolbar by calling addWidget.
 #include "ExportTestbenchVHDL.h"
 #include "ExportTestvectorASCII.h"
 #include "ExportVVVVDlgImpl.h"
+#include "TabDialog.h"
 
 
 //class QTranslator;
@@ -147,9 +147,9 @@ class MainWindow : public QMainWindow
     bool runDragOperation(bool force_copy);
  
 //    void repaintView() { wscroll->viewport()->repaint(); };
-    /// Returns TRUE if the shift key is pressed otherwise FALSE
+    /// Returns true if the shift key is pressed otherwise false
     bool shiftPressed() { return shift_pressed; }
-    /// Returns TRUE if the control key is pressed otherwise FALSE
+    /// Returns true if the control key is pressed otherwise false
     bool controlPressed() { return control_pressed; }
 
     /// The project this window contains
@@ -168,7 +168,7 @@ class MainWindow : public QMainWindow
     /// Returns the current mode.
     int getMode() { return doc_status.getMode(); }
 
-    /// TRUE if this window is about to close
+    /// true if this window is about to close
     bool aboutToClose;
 
   protected:
@@ -390,7 +390,7 @@ private:
     Edit* edit;
     
     /// Tabdialog (options)
-    Q3TabDialog* tabdialog;
+    TabDialog* tabdialog;
     /// General options dialog
     OptGeneralDlgImpl* opt_general;
     /// Display options dialog
@@ -420,12 +420,12 @@ private:
     /// Integrity checker
     ICheck* ichecker;
 
-    /// If TRUE the shift key was pressed
+    /// If true the shift key was pressed
     bool shift_pressed;
-    /// If TRUE the control key was pressed
+    /// If true the control key was pressed
     bool control_pressed;
 
-    /// TRUE if a cut operation, FALSE if a copy operation is performed (used in paste)
+    /// true if a cut operation, false if a copy operation is performed (used in paste)
     bool bcut;
     /// Language
     QString language;

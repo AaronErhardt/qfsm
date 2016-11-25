@@ -16,7 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include <q3scrollview.h>
+//#include <q3scrollview.h>
 #include <qrect.h>
 //Added by qt3to4:
 #include <QMouseEvent>
@@ -49,7 +49,7 @@ DrawArea::DrawArea(QWidget*parent,MainWindow*m,const char*name) :QWidget(parent)
   setBackgroundColor(m->palette().window().color());
   oldCursor = QCursor(Qt::ArrowCursor);
 
-  setMouseTracking(TRUE);
+  setMouseTracking(true);
 
   resetState();
 
@@ -69,10 +69,10 @@ DrawArea::DrawArea(QWidget*parent,MainWindow*m,const char*name) :QWidget(parent)
 /// Resets all variables storing the state of the view
 void DrawArea::resetState()
 {
-  left_down = FALSE;
-  middle_down = FALSE;
-  drag = FALSE;
-  drag_middle = FALSE;
+  left_down = false;
+  middle_down = false;
+  drag = false;
+  drag_middle = false;
   lastStateClicked=NULL;
   lastTransitionClicked=NULL;
   lastTransitionDragged=NULL;
@@ -80,11 +80,11 @@ void DrawArea::resetState()
   lastObjectRClicked=NULL;
   dragTransition=NULL;
   dragITransition=NULL;
-  dragRect=FALSE;
-  onSelection=FALSE;
-  dragMultiple=FALSE;
+  dragRect=false;
+  onSelection=false;
+  dragMultiple=false;
   savedState.tlist.clear();
-  //  savedState.tlist.setAutoDelete(FALSE);
+  //  savedState.tlist.setAutoDelete(false);
 }
 
 /// Resets the scrollview (by reseting the state and deselecting all objects)
@@ -224,8 +224,8 @@ void DrawArea::mousePressEvent(QMouseEvent* e)
     case DocStatus::Select:
       if (!drag_middle)
       {
-        left_down=TRUE;
-        firstTransitionDraw=TRUE;
+        left_down=true;
+        firstTransitionDraw=true;
 
         onSelection=selection->onSelection(m, p, scale);
 
@@ -242,20 +242,20 @@ void DrawArea::mousePressEvent(QMouseEvent* e)
           {
             selection->updateBoundingRect(selectionRect,
                                           m->getPhantomState());
-            //	      onSelection=TRUE;
+            //	      onSelection=true;
           }
           else if (lastTransitionControl==0)
           {
             if (!main->shiftPressed())
-              dragMultiple=FALSE;
-            //	      onSelection=FALSE;
+              dragMultiple=false;
+            //	      onSelection=false;
           }
-          drawControlLines=FALSE;
+          drawControlLines=false;
         }
         else if (main->shiftPressed())	// adding selection if
         {					// zero or one object is selected
-          dragMultiple=TRUE;
-          onSelection=FALSE;
+          dragMultiple=true;
+          onSelection=false;
         }
         if (!dragMultiple && !main->shiftPressed())	// select single
         {						// state or transition
@@ -281,7 +281,7 @@ void DrawArea::mousePressEvent(QMouseEvent* e)
           else
             lastStateClicked = NULL;
 
-          drawControlLines=TRUE;
+          drawControlLines=true;
         }
         else
           lastStateClicked=NULL;
@@ -311,7 +311,7 @@ void DrawArea::mousePressEvent(QMouseEvent* e)
       }
       break;
     case DocStatus::Pan:
-      left_down=TRUE;
+      left_down=true;
       break;
     case DocStatus::NewState:
       if (!drag_middle)
@@ -333,11 +333,11 @@ void DrawArea::mousePressEvent(QMouseEvent* e)
 
           lastTransitionDragged = new GTransition(lastStateClicked, NULL,
                                                   NULL, destx, desty, destx, desty, "");
-          firstTransitionDraw=TRUE;
+          firstTransitionDraw=true;
         }
 
         if (lastStateClicked)
-          left_down=TRUE;
+          left_down=true;
       }
       break;
     case DocStatus::Zooming:
@@ -345,21 +345,21 @@ void DrawArea::mousePressEvent(QMouseEvent* e)
       QPoint sp;
       if (main->controlPressed())
       {
-        zoom->zoom(this, p, FALSE);
+        zoom->zoom(this, p, false);
         //emit scrollWidget(int(p.x()*zoom->getScale()-width()/2), int(p.y()*zoom->getScale()-height()/2));
         spx = int((p.x())/ZOOM_FACTOR);
 	spy = int((p.y())/ZOOM_FACTOR);
       }
       else
       {
-        zoom->zoom(this, p, TRUE);
+        zoom->zoom(this, p, true);
         //emit scrollWidget(int(p.x()*zoom->getScale()-width()/2), int(p.y()*zoom->getScale()-height()/2));
         spx = int((p.x())*ZOOM_FACTOR);
 	spy = int((p.y())*ZOOM_FACTOR);
 	//sp = mapToParent(p);
       }
       emit scrollWidgetTo(spx, spy);
-      setUpdatesEnabled(TRUE);
+      setUpdatesEnabled(true);
       repaint();
       break;
     }
@@ -379,7 +379,7 @@ void DrawArea::mousePressEvent(QMouseEvent* e)
   case Qt::MidButton:
     if (!(left_down || drag))
     {
-      middle_down=TRUE;
+      middle_down=true;
       resetContext();
       oldCursor = cursor();
       setCursor(Qt::SizeAllCursor);
@@ -426,8 +426,8 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
 
     if (left_down)
     {
-      drag=TRUE;
-      left_down=FALSE;
+      drag=true;
+      left_down=false;
       if (lastTransitionControl==11 || lastTransitionControl==14)
       {
         dragITransition = new GITransition(*m->getInitialTransition());
@@ -459,7 +459,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
         }
 
         savedState.copyAttributes(lastStateClicked);
-        savedState.copyTransitions(lastStateClicked, TRUE);
+        savedState.copyTransitions(lastStateClicked, true);
         if (m->getInitialTransition())
           savedITrans = *m->getInitialTransition();
         onSelection=selection->onSelection(m, p, scale);
@@ -490,7 +490,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
         if (!dragITransition)     // draw normal Transition
         {
 
-          lastTransitionClicked->setDragged(TRUE);
+          lastTransitionClicked->setDragged(true);
         }
         else              // draw initial transition
         {
@@ -498,10 +498,10 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
           sover->getPos(sx, sy);
           GState::circleEdge(sx, sy, sover->getRadius(), mousex, mousey,
                              iedgex, iedgey);
-          m->getInitialTransition()->setDragged(TRUE);
+          m->getInitialTransition()->setDragged(true);
         }
 
-        firstTransitionDraw=FALSE;
+        firstTransitionDraw=false;
 
         if (sover)
         {
@@ -546,18 +546,18 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
           if (!sover)             // trans. not on state
           {
             dragTransition->setStartPos(mousex, mousey);
-            drawControlLines=FALSE;
+            drawControlLines=false;
           }
           else if (dragTransition->getEnd()!=sover ||
                    !dragTransition->isStraight())    // trans. on state but no loop
           {
             dragTransition->setStartPos(edgex, edgey);
-            drawControlLines=FALSE;
+            drawControlLines=false;
           }
           else                // loop
           {
             if (dragTransition->getEnd()==sover)
-              drawControlLines=TRUE;
+              drawControlLines=true;
 
             GState::circleEdge(sx, sy, sover->getRadius(),
                                p.x()/scale, p.y()/scale, loopendx, loopendy, 40);
@@ -600,17 +600,17 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
           if (!sover)
           {
             dragTransition->setEndPos(mousex, mousey);
-            drawControlLines=FALSE;
+            drawControlLines=false;
           }
           else if (dragTransition->getStart()!=sover || !dragTransition->isStraight())
           {
             dragTransition->setEndPos(edgex, edgey);
-            drawControlLines=FALSE;
+            drawControlLines=false;
           }
           else
           {
             if (dragTransition->getStart()==sover)
-              drawControlLines=TRUE;
+              drawControlLines=true;
 
             GState::circleEdge(sx, sy, sover->getRadius(),
                                p.x()/scale, p.y()/scale, loopstartx, loopstarty, -40);
@@ -672,13 +672,13 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
         {
           draw->drawTransition(m, dragTransition, &pa, contentsX(),
                                contentsY(), scale,
-                                         TRUE, TRUE, drawControlLines);
+                                         true, true, drawControlLines);
         }
         else              // draw initial transition
         {
           if (m->getDrawITrans())
             draw->drawInitialTransition(m, dragITransition, &pa, contentsX(),
-                                        contentsY(), scale, TRUE, firstTransitionDraw, TRUE);
+                                        contentsY(), scale, true, firstTransitionDraw, true);
         }
 */
 
@@ -692,7 +692,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
 
         if (!onSelection)//if (!dragMultiple)  // draw Rectangle for selection
         {
-          dragRect=TRUE;
+          dragRect=true;
 
           //      QPen pen(QColor(0,0,0), 1);
 
@@ -778,7 +778,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
       lastMovePosY = mousey; //(double)p.y()/scale;
       lastMousePosX = (double)p.x()/scale;
       lastMousePosY = (double)p.y()/scale;
-      firstTransitionDraw=FALSE;
+      firstTransitionDraw=false;
 
       udrect.setRect(int(udrect.x()*scale), int(udrect.y()*scale), int(udrect.width()*scale), int(udrect.height()*scale));
       repaint(udrect, false);
@@ -787,8 +787,8 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
   case DocStatus::Pan:
     if (left_down)
     {
-      drag=TRUE;
-      left_down=FALSE;
+      drag=true;
+      left_down=false;
       //dragStartX = (double)p.x()/scale;
       //dragStartY = (double)p.y()/scale;
     }
@@ -801,8 +801,8 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
   case DocStatus::NewTransition:
     if (left_down)
     {
-      drag=TRUE;
-      left_down=FALSE;
+      drag=true;
+      left_down=false;
     }
     else if (drag)
     {
@@ -856,7 +856,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
                              p.x()/scale, p.y()/scale, destx, desty, 40);
           sover->calcLoop(mx, my, sover->getRadius(), p.x()/scale,
                           p.y()/scale, c1x, c1y, c2x, c2y);
-          lastTransitionDragged->setStraight(FALSE);
+          lastTransitionDragged->setStraight(false);
         }
         else
         {
@@ -875,9 +875,9 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
         {
           draw->drawTransition(m, lastTransitionDragged, &pa, contentsX(),
                                contentsY(), scale, m->getNumInputs(), m->getNumOutputs(),
-                                         TRUE, FALSE);
+                                         true, false);
         }
-*/        firstTransitionDraw=FALSE;
+*/        firstTransitionDraw=false;
 
 
 
@@ -900,7 +900,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
 
           /*        draw->drawTransition(m, lastTransitionDragged, &pa, contentsX(),
                              contentsY(), scale, m->getNumInputs(), m->getNumOutputs(),
-                                       TRUE, FALSE);
+                                       true, false);
 */
         }
     }
@@ -924,8 +924,8 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
     case DocStatus::Select:
       if (left_down)
       {
-  drag=TRUE;
-  left_down=FALSE;
+  drag=true;
+  left_down=false;
   if (lastTransitionControl==11 || lastTransitionControl==14)
   {
     dragITransition = new GITransition(*m->getInitialTransition());
@@ -956,7 +956,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
       }
 
     savedState.copyAttributes(lastStateClicked);
-    savedState.copyTransitions(lastStateClicked, TRUE);
+    savedState.copyTransitions(lastStateClicked, true);
     if (m->getInitialTransition())
       savedITrans = *m->getInitialTransition();
     onSelection=selection->onSelection(m, p, scale);
@@ -990,13 +990,13 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
     {
       draw->drawTransition(m, dragTransition, &pa, contentsX(),
         contentsY(), scale,
-        TRUE, !firstTransitionDraw, drawControlLines, firstTransitionDraw);
+        true, !firstTransitionDraw, drawControlLines, firstTransitionDraw);
     }
     else				// draw initial transition
     {
       if (m->getDrawITrans())
         draw->drawInitialTransition(m, dragITransition, &pa, contentsX(),
-    contentsY(), scale, TRUE, firstTransitionDraw, TRUE);
+    contentsY(), scale, true, firstTransitionDraw, true);
 
       sover = m->getInitialState();
       sover->getPos(sx, sy);
@@ -1004,7 +1004,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
         iedgex, iedgey);
     }
 
-          firstTransitionDraw=FALSE;
+          firstTransitionDraw=false;
 
     if (sover)
     {
@@ -1049,18 +1049,18 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
       if (!sover)				// trans. not on state
       {
         dragTransition->setStartPos(mousex, mousey);
-        drawControlLines=FALSE;
+        drawControlLines=false;
       }
       else if (dragTransition->getEnd()!=sover ||
         !dragTransition->isStraight())	// trans. on state but no loop
       {
         dragTransition->setStartPos(edgex, edgey);
-        drawControlLines=FALSE;
+        drawControlLines=false;
       }
       else				// loop
       {
         if (dragTransition->getEnd()==sover)
-          drawControlLines=TRUE;
+          drawControlLines=true;
 
         GState::circleEdge(sx, sy, sover->getRadius(),
          p.x()/scale, p.y()/scale, loopendx, loopendy, 40);
@@ -1103,17 +1103,17 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
       if (!sover)
       {
         dragTransition->setEndPos(mousex, mousey);
-        drawControlLines=FALSE;
+        drawControlLines=false;
       }
       else if (dragTransition->getStart()!=sover || !dragTransition->isStraight())
       {
         dragTransition->setEndPos(edgex, edgey);
-        drawControlLines=FALSE;
+        drawControlLines=false;
       }
       else
       {
         if (dragTransition->getStart()==sover)
-          drawControlLines=TRUE;
+          drawControlLines=true;
 
         GState::circleEdge(sx, sy, sover->getRadius(),
          p.x()/scale, p.y()/scale, loopstartx, loopstarty, -40);
@@ -1141,13 +1141,13 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
     {
       draw->drawTransition(m, dragTransition, &pa, contentsX(),
         contentsY(), scale,
-        TRUE, TRUE, drawControlLines);
+        true, true, drawControlLines);
           }
     else				// draw initial transition
     {
       if (m->getDrawITrans())
         draw->drawInitialTransition(m, dragITransition, &pa, contentsX(),
-    contentsY(), scale, TRUE, firstTransitionDraw, TRUE);
+    contentsY(), scale, true, firstTransitionDraw, true);
     }
 
 
@@ -1161,7 +1161,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
 
      if (!onSelection)//if (!dragMultiple)	// draw Rectangle for selection
     {
-      dragRect=TRUE;
+      dragRect=true;
 
       QPen pen(QColor(0,0,0), 1);
 
@@ -1210,14 +1210,14 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
   lastMovePosY = mousey; //(double)p.y()/scale;
   lastMousePosX = (double)p.x()/scale;
   lastMousePosY = (double)p.y()/scale;
-  firstTransitionDraw=FALSE;
+  firstTransitionDraw=false;
       }
       break;
     case DocStatus::Pan:
       if (left_down)
       {
-  drag=TRUE;
-  left_down=FALSE;
+  drag=true;
+  left_down=false;
   //dragStartX = (double)p.x()/scale;
   //dragStartY = (double)p.y()/scale;
       }
@@ -1229,8 +1229,8 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
     case DocStatus::NewTransition:
       if (left_down)
       {
-  drag=TRUE;
-  left_down=FALSE;
+  drag=true;
+  left_down=false;
       }
       else if (drag)
       {
@@ -1273,7 +1273,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
        p.x()/scale, p.y()/scale, destx, desty, 40);
       sover->calcLoop(mx, my, sover->getRadius(), p.x()/scale,
       p.y()/scale, c1x, c1y, c2x, c2y);
-      lastTransitionDragged->setStraight(FALSE);
+      lastTransitionDragged->setStraight(false);
     }
           else
     {
@@ -1292,9 +1292,9 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
     {
       draw->drawTransition(m, lastTransitionDragged, &pa, contentsX(),
         contentsY(), scale, m->getNumInputs(), m->getNumOutputs(),
-        TRUE, FALSE);
+        true, false);
           }
-    firstTransitionDraw=FALSE;
+    firstTransitionDraw=false;
 
     lastTransitionDragged->setPos(edgex, edgey);
 
@@ -1305,7 +1305,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
 
     draw->drawTransition(m, lastTransitionDragged, &pa, contentsX(),
       contentsY(), scale, m->getNumInputs(), m->getNumOutputs(),
-      TRUE, FALSE);
+      true, false);
 
         }
       }
@@ -1314,8 +1314,8 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
 
   if (middle_down)
   {
-    middle_down = FALSE;
-    drag_middle = TRUE;
+    middle_down = false;
+    drag_middle = true;
     //dragStartX = (double)p.x()/scale;
     //dragStartY = (double)p.y()/scale;
   }
@@ -1361,14 +1361,14 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* e)
   switch (e->button())
   {
   case Qt::LeftButton:
-    left_down=FALSE;
+    left_down=false;
 
     switch (main->getMode())
     {
         case DocStatus::Select:
       if (drag)
       {
-        drag=FALSE;
+        drag=false;
         GState* sover;
         sover = main->project->machine->getState(p, scale);
 
@@ -1409,7 +1409,7 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* e)
             if (sover)
               sover->reflist.append(lastTransitionClicked);
           }
-          lastTransitionClicked->setDragged(FALSE);
+          lastTransitionClicked->setDragged(false);
 
           main->project->getUndoBuffer()->changeTransition(
               lastTransitionClicked);
@@ -1424,7 +1424,7 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* e)
         }
         else if (dragITransition)		// initial trans. dragged
         {
-          m->getInitialTransition()->setDragged(FALSE);
+          m->getInitialTransition()->setDragged(false);
 
           main->project->getUndoBuffer()->changeInitialTransition(m->getInitialTransition());
 
@@ -1440,7 +1440,7 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* e)
           selectionRect.normalize();
           if (selection->selectRect(main->project->machine, selectionRect,
                                     main->shiftPressed()))
-            dragMultiple=TRUE;
+            dragMultiple=true;
         }
         else if (/*dragMultiple &&*/ onSelection) // move /*multiple*/ selection
         {
@@ -1475,37 +1475,37 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* e)
           }
         */
 
-        dragRect=FALSE;
+        dragRect=false;
         //viewport()->repaint();
-        repaint(false);
+        repaint();
       }
       else if (main->shiftPressed())
       {
         selection->selectAdd(this, main->project->machine, p, scale);
-        dragMultiple=TRUE;
+        dragMultiple=true;
         //	    main->updateAll();
       }
       else
       {
 
-        dragMultiple=FALSE;
+        dragMultiple=false;
         //	    selection->deselectAll(main->project->machine);
         //	    viewport()->repaint();
         //	    if (!onSelection)
         //	      main->updateAll();
       }
 
-      //          left_down=FALSE;
-      //          drag=FALSE;
+      //          left_down=false;
+      //          drag=false;
       break;
         case DocStatus::Pan:
       if (drag)
-        drag=FALSE;
+        drag=false;
       break;
         case DocStatus::NewTransition:
       if (drag)
       {
-        drag=FALSE;
+        drag=false;
         s = main->project->machine->getState(e->pos(), scale);
         if (lastStateClicked && s)
         {
@@ -1535,16 +1535,16 @@ void DrawArea::mouseReleaseEvent(QMouseEvent* e)
         } delete lastTransitionDragged;
         lastTransitionDragged=NULL;
         //viewport()->repaint();
-        repaint(false);
+        repaint();
       }
-      //	  left_down=FALSE;
-      //	  drag=FALSE;
+      //	  left_down=false;
+      //	  drag=false;
       break;
     }
     break;
   case Qt::MidButton:
-    middle_down = FALSE;
-    drag_middle = FALSE;
+    middle_down = false;
+    drag_middle = false;
     setCursor(oldCursor);
     break;
   default:
@@ -1615,18 +1615,18 @@ void DrawArea::escapePressed()
   case DocStatus::Select:
     if (drag)
     {
-      drag=FALSE;
+      drag=false;
 
       if (dragTransition)
       {
-        lastTransitionClicked->setDragged(FALSE);
+        lastTransitionClicked->setDragged(false);
         delete dragTransition;
         dragTransition=NULL;
       }
       else if (dragITransition)		// initial trans. dragged
       {
         if (m)
-          m->getInitialTransition()->setDragged(FALSE);
+          m->getInitialTransition()->setDragged(false);
         delete dragITransition;
         dragITransition=NULL;
       }
@@ -1634,31 +1634,31 @@ void DrawArea::escapePressed()
       {
       }
       else if (/*dragMultiple &&*/ onSelection) // move /*multiple*/ selection
-        dragRect=FALSE;
+        dragRect=false;
       //viewport()->repaint();
-      repaint(false);
+      repaint();
     }
-    dragMultiple=FALSE;
+    dragMultiple=false;
     break;
   case DocStatus::Pan:
     if (drag)
-      drag=FALSE;
+      drag=false;
     break;
   case DocStatus::NewTransition:
     if (drag)
     {
-      drag=FALSE;
+      drag=false;
       delete lastTransitionDragged;
       lastTransitionDragged=NULL;
       //viewport()->repaint();
-      repaint(false);
+      repaint();
     }
     break;
   }
 
   if (drag_middle)
   {
-    drag_middle = FALSE;
+    drag_middle = false;
     setCursor(oldCursor);
   }
 }
@@ -1720,7 +1720,7 @@ void DrawArea::paintEvent(QPaintEvent* pe)
     if (m->getDrawITrans())
     {
       draw->drawInitialTransition(m, m->getInitialTransition(), &pa, contx, conty,
-                                  scale, itextrect, FALSE);
+                                  scale, itextrect, false);
       lastITextRect = itextrect;
     }
 
@@ -1735,7 +1735,7 @@ void DrawArea::paintEvent(QPaintEvent* pe)
         offset = QPoint(0,0);
         draw->drawTransition(m, lastTransitionDragged, &pa, offset.x(),
                              offset.y(), scale, m->getNumInputs(), m->getNumOutputs(),
-                             FALSE, FALSE);
+                             false, false);
       }
       //      else if (main->getMode()==DocStatus::Select) // BUG FIX
       else if (lastTransitionControl && main->getMode()==DocStatus::Select)
@@ -1746,13 +1746,13 @@ void DrawArea::paintEvent(QPaintEvent* pe)
 
           draw->drawTransition(m, dragTransition, &pa, offset.x(),
                                offset.y(), scale,/* m->getNumInputs(), m->getNumOutputs(),*/
-                               FALSE, TRUE, drawControlLines);
+                               false, true, drawControlLines);
         }
         else
         {
           draw->drawInitialTransition(m, dragITransition, &pa, offset.x(),
                                       offset.y(), scale,/* m->getNumInputs(), m->getNumOutputs(),*/
-                                      itextrect, TRUE, TRUE, TRUE);
+                                      itextrect, true, true, true);
         }
       }
       else if (l.isEmpty())		// draw selection rect.
@@ -1781,10 +1781,10 @@ void DrawArea::paintEvent(QPaintEvent* pe)
 /**
  * Draw a transition.
  * @param t transition to draw.
- * @param clear if TRUE it is the first transition in a sequence (draging)
+ * @param clear if true it is the first transition in a sequence (draging)
  *   otherwise it is not.
  */
-void DrawArea::drawTransition(GTransition* t, bool clear/*=FALSE*/)
+void DrawArea::drawTransition(GTransition* t, bool clear/*=false*/)
 {
   QPainter pa(this);
   QPoint offset = QPoint(0,0);
@@ -1807,17 +1807,17 @@ void DrawArea::drawTransition(GTransition* t, bool clear/*=FALSE*/)
 
   firstTransitionDraw=clear;
   draw->drawTransition(m, t, &pa, cx, cy, scale, /*m->getNumInputs(),
-    m->getNumOutputs(),*/ TRUE, FALSE, FALSE, firstTransitionDraw);
-  firstTransitionDraw=FALSE;
+    m->getNumOutputs(),*/ true, false, false, firstTransitionDraw);
+  firstTransitionDraw=false;
 }
 
 /**
  * Draw initial transition.
  * @param t transition to draw.
- * @param clear if TRUE it is the first transition in a sequence (draging)
+ * @param clear if true it is the first transition in a sequence (draging)
  *   otherwise it is not.
  */
-void DrawArea::drawInitialTransition(GITransition* t, bool clear/*=FALSE*/)
+void DrawArea::drawInitialTransition(GITransition* t, bool clear/*=false*/)
 {
   QPainter pa(this);
   QPoint offset(0,0);
@@ -1843,9 +1843,9 @@ void DrawArea::drawInitialTransition(GITransition* t, bool clear/*=FALSE*/)
   scale = zoom->getScale();
 
   firstTransitionDraw=clear;
-  draw->drawInitialTransition(m, t, &pa, cx, cy, scale, itextrect, TRUE,
-                              firstTransitionDraw, TRUE);
-  firstTransitionDraw=FALSE;
+  draw->drawInitialTransition(m, t, &pa, cx, cy, scale, itextrect, true,
+                              firstTransitionDraw, true);
+  firstTransitionDraw=false;
 }
 
 
@@ -1887,7 +1887,7 @@ void DrawArea::showContext(QPoint point)
   selection->setContextObject(obj, otype);
 
   //viewport()->repaint();
-  repaint(false);
+  repaint();
   main->updateAll();
 
   switch(otype)
@@ -1924,13 +1924,13 @@ void DrawArea::zoomIn(QPoint p/*=(-1,-1)*/)
   if (p.x()==-1)
     p = lastLClicked;
   setUpdatesEnabled(false);
-  zoom->zoom(this, p, TRUE);
+  zoom->zoom(this, p, true);
 
   spx = int((p.x())*ZOOM_FACTOR);
   spy = int((p.y())*ZOOM_FACTOR);
   emit scrollWidgetTo(spx, spy);
   emit zoomedToPercentage(int(zoom->getScale()*100+0.5));
-  setUpdatesEnabled(TRUE);
+  setUpdatesEnabled(true);
   repaint();
 }
 
@@ -1944,13 +1944,13 @@ void DrawArea::zoomOut(QPoint p/*=(-1,-1)*/)
   if (p.x()==-1)
     p = lastLClicked;
   setUpdatesEnabled(false);
-  zoom->zoom(this, p, FALSE);
+  zoom->zoom(this, p, false);
 
   spx = int((p.x())/ZOOM_FACTOR);
   spy = int((p.y())/ZOOM_FACTOR);
   emit scrollWidgetTo(spx, spy);
   emit zoomedToPercentage(int(zoom->getScale()*100+0.5));
-  setUpdatesEnabled(TRUE);
+  setUpdatesEnabled(true);
   repaint();
 }
 
@@ -1962,7 +1962,7 @@ void DrawArea::zoomReset()
   setUpdatesEnabled(false);
   zoom->resetZoom(this);
   emit zoomedToPercentage(100);
-  setUpdatesEnabled(TRUE);
+  setUpdatesEnabled(true);
   repaint();
 }
 
@@ -1976,15 +1976,15 @@ double DrawArea::getScale()
 /// Called when several objects have been pasted into this scrollview
 void DrawArea::objectsPasted()
 {
-  dragMultiple=TRUE;
+  dragMultiple=true;
 }
 
 /// Called when all objects have been selected
 void DrawArea::allSelected()
 {
-  dragMultiple=TRUE;
+  dragMultiple=true;
   //viewport()->repaint();
-  repaint(false);
+  repaint();
 }
 
 /// Returns the tooltip rectangle of the point @a p

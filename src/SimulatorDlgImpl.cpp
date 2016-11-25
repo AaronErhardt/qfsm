@@ -36,9 +36,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *  name 'name' and widget flags set to 'f' 
  *
  *  The dialog will by default be modeless, unless you set 'modal' to
- *  TRUE to construct a modal dialog.
+ *  true to construct a modal dialog.
  */
-SimulatorDlgImpl::SimulatorDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
+SimulatorDlgImpl::SimulatorDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, name, modal, fl )
 {
   simulatorDlg.setupUi(this);
@@ -417,7 +417,7 @@ void SimulatorDlgImpl::iBinPressed()
   {
     tmp = conv.hexStrToBinStr(main->project->machine->getNumInputs(), simulatorDlg.le_inputs->text());
 //    le_inputs->setText(tmp);
-//    rb_ibin->setChecked(TRUE);
+//    rb_ibin->setChecked(true);
 //    inputsChanged(tmp);
   }
   else if (isIASCIIChecked())
@@ -428,12 +428,12 @@ void SimulatorDlgImpl::iBinPressed()
     conv.resolveEscapes(simulatorDlg.le_inputs->text(), ascii, MAX_CHARARRAY_LENGTH, alen);
     tmp = conv.asciiToBinStr(main->project->machine->getNumInputs(), ascii, alen);
 //    le_inputs->setText(tmp);
-//    rb_ibin->setChecked(TRUE);
+//    rb_ibin->setChecked(true);
 //    inputsChanged(tmp);
   }
   simulatorDlg.le_inputs->setMaxLength(main->project->machine->getNumInputs());
   simulatorDlg.le_inputs->setText(tmp);
-  simulatorDlg.rb_ibin->setChecked(TRUE);
+  simulatorDlg.rb_ibin->setChecked(true);
   inputsChanged(tmp);
 }
 
@@ -449,7 +449,7 @@ void SimulatorDlgImpl::iHexPressed()
   {
     tmp = conv.binStrToHexStr(simulatorDlg.le_inputs->text());
 //    le_inputs->setText(tmp);
-//    rb_ihex->setChecked(TRUE);
+//    rb_ihex->setChecked(true);
 //    inputsChanged(tmp);
   }
   else if (isIASCIIChecked())
@@ -460,14 +460,14 @@ void SimulatorDlgImpl::iHexPressed()
     conv.resolveEscapes(simulatorDlg.le_inputs->text(), ascii, MAX_CHARARRAY_LENGTH, alen);
     tmp = conv.asciiToHexStr(ascii, alen);
 //    le_inputs->setText(tmp);
-//    rb_ihex->setChecked(TRUE);
+//    rb_ihex->setChecked(true);
 //    inputsChanged(tmp);
   }
   maxlen = int((double)main->project->machine->getNumInputs()/4+0.9);
   tmp = tmp.right(maxlen);
   simulatorDlg.le_inputs->setMaxLength(maxlen);
   simulatorDlg.le_inputs->setText(tmp);
-  simulatorDlg.rb_ihex->setChecked(TRUE);
+  simulatorDlg.rb_ihex->setChecked(true);
   inputsChanged(tmp);
 }
 
@@ -486,7 +486,7 @@ void SimulatorDlgImpl::iASCIIPressed()
     conv.binStrToASCII(simulatorDlg.le_inputs->text(), ascii, MAX_CHARARRAY_LENGTH, alen);
     tmp = conv.asciiToReadableStr(ascii, alen);
 //    le_inputs->setText(tmp);
-//    rb_iascii->setChecked(TRUE);
+//    rb_iascii->setChecked(true);
 //    inputsChanged(tmp);
   }
   else if (isIHexChecked())
@@ -502,12 +502,12 @@ void SimulatorDlgImpl::iASCIIPressed()
       tmp = conv.asciiToReadableStr(&single, 1);
     }
 //    le_inputs->setText(tmp);
-//    rb_iascii->setChecked(TRUE);
+//    rb_iascii->setChecked(true);
 //    inputsChanged(tmp);
   }
   simulatorDlg.le_inputs->setMaxLength(int((double)main->project->machine->getNumInputs()/8 +0.9)*4);
   simulatorDlg.le_inputs->setText(tmp);
-  simulatorDlg.rb_iascii->setChecked(TRUE);
+  simulatorDlg.rb_iascii->setChecked(true);
   inputsChanged(tmp);
 }
 
@@ -565,7 +565,7 @@ void SimulatorDlgImpl::oASCIIPressed()
     unsigned char ascii[MAX_CHARARRAY_LENGTH];
     int alen;
 
-    conv.binStrToASCII(simulatorDlg.lb_outputs->text(), ascii, MAX_CHARARRAY_LENGTH, alen, FALSE);
+    conv.binStrToASCII(simulatorDlg.lb_outputs->text(), ascii, MAX_CHARARRAY_LENGTH, alen, false);
     tmp = conv.asciiToReadableStr(ascii, alen);
     simulatorDlg.lb_outputs->setText(tmp);
   }
@@ -574,7 +574,7 @@ void SimulatorDlgImpl::oASCIIPressed()
     unsigned char ascii[MAX_CHARARRAY_LENGTH];
     int alen;
 
-    conv.hexStrToASCII(simulatorDlg.lb_outputs->text(), ascii, MAX_CHARARRAY_LENGTH, alen, FALSE);
+    conv.hexStrToASCII(simulatorDlg.lb_outputs->text(), ascii, MAX_CHARARRAY_LENGTH, alen, false);
     tmp = conv.asciiToReadableStr(ascii, alen);
     simulatorDlg.lb_outputs->setText(tmp);
   }
@@ -589,40 +589,40 @@ void SimulatorDlgImpl::resetButtons()
   {
     if (main->project->machine->getType()==Binary)
     {
-      simulatorDlg.rb_ibin->setChecked(TRUE);
-      simulatorDlg.rb_obin->setChecked(TRUE);
+      simulatorDlg.rb_ibin->setChecked(true);
+      simulatorDlg.rb_obin->setChecked(true);
     }
     else
     {
-      simulatorDlg.rb_iascii->setChecked(TRUE);
-      simulatorDlg.rb_oascii->setChecked(TRUE);
+      simulatorDlg.rb_iascii->setChecked(true);
+      simulatorDlg.rb_oascii->setChecked(true);
     }
       
   }
 
   resetBits();
-  simulatorDlg.pb_clock->setOn(FALSE);
+  simulatorDlg.pb_clock->setOn(false);
 }
 
 
 void SimulatorDlgImpl::resetBits()
 {
-  simulatorDlg.pb_bin0->setOn(FALSE);
-  simulatorDlg.pb_bin1->setOn(FALSE);
-  simulatorDlg.pb_bin2->setOn(FALSE);
-  simulatorDlg.pb_bin3->setOn(FALSE);
-  simulatorDlg.pb_bin4->setOn(FALSE);
-  simulatorDlg.pb_bin5->setOn(FALSE);
-  simulatorDlg.pb_bin6->setOn(FALSE);
-  simulatorDlg.pb_bin7->setOn(FALSE);
-  simulatorDlg.pb_bin8->setOn(FALSE);
-  simulatorDlg.pb_bin9->setOn(FALSE);
-  simulatorDlg.pb_bin10->setOn(FALSE);
-  simulatorDlg.pb_bin11->setOn(FALSE);
-  simulatorDlg.pb_bin12->setOn(FALSE);
-  simulatorDlg.pb_bin13->setOn(FALSE);
-  simulatorDlg.pb_bin14->setOn(FALSE);
-  simulatorDlg.pb_bin15->setOn(FALSE);
+  simulatorDlg.pb_bin0->setOn(false);
+  simulatorDlg.pb_bin1->setOn(false);
+  simulatorDlg.pb_bin2->setOn(false);
+  simulatorDlg.pb_bin3->setOn(false);
+  simulatorDlg.pb_bin4->setOn(false);
+  simulatorDlg.pb_bin5->setOn(false);
+  simulatorDlg.pb_bin6->setOn(false);
+  simulatorDlg.pb_bin7->setOn(false);
+  simulatorDlg.pb_bin8->setOn(false);
+  simulatorDlg.pb_bin9->setOn(false);
+  simulatorDlg.pb_bin10->setOn(false);
+  simulatorDlg.pb_bin11->setOn(false);
+  simulatorDlg.pb_bin12->setOn(false);
+  simulatorDlg.pb_bin13->setOn(false);
+  simulatorDlg.pb_bin14->setOn(false);
+  simulatorDlg.pb_bin15->setOn(false);
 }
 
 
@@ -638,17 +638,17 @@ void SimulatorDlgImpl::clockPressed()
   if (!simulatorDlg.pb_clock->isOn())
   {
     timer->start((int)msec);
-    simulatorDlg.lb_frequency->setEnabled(FALSE);
-    simulatorDlg.frequency->setEnabled(FALSE);
-    simulatorDlg.pb_send->setEnabled(FALSE);
+    simulatorDlg.lb_frequency->setEnabled(false);
+    simulatorDlg.frequency->setEnabled(false);
+    simulatorDlg.pb_send->setEnabled(false);
     resetBits();
   }
   else //if (timer->isActive())
   {
     timer->stop();
-    simulatorDlg.lb_frequency->setEnabled(TRUE);
-    simulatorDlg.frequency->setEnabled(TRUE);
-    simulatorDlg.pb_send->setEnabled(TRUE);
+    simulatorDlg.lb_frequency->setEnabled(true);
+    simulatorDlg.frequency->setEnabled(true);
+    simulatorDlg.pb_send->setEnabled(true);
   }
 }
 

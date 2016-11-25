@@ -26,7 +26,7 @@ changed request whether ins null or empty to .isEmpty()
 #define MAINCONTROL_H
 
 #include <QObject>
-#include <q3ptrlist.h>
+#include <QList.h>
 #include <qstring.h>
 #include <qstringlist.h>
 

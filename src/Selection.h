@@ -25,7 +25,7 @@ replaced Qt 3 iterators by Qt 4 iterators
 #ifndef SELECTION_H
 #define SELECTION_H
 
-#include <q3ptrlist.h>
+#include <QList.h>
 #include <qobject.h>
 
 //#include "ScrollView.h"
@@ -51,17 +51,17 @@ class Selection : public QObject
     QList<GState*>& getSList() { return ssel_list; }
     /// Returns a list containing all selected transitions
     QList<GTransition*>& getTList() { return tsel_list; }
-    /// Returns TRUE if initial transition is selected otherwise FALSE
+    /// Returns true if initial transition is selected otherwise false
     bool isITransSelected() { return itrans; }
-    /// If @s is TRUE selects initial transition otherwise deselects it
-    void selectITrans(bool s=TRUE) { itrans = s; }
+    /// If @s is true selects initial transition otherwise deselects it
+    void selectITrans(bool s=true) { itrans = s; }
     bool isStateSelected(State* );
     bool isTransitionSelected(Transition* );
 
     GObject* select(DrawArea* , Machine* , QPoint , double, int& );
-    void select(GState*, bool sel=TRUE);
-    void select(GTransition*, bool sel=TRUE);
-    void select(GITransition*, bool sel=TRUE);
+    void select(GState*, bool sel=true);
+    void select(GTransition*, bool sel=true);
+    void select(GITransition*, bool sel=true);
     bool selectRect(Machine*, DRect& , bool add);
     bool selectAdd(DrawArea* , Machine*, QPoint, double );
 //    bool selectRectAdd(ScrollView*, Machine*, QPoint, double );
@@ -99,7 +99,7 @@ class Selection : public QObject
     QList<GState*> ssel_list;
     /// List of selected transitions
     QList<GTransition*> tsel_list;
-    /// If TRUE, the initial transition is selected
+    /// If true, the initial transition is selected
     bool itrans;
 
     /// Context object (object under cursor when clicking the right mouse button)

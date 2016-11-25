@@ -346,7 +346,7 @@ Project* ImportGraphviz::doImport()
 	  enname = QString(lab);
 	else
 	  enname = agnameof(aghead(edge));
-	//qDebug("%s -> %s", nname.toLatin1().constData(), enname.toLatin1().constData());
+	//qDebug("%s -> %s", nname.toLatin1(), enname.toLatin1());
 
 	end_state = m->getState(enname);
 

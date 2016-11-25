@@ -81,13 +81,13 @@ class TestvectorGenerator : public QObject
     /// Number of enteries in the test vector
     int testvector_length;
 
-    /// If TRUE, the testvector will contain a synchronous reset signal
+    /// If true, the testvector will contain a synchronous reset signal
     bool synchronous_reset;
 
-    /// If TRUE, the testvector will contain a synchronous enable signal
+    /// If true, the testvector will contain a synchronous enable signal
     bool synchronous_enable;
 
-    /// If TRUE, a low-active reset signal is used
+    /// If true, a low-active reset signal is used
     bool negated_reset;
 
 };

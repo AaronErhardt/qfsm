@@ -34,9 +34,9 @@ GTransition::GTransition()
 {
   control1x = control1y = control2x = control2y = 0;
   endx = endy = 0;
-  straight = TRUE;
+  straight = true;
   description = "";
-  dragged=FALSE;
+  dragged=false;
   mark=0;
   mark_max=0;
 }
@@ -54,12 +54,12 @@ GTransition::GTransition()
  * @param starty y coordinate of starting point
  * @param ex x coordinate of end point
  * @param ey y coordinate of end point
- * @param str if TRUE declares the transition as straight otherwise declares it
+ * @param str if true declares the transition as straight otherwise declares it
  * as not straight
  */
 GTransition::GTransition(State* s, State* e, TransitionInfo* i,
 			 double startx, double starty, 
-			 double ex, double ey, QString d, bool str/*=TRUE*/)
+			 double ex, double ey, QString d, bool str/*=true*/)
            :GObject(startx,starty), Transition(s, e, i) 
 {
   control1x = startx+(ex-startx)/3;
@@ -70,7 +70,7 @@ GTransition::GTransition(State* s, State* e, TransitionInfo* i,
   endy = ey;
   straight = str;
   description = d;
-  dragged=FALSE;
+  dragged=false;
   mark=0;
   mark_max=0;
 }
@@ -90,13 +90,13 @@ GTransition::GTransition(State* s, State* e, TransitionInfo* i,
  * @param c2y y coordinate of second control point
  * @param ex x coordinate of end point
  * @param ey y coordinate of end point
- * @param str if TRUE declares the transition as straight otherwise declares it
+ * @param str if true declares the transition as straight otherwise declares it
  * as not straight
  */
 GTransition::GTransition(State* s, State* e, TransitionInfo* i,
                          double startx, double starty, 
 			 double c1x, double c1y, double c2x, double c2y,
-			 double ex, double ey, QString d, bool str/*=TRUE*/)
+			 double ex, double ey, QString d, bool str/*=true*/)
            :GObject(startx,starty), Transition(s, e, i)
 {
   control1x = c1x;
@@ -107,7 +107,7 @@ GTransition::GTransition(State* s, State* e, TransitionInfo* i,
   endy = ey;
   straight=str;
   description = d;
-  dragged = FALSE;
+  dragged = false;
   mark=0;
   mark_max=0;
 }
@@ -212,16 +212,16 @@ void GTransition::move(double x, double y)
  * Moves the start point of the transition.
  * @param x x value to move by
  * @param y y value to move by
- * @param move_cont_rel if TRUE and transition is straight the control 
+ * @param move_cont_rel if true and transition is straight the control 
  *   points are moved relative to the start and end point otherwise the control
  *   points aren't moved relatively
- * @param move_cont if TRUE moves the control points by @a x, @a y otherwise
+ * @param move_cont if true moves the control points by @a x, @a y otherwise
  *   the control points aren't moved at all
- * @param move_cont_both if TRUE both control points are moved otherwise only
+ * @param move_cont_both if true both control points are moved otherwise only
  *   the first one is moved
  */
-void GTransition::moveStart(double x, double y, bool move_cont_rel/*=TRUE*/,
-                      bool move_cont/*=FALSE*/, bool move_cont_both/*=TRUE*/)
+void GTransition::moveStart(double x, double y, bool move_cont_rel/*=true*/,
+                      bool move_cont/*=false*/, bool move_cont_both/*=true*/)
 {
   xpos += x;
   ypos += y;
@@ -252,16 +252,16 @@ void GTransition::moveStart(double x, double y, bool move_cont_rel/*=TRUE*/,
  * Moves the end point of the transition.
  * @param x x value to move by
  * @param y y value to move by
- * @param move_cont_rel if TRUE and transition is straight the control 
+ * @param move_cont_rel if true and transition is straight the control 
  *   points are moved relative to the start and end point otherwise the control
  *   points aren't moved relatively
- * @param move_cont if TRUE moves the control points by @a x, @a y otherwise
+ * @param move_cont if true moves the control points by @a x, @a y otherwise
  *   the control points aren't moved at all
- * @param move_cont_both if TRUE both control points are moved otherwise only
+ * @param move_cont_both if true both control points are moved otherwise only
  *   the second one is moved
  */
-void GTransition::moveEnd(double x, double y, bool move_cont_rel/*=TRUE*/,
-		  bool move_cont/*=FALSE*/, bool move_cont_both/*=TRUE*/)
+void GTransition::moveEnd(double x, double y, bool move_cont_rel/*=true*/,
+		  bool move_cont/*=false*/, bool move_cont_both/*=true*/)
 {
   endx += x;
   endy += y;
@@ -296,7 +296,7 @@ void GTransition::moveCPoint1(double x, double y)
 {
   control1x += x;
   control1y += y;
-  straight = FALSE;
+  straight = false;
 }
 
 
@@ -308,13 +308,13 @@ void GTransition::moveCPoint2(double x, double y)
   control2x += x;
   control2y += y;
  
-  straight = FALSE;
+  straight = false;
 }
 
 
 
 /**
- * Returns TRUE if the point with the coordinates @a x and @a y lies on the
+ * Returns true if the point with the coordinates @a x and @a y lies on the
  * transition.
  */
 bool GTransition::contains(double x, double y)
@@ -333,7 +333,7 @@ bool GTransition::contains(double x, double y)
       && control1y>otminy && control1y<otmaxy 
       && control2y>otminy && control2y<otmaxy
       && y>otminy && y<otmaxy && fabs(xpos-x)<ot)
-    return TRUE;			// orthogonal line
+    return true;			// orthogonal line
 
   bezierCurve(t, bx2, by2);
 
@@ -363,16 +363,16 @@ bool GTransition::contains(double x, double y)
       ymax = (by1 > by2 ? by1 : by2);
 
       if (fabs(x-bx1)<5 && y>ymin && y>ymax)
-        return TRUE;
+        return true;
     }
     else if ((fabs(y - (m*(x-bx1)+by1))<6 ||
               fabs(x - ((y-by1)/m + bx1))<4) && x>xmin && x<xmax)  
-      return TRUE;
+      return true;
     
   } while (t<=0.9);
     
 
-  return FALSE;
+  return false;
 }
 
 
@@ -458,7 +458,7 @@ void GTransition::straighten()
     endy = loopendy;
   }
   
-  straight = TRUE;
+  straight = true;
 }
 
 

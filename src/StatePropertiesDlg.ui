@@ -153,7 +153,7 @@
       </widget>
      </item>
      <item>
-      <widget class="Q3TextEdit" name="te_description">
+      <widget class="QTextEdit" name="te_description">
        <property name="hScrollBarMode">
         <enum>Q3ScrollView::AlwaysOff</enum>
        </property>
@@ -192,6 +192,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <!--
  <customwidgets>
   <customwidget>
    <class>Q3Frame</class>
@@ -205,6 +206,7 @@
    <header>q3textedit.h</header>
   </customwidget>
  </customwidgets>
+ -->
  <tabstops>
   <tabstop>le_name</tabstop>
   <tabstop>le_code</tabstop>

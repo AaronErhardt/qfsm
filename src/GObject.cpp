@@ -28,8 +28,8 @@ GObject::GObject(double x, double y) //, QObject* par/*=0*/, const char* nam/*=0
 {
   xpos = x;
   ypos = y;
-  selected = FALSE;
-  deleted = FALSE;
+  selected = false;
+  deleted = false;
 }
 
 /// Destructor

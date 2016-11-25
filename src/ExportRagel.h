@@ -20,7 +20,7 @@ Qt 4 Port by Rainer Strobel
 
 replaced Qt 3 iterators through Qt 4 iterators
 in method writeTransitions:
-added .latin1() to out << iosingle
+added .totoLatin1().toStdString() to out << iosingle
 */
 
 #ifndef EXPORTRAGEL_H

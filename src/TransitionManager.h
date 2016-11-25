@@ -24,7 +24,7 @@ replaced Qt 3 iterators by Qt 4 iterators
 #ifndef TRANSITIONMANAGER_H
 #define TRANSITIONMANAGER_H
 
-#include <q3ptrlist.h>
+#include <QList.h>
 
 class GState;
 class GTransition;

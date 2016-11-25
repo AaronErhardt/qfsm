@@ -50,25 +50,25 @@ FileIO::FileIO(QWidget* parent)
 {
  
 //  filedlg = new Q3FileDialog(act_dir.dirName(), "Finite State Machine (*.fsm)", 
-//    parent, "filedlg", TRUE);
+//    parent, "filedlg", true);
 //  filedlg->setMode(Q3FileDialog::AnyFile);
   filedlg = new QFileDialog (parent,"",act_dir.dirName(), "Finite State Machine (*.fsm)" );
   filedlg->setFileMode(QFileDialog::AnyFile);
   filedlg->setAcceptMode(QFileDialog::AcceptSave);
-  filedlg->setConfirmOverwrite(FALSE);
+  filedlg->setConfirmOverwrite(false);
 
   
   importdlg = new QFileDialog (parent,"",act_dir.dirName(), "" );
   importdlg->setFileMode(QFileDialog::AnyFile);
   importdlg->setAcceptMode(QFileDialog::AcceptSave);
-  importdlg->setConfirmOverwrite(FALSE);
+  importdlg->setConfirmOverwrite(false);
 
-//  exportdlg = new Q3FileDialog(act_dir.dirName(), QString::null, parent, "exportdlg", TRUE);
+//  exportdlg = new Q3FileDialog(act_dir.dirName(), QString::null, parent, "exportdlg", true);
 //  exportdlg->setMode(Q3FileDialog::AnyFile);
   exportdlg = new QFileDialog (parent,"",act_dir.dirName(), "" );
   exportdlg->setFileMode(QFileDialog::AnyFile);
   exportdlg->setAcceptMode(QFileDialog::AcceptSave);
-  exportdlg->setConfirmOverwrite(FALSE);
+  exportdlg->setConfirmOverwrite(false);
   
     
   mb_statecode = new QMessageBox("qfsm", 
@@ -186,7 +186,7 @@ FileIO::~FileIO()
   QFont tfont(tfamily, tpointsize);
 
   p = new Project(main);
-  p->addMachine(mname, mversion, mauthor, mdescription, mtype, numbits, onamesm, numin, inames, numout, onames, sfont, tfont, arrowtype, TRUE);
+  p->addMachine(mname, mversion, mauthor, mdescription, mtype, numbits, onamesm, numin, inames, numout, onames, sfont, tfont, arrowtype, true);
   m = p->machine;
 
   for (int i=0; i<num_states; i++)
@@ -596,10 +596,10 @@ bool FileIO::saveFileAs(Project* p)
       case QMessageBox::Yes:
         break;
       case QMessageBox::No:
-        return FALSE;
+        return false;
         break;
       case QMessageBox::Cancel:
-        return FALSE;
+        return false;
         break;
     }
   }
@@ -623,12 +623,12 @@ bool FileIO::saveFileAs(Project* p)
     {
       //if (QMessageBox::warning(main, tr("Warning"), tr("File exists. Do you want to overwrite it?"), QMessageBox::Ok|QMessageBox::Default, QMessageBox::Cancel|QMessageBox::Escape)!=QMessageBox::Ok)
       if (Error::warningOkCancel(tr("File exists. Do you want to overwrite it?"))!=QMessageBox::Ok)
-	return FALSE;
+	return false;
     }
 
     return doSaveXML(p);
   }
-  return FALSE;
+  return false;
 }
 
 
@@ -645,9 +645,9 @@ bool FileIO::saveFile(Project* p)
       case QMessageBox::Yes:
         break;
       case QMessageBox::No:
-        return FALSE;
+        return false;
       case QMessageBox::Cancel:
-        return FALSE;
+        return false;
     }
   }
   if (act_file == QString::null)
@@ -664,7 +664,7 @@ bool FileIO::doSave(Project* p)
 {
     Machine* m = p->machine;
     if (!m)
-      return FALSE;
+      return false;
 
     QList<GState*> list;
     QList<GTransition*> tlist; 
@@ -677,7 +677,7 @@ bool FileIO::doSave(Project* p)
     {
       Error::info(tr("File cannot be written."));
       qDebug("file cannot be opened for writing");
-      return FALSE;
+      return false;
     }
     Q3TextStream s(&file);
 
@@ -840,8 +840,8 @@ bool FileIO::doSave(Project* p)
 
     file.close();
 
-    p->setChanged(FALSE);
-    return TRUE;
+    p->setChanged(false);
+    return true;
 }
 
 
@@ -853,7 +853,7 @@ bool FileIO::doSaveXML(Project* p)
 {
     Machine* m = p->machine;
     if (!m)
-      return FALSE;
+      return false;
 
     /*
     QList<GState> list;
@@ -868,7 +868,7 @@ bool FileIO::doSaveXML(Project* p)
     {
       Error::info(tr("File cannot be written."));
       qDebug("file cannot be opened for writing");
-      return FALSE;
+      return false;
     }
     QTextStream tstream(&file);
 
@@ -1107,8 +1107,8 @@ bool FileIO::doSaveXML(Project* p)
 
     file.close();
 
-    p->setChanged(FALSE);
-    return TRUE;
+    p->setChanged(false);
+    return true;
 
     // old save code
     /*
@@ -1307,19 +1307,19 @@ int FileIO::saveOptions(Options* opt)
   fout << "ionames " << (int)opt->getDisplayIONames() << endl;
   fout << "drawbox " << (int)opt->getDrawBox() << endl;
 
-  stmp = opt->getInitialDescriptor().stripWhiteSpace();
+  stmp = opt->getInitialDescriptor().trimmed();
   if (stmp.isEmpty())
     stmp = getEmptyFieldString();
   fout << "initial_descriptor " << stmp << endl;
-  stmp = opt->getInversionDescriptor().stripWhiteSpace();
+  stmp = opt->getInversionDescriptor().trimmed();
   if (stmp.isEmpty())
     stmp = getEmptyFieldString();
   fout << "inversion_descriptor " << stmp << endl;
-  stmp = opt->getAnyInputDescriptor().stripWhiteSpace();
+  stmp = opt->getAnyInputDescriptor().trimmed();
   if (stmp.isEmpty())
     stmp = getEmptyFieldString();
   fout << "any_input_descriptor " << stmp << endl;
-  stmp = opt->getDefaultTransitionDescriptor().stripWhiteSpace();
+  stmp = opt->getDefaultTransitionDescriptor().trimmed();
   if (stmp.isEmpty())
     stmp = getEmptyFieldString();
   fout << "default_descriptor " << stmp << endl;
@@ -1340,7 +1340,7 @@ int FileIO::saveOptions(Options* opt)
   fout << "vhdl_state_code " << (int)opt->getVHDLStateCode() << endl;
   fout << "vhdl_sync_look_ahead " << (int)opt->getVHDLSyncLookAhead() << endl;
   fout << "vhdl_sep_files " << (int)opt->getVHDLSepFiles()<< endl;
-  stmp = opt->getVHDLArchitectureName().stripWhiteSpace();
+  stmp = opt->getVHDLArchitectureName().trimmed();
   if (stmp.isEmpty())
     stmp = "behave";
   fout << "vhdl_architecture_name " << stmp << endl;
@@ -1352,23 +1352,23 @@ int FileIO::saveOptions(Options* opt)
   fout << "testbench_negated_reset " << (int)opt->getTestbenchNegatedReset() << endl;
   fout << "testbench_io_header " << (int)opt->getTestbenchIOHeader() << endl;
   fout << "testbench_io_names " << (int)opt->getTestbenchIONames() << endl;
-  stmp = opt->getTestbenchVHDLPath().stripWhiteSpace();
+  stmp = opt->getTestbenchVHDLPath().trimmed();
   if (stmp.isEmpty())
     stmp = getEmptyFieldString();
   fout << "testbench_vhdl_path " << stmp << endl;
-    stmp = opt->getTestvectorASCIIPath().stripWhiteSpace();
+    stmp = opt->getTestvectorASCIIPath().trimmed();
   if (stmp.isEmpty())
     stmp = getEmptyFieldString();
   fout << "testvector_ascii_path " << stmp << endl;
-    stmp = opt->getTestpackageVHDLPath().stripWhiteSpace();
+    stmp = opt->getTestpackageVHDLPath().trimmed();
   if (stmp.isEmpty())
     stmp = getEmptyFieldString();
   fout << "testpackage_vhdl_path " << stmp << endl;
-    stmp = opt->getTestbenchLogfilePath().stripWhiteSpace();
+    stmp = opt->getTestbenchLogfilePath().trimmed();
   if (stmp.isEmpty())
     stmp = getEmptyFieldString();
   fout << "testbench_logfile_path " << stmp << endl;
-    stmp = opt->getTestbenchBaseDirectory().stripWhiteSpace();
+    stmp = opt->getTestbenchBaseDirectory().trimmed();
   if (stmp.isEmpty())
     stmp = getEmptyFieldString();
   fout << "testbench_base_directory " << stmp << endl;
@@ -1530,10 +1530,10 @@ void FileIO::setOptions(QMap<QString, QString>* _map, Options* opt)
     {
       if (idata==1)
       {
-	opt->setVHDLInOutNames(TRUE);
-	opt->setVHDLNegReset(TRUE);
-	opt->setVHDLIOheader(TRUE);
-	opt->setVHDLAlliance(FALSE);
+	opt->setVHDLInOutNames(true);
+	opt->setVHDLNegReset(true);
+	opt->setVHDLIOheader(true);
+	opt->setVHDLAlliance(false);
 	opt->setVHDLCondNotation(1);
       }
     }
@@ -1617,7 +1617,7 @@ Project* FileIO::importFile(Import* imp, ScrollView* sv/*=NULL*/)
   QString ext;
 
   if (!imp)
-    return FALSE;
+    return NULL;
 
   Project* p=NULL;
   importdlg->setAcceptMode(QFileDialog::AcceptOpen);
@@ -1641,7 +1641,7 @@ Project* FileIO::importFile(Import* imp, ScrollView* sv/*=NULL*/)
   ifstream fin(act_importfile);
 
   if (!fin)
-    return FALSE;
+    return NULL;
 
   emit setWaitCursor();
 
@@ -1666,10 +1666,10 @@ bool FileIO::exportFile(Project* p, Export* exp, ScrollView* sv/*=NULL*/)
   QString ext;
 
   if (!p || !exp)
-    return FALSE;
+    return false;
 
   if (!exp->validateMachine(p->machine))
-    return FALSE;
+    return false;
 
 //  exportdlg->setMode(Q3FileDialog::AnyFile);
   exportdlg->setFileMode(QFileDialog::AnyFile);
@@ -1695,13 +1695,13 @@ bool FileIO::exportFile(Project* p, Export* exp, ScrollView* sv/*=NULL*/)
     if (ftmp.exists())
     {
       if (Error::warningOkCancel(tr("File exists. Do you want to overwrite it?"))!=QMessageBox::Ok)
-	return FALSE;
+	return false;
     }
 
     ofstream fout(act_exportfile);
 
     if (!fout)
-      return FALSE;
+      return false;
 
     emit setWaitCursor();
 
@@ -1710,9 +1710,9 @@ bool FileIO::exportFile(Project* p, Export* exp, ScrollView* sv/*=NULL*/)
 
     emit setPreviousCursor();
 
-    return TRUE;
+    return true;
   }
-  return FALSE;
+  return false;
 }
 
 
@@ -1727,7 +1727,7 @@ bool FileIO::saveMRU(QStringList list)
   if (!file.open(QIODevice::WriteOnly))
   {
     qDebug("mru_files not saved");
-    return FALSE;
+    return false;
   }
 
   Q3TextStream fout(&file);
@@ -1740,7 +1740,7 @@ bool FileIO::saveMRU(QStringList list)
   }
   file.close();
 
-  return TRUE;
+  return true;
 }
 
 
@@ -1761,7 +1761,7 @@ bool FileIO::loadMRU(QStringList& _list)
   if (!file.open(QIODevice::ReadOnly))
   {
     qDebug("mru_files not opened");
-    return FALSE;
+    return false;
   }
 
   Q3TextStream fin(&file);
@@ -1769,7 +1769,7 @@ bool FileIO::loadMRU(QStringList& _list)
   do
   {
     entry = fin.readLine();
-    entry = entry.stripWhiteSpace();
+    entry = entry.trimmed();
 
     if (!entry.isEmpty())
     {
@@ -1779,7 +1779,7 @@ bool FileIO::loadMRU(QStringList& _list)
 
   file.close();
 
-  return TRUE;
+  return true;
 }
 
 QDir FileIO::createQfsmDir()

@@ -46,7 +46,7 @@ class ExportVHDLFHA : public Export
   private:
     /// Name of the machine to export
     QString mname;
-    /// If TRUE, the reset signal will be handled synchronously, otherwise asynchronously.
+    /// If true, the reset signal will be handled synchronously, otherwise asynchronously.
     bool synchronous_reset;
 
     void writeEnvironment();

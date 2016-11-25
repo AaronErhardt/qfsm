@@ -262,7 +262,7 @@ QString TransitionInfoBin::getInputsStr(Machine* m/*=NULL*/, Options* opt/*=NULL
     in_len = in_names.count();
 
     count=0;
-    first=TRUE;
+    first=true;
     for(it = in_names.begin(); it!=in_names.end(); ++it)
     {
       if (count<in_len)
@@ -274,7 +274,7 @@ QString TransitionInfoBin::getInputsStr(Machine* m/*=NULL*/, Options* opt/*=NULL
 	  if (!first)
 	    sin2 += ", ";
 	  sin2 += *it + "=" + sin[count++];
-	  first=FALSE;
+      first=false;
 	}
       }
     }
@@ -308,7 +308,7 @@ QString TransitionInfoBin::getOutputsStr(Machine* m/*=NULL*/, Options* opt/*=NUL
     out_len = out_names.count();
 
     count=0;
-    first=TRUE;
+    first=true;
     for(it = out_names.begin(); it!=out_names.end(); ++it)
     {
       if (count<out_len)
@@ -316,7 +316,7 @@ QString TransitionInfoBin::getOutputsStr(Machine* m/*=NULL*/, Options* opt/*=NUL
 	if (!first)
 	  sout2 += ", ";
 	sout2 += *it + "=" + sout[count++];
-	first=FALSE;
+    first=false;
       }
     }
     sout = sout2;
@@ -359,7 +359,7 @@ QString TransitionInfoBin::getInputsStrASCII()
   int len;
   Convert conv;
 
-  inputs->convertToASCII(ascii, MAX_CHARARRAY_LENGTH, len, FALSE);
+  inputs->convertToASCII(ascii, MAX_CHARARRAY_LENGTH, len, false);
   return conv.asciiToReadableStr(ascii, len);
 }
 
@@ -369,7 +369,7 @@ QString TransitionInfoBin::getOutputsStrASCII()
   int len;
   Convert conv;
 
-  outputs->convertToASCII(ascii, MAX_CHARARRAY_LENGTH, len, FALSE);
+  outputs->convertToASCII(ascii, MAX_CHARARRAY_LENGTH, len, false);
   return conv.asciiToReadableStr(ascii, len);
 }
 
@@ -547,12 +547,12 @@ void TransitionInfoBin::setOutputsSize(int newout)
 /**
  * Checks if transition matches i/o-info @a io.
  * @param io I/O-info which shall be checked
- * @return TRUE if the information matches otherwise FALSE.
+ * @return true if the information matches otherwise false.
  */
 bool TransitionInfoBin::matches(IOInfo* io)
 {
 //  IOInfoBin iobin = io->convertToBin();
-//  bool result = TRUE;
+//  bool result = true;
 //  char* ioinf;
 //  ioinf = iobin.getInfo();
 
@@ -560,15 +560,15 @@ bool TransitionInfoBin::matches(IOInfo* io)
   for (int i=0; i<iobin.getLength(); i++)
   {
     if (ioinf[i]==inputs[i] || inputs[i]==2)
-      result = TRUE;
+      result = true;
     else
-      return FALSE;
+      return false;
   }
   */
   return inputs->matches(io);
 //  return inputs->equals(io);
 
-//  return TRUE;
+//  return true;
 }
 
 

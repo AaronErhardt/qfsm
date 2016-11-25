@@ -52,45 +52,45 @@ public:
     /// State of the machine
     enum simstate {Off, Busy, Finished};
 
-    SimulatorDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    SimulatorDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~SimulatorDlgImpl();
 
-    /// Enables button for bit 0 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 0 if @a e is true otherwise disables it
     void enable0(bool e) { simulatorDlg.pb_bin0->setEnabled(e); };
-    /// Enables button for bit 1 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 1 if @a e is true otherwise disables it
     void enable1(bool e) { simulatorDlg.pb_bin1->setEnabled(e); };
-    /// Enables button for bit 2 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 2 if @a e is true otherwise disables it
     void enable2(bool e) { simulatorDlg.pb_bin2->setEnabled(e); };
-    /// Enables button for bit 3 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 3 if @a e is true otherwise disables it
     void enable3(bool e) { simulatorDlg.pb_bin3->setEnabled(e); };
-    /// Enables button for bit 4 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 4 if @a e is true otherwise disables it
     void enable4(bool e) { simulatorDlg.pb_bin4->setEnabled(e); };
-    /// Enables button for bit 5 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 5 if @a e is true otherwise disables it
     void enable5(bool e) { simulatorDlg.pb_bin5->setEnabled(e); };
-    /// Enables button for bit 6 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 6 if @a e is true otherwise disables it
     void enable6(bool e) { simulatorDlg.pb_bin6->setEnabled(e); };
-    /// Enables button for bit 7 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 7 if @a e is true otherwise disables it
     void enable7(bool e) { simulatorDlg.pb_bin7->setEnabled(e); };
-    /// Enables button for bit 8 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 8 if @a e is true otherwise disables it
     void enable8(bool e) { simulatorDlg.pb_bin8->setEnabled(e); };
-    /// Enables button for bit 9 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 9 if @a e is true otherwise disables it
     void enable9(bool e) { simulatorDlg.pb_bin9->setEnabled(e); };
-    /// Enables button for bit 10 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 10 if @a e is true otherwise disables it
     void enable10(bool e) { simulatorDlg.pb_bin10->setEnabled(e); };
-    /// Enables button for bit 11 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 11 if @a e is true otherwise disables it
     void enable11(bool e) { simulatorDlg.pb_bin11->setEnabled(e); };
-    /// Enables button for bit 12 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 12 if @a e is true otherwise disables it
     void enable12(bool e) { simulatorDlg.pb_bin12->setEnabled(e); };
-    /// Enables button for bit 13 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 13 if @a e is true otherwise disables it
     void enable13(bool e) { simulatorDlg.pb_bin13->setEnabled(e); };
-    /// Enables button for bit 14 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 14 if @a e is true otherwise disables it
     void enable14(bool e) { simulatorDlg.pb_bin14->setEnabled(e); };
-    /// Enables button for bit 15 if @a e is TRUE otherwise disables it
+    /// Enables button for bit 15 if @a e is true otherwise disables it
     void enable15(bool e) { simulatorDlg.pb_bin15->setEnabled(e); };
-    /// Enables buttons for Frequency if @a e is TRUE otherwise disables them 
+    /// Enables buttons for Frequency if @a e is true otherwise disables them 
     void enableFrequency(bool e) { simulatorDlg.frequency->setEnabled(e);
       simulatorDlg.lb_frequency->setEnabled(e);};
-    /// Enables 'Send' button if @a e is TRUE otherwise disables it 
+    /// Enables 'Send' button if @a e is true otherwise disables it 
       void enableSend(bool e) { simulatorDlg.pb_send->setEnabled(e); };
     /// Returns the string of the inputs field
       QString getInputs() { return simulatorDlg.le_inputs->text(); };
@@ -103,19 +103,19 @@ public:
     /// Sets the output string 
       void setOutputs(QString o) { simulatorDlg.lb_outputs->setText(o); };
 
-    /// Returns TRUE if @a Binary is checked for the inputs otherwise FALSE
+    /// Returns true if @a Binary is checked for the inputs otherwise false
       bool isIBinChecked() { return simulatorDlg.rb_ibin->isChecked(); };
-    /// Returns TRUE if @a Hexadecimal is checked for the inputs otherwise FALSE
+    /// Returns true if @a Hexadecimal is checked for the inputs otherwise false
       bool isIHexChecked() { return simulatorDlg.rb_ihex->isChecked(); };
-    /// Returns TRUE if @a ASCII is checked for the inputs otherwise FALSE
+    /// Returns true if @a ASCII is checked for the inputs otherwise false
       bool isIASCIIChecked() { return simulatorDlg.rb_iascii->isChecked(); };
-    /// Returns TRUE if @a Binary is checked for the outputs otherwise FALSE
+    /// Returns true if @a Binary is checked for the outputs otherwise false
       bool isOBinChecked() { return simulatorDlg.rb_obin->isChecked(); };
-    /// Returns TRUE if @a Hexadecimal is checked for the outputs otherwise FALSE
+    /// Returns true if @a Hexadecimal is checked for the outputs otherwise false
       bool isOHexChecked() { return simulatorDlg.rb_ohex->isChecked(); };
-    /// Returns TRUE if @a ASCII is checked for the outputs otherwise FALSE
+    /// Returns true if @a ASCII is checked for the outputs otherwise false
       bool isOASCIIChecked() { return simulatorDlg.rb_oascii->isChecked(); };
-    /// Returns TRUE if 'clock' is pressed, otherwise FALSE
+    /// Returns true if 'clock' is pressed, otherwise false
       bool isClockOn() { return simulatorDlg.pb_clock->isOn(); };
     void setState(int);
 

@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <qregexp.h>
 #include <qpainter.h>
 #include <qfile.h>
-#include <q3picture.h>
+//#include <q3picture.h>
 #include <QSvgGenerator>
 
 #include "ExportSVG.h"
@@ -78,7 +78,7 @@ void ExportSVG::doExport()
   if (!scrollview)
   {
     delete painter;
-    exportSuccessful = FALSE;
+    exportSuccessful = false;
   }
 
 
@@ -92,7 +92,7 @@ void ExportSVG::doExport()
   draw->drawStates(machine, painter, 0, 0, 1.0);
   draw->drawTransitions(machine, painter, 0, 0, 1.0);
   if (machine->getDrawITrans())
-    draw->drawInitialTransition(machine, machine->getInitialTransition(), painter, 0, 0, 1.0, textrect, FALSE);
+    draw->drawInitialTransition(machine, machine->getInitialTransition(), painter, 0, 0, 1.0, textrect, false);
 
   // delete painter and printer before we try to open and fix the file
   delete painter;

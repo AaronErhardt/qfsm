@@ -17,7 +17,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include <qprinter.h>
-#include <q3paintdevicemetrics.h>
+//#include <q3paintdevicemetrics.h>
 
 #include "PrintManager.h"
 #include "MainWindow.h"
@@ -79,14 +79,14 @@ void PrintManager::print()
     if (canvh*scale>h)
       scale = (double)h/canvh;
 
-    printer->setFullPage(FALSE);
+    printer->setFullPage(false);
 
     draw->drawStates(m, &p, int(-mleft/scale), int(-mtop/scale), scale);
     draw->drawTransitions(m, &p, int(-mleft/scale), int(-mtop/scale), scale) 
       /*m->getNumInputs(), m->getNumOutputs()*/;
     if (m->getDrawITrans())
       draw->drawInitialTransition(m, m->getInitialTransition(), &p, int(-mleft/scale),
-	int(-mtop/scale), scale, textrect, FALSE);
+	int(-mtop/scale), scale, textrect, false);
     if (main->getOptions()->getPrintHeader())
       draw->drawHeadline(m, &p); //, scale);
     

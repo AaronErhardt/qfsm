@@ -90,15 +90,15 @@ int IOInfoList::compareItems(IOInfo* ci1, IOInfo* ci2)
   QString s1, s2;
   s1 = io1->convertToComparableString();
   s2 = io2->convertToComparableString();
-  //qDebug("IO %s %d  %s %d", io1->convertToString().latin1(), io1->getRole(), io2->convertToString().latin1(), io2->getRole());
+  //qDebug("IO %s %d  %s %d", io1->convertToString().toLatin1(), io1->getRole(), io2->convertToString().toLatin1(), io2->getRole());
   if (s1>s2)
     return 1;
   else if (s1<s2)
     return -1;
   else
   {
-    //qDebug("identical IO %s %s", s1.latin1(), s2.latin1());
-    //qDebug("identical IO %s %s", io1->convertToString().latin1(), io2->convertToString().latin1());
+    //qDebug("identical IO %s %s", s1.toLatin1(), s2.toLatin1());
+    //qDebug("identical IO %s %s", io1->convertToString().toLatin1(), io2->convertToString().toLatin1());
     /*
     if (io1->isInverted() && !io2->isInverted())
       return 1;
@@ -111,7 +111,7 @@ int IOInfoList::compareItems(IOInfo* ci1, IOInfo* ci2)
     role2 = io2->getRole();
     if (role1==role2)
       return 0;
-    else if (role1==TRUE && role2==FALSE)
+    else if (role1==true && role2==false)
       return -1;
     else
       return 1;

@@ -20,13 +20,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <QMainWindow>
 #include <qapplication.h>
 #include <qclipboard.h>
-#include <q3toolbar.h>
+#include <qtoolbar.h>
 #include <qtoolbutton.h>
 #include <qcursor.h>
 #include <QDesktopServices>
 #include <QUrl>
 #include <qsettings.h>
-#include <q3textstream.h>
+#include <qtextstream.h>
 #include <QPixmap>
 #include <QFocusEvent>
 #include <QCloseEvent>
@@ -138,7 +138,7 @@ MainWindow::MainWindow(QObject* parent , const char* name )
   menu_mru = new QMenu(this);
 
   menu_import = new QMenu(this);
-  menu_import->setMouseTracking(TRUE);
+  menu_import->setMouseTracking(true);
 #ifdef GRAPHVIZ_FOUND
   id_import_graphviz = menu_import->insertItem(tr("&Graphviz..."), this, SLOT(fileImportGraphviz()));
 #endif
@@ -163,7 +163,7 @@ MainWindow::MainWindow(QObject* parent , const char* name )
 
   // File -> Export
   menu_export = new QMenu(this);
-  menu_export->setMouseTracking(TRUE);
+  menu_export->setMouseTracking(true);
   id_export_eps = menu_export->insertItem(tr("E&PS..."), this, SLOT(fileExportEPS()));
   id_export_svg = menu_export->insertItem(tr("&SVG..."), this, SLOT(fileExportSVG()));
   id_export_png = menu_export->insertItem(tr("&PNG..."), this, SLOT(fileExportPNG()));
@@ -193,7 +193,7 @@ MainWindow::MainWindow(QObject* parent , const char* name )
 
   // File
   menu_file = new QMenu(this);
-  menu_file->setMouseTracking(TRUE);
+  menu_file->setMouseTracking(true);
   menu_file->insertItem(*pnew, tr("&New..."), this, SLOT(fileNew()), Qt::CTRL+Qt::Key_N);
   id_open = menu_file->insertItem(*popen, tr("&Open..."), this, SLOT(fileOpen()), 
     Qt::CTRL+Qt::Key_O);
@@ -217,8 +217,8 @@ MainWindow::MainWindow(QObject* parent , const char* name )
 
   // Edit
   menu_edit = new QMenu(this);
-  menu_edit->setCheckable(TRUE);
-  menu_edit->setMouseTracking(TRUE);
+  menu_edit->setCheckable(true);
+  menu_edit->setMouseTracking(true);
   id_undo = menu_edit->insertItem(*undoset, tr("U&ndo"), this, SLOT(editUndo()), 
     Qt::CTRL+Qt::Key_Z);
   menu_edit->insertSeparator();
@@ -241,8 +241,8 @@ MainWindow::MainWindow(QObject* parent , const char* name )
 
   // View
   menu_view = new QMenu(this);
-  menu_view->setCheckable(TRUE);
-  menu_view->setMouseTracking(TRUE);
+  menu_view->setCheckable(true);
+  menu_view->setMouseTracking(true);
   id_viewstateenc = menu_view->insertItem(tr("State &Codes"), this,
     SLOT(viewStateEncoding()));
   id_viewmoore = menu_view->insertItem(tr("Moo&re Outputs"), this,
@@ -271,7 +271,7 @@ MainWindow::MainWindow(QObject* parent , const char* name )
 
   // Machine
   menu_machine = new QMenu(this);
-  menu_machine->setMouseTracking(TRUE);
+  menu_machine->setMouseTracking(true);
   id_machineedit = menu_machine->insertItem(tr("&Edit..."), this, 
     SLOT(machineEdit()));
   id_correctcodes = menu_machine->insertItem(tr("&Auto correct State Codes..."), this, 
@@ -283,8 +283,8 @@ MainWindow::MainWindow(QObject* parent , const char* name )
   
   // State
   menu_state = new QMenu(this);
-  menu_state->setCheckable(TRUE);
-  menu_state->setMouseTracking(TRUE);
+  menu_state->setCheckable(true);
+  menu_state->setMouseTracking(true);
   id_newstate = menu_state->insertItem(*statenewset, tr("&New"), this, 
     SLOT(stateNew()), Qt::CTRL+Qt::SHIFT+Qt::Key_N);
   id_editstate = menu_state->insertItem(tr("&Edit..."), this, 
@@ -297,7 +297,7 @@ MainWindow::MainWindow(QObject* parent , const char* name )
 
   // Transition
   menu_trans = new QMenu(this);
-  menu_trans->setMouseTracking(TRUE);
+  menu_trans->setMouseTracking(true);
   id_newtrans = menu_trans->insertItem(*transnewset, tr("&New"), this,
     SLOT(transNew()), Qt::CTRL+Qt::SHIFT+Qt::Key_T);
   id_edittrans = menu_trans->insertItem(tr("&Edit..."), this, 
@@ -307,13 +307,13 @@ MainWindow::MainWindow(QObject* parent , const char* name )
 
   // Help
 /*  menu_help = new QMenu(this);
-  menu_help->setMouseTracking(TRUE);
+  menu_help->setMouseTracking(true);
   menu_help->insertItem(tr("&About..."), this, SLOT(helpAbout()));
   menu_help->insertSeparator();
   menu_help->insertItem(tr("About &Qt..."), this, SLOT(helpAboutQt()));
 */
   menu_help = new QMenu(this);
-  menu_help->setMouseTracking(TRUE);
+  menu_help->setMouseTracking(true);
   menu_help->addAction (tr("Qfsm &Manual..."), this, SLOT(helpManual()), Qt::Key_F1);
   menu_help->insertSeparator();
   menu_help->addAction (tr("&About..."), this, SLOT(helpAbout()));
@@ -330,7 +330,7 @@ MainWindow::MainWindow(QObject* parent , const char* name )
   
   // Context Menu: State
   cmenu_state = new QMenu(this);
-  cmenu_state->setMouseTracking(TRUE);
+  cmenu_state->setMouseTracking(true);
   id_csundo = cmenu_state->insertItem(*undoset, tr("U&ndo"), this, 
     SLOT(editUndo()), Qt::CTRL+Qt::Key_Z);
   cmenu_state->insertSeparator();
@@ -349,7 +349,7 @@ MainWindow::MainWindow(QObject* parent , const char* name )
 
   // Context Menu: Transition
   cmenu_trans = new QMenu(this);
-  cmenu_trans->setMouseTracking(TRUE);
+  cmenu_trans->setMouseTracking(true);
   id_ctundo = cmenu_trans->insertItem(*undoset, tr("U&ndo"), this, SLOT(editUndo()), 
     Qt::CTRL+Qt::Key_Z);
   cmenu_trans->insertSeparator();
@@ -391,7 +391,7 @@ MainWindow::MainWindow(QObject* parent , const char* name )
   fileio->loadOptions(&doc_options);
   fileio->loadMRU(control->getMRUList());
 
-  tabdialog = new Q3TabDialog(this, 0, TRUE);
+  tabdialog = new Q3TabDialog(this, 0, true);
   tabdialog->resize(400, 300);
   tabdialog->setCaption(tr("Qfsm Options"));
 
@@ -430,9 +430,9 @@ MainWindow::MainWindow(QObject* parent , const char* name )
   ichecker = new ICheck(this);
   edit = new Edit(this);
 
-  shift_pressed=FALSE;
-  control_pressed=FALSE;
-  bcut=FALSE;
+  shift_pressed=false;
+  control_pressed=false;
+  bcut=false;
 
   setMode(DocStatus::Select);
   updateAll(); //MenuBar();
@@ -582,7 +582,7 @@ void MainWindow::createToolBar()
   tbselect = new QToolButton(pselect,tr("Select"), tr("Select objects"), 
     this, SLOT(editSelect()), toolbar);
   tbselect->setIconSet(*selset);
-  tbselect->setToggleButton(TRUE);
+  tbselect->setToggleButton(true);
   toolbar->addWidget(tbselect);
  
   QPixmap ppan((const char**)pan);
@@ -592,7 +592,7 @@ void MainWindow::createToolBar()
   tbpan = new QToolButton(ppan,tr("Pan"), tr("Pan view"), 
     this, SLOT(viewPan()), toolbar);
   tbpan->setIconSet(*panset);
-  tbpan->setToggleButton(TRUE);
+  tbpan->setToggleButton(true);
   toolbar->addWidget(tbpan);
 
   QPixmap pzoom((const char**)zoom);
@@ -602,7 +602,7 @@ void MainWindow::createToolBar()
   tbzoom = new QToolButton(pzoom,tr("Zoom"), tr("Switches to zoom mode"), 
     this, SLOT(viewZoom()), toolbar);
   tbzoom->setIconSet(*zoomset);
-  tbzoom->setToggleButton(TRUE);
+  tbzoom->setToggleButton(true);
   toolbar->addWidget(tbzoom);
 
   QPixmap pstatenew((const char**)statenew);
@@ -612,7 +612,7 @@ void MainWindow::createToolBar()
   tbstatenew = new QToolButton(pstatenew,tr("Add State"), tr("Add new states"), 
     this, SLOT(stateNew()), toolbar);
   tbstatenew->setIconSet(*statenewset);
-  tbstatenew->setToggleButton(TRUE);
+  tbstatenew->setToggleButton(true);
   toolbar->addWidget(tbstatenew);
 
   QPixmap ptransnew((const char**)transnew);
@@ -622,7 +622,7 @@ void MainWindow::createToolBar()
   tbtransnew = new QToolButton(ptransnew,tr("Add Transition"), tr("Add new transitions"), 
     this, SLOT(transNew()), toolbar);
   tbtransnew->setIconSet(*transnewset);
-  tbtransnew->setToggleButton(TRUE);
+  tbtransnew->setToggleButton(true);
   toolbar->addWidget(tbtransnew);
 
   QPixmap pmachinesim((const char**)machinesim);
@@ -632,7 +632,7 @@ void MainWindow::createToolBar()
   tbmachinesim = new QToolButton(pmachinesim,tr("Simulate"), tr("Simulates this machine"), 
     this, SLOT(machineSimulate()), toolbar);
   tbmachinesim->setIconSet(*machinesimset);
-  tbmachinesim->setToggleButton(TRUE);
+  tbmachinesim->setToggleButton(true);
   toolbar->addWidget(tbmachinesim);
 
   toolbar->addSeparator();
@@ -708,9 +708,9 @@ void MainWindow::destroyToolBar()
 void MainWindow::keyPressEvent(QKeyEvent* k)
 {
   if (k->key()==Qt::Key_Shift)
-    shift_pressed=TRUE;
+    shift_pressed=true;
   else if (k->key()==Qt::Key_Control)
-    control_pressed=TRUE;
+    control_pressed=true;
   else if (k->key()==Qt::Key_Escape)
   {
     emit escapePressed();
@@ -721,9 +721,9 @@ void MainWindow::keyPressEvent(QKeyEvent* k)
 void MainWindow::keyReleaseEvent(QKeyEvent* k)
 {
   if (k->key()==Qt::Key_Shift)
-    shift_pressed=FALSE;
+    shift_pressed=false;
   if (k->key()==Qt::Key_Control)
-    control_pressed=FALSE;
+    control_pressed=false;
 }
 
 /// Called when this window is about to close
@@ -732,7 +732,7 @@ void MainWindow::closeEvent(QCloseEvent*e )
 //  fileQuit();
   doc_options.applyOptions(this);
 
-  aboutToClose=TRUE;
+  aboutToClose=true;
   if (project && project->hasChanged())
   {
     switch(mb_changed->exec())
@@ -740,7 +740,7 @@ void MainWindow::closeEvent(QCloseEvent*e )
       case QMessageBox::Yes:
         if (!fileSave())
         {
-          aboutToClose=FALSE;
+          aboutToClose=false;
           e->ignore();
           return;
         }
@@ -749,7 +749,7 @@ void MainWindow::closeEvent(QCloseEvent*e )
         break;
       case QMessageBox::Cancel:
         e->ignore();
-	aboutToClose=FALSE;
+	aboutToClose=false;
         return;
 	break;
     }
@@ -892,88 +892,88 @@ void MainWindow::setMode(int m)
   switch (m)
   {
     case DocStatus::Select:
-      menu_view->setItemChecked(id_select, TRUE);
-      menu_view->setItemChecked(id_pan, FALSE);
-      menu_view->setItemChecked(id_newstate, FALSE);
-      menu_view->setItemChecked(id_newtrans, FALSE);
-      menu_view->setItemChecked(id_zoom, FALSE);
-      menu_view->setItemChecked(id_machinesim, FALSE);
-      tbselect->setOn(TRUE);
-      tbpan->setOn(FALSE);
-      tbzoom->setOn(FALSE);
-      tbstatenew->setOn(FALSE);
-      tbtransnew->setOn(FALSE);
-      tbmachinesim->setOn(FALSE);
+      menu_view->setItemChecked(id_select, true);
+      menu_view->setItemChecked(id_pan, false);
+      menu_view->setItemChecked(id_newstate, false);
+      menu_view->setItemChecked(id_newtrans, false);
+      menu_view->setItemChecked(id_zoom, false);
+      menu_view->setItemChecked(id_machinesim, false);
+      tbselect->setOn(true);
+      tbpan->setOn(false);
+      tbzoom->setOn(false);
+      tbstatenew->setOn(false);
+      tbtransnew->setOn(false);
+      tbmachinesim->setOn(false);
       break;
     case DocStatus::Pan:
-      menu_view->setItemChecked(id_select, FALSE);
-      menu_view->setItemChecked(id_pan, TRUE);
-      menu_view->setItemChecked(id_newstate, FALSE);
-      menu_view->setItemChecked(id_newtrans, FALSE);
-      menu_view->setItemChecked(id_zoom, FALSE);
-      menu_view->setItemChecked(id_machinesim, FALSE);
-      tbselect->setOn(FALSE);
-      tbpan->setOn(TRUE);
-      tbzoom->setOn(FALSE);
-      tbstatenew->setOn(FALSE);
-      tbtransnew->setOn(FALSE);
-      tbmachinesim->setOn(FALSE);
+      menu_view->setItemChecked(id_select, false);
+      menu_view->setItemChecked(id_pan, true);
+      menu_view->setItemChecked(id_newstate, false);
+      menu_view->setItemChecked(id_newtrans, false);
+      menu_view->setItemChecked(id_zoom, false);
+      menu_view->setItemChecked(id_machinesim, false);
+      tbselect->setOn(false);
+      tbpan->setOn(true);
+      tbzoom->setOn(false);
+      tbstatenew->setOn(false);
+      tbtransnew->setOn(false);
+      tbmachinesim->setOn(false);
       break;
     case DocStatus::NewState:
-      menu_view->setItemChecked(id_select, FALSE);
-      menu_view->setItemChecked(id_pan, FALSE);
-      menu_view->setItemChecked(id_newstate, TRUE);
-      menu_view->setItemChecked(id_newtrans, FALSE);
-      menu_view->setItemChecked(id_zoom, FALSE);
-      menu_view->setItemChecked(id_machinesim, FALSE);
-      tbselect->setOn(FALSE);
-      tbpan->setOn(FALSE);
-      tbzoom->setOn(FALSE);
-      tbstatenew->setOn(TRUE);
-      tbtransnew->setOn(FALSE);
-      tbmachinesim->setOn(FALSE);
+      menu_view->setItemChecked(id_select, false);
+      menu_view->setItemChecked(id_pan, false);
+      menu_view->setItemChecked(id_newstate, true);
+      menu_view->setItemChecked(id_newtrans, false);
+      menu_view->setItemChecked(id_zoom, false);
+      menu_view->setItemChecked(id_machinesim, false);
+      tbselect->setOn(false);
+      tbpan->setOn(false);
+      tbzoom->setOn(false);
+      tbstatenew->setOn(true);
+      tbtransnew->setOn(false);
+      tbmachinesim->setOn(false);
       break;
     case DocStatus::NewTransition:
-      menu_view->setItemChecked(id_select, FALSE);
-      menu_view->setItemChecked(id_pan, FALSE);
-      menu_view->setItemChecked(id_newstate, FALSE);
-      menu_view->setItemChecked(id_newtrans, TRUE);
-      menu_view->setItemChecked(id_zoom, FALSE);
-      menu_view->setItemChecked(id_machinesim, FALSE);
-      tbselect->setOn(FALSE);
-      tbpan->setOn(FALSE);
-      tbzoom->setOn(FALSE);
-      tbstatenew->setOn(FALSE);
-      tbtransnew->setOn(TRUE);
-      tbmachinesim->setOn(FALSE);
+      menu_view->setItemChecked(id_select, false);
+      menu_view->setItemChecked(id_pan, false);
+      menu_view->setItemChecked(id_newstate, false);
+      menu_view->setItemChecked(id_newtrans, true);
+      menu_view->setItemChecked(id_zoom, false);
+      menu_view->setItemChecked(id_machinesim, false);
+      tbselect->setOn(false);
+      tbpan->setOn(false);
+      tbzoom->setOn(false);
+      tbstatenew->setOn(false);
+      tbtransnew->setOn(true);
+      tbmachinesim->setOn(false);
       break;
     case DocStatus::Zooming:
-      menu_view->setItemChecked(id_select, FALSE);
-      menu_view->setItemChecked(id_pan, FALSE);
-      menu_view->setItemChecked(id_newstate, FALSE);
-      menu_view->setItemChecked(id_newtrans, FALSE);
-      menu_view->setItemChecked(id_zoom, TRUE);
-      menu_view->setItemChecked(id_machinesim, FALSE);
-      tbselect->setOn(FALSE);
-      tbpan->setOn(FALSE);
-      tbzoom->setOn(TRUE);
-      tbstatenew->setOn(FALSE);
-      tbtransnew->setOn(FALSE);
-      tbmachinesim->setOn(FALSE);
+      menu_view->setItemChecked(id_select, false);
+      menu_view->setItemChecked(id_pan, false);
+      menu_view->setItemChecked(id_newstate, false);
+      menu_view->setItemChecked(id_newtrans, false);
+      menu_view->setItemChecked(id_zoom, true);
+      menu_view->setItemChecked(id_machinesim, false);
+      tbselect->setOn(false);
+      tbpan->setOn(false);
+      tbzoom->setOn(true);
+      tbstatenew->setOn(false);
+      tbtransnew->setOn(false);
+      tbmachinesim->setOn(false);
       break;
     case DocStatus::Simulating:
-      menu_view->setItemChecked(id_select, FALSE);
-      menu_view->setItemChecked(id_pan, FALSE);
-      menu_view->setItemChecked(id_newstate, FALSE);
-      menu_view->setItemChecked(id_newtrans, FALSE);
-      menu_view->setItemChecked(id_zoom, FALSE);
-      menu_view->setItemChecked(id_machinesim, TRUE);
-      tbselect->setOn(FALSE);
-      tbpan->setOn(FALSE);
-      tbzoom->setOn(FALSE);
-      tbstatenew->setOn(FALSE);
-      tbtransnew->setOn(FALSE);
-      tbmachinesim->setOn(TRUE);
+      menu_view->setItemChecked(id_select, false);
+      menu_view->setItemChecked(id_pan, false);
+      menu_view->setItemChecked(id_newstate, false);
+      menu_view->setItemChecked(id_newtrans, false);
+      menu_view->setItemChecked(id_zoom, false);
+      menu_view->setItemChecked(id_machinesim, true);
+      tbselect->setOn(false);
+      tbpan->setOn(false);
+      tbzoom->setOn(false);
+      tbstatenew->setOn(false);
+      tbtransnew->setOn(false);
+      tbmachinesim->setOn(true);
       break;
   }
   switch (m)
@@ -1007,111 +1007,111 @@ void MainWindow::updateMenuBar()
 {
   int numstates, numtrans;
 
-  menu_file->setItemEnabled(id_import, TRUE);
-  menu_import->setItemEnabled(id_import_graphviz, TRUE);
+  menu_file->setItemEnabled(id_import, true);
+  menu_import->setItemEnabled(id_import_graphviz, true);
 
   if (project)
   {
-    menu_file->setItemEnabled(id_save, TRUE);
-    menu_file->setItemEnabled(id_saveas, TRUE);
-    menu_file->setItemEnabled(id_print, TRUE);
-    menu_file->setItemEnabled(id_export, TRUE);
-    menu_file->setItemEnabled(id_close, TRUE);
-    menu_edit->setItemEnabled(id_selectall, TRUE);
-    menu_edit->setItemEnabled(id_deselectall, TRUE);
-    menu_state->setItemEnabled(id_newstate, TRUE);
-    menu_trans->setItemEnabled(id_newtrans, TRUE);
+    menu_file->setItemEnabled(id_save, true);
+    menu_file->setItemEnabled(id_saveas, true);
+    menu_file->setItemEnabled(id_print, true);
+    menu_file->setItemEnabled(id_export, true);
+    menu_file->setItemEnabled(id_close, true);
+    menu_edit->setItemEnabled(id_selectall, true);
+    menu_edit->setItemEnabled(id_deselectall, true);
+    menu_state->setItemEnabled(id_newstate, true);
+    menu_trans->setItemEnabled(id_newtrans, true);
     if (project->machine && project->machine->getType()==Ascii)
-      menu_export->setItemEnabled(id_export_ragel, TRUE);
+      menu_export->setItemEnabled(id_export_ragel, true);
     else
-      menu_export->setItemEnabled(id_export_ragel, FALSE);
+      menu_export->setItemEnabled(id_export_ragel, false);
     if (project->machine && project->machine->getType()==Text)
     {
-      menu_export->setItemEnabled(id_export_ahdl, FALSE);
-      menu_export->setItemEnabled(id_export_vhdl, FALSE);
-      menu_export->setItemEnabled(id_export_verilog, FALSE);
-      menu_export->setItemEnabled(id_export_kiss, FALSE);
-      menu_export->setItemEnabled(id_export_vvvv, TRUE);
-      menu_export->setItemEnabled(id_export_scxml, TRUE);
-      menu_export->setItemEnabled(id_export_smc, TRUE);
-      menu_view->setItemEnabled(id_viewstateenc, FALSE);
-      menu_view->setItemEnabled(id_viewmoore, FALSE);
-      tbmachinesim->setEnabled(FALSE);
+      menu_export->setItemEnabled(id_export_ahdl, false);
+      menu_export->setItemEnabled(id_export_vhdl, false);
+      menu_export->setItemEnabled(id_export_verilog, false);
+      menu_export->setItemEnabled(id_export_kiss, false);
+      menu_export->setItemEnabled(id_export_vvvv, true);
+      menu_export->setItemEnabled(id_export_scxml, true);
+      menu_export->setItemEnabled(id_export_smc, true);
+      menu_view->setItemEnabled(id_viewstateenc, false);
+      menu_view->setItemEnabled(id_viewmoore, false);
+      tbmachinesim->setEnabled(false);
     }
     else
     {
-      menu_export->setItemEnabled(id_export_ahdl, TRUE);
-      menu_export->setItemEnabled(id_export_vhdl, TRUE);
-      menu_export->setItemEnabled(id_export_verilog, TRUE);
-      menu_export->setItemEnabled(id_export_kiss, TRUE);
-      menu_export->setItemEnabled(id_export_vvvv, FALSE);
-      menu_export->setItemEnabled(id_export_scxml, FALSE);
-      menu_export->setItemEnabled(id_export_smc, FALSE);
-      menu_view->setItemEnabled(id_viewstateenc, TRUE);
-      menu_view->setItemEnabled(id_viewmoore, TRUE);
-      tbmachinesim->setEnabled(TRUE);
+      menu_export->setItemEnabled(id_export_ahdl, true);
+      menu_export->setItemEnabled(id_export_vhdl, true);
+      menu_export->setItemEnabled(id_export_verilog, true);
+      menu_export->setItemEnabled(id_export_kiss, true);
+      menu_export->setItemEnabled(id_export_vvvv, false);
+      menu_export->setItemEnabled(id_export_scxml, false);
+      menu_export->setItemEnabled(id_export_smc, false);
+      menu_view->setItemEnabled(id_viewstateenc, true);
+      menu_view->setItemEnabled(id_viewmoore, true);
+      tbmachinesim->setEnabled(true);
     }
-    menu_view->setItemEnabled(id_viewmealyin, TRUE);
-    menu_view->setItemEnabled(id_viewmealyout, TRUE);
-    menu_view->setItemEnabled(id_viewgrid, TRUE);
-    menu_view->setItemEnabled(id_ioview,TRUE);
-    menu_view->setItemEnabled(id_viewshadows, TRUE);
-    menu_view->setItemEnabled(id_zoom, TRUE);
-    menu_view->setItemEnabled(id_zoomin, TRUE);
-    menu_view->setItemEnabled(id_zoomout, TRUE);
-    menu_view->setItemEnabled(id_zoom100, TRUE);
-    menu_edit->setItemEnabled(id_select, TRUE);
-    menu_view->setItemEnabled(id_pan, TRUE);
-    menu_machine->setItemEnabled(id_machineedit, TRUE);
-    menu_machine->setItemEnabled(id_correctcodes, TRUE);
-    menu_machine->setItemEnabled(id_machineicheck, TRUE);
-    tbsave->setEnabled(TRUE);
-    tbprint->setEnabled(TRUE);
-    tbselect->setEnabled(TRUE);
-    tbpan->setEnabled(TRUE);
-    tbzoom->setEnabled(TRUE);
-    tbzoomin->setEnabled(TRUE);
-    tbzoomout->setEnabled(TRUE);
-    tbstatenew->setEnabled(TRUE);
-    tbtransnew->setEnabled(TRUE);
+    menu_view->setItemEnabled(id_viewmealyin, true);
+    menu_view->setItemEnabled(id_viewmealyout, true);
+    menu_view->setItemEnabled(id_viewgrid, true);
+    menu_view->setItemEnabled(id_ioview,true);
+    menu_view->setItemEnabled(id_viewshadows, true);
+    menu_view->setItemEnabled(id_zoom, true);
+    menu_view->setItemEnabled(id_zoomin, true);
+    menu_view->setItemEnabled(id_zoomout, true);
+    menu_view->setItemEnabled(id_zoom100, true);
+    menu_edit->setItemEnabled(id_select, true);
+    menu_view->setItemEnabled(id_pan, true);
+    menu_machine->setItemEnabled(id_machineedit, true);
+    menu_machine->setItemEnabled(id_correctcodes, true);
+    menu_machine->setItemEnabled(id_machineicheck, true);
+    tbsave->setEnabled(true);
+    tbprint->setEnabled(true);
+    tbselect->setEnabled(true);
+    tbpan->setEnabled(true);
+    tbzoom->setEnabled(true);
+    tbzoomin->setEnabled(true);
+    tbzoomout->setEnabled(true);
+    tbstatenew->setEnabled(true);
+    tbtransnew->setEnabled(true);
   }
   else
   {
-    menu_file->setItemEnabled(id_save, FALSE);
-    menu_file->setItemEnabled(id_saveas, FALSE);
-    menu_file->setItemEnabled(id_print, FALSE);
-    menu_file->setItemEnabled(id_export, FALSE);
-    menu_file->setItemEnabled(id_close, FALSE);
-    menu_edit->setItemEnabled(id_selectall, FALSE);
-    menu_edit->setItemEnabled(id_deselectall, FALSE);
-    menu_state->setItemEnabled(id_newstate, FALSE);
-    menu_trans->setItemEnabled(id_newtrans, FALSE);
-    menu_view->setItemEnabled(id_viewstateenc, FALSE);
-    menu_view->setItemEnabled(id_viewmoore, FALSE);
-    menu_view->setItemEnabled(id_viewmealyin, FALSE);
-    menu_view->setItemEnabled(id_viewmealyout, FALSE);
-    menu_view->setItemEnabled(id_viewgrid, FALSE);
-    menu_view->setItemEnabled(id_viewshadows, FALSE);
-    menu_view->setItemEnabled(id_ioview,FALSE);
-    menu_view->setItemEnabled(id_zoom, FALSE);
-    menu_view->setItemEnabled(id_zoomin, FALSE);
-    menu_view->setItemEnabled(id_zoomout, FALSE);
-    menu_view->setItemEnabled(id_zoom100, FALSE);
-    menu_edit->setItemEnabled(id_select, FALSE);
-    menu_view->setItemEnabled(id_pan, FALSE);
-    menu_machine->setItemEnabled(id_machineedit, FALSE);
-    menu_machine->setItemEnabled(id_correctcodes, FALSE);
-    menu_machine->setItemEnabled(id_machineicheck, FALSE);
-    tbsave->setEnabled(FALSE);
-    tbprint->setEnabled(FALSE);
-    tbselect->setEnabled(FALSE);
-    tbpan->setEnabled(FALSE);
-    tbzoom->setEnabled(FALSE);
-    tbzoomin->setEnabled(FALSE);
-    tbzoomout->setEnabled(FALSE);
-    tbstatenew->setEnabled(FALSE);
-    tbtransnew->setEnabled(FALSE);
-    tbmachinesim->setEnabled(FALSE);
+    menu_file->setItemEnabled(id_save, false);
+    menu_file->setItemEnabled(id_saveas, false);
+    menu_file->setItemEnabled(id_print, false);
+    menu_file->setItemEnabled(id_export, false);
+    menu_file->setItemEnabled(id_close, false);
+    menu_edit->setItemEnabled(id_selectall, false);
+    menu_edit->setItemEnabled(id_deselectall, false);
+    menu_state->setItemEnabled(id_newstate, false);
+    menu_trans->setItemEnabled(id_newtrans, false);
+    menu_view->setItemEnabled(id_viewstateenc, false);
+    menu_view->setItemEnabled(id_viewmoore, false);
+    menu_view->setItemEnabled(id_viewmealyin, false);
+    menu_view->setItemEnabled(id_viewmealyout, false);
+    menu_view->setItemEnabled(id_viewgrid, false);
+    menu_view->setItemEnabled(id_viewshadows, false);
+    menu_view->setItemEnabled(id_ioview,false);
+    menu_view->setItemEnabled(id_zoom, false);
+    menu_view->setItemEnabled(id_zoomin, false);
+    menu_view->setItemEnabled(id_zoomout, false);
+    menu_view->setItemEnabled(id_zoom100, false);
+    menu_edit->setItemEnabled(id_select, false);
+    menu_view->setItemEnabled(id_pan, false);
+    menu_machine->setItemEnabled(id_machineedit, false);
+    menu_machine->setItemEnabled(id_correctcodes, false);
+    menu_machine->setItemEnabled(id_machineicheck, false);
+    tbsave->setEnabled(false);
+    tbprint->setEnabled(false);
+    tbselect->setEnabled(false);
+    tbpan->setEnabled(false);
+    tbzoom->setEnabled(false);
+    tbzoomin->setEnabled(false);
+    tbzoomout->setEnabled(false);
+    tbstatenew->setEnabled(false);
+    tbtransnew->setEnabled(false);
+    tbmachinesim->setEnabled(false);
   }
 
   numtrans = wscroll->getDrawArea()->getSelection()->countTransitions();
@@ -1120,182 +1120,182 @@ void MainWindow::updateMenuBar()
   if (project && project->machine && project->machine->getType()!=Text 
       && project->machine->getNumStates()>0)
   {
-    menu_machine->setItemEnabled(id_machinesim, TRUE);
-    tbmachinesim->setEnabled(TRUE);
+    menu_machine->setItemEnabled(id_machinesim, true);
+    tbmachinesim->setEnabled(true);
   }
   else
   {
-    menu_machine->setItemEnabled(id_machinesim, FALSE);
-    tbmachinesim->setEnabled(FALSE);
+    menu_machine->setItemEnabled(id_machinesim, false);
+    tbmachinesim->setEnabled(false);
   }
 
   if (numtrans)
   {
-    menu_trans->setItemEnabled(id_trans_straight, TRUE);
-    tbtransstraighten->setEnabled(TRUE);
-    cmenu_trans->setItemEnabled(id_cedittrans, TRUE);
-    cmenu_trans->setItemEnabled(id_ctrans_straight, TRUE);
+    menu_trans->setItemEnabled(id_trans_straight, true);
+    tbtransstraighten->setEnabled(true);
+    cmenu_trans->setItemEnabled(id_cedittrans, true);
+    cmenu_trans->setItemEnabled(id_ctrans_straight, true);
   }
   else
   {
-    menu_trans->setItemEnabled(id_trans_straight, FALSE);
-    tbtransstraighten->setEnabled(FALSE);
-    cmenu_trans->setItemEnabled(id_cedittrans, FALSE);
-    cmenu_trans->setItemEnabled(id_ctrans_straight, FALSE);
+    menu_trans->setItemEnabled(id_trans_straight, false);
+    tbtransstraighten->setEnabled(false);
+    cmenu_trans->setItemEnabled(id_cedittrans, false);
+    cmenu_trans->setItemEnabled(id_ctrans_straight, false);
   }
 
   if (numstates>0)
   {
-    menu_state->setItemEnabled(id_setend, TRUE);
-    menu_state->setItemEnabled(id_csetend, TRUE);
+    menu_state->setItemEnabled(id_setend, true);
+    menu_state->setItemEnabled(id_csetend, true);
   }
   else
   {
-    menu_state->setItemEnabled(id_setend, FALSE);
-    menu_state->setItemEnabled(id_csetend, FALSE);
+    menu_state->setItemEnabled(id_setend, false);
+    menu_state->setItemEnabled(id_csetend, false);
   }
   if (numstates==1)
   {
-    menu_state->setItemEnabled(id_setinitial, TRUE);
-    menu_state->setItemEnabled(id_editstate, TRUE);
+    menu_state->setItemEnabled(id_setinitial, true);
+    menu_state->setItemEnabled(id_editstate, true);
   }
   else
   {
-    menu_state->setItemEnabled(id_setinitial, FALSE);
-    menu_state->setItemEnabled(id_editstate, FALSE);
+    menu_state->setItemEnabled(id_setinitial, false);
+    menu_state->setItemEnabled(id_editstate, false);
   }
 
   if (numtrans==1)
   {
-    menu_trans->setItemEnabled(id_edittrans, TRUE);
+    menu_trans->setItemEnabled(id_edittrans, true);
   }
   else
   {
-    menu_trans->setItemEnabled(id_edittrans, FALSE);
+    menu_trans->setItemEnabled(id_edittrans, false);
   }
 
   if (numstates + numtrans > 0)
   {
-    menu_edit->setItemEnabled(id_delete, TRUE);
-    menu_edit->setItemEnabled(id_cut, TRUE);
-    menu_edit->setItemEnabled(id_copy, TRUE);
-    cmenu_state->setItemEnabled(id_csdelete, TRUE);
-    cmenu_state->setItemEnabled(id_cscut, TRUE);
-    cmenu_state->setItemEnabled(id_cscopy, TRUE);
-    cmenu_trans->setItemEnabled(id_ctdelete, TRUE);
-    cmenu_trans->setItemEnabled(id_ctcut, TRUE);
-    cmenu_trans->setItemEnabled(id_ctcopy, TRUE);
-    tbcut->setEnabled(TRUE);
-    tbcopy->setEnabled(TRUE);
+    menu_edit->setItemEnabled(id_delete, true);
+    menu_edit->setItemEnabled(id_cut, true);
+    menu_edit->setItemEnabled(id_copy, true);
+    cmenu_state->setItemEnabled(id_csdelete, true);
+    cmenu_state->setItemEnabled(id_cscut, true);
+    cmenu_state->setItemEnabled(id_cscopy, true);
+    cmenu_trans->setItemEnabled(id_ctdelete, true);
+    cmenu_trans->setItemEnabled(id_ctcut, true);
+    cmenu_trans->setItemEnabled(id_ctcopy, true);
+    tbcut->setEnabled(true);
+    tbcopy->setEnabled(true);
   }
   else
   {
-    menu_edit->setItemEnabled(id_delete, FALSE);
-    menu_edit->setItemEnabled(id_cut, FALSE);
-    menu_edit->setItemEnabled(id_copy, FALSE);
-    cmenu_state->setItemEnabled(id_csdelete, FALSE);
-    cmenu_state->setItemEnabled(id_cscut, FALSE);
-    cmenu_state->setItemEnabled(id_cscopy, FALSE);
-    cmenu_trans->setItemEnabled(id_ctdelete, FALSE);
-    cmenu_trans->setItemEnabled(id_ctcut, FALSE);
-    cmenu_trans->setItemEnabled(id_ctcopy, FALSE);
-    tbcut->setEnabled(FALSE);
-    tbcopy->setEnabled(FALSE);
+    menu_edit->setItemEnabled(id_delete, false);
+    menu_edit->setItemEnabled(id_cut, false);
+    menu_edit->setItemEnabled(id_copy, false);
+    cmenu_state->setItemEnabled(id_csdelete, false);
+    cmenu_state->setItemEnabled(id_cscut, false);
+    cmenu_state->setItemEnabled(id_cscopy, false);
+    cmenu_trans->setItemEnabled(id_ctdelete, false);
+    cmenu_trans->setItemEnabled(id_ctcut, false);
+    cmenu_trans->setItemEnabled(id_ctcopy, false);
+    tbcut->setEnabled(false);
+    tbcopy->setEnabled(false);
   }
 
 //  updatePaste();
 
   if (doc_options.getViewStateEncoding())
-    menu_view->setItemChecked(id_viewstateenc, TRUE);
+    menu_view->setItemChecked(id_viewstateenc, true);
   else
-    menu_view->setItemChecked(id_viewstateenc, FALSE);
+    menu_view->setItemChecked(id_viewstateenc, false);
 
   if (doc_options.getViewMoore())
-    menu_view->setItemChecked(id_viewmoore, TRUE);
+    menu_view->setItemChecked(id_viewmoore, true);
   else
-    menu_view->setItemChecked(id_viewmoore, FALSE);
+    menu_view->setItemChecked(id_viewmoore, false);
 
   if (doc_options.getViewMealyIn())
-    menu_view->setItemChecked(id_viewmealyin, TRUE);
+    menu_view->setItemChecked(id_viewmealyin, true);
   else
-    menu_view->setItemChecked(id_viewmealyin, FALSE);
+    menu_view->setItemChecked(id_viewmealyin, false);
     
   if (doc_options.getViewMealyOut())
-    menu_view->setItemChecked(id_viewmealyout, TRUE);
+    menu_view->setItemChecked(id_viewmealyout, true);
   else
-    menu_view->setItemChecked(id_viewmealyout, FALSE);
+    menu_view->setItemChecked(id_viewmealyout, false);
     
   if (doc_options.getViewGrid())
-    menu_view->setItemChecked(id_viewgrid, TRUE);
+    menu_view->setItemChecked(id_viewgrid, true);
   else
-    menu_view->setItemChecked(id_viewgrid, FALSE);
+    menu_view->setItemChecked(id_viewgrid, false);
   
   if (doc_options.getViewIOView())
-    menu_view->setItemChecked(id_ioview,TRUE);
+    menu_view->setItemChecked(id_ioview,true);
   else 
-    menu_view->setItemChecked(id_ioview,FALSE);
+    menu_view->setItemChecked(id_ioview,false);
     
   if (doc_options.getStateShadows())
-    menu_view->setItemChecked(id_viewshadows, TRUE);
+    menu_view->setItemChecked(id_viewshadows, true);
   else
-    menu_view->setItemChecked(id_viewshadows, FALSE);
+    menu_view->setItemChecked(id_viewshadows, false);
     
   if (project && !project->getUndoBuffer()->isEmpty())
   {
-    menu_edit->setItemEnabled(id_undo, TRUE);
-    cmenu_state->setItemEnabled(id_csundo, TRUE);
-    cmenu_trans->setItemEnabled(id_ctundo, TRUE);
-    tbundo->setEnabled(TRUE);
+    menu_edit->setItemEnabled(id_undo, true);
+    cmenu_state->setItemEnabled(id_csundo, true);
+    cmenu_trans->setItemEnabled(id_ctundo, true);
+    tbundo->setEnabled(true);
   }
   else
   {
-    menu_edit->setItemEnabled(id_undo, FALSE);
-    cmenu_state->setItemEnabled(id_csundo, FALSE);
-    cmenu_trans->setItemEnabled(id_ctundo, FALSE);
-    tbundo->setEnabled(FALSE);
+    menu_edit->setItemEnabled(id_undo, false);
+    cmenu_state->setItemEnabled(id_csundo, false);
+    cmenu_trans->setItemEnabled(id_ctundo, false);
+    tbundo->setEnabled(false);
   }
     
   if (doc_status.getMode()==DocStatus::Simulating)
   {
-    menu_edit->setItemEnabled(id_undo, FALSE);
-    cmenu_state->setItemEnabled(id_csundo, FALSE);
-    cmenu_trans->setItemEnabled(id_ctundo, FALSE);
-    menu_edit->setItemEnabled(id_select, FALSE);
-    menu_view->setItemEnabled(id_pan, FALSE);
-    menu_edit->setItemEnabled(id_cut, FALSE);
-    menu_edit->setItemEnabled(id_copy, FALSE);
-    menu_edit->setItemEnabled(id_paste, FALSE);
-    menu_edit->setItemEnabled(id_delete, FALSE);
-    cmenu_state->setItemEnabled(id_cscut, FALSE);
-    cmenu_state->setItemEnabled(id_cscopy, FALSE);
-    cmenu_state->setItemEnabled(id_csdelete, FALSE);
-    cmenu_trans->setItemEnabled(id_ctcut, FALSE);
-    cmenu_trans->setItemEnabled(id_ctcopy, FALSE);
-    cmenu_trans->setItemEnabled(id_ctdelete, FALSE);
-    menu_edit->setItemEnabled(id_selectall, FALSE);
-    menu_edit->setItemEnabled(id_deselectall, FALSE);
-    menu_view->setItemEnabled(id_zoom, FALSE);
-    menu_machine->setItemEnabled(id_machineedit, FALSE);
-    menu_state->setItemEnabled(id_editstate, FALSE);
-    menu_state->setItemEnabled(id_setinitial, FALSE);
-    menu_state->setItemEnabled(id_ceditstate, FALSE);
-    menu_state->setItemEnabled(id_csetinitial, FALSE);
-    menu_state->setItemEnabled(id_setend, FALSE);
-    menu_state->setItemEnabled(id_newstate, FALSE);
-    menu_trans->setItemEnabled(id_newtrans, FALSE);
-    menu_trans->setItemEnabled(id_edittrans, FALSE);
-    menu_trans->setItemEnabled(id_trans_straight, FALSE);
-    cmenu_trans->setItemEnabled(id_cedittrans, FALSE);
-    cmenu_trans->setItemEnabled(id_ctrans_straight, FALSE);
-    tbselect->setEnabled(FALSE);
-    tbpan->setEnabled(FALSE);
-    tbzoom->setEnabled(FALSE);
-    tbundo->setEnabled(FALSE);
-    tbcut->setEnabled(FALSE);
-    tbcopy->setEnabled(FALSE);
-    tbstatenew->setEnabled(FALSE);
-    tbtransnew->setEnabled(FALSE);
-    tbtransstraighten->setEnabled(FALSE);
+    menu_edit->setItemEnabled(id_undo, false);
+    cmenu_state->setItemEnabled(id_csundo, false);
+    cmenu_trans->setItemEnabled(id_ctundo, false);
+    menu_edit->setItemEnabled(id_select, false);
+    menu_view->setItemEnabled(id_pan, false);
+    menu_edit->setItemEnabled(id_cut, false);
+    menu_edit->setItemEnabled(id_copy, false);
+    menu_edit->setItemEnabled(id_paste, false);
+    menu_edit->setItemEnabled(id_delete, false);
+    cmenu_state->setItemEnabled(id_cscut, false);
+    cmenu_state->setItemEnabled(id_cscopy, false);
+    cmenu_state->setItemEnabled(id_csdelete, false);
+    cmenu_trans->setItemEnabled(id_ctcut, false);
+    cmenu_trans->setItemEnabled(id_ctcopy, false);
+    cmenu_trans->setItemEnabled(id_ctdelete, false);
+    menu_edit->setItemEnabled(id_selectall, false);
+    menu_edit->setItemEnabled(id_deselectall, false);
+    menu_view->setItemEnabled(id_zoom, false);
+    menu_machine->setItemEnabled(id_machineedit, false);
+    menu_state->setItemEnabled(id_editstate, false);
+    menu_state->setItemEnabled(id_setinitial, false);
+    menu_state->setItemEnabled(id_ceditstate, false);
+    menu_state->setItemEnabled(id_csetinitial, false);
+    menu_state->setItemEnabled(id_setend, false);
+    menu_state->setItemEnabled(id_newstate, false);
+    menu_trans->setItemEnabled(id_newtrans, false);
+    menu_trans->setItemEnabled(id_edittrans, false);
+    menu_trans->setItemEnabled(id_trans_straight, false);
+    cmenu_trans->setItemEnabled(id_cedittrans, false);
+    cmenu_trans->setItemEnabled(id_ctrans_straight, false);
+    tbselect->setEnabled(false);
+    tbpan->setEnabled(false);
+    tbzoom->setEnabled(false);
+    tbundo->setEnabled(false);
+    tbcut->setEnabled(false);
+    tbcopy->setEnabled(false);
+    tbstatenew->setEnabled(false);
+    tbtransnew->setEnabled(false);
+    tbtransstraighten->setEnabled(false);
   }  
 }
 
@@ -1304,13 +1304,13 @@ void MainWindow::updatePaste()
 {
   if (project && qApp->clipboard()->data()->provides("text/qfsm-objects"))
   {
-    menu_edit->setItemEnabled(id_paste, TRUE);
-    tbpaste->setEnabled(TRUE);
+    menu_edit->setItemEnabled(id_paste, true);
+    tbpaste->setEnabled(true);
   }
   else
   {
-    menu_edit->setItemEnabled(id_paste, FALSE);
-    tbpaste->setEnabled(FALSE);
+    menu_edit->setItemEnabled(id_paste, false);
+    tbpaste->setEnabled(false);
   }
 }
 
@@ -1445,10 +1445,10 @@ void MainWindow::sbMessage(QString s, int t)
 void MainWindow::fileNew()
 {
   int result;
-  bool sim=FALSE;
+  bool sim=false;
 
   if (doc_status.getMode()==DocStatus::Simulating)
-    sim=TRUE;
+    sim=true;
 
   if (project && project->hasChanged())
   {
@@ -1757,7 +1757,7 @@ bool MainWindow::fileSave()
     return result;
   }
 
-  return FALSE;
+  return false;
 }
 
 /// Saves the current file with a new name.
@@ -1789,7 +1789,7 @@ bool MainWindow::fileSaveAs()
     return result;
   }
 
-  return FALSE;
+  return false;
 }
 
 
@@ -1875,7 +1875,7 @@ bool MainWindow::fileExportEPS()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 
@@ -1900,7 +1900,7 @@ bool MainWindow::fileExportSVG()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 /// Exports the current diagram to a PNG file
@@ -1923,7 +1923,7 @@ bool MainWindow::fileExportPNG()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 /// Exports the current file to an AHDL tdf file
@@ -1939,7 +1939,7 @@ bool MainWindow::fileExportAHDL()
 	doc_options.applyOptions(this);
 	break;
       case QDialog::Rejected:
-	return TRUE;
+	return true;
 	break;
     }
 
@@ -1955,7 +1955,7 @@ bool MainWindow::fileExportAHDL()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 /// Exports the current file to a VHDL file
@@ -1974,7 +1974,7 @@ bool MainWindow::fileExportVHDL()
 	doc_options.applyOptions(this);
 	break;
       case QDialog::Rejected:
-	return TRUE;
+	return true;
 	break;
     }
 
@@ -1995,14 +1995,14 @@ bool MainWindow::fileExportVHDL()
 		  statusbar->message(tr("Export of file")+" "+ fileio->getActExportFileName() + " " +  
 				  tr("failed."), 2000);
 		  delete exp;
-		  return FALSE;
+		  return false;
 	  }
 
     if (!project || !exp)
-      return FALSE;
+      return false;
 
     if (!exp->validateMachine(project->machine))
-      return FALSE;
+      return false;
 
 
       QString path_entity=vhdl_export->getEntityPath();
@@ -2070,7 +2070,7 @@ bool MainWindow::fileExportVHDL()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 
@@ -2093,7 +2093,7 @@ bool MainWindow::fileExportIODescription()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 /// Exports VHDL Testbench
@@ -2247,7 +2247,7 @@ bool MainWindow::fileExportTestbench()
         }
         break;
       }
-      else return TRUE;
+      else return true;
       }
 
 
@@ -2264,7 +2264,7 @@ bool MainWindow::fileExportTestbench()
       delete testvector_out;
       delete testbench_out;
       delete package_out;
-      return FALSE;
+      return false;
     }
 
 
@@ -2293,7 +2293,7 @@ bool MainWindow::fileExportTestbench()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 /// Exports the current file to a Verilog HDL file
@@ -2309,7 +2309,7 @@ bool MainWindow::fileExportVerilog()
 	doc_options.applyOptions(this);
 	break;
       case QDialog::Rejected:
-	return TRUE;
+	return true;
 	break;
     }
 
@@ -2325,7 +2325,7 @@ bool MainWindow::fileExportVerilog()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 
@@ -2348,7 +2348,7 @@ bool MainWindow::fileExportKISS()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 /// Exports the current file to the 'vvvv Automata code' window
@@ -2392,7 +2392,7 @@ bool MainWindow::fileExportSCXML()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 
@@ -2427,7 +2427,7 @@ bool MainWindow::fileExportSTASCII()
 	doc_options.applyOptions(this);
 	break;
       case QDialog::Rejected:
-	return TRUE;
+	return true;
 	break;
     }
     QCursor oldcursor1 = cursor();
@@ -2452,7 +2452,7 @@ bool MainWindow::fileExportSTASCII()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 /// Exports the current file to a Latex state table
@@ -2469,7 +2469,7 @@ bool MainWindow::fileExportSTLatex()
 	doc_options.applyOptions(this);
 	break;
       case QDialog::Rejected:
-	return TRUE;
+	return true;
 	break;
     }
     QCursor oldcursor1 = cursor();
@@ -2494,7 +2494,7 @@ bool MainWindow::fileExportSTLatex()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 /// Exports the current file to a HTML state table
@@ -2510,7 +2510,7 @@ bool MainWindow::fileExportSTHTML()
 	doc_options.applyOptions(this);
 	break;
       case QDialog::Rejected:
-	return TRUE;
+	return true;
 	break;
     }
 
@@ -2535,7 +2535,7 @@ bool MainWindow::fileExportSTHTML()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 
@@ -2553,7 +2553,7 @@ bool MainWindow::fileExportRagel()
 	doc_options.applyOptions(this);
 	break;
       case QDialog::Rejected:
-	return TRUE;
+	return true;
 	break;
     }
 
@@ -2562,7 +2562,7 @@ bool MainWindow::fileExportRagel()
     result = fileio->exportFile(project, exp);
 
     if(!result)
-      return FALSE;
+      return false;
 
     QFileInfo fi(fileio->getActExportFileName());
     bool create_action_file=doc_options.getRagelCreateAction();
@@ -2573,7 +2573,7 @@ bool MainWindow::fileExportRagel()
       if (ftmp.exists())
       {
 	if (Error::warningOkCancel(tr("File %1 exists. Do you want to overwrite it?").arg(act_file))!=QMessageBox::Ok)
-	  create_action_file = FALSE;
+	  create_action_file = false;
       }
     }
 
@@ -2590,7 +2590,7 @@ bool MainWindow::fileExportRagel()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 
@@ -2613,7 +2613,7 @@ bool MainWindow::fileExportSMC()
     updateAll();
     return result;
   }
-  return FALSE;
+  return false;
 }
 
 
@@ -2689,12 +2689,12 @@ bool MainWindow::fileClose()
       {
 	case QMessageBox::Yes:
 	  if (!fileSave())
-	    return FALSE;
+	    return false;
 	  break;
 	case QMessageBox::No:
 	  break;
 	case QMessageBox::Cancel:
-	  return FALSE;
+	  return false;
 	  break;
       }
     }
@@ -2715,9 +2715,9 @@ bool MainWindow::fileClose()
 
     updateAll();
 
-    return TRUE;
+    return true;
   }
-  return FALSE;
+  return false;
 }
 
 
@@ -2738,10 +2738,10 @@ void MainWindow::editCut()
 {
   int count = wscroll->getDrawArea()->getSelection()->count();
 
-  bcut=TRUE;
+  bcut=true;
   editCopy();
   editDelete();
-  bcut=FALSE;
+  bcut=false;
 
   if (count==1)
     statusbar->message(QString::number(count) + " " + tr("object cut."), 2000);
@@ -3022,7 +3022,7 @@ void MainWindow::viewZoomIn()
   QPoint offset=wscroll->getDrawArea()->mapTo(wscroll,QPoint(0,0));
   middle -= offset;
 
-  wscroll->getDrawArea()->zoomIn(middle); //zoom->zoom(wscroll, p, TRUE);
+  wscroll->getDrawArea()->zoomIn(middle); //zoom->zoom(wscroll, p, true);
 }
 
 /// Zoom out the view.
@@ -3035,7 +3035,7 @@ void MainWindow::viewZoomOut()
   middle -= offset;
 
 
-  wscroll->getDrawArea()->zoomOut(middle); //zoom->zoom(wscroll, p, FALSE);
+  wscroll->getDrawArea()->zoomOut(middle); //zoom->zoom(wscroll, p, false);
 }
 
 /// Set zoom to 100%
@@ -3249,7 +3249,7 @@ void MainWindow::helpManual()
   QString tmppath;
   QSettings settings("HKEY_LOCAL_MACHINE\\Software\\Qfsm", QSettings::NativeFormat);
   tmppath = settings.value("Install_Dir", QVariant("-1")).toString();
-  //qDebug("tmppath: %s", tmppath.latin1());
+  //qDebug("tmppath: %s", tmppath.toLatin1());
   if (tmppath=="-1")
     dir = QDir::current();
   else

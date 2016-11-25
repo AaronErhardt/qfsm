@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 Qt 4 Port by Rainer Strobel
 
 replaced Qt 3 iterator by Qt 4 iterators
-removed setAutoDelete(FALSE) calls
+removed setAutoDelete(false) calls
 */
 
 #ifndef ICHECK_H
@@ -27,7 +27,7 @@ removed setAutoDelete(FALSE) calls
 
 #include <QObject>
 #include <qwidget.h>
-#include <q3ptrlist.h>
+#include <QList.h>
 #include "Options.h"
 #include "ICheckDlgImpl.h"
 

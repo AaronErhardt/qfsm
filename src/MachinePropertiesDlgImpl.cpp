@@ -29,9 +29,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *  name 'name' and widget flags set to 'f' 
  *
  *  The dialog will by default be modeless, unless you set 'modal' to
- *  TRUE to construct a modal dialog.
+ *  true to construct a modal dialog.
  */
-MachinePropertiesDlgImpl::MachinePropertiesDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
+MachinePropertiesDlgImpl::MachinePropertiesDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, name, modal, fl )
 {
   machinePropertiesDlg.setupUi(this);
@@ -48,7 +48,7 @@ MachinePropertiesDlgImpl::MachinePropertiesDlgImpl( QWidget* parent,  const char
   machinePropertiesDlg.lbox_arrowtype->insertItem(lb4);
   machinePropertiesDlg.lbox_arrowtype->insertItem(lb5);
 
-  machinePropertiesDlg.lbox_arrowtype->setVariableHeight(TRUE);
+  machinePropertiesDlg.lbox_arrowtype->setVariableHeight(true);
   
   //connects
 /*  QObject::connect(pb_ok, SIGNAL(clicked()), MachinePropertiesDlg, SLOT(accept()));
@@ -138,22 +138,22 @@ void MachinePropertiesDlgImpl::setType(int t)
 {
   if (t==1) 
   {
-    machinePropertiesDlg.rb_ascii->setChecked(TRUE); 
+    machinePropertiesDlg.rb_ascii->setChecked(true); 
     asciiClicked();
   }
   else if (t==0)
   {
-    machinePropertiesDlg.rb_binary->setChecked(TRUE); 
+    machinePropertiesDlg.rb_binary->setChecked(true); 
     binaryClicked();
   }
   else 
   {
-    machinePropertiesDlg.rb_text->setChecked(TRUE);
+    machinePropertiesDlg.rb_text->setChecked(true);
     freeTextClicked();
   }
 }
 
-void MachinePropertiesDlgImpl::enableType(bool et=TRUE)
+void MachinePropertiesDlgImpl::enableType(bool et=true)
 {
   machinePropertiesDlg.bg_type->setEnabled(et);
   
@@ -163,16 +163,16 @@ void MachinePropertiesDlgImpl::enableType(bool et=TRUE)
 /// Called when the 'Binary' radio button is clicked
 void MachinePropertiesDlgImpl::binaryClicked()
 {
-  machinePropertiesDlg.bg_moore->setEnabled(TRUE);
-  machinePropertiesDlg.bg_mealy->setEnabled(TRUE);
+  machinePropertiesDlg.bg_moore->setEnabled(true);
+  machinePropertiesDlg.bg_mealy->setEnabled(true);
 
   
-  machinePropertiesDlg.sb_mooreout->setEnabled(TRUE);
-  machinePropertiesDlg.sb_mealyin->setEnabled(TRUE);
-  machinePropertiesDlg.sb_mealyout->setEnabled(TRUE);
-  machinePropertiesDlg.le_mealyin->setEnabled(TRUE);
-  machinePropertiesDlg.le_mealyout->setEnabled(TRUE);
-  machinePropertiesDlg.le_mooreout->setEnabled(TRUE);
+  machinePropertiesDlg.sb_mooreout->setEnabled(true);
+  machinePropertiesDlg.sb_mealyin->setEnabled(true);
+  machinePropertiesDlg.sb_mealyout->setEnabled(true);
+  machinePropertiesDlg.le_mealyin->setEnabled(true);
+  machinePropertiesDlg.le_mealyout->setEnabled(true);
+  machinePropertiesDlg.le_mooreout->setEnabled(true);
   
 
 }
@@ -180,20 +180,20 @@ void MachinePropertiesDlgImpl::binaryClicked()
 /// Called when the 'ASCII' radio button is clicked
 void MachinePropertiesDlgImpl::asciiClicked()
 {
-  machinePropertiesDlg.bg_moore->setEnabled(FALSE);
-  machinePropertiesDlg.bg_mealy->setEnabled(FALSE);
+  machinePropertiesDlg.bg_moore->setEnabled(false);
+  machinePropertiesDlg.bg_mealy->setEnabled(false);
 
   saved_numbits=machinePropertiesDlg.sb_mooreout->value();
   saved_numin=machinePropertiesDlg.sb_mealyin->value();
   saved_numout=machinePropertiesDlg.sb_mealyout->value();
 
   
-  machinePropertiesDlg.sb_mealyin->setEnabled(FALSE);
-  machinePropertiesDlg.sb_mealyout->setEnabled(FALSE);
-  machinePropertiesDlg.sb_mooreout->setEnabled(FALSE);
-  machinePropertiesDlg.le_mealyin->setEnabled(FALSE);
-  machinePropertiesDlg.le_mealyout->setEnabled(FALSE);
-  machinePropertiesDlg.le_mooreout->setEnabled(FALSE);
+  machinePropertiesDlg.sb_mealyin->setEnabled(false);
+  machinePropertiesDlg.sb_mealyout->setEnabled(false);
+  machinePropertiesDlg.sb_mooreout->setEnabled(false);
+  machinePropertiesDlg.le_mealyin->setEnabled(false);
+  machinePropertiesDlg.le_mealyout->setEnabled(false);
+  machinePropertiesDlg.le_mooreout->setEnabled(false);
   
 
   machinePropertiesDlg.sb_mealyin->setValue(8);
@@ -204,8 +204,8 @@ void MachinePropertiesDlgImpl::asciiClicked()
 
 void MachinePropertiesDlgImpl::freeTextClicked()
 {
-  machinePropertiesDlg.bg_moore->setEnabled(FALSE);
-  machinePropertiesDlg.bg_mealy->setEnabled(FALSE);
+  machinePropertiesDlg.bg_moore->setEnabled(false);
+  machinePropertiesDlg.bg_mealy->setEnabled(false);
 
   machinePropertiesDlg.sb_mealyin->setValue(0);
   machinePropertiesDlg.sb_mealyout->setValue(0);

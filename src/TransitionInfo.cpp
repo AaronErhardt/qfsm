@@ -36,11 +36,11 @@ TransitionInfo::~TransitionInfo()
 {
 }
 
-/// Returns TRUE if this transition info has common input values with @a ti
+/// Returns true if this transition info has common input values with @a ti
 bool TransitionInfo::intersection(TransitionInfo* ti)
 {
   IOInfo* ioinf;
-  bool ret_val=FALSE;
+  bool ret_val=false;
   /*
   unsigned char buf[MAX_CHARARRAY_LENGTH];
   int length;
@@ -50,19 +50,19 @@ bool TransitionInfo::intersection(TransitionInfo* ti)
   ioinf = ti->getInputInfo();
 
   if(ti->getInputInfo()->isDefault() && inputs->isDefault())
-    return TRUE;
+    return true;
   else if(ti->getInputInfo()->isDefault() || inputs->isDefault())
-    return FALSE;
+    return false;
 
   if (type==Text && ti->getType()==Text)
   {
     if (inputs->equals(ti->getInputInfo()))
-      return TRUE;
+      return true;
   }
   else
   {
     if (type==Text || ti->getType()==Text)  // one is text, the other isn't
-      return FALSE;
+      return false;
     else if (type==Binary && ti->getType()==Binary)
     {
       
@@ -85,7 +85,7 @@ bool TransitionInfo::intersection(TransitionInfo* ti)
               delete l1.takeFirst();
             while (!l2.isEmpty())
               delete l2.takeFirst();
-            return TRUE;
+            return true;
           }
         }
       }
@@ -93,13 +93,13 @@ bool TransitionInfo::intersection(TransitionInfo* ti)
        delete l1.takeFirst();
      while (!l2.isEmpty())
        delete l2.takeFirst();
-      return FALSE;
+      return false;
 
     }
 
     /*
-    if (!ioinf->convertToASCII(buf, MAX_CHARARRAY_LENGTH, length, FALSE))
-    return FALSE;
+    if (!ioinf->convertToASCII(buf, MAX_CHARARRAY_LENGTH, length, false))
+    return false;
     */
     list = ioinf->getSinglesInversion();
     QListIterator<IOInfo*> i(list);
@@ -112,17 +112,17 @@ bool TransitionInfo::intersection(TransitionInfo* ti)
       //if (inputs->matches(&single))
       /*
       qDebug("checking if %s (in %s) matches %s", 
-      single->convertToString().latin1(), 
-      ioinf->convertToString().latin1(),
-      inputs->convertToString().latin1());
+      single->convertToString().toLatin1(), 
+      ioinf->convertToString().toLatin1(),
+      inputs->convertToString().toLatin1());
       */
       if (inputs->matches(single))
       {
 	/*
         qDebug("%s (in %s) matches %s", 
-        single->convertToString().latin1(), 
-        ioinf->convertToString().latin1(),
-        inputs->convertToString().latin1());
+        single->convertToString().toLatin1(), 
+        ioinf->convertToString().toLatin1(),
+        inputs->convertToString().toLatin1());
 	*/
 	
 	//exit(-1);

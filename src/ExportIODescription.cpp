@@ -75,7 +75,7 @@ void ExportIODescription::writeTable()
     QStringList::const_iterator i;
     for(i=inputs.constBegin(); i!=inputs.constEnd(); ++i)
     {
-      *out << ";\""<< i->latin1() << "\"";
+      *out << ";\""<< i->toLatin1().toStdString() << "\"";
     }
     *out << endl;
   }
@@ -86,7 +86,7 @@ void ExportIODescription::writeTable()
     QStringList::const_iterator i;
     for(i=outputs.constBegin(); i!=outputs.constEnd(); ++i)
     {
-      *out << ";\""<< i->latin1() << "\"";
+      *out << ";\""<< i->toLatin1().toStdString() << "\"";
     }
     *out << endl;
   }
@@ -99,7 +99,7 @@ void ExportIODescription::writeTable()
     QStringList::const_iterator i;
     for(i=outputs.constBegin(); i!=outputs.constEnd(); ++i)
     {
-      *out << ";\""<< i->latin1() << "\"";
+      *out << ";\""<< i->toLatin1().toStdString() << "\"";
     }
   }
   *out << endl;
@@ -110,7 +110,7 @@ void ExportIODescription::writeTable()
 
   for(is=states.constBegin(); is!=states.constEnd(); ++is)
   {
-    *out << "\"" << (*is)->getStateName().latin1() << "\"";
+    *out << "\"" << (*is)->getStateName().toLatin1().toStdString() << "\"";
     if(machine->getNumMooreOutputs()>0)
     {
       mooreOutput=(*is)->getMooreOutputs();

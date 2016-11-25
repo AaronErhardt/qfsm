@@ -24,12 +24,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 Undo::Undo(Project* p)
 {
   project = p;
-//  copylist.setAutoDelete(FALSE);
-//  slist.setAutoDelete(FALSE);
-//  slist2.setAutoDelete(FALSE);
-//  tlist.setAutoDelete(FALSE);
-//  tlist2.setAutoDelete(FALSE);
-//  doubletlist.setAutoDelete(TRUE);
+//  copylist.setAutoDelete(false);
+//  slist.setAutoDelete(false);
+//  slist2.setAutoDelete(false);
+//  tlist.setAutoDelete(false);
+//  tlist2.setAutoDelete(false);
+//  doubletlist.setAutoDelete(true);
   action=AddState;
   modified=false;
   state=NULL;

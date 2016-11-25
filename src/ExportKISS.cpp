@@ -80,17 +80,17 @@ void ExportKISS::writeName()
   n = machine->getName();
 
   /*
-  found = n.find(" ", count);
+  found = n.indexOf(" ", count);
   while (found!=-1)
   {
     n[found]='_';
     count=found+1;
-    found = n.find(" ", count);
+    found = n.indexOf(" ", count);
   }
     
   *out << "SUBDESIGN " << n << endl;
   */
-  *out << "# " << n.latin1() << endl << endl;
+  *out << "# " << n.toLatin1().toStdString() << endl << endl;
 }
 
 
@@ -102,11 +102,11 @@ void ExportKISS::writeIO()
   QString on;
   *out << ".i " << machine->getNumInputs() << endl;
   *out << ".o " << machine->getNumOutputs() << endl;
-  *out << ".ilb " << machine->getMealyInputNames(" ").latin1() << endl;
+  *out << ".ilb " << machine->getMealyInputNames(" ").toLatin1().toStdString() << endl;
   
   on = machine->getMealyOutputNames(" ");
   if (!on.isEmpty())
-    *out << ".ob " << on.latin1() << endl;
+    *out << ".ob " << on.toLatin1().toStdString() << endl;
   
 
   *out << endl;
@@ -118,7 +118,7 @@ void ExportKISS::writeVariables()
 {
   QString sn, c;
   GState* s;
-  bool first=TRUE;
+  bool first=true;
 
   *out << "VARIABLE" << endl;
   *out << "\tfsm\t:\tMACHINE OF BITS(" << machine->getMooreOutputNames() << ")" << endl;
@@ -141,7 +141,7 @@ void ExportKISS::writeVariables()
       *out << ",";
     *out << endl << "\t\t\t\t\t";
     *out << sn << " = B\"" << c << "\""; 
-    first=FALSE;
+    first=false;
   }
   i.toFirst();
 
@@ -159,7 +159,7 @@ void ExportKISS::writeVariables()
 	*out << ",";
       *out << endl << "\t\t\t\t\t";
       *out << sn << " = B\"" << c << "\""; 
-      first=FALSE;
+      first=false;
     }
   }
   *out << ");" << endl << endl;
@@ -176,7 +176,7 @@ void ExportKISS::writeMain()
 
   reset = machine->getInitialState();
   if (reset)
-    *out << ".r " << reset->getStateName().latin1() << endl << endl;
+    *out << ".r " << reset->getStateName().toLatin1().toStdString() << endl << endl;
 
   writeTransitions();
 }
@@ -221,12 +221,12 @@ void ExportKISS::writeTransitions()
 //	QList<IOInfo> iolist;
     QList<IOInfo*> iolist;
 	iolist = tioinfo->getSinglesInversion();
-//	iolist.setAutoDelete(TRUE);
+//	iolist.setAutoDelete(true);
 	
 //	QListIterator<IOInfo> ioit(iolist);
     QListIterator<IOInfo*> ioit(iolist);
 
-	first = TRUE;
+    first = true;
 	for(; ioit.hasNext();)
 	{
 
@@ -243,21 +243,21 @@ void ExportKISS::writeTransitions()
 	      *out << "0";
 
 	    tinfoi.replace(QRegExp("x"), "-");
-	    *out << tinfoi.latin1() << " "; // << "\" ";
+	    *out << tinfoi.toLatin1().toStdString() << " "; // << "\" ";
 
 	    sn2 = stmp->getStateName();
             sn2.replace(QRegExp(" "), "_");
 
-	    *out << sn1.latin1() << " " << sn2.latin1() << " ";
+	    *out << sn1.toLatin1().toStdString() << " " << sn2.toLatin1().toStdString() << " ";
 
 	    slen = tinfoo.length();
 	    int numout = machine->getNumOutputs();
 	    for(int l=slen; l<numout; l++)
 	      *out << "0";
 
-	    *out << tinfoo.latin1() << endl;
+	    *out << tinfoo.toLatin1().toStdString() << endl;
 
-	    first=FALSE;
+        first=false;
 	  }
 	}
       }

@@ -61,13 +61,13 @@ void ExportSMC::writeMain()
 
   initial = machine->getInitialState();
 
-  *out << "%class " << machine->getName().latin1() << endl;
+  *out << "%class " << machine->getName().toLatin1() << endl;
   *out << endl;
   /*
-  *out << "%fsmclass " << machine->getName().latin1() << endl;
+  *out << "%fsmclass " << machine->getName().toLatin1() << endl;
   *out << endl;
   */
-  *out << "%start MainMap::" << initial->getStateName().latin1() << endl;
+  *out << "%start MainMap::" << initial->getStateName().toLatin1() << endl;
   *out << endl;
   *out << "%map MainMap" << endl;
   *out << "%%" << endl;
@@ -107,7 +107,7 @@ void ExportSMC::writeTransitions()
     sn1 = s->getStateName();
     sn1.replace(QRegExp(" "), "_");
 
-    *out << sn1.latin1() << endl;
+    *out << sn1.toLatin1() << endl;
 
     QMutableListIterator<GTransition*> it(s->tlist);
 
@@ -122,7 +122,7 @@ void ExportSMC::writeTransitions()
       {
 	act = (*sit).trimmed();
 	act.replace(QRegExp(" "), "_");
-	*out << "  " << act.latin1() << ";" << endl;
+	*out << "  " << act.toLatin1() << ";" << endl;
 	++sit;
       }
       *out << "}" << endl;
@@ -138,7 +138,7 @@ void ExportSMC::writeTransitions()
       {
 	act = (*sit).trimmed();
 	act.replace(QRegExp(" "), "_");
-	*out << "  " << act.latin1() << ";" << endl;
+	*out << "  " << act.toLatin1() << ";" << endl;
 	++sit;
       }
       *out << "}" << endl;
@@ -169,8 +169,8 @@ void ExportSMC::writeTransitions()
 	  if (tioinfo->isDefault()) // default transition
 	    *out << "  Default" << endl;
 	  else // not default transition
-	    *out << "  " << tinfoi_processed.latin1() << endl; 
-	  *out << "    " << sn2.latin1() << endl;
+	    *out << "  " << tinfoi_processed.toLatin1() << endl; 
+	  *out << "    " << sn2.toLatin1() << endl;
 	  *out << "    {" << endl;
 	  if (!tinfoo.isEmpty())
 	  {
@@ -179,7 +179,7 @@ void ExportSMC::writeTransitions()
 	    {
 	      tinfoo_processed = (*sit).trimmed();
 	      tinfoo_processed.replace(QRegExp(" "), "_");
-	      *out << "      " << tinfoo_processed.latin1() << ";" << endl;
+	      *out << "      " << tinfoo_processed.toLatin1() << ";" << endl;
 	      ++sit;
 	    }
 	  }

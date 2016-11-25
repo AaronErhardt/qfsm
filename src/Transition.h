@@ -53,7 +53,7 @@ class Transition
     /// Sets the transition condition to @a i
     void setInfo(TransitionInfo* i) { info=i; };
     
-    static int conditionValid(int type, QString , bool input=TRUE);
+    static int conditionValid(int type, QString , bool input=true);
 
   protected:
     /// Start state

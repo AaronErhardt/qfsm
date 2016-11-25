@@ -17,14 +17,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include <math.h>
-#include <q3listbox.h>
+#include <QList.h>
 #include <qpen.h>
 #include <qpainter.h>
 #include <qstyle.h>
 //Added by qt3to4:
-#include <Q3PointArray>
+//#include <Q3PointArray>
 #include <QStyle>
 #include <QStyleOptionFocusRect>
+#include <QListWidget>
 
 #include "ListBoxItems.h"
 #include "Const.h"
@@ -34,12 +35,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  * Constructor.
  * Intialises the list box item for the listbox @a lb.
  */
-LBArrowLine::LBArrowLine(Q3ListBox* lb)
-	   : Q3ListBoxItem(lb)
+LBArrowLine::LBArrowLine(QListWidget* lb)
+	   : QListBoxItem(lb)
 {
   h = 30;
   w = 30;
-  setCustomHighlighting(TRUE);
+  setCustomHighlighting(true);
 }
 
 
@@ -115,7 +116,7 @@ LBArrowFilled::LBArrowFilled(Q3ListBox* lb)
 {
   h = 30;
   w = 30;
-  setCustomHighlighting(TRUE);
+  setCustomHighlighting(true);
 }
 
 
@@ -168,7 +169,7 @@ void LBArrowFilled::paint(QPainter* p)
     listBox()->style()->drawPrimitive(QStyle::PE_FrameFocusRect, &option, p, listBox());
 
 //    listBox()->style().drawFocusRect(p, r, listBox()->colorGroup(),
-//      &p->backgroundColor(), TRUE);
+//      &p->backgroundColor(), true);
   }
 
   h = 2*wi;
@@ -202,7 +203,7 @@ LBArrowWhite::LBArrowWhite(Q3ListBox* lb)
 {
   h = 30;
   w = 30;
-  setCustomHighlighting(TRUE);
+  setCustomHighlighting(true);
 }
 
 
@@ -255,7 +256,7 @@ void LBArrowWhite::paint(QPainter* p)
     listBox()->style()->drawPrimitive(QStyle::PE_FrameFocusRect, &option, p, listBox());
 
 //    listBox()->style().drawFocusRect(p, r, listBox()->colorGroup(),
-//      &p->backgroundColor(), TRUE);
+//      &p->backgroundColor(), true);
   }
 
   h = 2*wi;
@@ -290,7 +291,7 @@ LBArrowFilledPointed::LBArrowFilledPointed(Q3ListBox* lb)
 {
   h = 30;
   w = 30;
-  setCustomHighlighting(TRUE);
+  setCustomHighlighting(true);
 }
 
 
@@ -343,7 +344,7 @@ void LBArrowFilledPointed::paint(QPainter* p)
     listBox()->style()->drawPrimitive(QStyle::PE_FrameFocusRect, &option, p, listBox());
 
 //    listBox()->style().drawFocusRect(p, r, listBox()->colorGroup(),
-//      &p->backgroundColor(), TRUE);
+//      &p->backgroundColor(), true);
   }
 
   h = 2*wi;
@@ -378,7 +379,7 @@ LBArrowWhitePointed::LBArrowWhitePointed(Q3ListBox* lb)
 {
   h = 30;
   w = 30;
-  setCustomHighlighting(TRUE);
+  setCustomHighlighting(true);
 }
 
 
@@ -431,7 +432,7 @@ void LBArrowWhitePointed::paint(QPainter* p)
     listBox()->style()->drawPrimitive(QStyle::PE_FrameFocusRect, &option, p, listBox());
 
 //    listBox()->style().drawFocusRect(p, r, listBox()->colorGroup(),
-//      &p->backgroundColor(), TRUE);
+//      &p->backgroundColor(), true);
   }
 
   h = 2*wi;

@@ -1,0 +1,1198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts;xlf</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts;xlf</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Distribution Files">
+      <UniqueIdentifier>{B83CAF91-C7BF-462F-B76C-EA11631F866C}</UniqueIdentifier>
+      <Extensions>*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Distribution Files">
+      <UniqueIdentifier>{B83CAF91-C7BF-462F-B76C-EA11631F866C}</UniqueIdentifier>
+      <Extensions>*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\AppInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Convert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DRect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DocStatus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DrawArea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Edit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Error.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Export.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportAHDL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportAHDLDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportEPS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportIODescription.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportKISS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportPNG.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportRagel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportRagelDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportSCXML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportSVG.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportStateTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportStateTableDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportTestbenchDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportTestbenchVHDL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportTestvectorASCII.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportVHDL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportVHDLDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportVVVV.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportVVVVDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportVerilog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExportVerilogDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GITransition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GTransition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Grid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ICheck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ICheckDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IOInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IOInfoASCII.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IOInfoBin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IOInfoList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IOInfoText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IOViewDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Import.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImportGraphviz.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ListBoxItems.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Machine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MachineManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MachinePropertiesDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MainControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MimeMachine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OptDisplayDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OptGeneral.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OptGeneralDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OptPrintingDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Options.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrintManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Project.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScrollView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Selection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Simulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SimulatorDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\State.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StateManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StatePropertiesDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StatusBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TableBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TableBuilderASCII.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TableBuilderHTML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TableBuilderLatex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TestvectorGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ToolTipSV.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Transition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TransitionInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TransitionInfoASCII.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TransitionInfoBin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TransitionInfoText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TransitionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TransitionPropertiesDlgImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Undo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UndoBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WSpinBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XMLHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Zoom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_AppInfo.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_Draw.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_DrawArea.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_Edit.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_Export.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_ExportAHDLDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_ExportRagel.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_ExportRagelDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_ExportStateTableDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_ExportTestbenchDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_ExportVHDLDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_ExportVVVVDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_ExportVerilogDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_FileIO.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_GState.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_ICheckDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_IOViewDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_Import.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_Machine.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_MachineManager.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_MachinePropertiesDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_MainControl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_MainWindow.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_OptDisplayDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_OptGeneralDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_OptPrintingDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_Options.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_PrintManager.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_Project.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_ScrollView.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_Selection.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_Simulator.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_SimulatorDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_StateManager.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_StatePropertiesDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_StatusBar.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_TableBuilder.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_TableBuilderASCII.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_TableBuilderHTML.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_TableBuilderLatex.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_TestvectorGenerator.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_TransitionPropertiesDlgImpl.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_WSpinBox.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_XMLHandler.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TabDialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_TabDialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneralTab.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mocs\moc_GeneralTab.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\AppInfo.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Draw.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\DrawArea.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Edit.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Export.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportAHDLDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportRagel.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportRagelDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportStateTableDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportTestbenchDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportVHDLDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportVVVVDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportVerilogDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\FileIO.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\GState.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ICheckDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\IOViewDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Import.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Machine.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\MachineManager.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\MachinePropertiesDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\MainControl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\MainWindow.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\OptDisplayDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\OptGeneralDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\OptPrintingDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Options.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\PrintManager.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Project.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ScrollView.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Selection.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Simulator.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\SimulatorDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\StateManager.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\StatePropertiesDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\StatusBar.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\TableBuilder.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\TableBuilderASCII.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\TableBuilderHTML.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\TableBuilderLatex.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\TestvectorGenerator.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\TransitionPropertiesDlgImpl.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\WSpinBox.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\XMLHandler.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Const.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Convert.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\DRect.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\DocStatus.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Error.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportAHDL.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportAHDLDlg.ui.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportEPS.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportIODescription.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportKISS.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportPNG.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportSCXML.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportSVG.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportStateTable.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportStateTableDlg.ui.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportTestbenchVHDL.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportTestvectorASCII.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportVHDL.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportVHDLDlg.ui.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportVVVV.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportVerilog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportVerilogDlg.ui.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\GITransition.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\GObject.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\GTransition.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Grid.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ICheck.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ICheckDlg.ui.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\IOInfo.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\IOInfoASCII.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\IOInfoBin.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\IOInfoList.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\IOInfoText.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ImportGraphviz.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ListBoxItems.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\MachinePropertiesDlg.ui.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\MimeMachine.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\OptDisplayDlg.ui.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\OptGeneral.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\OptGeneralDlg.ui.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\SimulatorDlg.ui.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\State.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\StatePropertiesDlg.ui.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ToolTipSV.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Transition.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\TransitionInfo.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\TransitionInfoASCII.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\TransitionInfoBin.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\TransitionInfoText.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\TransitionManager.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\TransitionPropertiesDlg.ui.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Undo.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\UndoBuffer.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Utils.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Zoom.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="desktop\resource.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="po\English.ts">
+      <Filter>Translation Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="po\French.ts">
+      <Filter>Translation Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="po\German.ts">
+      <Filter>Translation Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\.qfsm.docbook.swp">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="po\English.qm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="po\French.qm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="po\German.qm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\LICENSE">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\addstate.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\addtrans.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\arrow.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="examples\ascii_example3.fsm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="examples\bin_example2.fsm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\c_mag.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\copy.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\cross.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\cut.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="examples\datum.fsm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\doc_Makefile">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\editcopy.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\editcopy_old.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\editcopyoff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\editcut.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\editcut_old.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\editcutoff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\editpaste.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\editpasteoff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\editundo.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\editundooff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\filenew.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\fileopen.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\fileprint.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\fileprintoff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\filesave.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\filesaveoff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="examples\float.fsm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\greenlight.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\greylight.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="examples\integer.fsm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\integrity_check.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\machine_properties.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\machinesim.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\machinesimoff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\machinesimulate.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\machinesimulate_old.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\magnifier.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\new.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\open.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\pan.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\pan.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\panoff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\paste.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\print.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="desktop\qfsm.desktop">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\qfsm.docbook">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\qfsm.fo">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\qfsm.html">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="desktop\qfsm.ico">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\qfsm.pdf">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="desktop\32x32\apps\qfsm.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="desktop\48x48\apps\qfsm.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="desktop\64x64\apps\qfsm.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\qfsm.rtf">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\qfsm_64.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\redlight.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\save.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\scissors.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\select.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\select.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\select_old.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\selectoff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\selectoff_old.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\simulate.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\simulation.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\state_properties.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\statenew.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\statenewoff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\straighten.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="examples\text_example.fsm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\tick.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\toolbar.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\toolbar2.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\toolbar3.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\transition_properties.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\transnew.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\transnewoff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\transstraighten.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\transstraightenoff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\undo.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\working_area.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\working_area.xcf">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\working_area2.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="desktop\x-qfsm.desktop">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="desktop\x-qfsm.ico">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="desktop\32x32\mimetypes\x-qfsm.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="desktop\48x48\mimetypes\x-qfsm.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="desktop\64x64\mimetypes\x-qfsm.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\zoom.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\zoom.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\zoomin.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\zoomin.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\zoominoff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\zoomoff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="doc\user\zoomout.png">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\zoomout.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="pics\zoomoutoff.xpm">
+      <Filter>Distribution Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TabDialog.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GeneralTab.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\ExportAHDLDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportRagelDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportStateTableDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportTestbenchDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportVHDLDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportVVVVDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ExportVerilogDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\ICheckDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\IOViewDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\MachinePropertiesDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\OptDisplayDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\OptGeneralDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\OptPrintingDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\SimulatorDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\StatePropertiesDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\TransitionPropertiesDlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="desktop\qfsm.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_ExportAHDLDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ExportRagelDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ExportStateTableDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ExportTestbenchDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ExportVHDLDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ExportVVVVDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ExportVerilogDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ICheckDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_IOViewDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_MachinePropertiesDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_OptDisplayDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_OptGeneralDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_OptPrintingDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_SimulatorDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_StatePropertiesDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_TransitionPropertiesDlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,6 +1,6 @@
 #include <qcheckbox.h>
 #include <qradiobutton.h>
-#include <q3buttongroup.h>
+//#include <q3buttongroup.h>
 
 #include "ExportRagelDlgImpl.h"
 #include "Options.h"
@@ -10,9 +10,9 @@
  *  name 'name' and widget flags set to 'f' 
  *
  *  The dialog will by default be modeless, unless you set 'modal' to
- *  TRUE to construct a modal dialog.
+ *  true to construct a modal dialog.
  */
-ExportRagelDlgImpl::ExportRagelDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
+ExportRagelDlgImpl::ExportRagelDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, name, modal, fl )
 {
   exportRagelDlg.setupUi(this);
@@ -65,7 +65,7 @@ void ExportRagelDlgImpl::langRubyClicked()
 
 void ExportRagelDlgImpl::init(Options* opt)
 {
-  create_action = FALSE; //opt->getRagelCreateAction();
+  create_action = false; //opt->getRagelCreateAction();
   exportRagelDlg.cb_actionfile->setChecked(create_action);
   lang_action = opt->getRagelLangAction();
   exportRagelDlg.bg_lang->setEnabled(create_action);
@@ -75,8 +75,8 @@ void ExportRagelDlgImpl::init(Options* opt)
 //  bg_lang->setButton(lang_action);
   /*
   bg_lang->setButton(0);
-  rb_java->setEnabled(FALSE);
-  rb_ruby->setEnabled(FALSE);
+  rb_java->setEnabled(false);
+  rb_ruby->setEnabled(false);
   */
 
 }

@@ -27,7 +27,7 @@ ToolTipSV::ToolTipSV(QWidget* parent)
   par=parent;
   QFont f("Courier");
   f.setStyleHint(QFont::TypeWriter);
-  f.setFixedPitch(TRUE);
+  f.setFixedPitch(true);
 //  setFont(f);
   QToolTip::setFont(f);
 }

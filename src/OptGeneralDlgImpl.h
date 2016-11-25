@@ -38,7 +38,7 @@ class OptGeneralDlgImpl : public QDialog
         Ui::OptGeneralDlg optGeneralDlg;
 
 public:
-    OptGeneralDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    OptGeneralDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~OptGeneralDlgImpl();
 
     void init();

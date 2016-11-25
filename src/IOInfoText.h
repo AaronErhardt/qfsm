@@ -49,10 +49,10 @@ class IOInfoText : public IOInfo
     QString convertToComparableString(Machine* m=NULL, Options* opt=NULL) const;
     QString convertToBinStr(Machine* m=NULL, Options* opt=NULL) const;
     QString convertToHexStr() const;
-    bool convertToASCII(unsigned char* ascii, int maxlen, int& length, bool singlechar=FALSE) const;
+    bool convertToASCII(unsigned char* ascii, int maxlen, int& length, bool singlechar=false) const;
     IOInfoBin convertToBin(int numbits) const;
     int convertToInt() const;
-    void convertToBinList(IOInfoList& list, bool resolve_invert=TRUE) const;
+    void convertToBinList(IOInfoList& list, bool resolve_invert=true) const;
 
     int getLength() const { return info.length()*8; } ;
     bool isSingle() const;
@@ -60,7 +60,7 @@ class IOInfoText : public IOInfo
     /// Returns the I/O info
     QString getInfo() { return info; };
     /// Sets the I/O info
-    void setInfo(QString i) { info = i.stripWhiteSpace(); };
+    void setInfo(QString i) { info = i.trimmed(); };
     void setBin(QString bin, int numbits);
     void setASCII(const unsigned char* ascii, int asciilen, int numbits); 
     void setString(QString string, int numbits);

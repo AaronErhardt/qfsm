@@ -18,7 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
 #include <qregexp.h>
-#include <qprinter.h>
+#include <QPrinter.h>
 #include <qpainter.h>
 #include <qfile.h>
 #include <QTextStream>
@@ -81,7 +81,7 @@ void ExportEPS::doExport()
     {
       delete painter;
       delete printer;
-      exportSuccessful = FALSE;
+      exportSuccessful = false;
     }
     Draw* draw = new Draw(scrollview, options);
     QRect rect = draw->getBoundingBox(machine, painter);
@@ -98,7 +98,7 @@ void ExportEPS::doExport()
     draw->drawStates(machine, painter, 0, 0, 1.0);
     draw->drawTransitions(machine, painter, 0, 0, 1.0);
     if (machine->getDrawITrans())
-      draw->drawInitialTransition(machine, machine->getInitialTransition(), painter, 0, 0, 1.0, textrect, FALSE);
+      draw->drawInitialTransition(machine, machine->getInitialTransition(), painter, 0, 0, 1.0, textrect, false);
 
     // delete painter and printer before we try to open and fix the file
     delete painter;
@@ -138,14 +138,14 @@ bool ExportEPS::fixEPS(const QString &fileName, QRect rect) const
     QRegExp rx("%%BoundingBox:\\s*(-?[\\d\\.:]+)\\s*(-?[\\d\\.:]+)\\s*(-?[\\d\\.:]+)\\s*(-?[\\d\\.:]+)");
     const int pos = rx.search(fileContent);
     if (pos < 0) {
-        cerr << "ExportEPS::fixEPS(" << fileName.latin1()
+        cerr << "ExportEPS::fixEPS(" << fileName.toLatin1().toStdString()
                   << "): cannot find %%BoundingBox" << endl;
         return false;
     }
 
     // write new content to file
     if (! epsfile.open(IO_WriteOnly | IO_Truncate)) {
-        cerr << "ExportEPS::fixEPS(" << fileName.latin1()
+        cerr << "ExportEPS::fixEPS(" << fileName.toLatin1()
                   << "): cannot open file for writing" << endl;
         return false;
     }

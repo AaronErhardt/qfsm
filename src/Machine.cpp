@@ -55,10 +55,10 @@ Machine::Machine(QObject* parent/*=NULL*/, const char* n/*=0*/)
   //transition_font.setStyleStrategy(QFont::PreferBitmap);
   arrow_type=1;
   type = 1;  // set to ASCII machine by default
-  drawITrans = TRUE;
+  drawITrans = true;
   checker=NULL;
 
-//  state_list.setAutoDelete(TRUE);
+//  state_list.setAutoDelete(true);
 
 }
 
@@ -98,10 +98,10 @@ Machine::Machine(QObject* parent, const QString n, QString v, QString a, QString
   state_font = sf;
   transition_font = tf;
   arrow_type=atype;
-  drawITrans = TRUE;
+  drawITrans = true;
   checker=NULL;
 
-//  state_list.setAutoDelete(TRUE);
+//  state_list.setAutoDelete(true);
 }
 
 
@@ -211,7 +211,7 @@ void Machine::setNumOutputs(int no)
  */
 bool Machine::addState(const QString sname, QString sdescription, int code, 
     		           IOInfo* mooreout, double xpos, double ypos, int radius, 
-		               double scale, QPen pen, bool endstate, bool withundo/*=TRUE*/,
+		               double scale, QPen pen, bool endstate, bool withundo/*=true*/,
 			       QString entry_actions/*=""*/, QString exit_actions/*=""*/)
 {
   GState* s = new GState(this, sname, sdescription, code, mooreout, xpos, ypos, radius, pen, endstate, entry_actions, exit_actions);
@@ -227,7 +227,7 @@ bool Machine::addState(const QString sname, QString sdescription, int code,
     project->getUndoBuffer()->addState(this, s);
 
   updateCanvasSize(int(xpos+radius+50), int(ypos+radius+50), scale);
-  return TRUE;
+  return true;
 }
 
 
@@ -235,17 +235,17 @@ bool Machine::addState(const QString sname, QString sdescription, int code,
  * Adds a state to the machine.
  *
  * @param s State to add
- * @param withundo If TRUE this step can be undone
- * @returns TRUE if successful
+ * @param withundo If true this step can be undone
+ * @returns true if successful
  */
-bool Machine::addState(GState* s, bool withundo/*=TRUE*/)
+bool Machine::addState(GState* s, bool withundo/*=true*/)
 {
   double xpos, ypos, radius;
 
   if (s)
     state_list.append(s);
   else
-    return FALSE;
+    return false;
   
   s->getPos(xpos, ypos);
   radius = s->getRadius();
@@ -260,7 +260,7 @@ bool Machine::addState(GState* s, bool withundo/*=TRUE*/)
     project->getUndoBuffer()->addState(this, s);
 
   updateCanvasSize(int(xpos+radius+50), int(ypos+radius+50), 1.0);
-  return TRUE;
+  return true;
 }
 
 /**
@@ -280,7 +280,7 @@ void Machine::removeState(GState* s)
   if (!s)
     return;
 
-//  s->tlist.setAutoDelete(FALSE);
+//  s->tlist.setAutoDelete(false);
 
   while (ti.hasNext())
   {
@@ -301,8 +301,8 @@ void Machine::removeState(GState* s)
     t->setEnd(NULL);
   }
 
-//  s->tlist.setAutoDelete(TRUE);
-  s->select(FALSE);
+//  s->tlist.setAutoDelete(true);
+  s->select(false);
   s->setDeleted();
 
   if (s==initial_state)
@@ -365,7 +365,7 @@ GState* Machine::getState(QPoint p, double scale)
 QList<GState*> Machine::getFinalStates()
 {
   QList<GState*> ltmp;
-//  ltmp.setAutoDelete(FALSE);
+//  ltmp.setAutoDelete(false);
 
   QListIterator<GState*> it(state_list);
   for(; it.hasNext();)
@@ -712,7 +712,7 @@ void Machine::setMooreOutputNames(int num, QString string)
 
     if (string[i]==',')
     {
-      s = s.stripWhiteSpace();
+      s = s.trimmed();
       if (s.isEmpty())
         s = "s_out"+tmp.setNum(num-count-1);
       replaceChar(s, ' ', '_');
@@ -725,7 +725,7 @@ void Machine::setMooreOutputNames(int num, QString string)
   }
   if (s!="")
   {
-    s = s.stripWhiteSpace();
+    s = s.trimmed();
     replaceChar(s, ' ', '_');
     output_names_moore.append(s);
   }
@@ -815,12 +815,12 @@ QStringList Machine::translateNames(QString names)
         if(ok==true)
         {
           for(int c=indexstart; c>=indexend; c--)
-            ret.append((i->left(pos1)).stripWhiteSpace()+"["+QString::number(c)+"]");
+            ret.append((i->left(pos1)).trimmed()+"["+QString::number(c)+"]");
         }
       }
     }
     if(!ok)
-        ret.append(i->stripWhiteSpace());
+        ret.append(i->trimmed());
   }
   
   return ret;
@@ -897,7 +897,7 @@ QString Machine::getStateEncodingOutputNames(QString separator/*=", "*/)
 {
   //int count=0;
   QString s;
-  bool first=TRUE;
+  bool first=true;
 
 
   for(int i=0; i<getNumEncodingBits(); i++)
@@ -909,7 +909,7 @@ QString Machine::getStateEncodingOutputNames(QString separator/*=", "*/)
       s += separator;
 
     s += "s"+tmp;
-    first = FALSE;
+    first = false;
   }
   return s;
 }
@@ -982,7 +982,7 @@ void Machine::setMealyInputNames(int num, QString string)
 
     if (string[i]==',')
     {
-      s = s.stripWhiteSpace();
+      s = s.trimmed();
       if (s.isEmpty())
         s = "i_"+tmp.setNum(num-count-1);
       replaceChar(s, ' ', '_');
@@ -995,7 +995,7 @@ void Machine::setMealyInputNames(int num, QString string)
   }
   if (s!="")
   {
-    s = s.stripWhiteSpace();
+    s = s.trimmed();
     replaceChar(s, ' ', '_');
     input_names.append(s);
   }
@@ -1056,7 +1056,7 @@ void Machine::setMealyOutputNames(int num, QString string)
 
     if (string[i]==',')
     {
-      s = s.stripWhiteSpace();
+      s = s.trimmed();
       if (s.isEmpty())
         s = "o_"+tmp.setNum(num-count-1);
       replaceChar(s, ' ', '_');
@@ -1069,7 +1069,7 @@ void Machine::setMealyOutputNames(int num, QString string)
   }
   if (s!="")
   {
-    s = s.stripWhiteSpace();
+    s = s.trimmed();
     replaceChar(s, ' ', '_');
     output_names.append(s);
   }
@@ -1184,11 +1184,11 @@ bool Machine::checkStateCodes()
 	  if(s2->isDeleted())
 		  continue;
       if(s2->getEncoding() == s1->getEncoding())
-        return FALSE;
+        return false;
     }
   }
   
-  return TRUE;
+  return true;
 }
 
 
@@ -1218,7 +1218,7 @@ void Machine::getEventList(IOInfoList& list, Options* opt)
   GTransition* t;
   IOInfo *info;
   IOInfoList iolist;
-//  iolist.setAutoDelete(TRUE);
+//  iolist.setAutoDelete(true);
 
   list.clear();
 
@@ -1273,7 +1273,7 @@ void Machine::resetMarks()
   while(is.hasNext())
   {
     s = is.next();
-    s->setMark(FALSE);
+    s->setMark(false);
     QMutableListIterator<GTransition*> it(s->tlist);
 
     while(it.hasNext())

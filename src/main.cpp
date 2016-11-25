@@ -112,7 +112,7 @@ int main(int argc, char** argv)
   QListIterator<IOInfo> it(res);
   for(;it.current(); ++it)
   {
-    qDebug("%s", it.current()->convertToString().latin1());
+    qDebug("%s", it.current()->convertToString().toLatin1());
   }
   */
   /*
@@ -123,7 +123,7 @@ int main(int argc, char** argv)
   QListIterator<IOInfo> it(list);
   for(;it.current(); ++it)
   {
-    qDebug("%s", it.current()->convertToString().latin1());
+    qDebug("%s", it.current()->convertToString().toLatin1());
   }
   */
   
@@ -222,7 +222,7 @@ QString loadLanguage(QTranslator* trans)
       case QLocale::French: s="French"; break;
       default: s="English"; break;
     }
-    qDebug("Most appropriate system locale: %s", s.latin1());
+    qDebug("Most appropriate system locale: %s", s.toLatin1());
 #else
       //return QString::null;
     QString s_lang, s2;
@@ -236,13 +236,13 @@ QString loadLanguage(QTranslator* trans)
       s="Russian";
     else
       s="Englisch";
-    qDebug("Locale by $LANG: %s", s.latin1());
+    qDebug("Locale by $LANG: %s", s.toLatin1());
 #endif
   }
   else
   {
     fin >> s;
-    qDebug("Locale by language file: %s", s.latin1());
+    qDebug("Locale by language file: %s", s.toLatin1());
   }
 
 
@@ -255,7 +255,7 @@ QString loadLanguage(QTranslator* trans)
     QString tmppath;
     QSettings settings("HKEY_LOCAL_MACHINE\\Software\\Qfsm", QSettings::NativeFormat);
     tmppath = settings.value("Install_Dir", QVariant("-1")).toString();
-    qDebug("tmppath: %s", tmppath.latin1());
+    qDebug("tmppath: %s", tmppath.toLatin1());
     if (tmppath=="-1")
 	    dir = QDir::current();
     else
@@ -268,7 +268,7 @@ QString loadLanguage(QTranslator* trans)
     qfsmpath = QFSM_LANGUAGE_DIR;
     dir = QDir(qfsmpath); //QDir::current();
 #endif
-    qDebug("Looking for language files in %s", qfsmpath.latin1());
+    qDebug("Looking for language files in %s", qfsmpath.toLatin1());
 //	QMessageBox::information(NULL, "debug info", qfsmpath);
   }
   else

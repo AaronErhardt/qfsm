@@ -26,7 +26,7 @@ This means that they have to be deleted with delete. There is no
 AutoDelete feature for them.
 
 in all constructors:
-removed tlist.setAutoDelete(TRUE) and reflist.setAutoDelete(FALSE)
+removed tlist.setAutoDelete(true) and reflist.setAutoDelete(false)
 because the AutoDelete feature does not exist in Qt 4 and the new QList
 uses references instead of pointers
 
@@ -48,7 +48,7 @@ but sometimes it may be needed to call delete during runtime.
 #include <qpen.h>
 #include <qbrush.h>
 #include <qfont.h>
-#include <q3ptrlist.h>
+#include <QList.h>
 
 #include "State.h"
 #include "GObject.h"
@@ -105,17 +105,17 @@ class GState : public QObject, public State, public GObject
     /// Sets integrity check mark
     void setMark(const bool m) { mark = m; };
 
-    void copyTransitions(GState*, bool =FALSE);
+    void copyTransitions(GState*, bool =false);
     void copyTransitionAttributes(GState*, QList<GTransition*>*);
     void copyAttributes(GState*);
     void debugTransitions(/*int, int numout */);
 
     void addTransition(Project*, GState* , TransitionInfo*, double sx, double sy,
-      double ex, double ey, double c1x=0, double c1y=0, double c2x=0, double c2y=0, QString="", bool straight=TRUE, 
-      bool withundo=TRUE);
-    void addTransition(Project*, GTransition* t, bool withundo=TRUE);
-    void move(double , double, DrawArea* , Machine* m, bool redraw=TRUE,
-              bool firstRedraw=FALSE);
+      double ex, double ey, double c1x=0, double c1y=0, double c2x=0, double c2y=0, QString="", bool straight=true, 
+      bool withundo=true);
+    void addTransition(Project*, GTransition* t, bool withundo=true);
+    void move(double , double, DrawArea* , Machine* m, bool redraw=true,
+              bool firstRedraw=false);
     void removeTransition(GTransition* );
     void removeTransitionEnd(GTransition* );
     DRect getMaxRect();

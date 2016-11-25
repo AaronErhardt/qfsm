@@ -83,7 +83,7 @@ class TransitionInfo
     /// Sets the output size (in bits)
     virtual void setOutputsSize(int bits)=0;
 
-    /// Returns TRUE if @a io matches this transition info, otherwise FALSE
+    /// Returns true if @a io matches this transition info, otherwise false
     virtual bool matches(IOInfo* io)=0;
     bool intersection(TransitionInfo* );
 

@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 Qt 4 Port by Rainer Strobel
 
 in method writeHeader:
-one of the .latin1() calls did not exist
+one of the .totoLatin1().toStdString() calls did not exist
 */
 
 #ifndef EXPORT_H
@@ -55,7 +55,7 @@ class Export : public QObject
     /// Returns the appropriate filter string for the file dialog.
     virtual QString fileFilter()=0;
     /// Verifies if the machine is in a valid form for exporting 
-    virtual bool validateMachine(Machine* ) { return TRUE; };
+    virtual bool validateMachine(Machine* ) { return true; };
 	/// Returns the default file extension
 	virtual QString defaultExtension()=0;
 

@@ -16,7 +16,7 @@
   </property>
   <layout class="QVBoxLayout">
    <item>
-    <widget class="Q3ButtonGroup" name="ButtonGroup11">
+    <widget class="QGroupBox" name="ButtonGroup11">
      <property name="minimumSize">
       <size>
        <width>20</width>
@@ -467,15 +467,15 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>Q3GroupBox</class>
+   <class>QGroupBox</class>
    <extends>QGroupBox</extends>
-   <header>Qt3Support/Q3GroupBox</header>
+   <header>Qt3Support/QGroupBox</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>Q3ButtonGroup</class>
-   <extends>Q3GroupBox</extends>
-   <header>Qt3Support/Q3ButtonGroup</header>
+   <class>QGroupBox</class>
+   <extends>QGroupBox</extends>
+   <header>Qt3Support/QGroupBox</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

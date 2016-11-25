@@ -19,12 +19,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <math.h>
 #include <float.h>
 #include <qnamespace.h>
-#include <q3ptrlist.h>
+#include <QList.h>
 #include <qpainter.h>
 #include <qnamespace.h>
 #include <qdatetime.h>
-//Added by qt3to4:
-#include <Q3PointArray>
 //#include <qvaluelist.h>
  
 #include "Draw.h"
@@ -207,7 +205,7 @@ void Draw::drawStates(Machine* m, QPainter* p, int contx, int conty,
  * @param contx current x scroll position
  * @param conty current y scroll position
  * @param scale current scale factor
- * @param drawxor if TRUE draws in xor mode otherwise draws with the respective
+ * @param drawxor if true draws in xor mode otherwise draws with the respective
  * color.
  */
 /*
@@ -359,7 +357,7 @@ void Draw::drawTransitions(Machine* m, QPainter* p, int contx, int conty,
   GTransition* t;
   QBrush br_control(QColor(255,0,0));
   QBrush br_end(QColor(0,255,0));
-  Q3PointArray parray(4);
+  QPolygon parray(4);
   int rectsize;
 //  double g1x, g1y, g2x, g2y;
   
@@ -408,7 +406,12 @@ void Draw::drawTransitions(Machine* m, QPainter* p, int contx, int conty,
 	parray.setPoint(2, (int)c2x, (int)c2y);
 	parray.setPoint(3, (int)ex, (int)ey);
 
-	p->drawCubicBezier(parray, 0);
+//	p->drawCubicBezier(parray, 0);
+	QPainterPath path; int index = 0;
+	path.moveTo(parray.at(index));
+	path.cubicTo(parray.at(index + 1),	parray.at(index + 2),	parray.at(index + 3));
+	p->strokePath(path, p->pen());
+
 
 	// Arrow
 	drawArrow(t, p, pen, m->getArrowType());
@@ -468,7 +471,11 @@ void Draw::drawTransitions(Machine* m, QPainter* p, int contx, int conty,
 	parray.setPoint(2, (int)c2x, (int)c2y);
 	parray.setPoint(3, (int)ex, (int)ey);
 
-	p->drawCubicBezier(parray, 0);
+//	p->drawCubicBezier(parray, 0);
+	QPainterPath path; int index = 0;
+	path.moveTo(parray.at(index));
+	path.cubicTo(parray.at(index + 1), parray.at(index + 2), parray.at(index + 3));
+	p->strokePath(path, p->pen());
 
 	// Arrow
 	drawArrow(t, p, pen, m->getArrowType());
@@ -513,11 +520,11 @@ void Draw::drawTransitions(Machine* m, QPainter* p, int contx, int conty,
  * @param scale current scale factor
  * @param numin number of input bits
  * @param numout number of output bits
- * @param drawxor if TRUE draws in xor otherwise not
- * @param dotted if TRUE draws a dotted otherwise a solid line
- * @param control_lines if TRUE draws with the control lines otherwise it draws
+ * @param drawxor if true draws in xor otherwise not
+ * @param dotted if true draws a dotted otherwise a solid line
+ * @param control_lines if true draws with the control lines otherwise it draws
  * only the transition line
- * @param first if TRUE it draws the first line of a sequence (e.g. when
+ * @param first if true it draws the first line of a sequence (e.g. when
  * dragging) i.e. it erases the visible transition.
  */
 
@@ -577,7 +584,7 @@ void Draw::drawTransition(Machine* m, GTransition* t, QPainter* p, int contx,
   p->setViewport(-contx, -conty, int(window.width()*scale),
   int(window.height()*scale));
 
-  Q3PointArray parray(4);
+  QPolygon parray(4);
   parray.setPoint(0, (int)startposx, (int)startposy);
   parray.setPoint(1, (int)c1x, (int)c1y);
   parray.setPoint(2, (int)c2x, (int)c2y);
@@ -593,7 +600,11 @@ void Draw::drawTransition(Machine* m, GTransition* t, QPainter* p, int contx,
   }
 
   // Transition
-  p->drawCubicBezier(parray, 0);
+//  p->drawCubicBezier(parray, 0);
+  QPainterPath path; int index = 0;
+  path.moveTo(parray.at(index));
+  path.cubicTo(parray.at(index + 1),  parray.at(index + 2),	  parray.at(index + 3));
+  p->strokePath(path, p->pen());
 
   // Arrow
   drawArrow(t, p, pen, m->getArrowType());
@@ -766,14 +777,14 @@ void Draw::drawCondition(Machine* m, GTransition* t, QPainter* p, int contx,
  * @param conty current y scroll position
  * @param scale current scale factor
  * @param textrect bounding rectangle of the resulting text ("Reset")
- * @param drawxor if TRUE draws in xor mode otherwise not
- * @param first if TRUE draws the first transition in a sequence (e.g. when
+ * @param drawxor if true draws in xor mode otherwise not
+ * @param first if true draws the first transition in a sequence (e.g. when
  * dragging)
  * @param transptext draws text transparently
  */
 void Draw::drawInitialTransition(Machine* m, GITransition* t, QPainter* p, 
 		int contx, int conty, double scale, QRect& textrect, 
-		bool drawxor/*=TRUE*/, bool first/*=FALSE*/, bool transptext/*=FALSE*/)
+        bool drawxor/*=true*/, bool first/*=false*/, bool transptext/*=false*/)
 {
   if (!t)
     return;
@@ -1055,8 +1066,8 @@ void Draw::drawArrow(GTransition* t, QPainter* p, QPen pen, int type)
 
   calcArrow(t, arrow_x1, arrow_y1, arrow_x2, arrow_y2, arrow_xm, arrow_ym);
 
-  Q3PointArray pa(3);
-  Q3PointArray pa4(4);
+  QPolygon pa(3);
+  QPolygon pa4(4);
   QBrush br(QColor(0,0,0));
   QBrush brwhite(QColor(255,255,255));
 
@@ -1119,8 +1130,8 @@ void Draw::drawArrow(GITransition* t, QPainter* p, QPen pen, int type)
 
   calcArrow(t, arrow_x1, arrow_y1, arrow_x2, arrow_y2, arrow_xm, arrow_ym);
 
-  Q3PointArray pa(3);
-  Q3PointArray pa4(4);
+  QPolygon pa(3);
+  QPolygon pa4(4);
   QBrush br(QColor(0,0,0));
   QBrush brwhite(QColor(255,255,255));
 
@@ -1269,7 +1280,7 @@ QRect Draw::getBoundingBox(Machine* m, QPainter* p)
       brect_tmp.setRect((int)ROUND(textposx-0.05*boundrect.width()), (int)ROUND(textposy-0.05*boundrect.height()), int(boundrect.width()+0.1*boundrect.width()), int(boundrect.height()+0.1*boundrect.height()));
 
       result.setCoords(ROUND(minx), ROUND(miny), ROUND(maxx), ROUND(maxy));
-      result = result.unite(brect_tmp);
+      result = result.united(brect_tmp);
       minx = result.left();
       miny = result.top();
       maxx = result.right();
@@ -1407,7 +1418,7 @@ QRect Draw::getBoundingBox(Machine* m, QPainter* p)
 	brect_tmp.setRect((int)ROUND(condx-5), (int)ROUND(condy-5), bound.width()+10, bound.height()+10);
 	
 	result.setCoords(ROUND(minx), ROUND(miny), ROUND(maxx), ROUND(maxy));
-	result = result.unite(brect_tmp);
+	result = result.united(brect_tmp);
 	minx = result.left();
 	miny = result.top();
 	maxx = result.right();
@@ -1526,7 +1537,7 @@ QRect Draw::getBoundingBox(Machine* m, QPainter* p)
       brect_tmp.setRect((int)ROUND(condx-5), (int)ROUND(condy-5), bound.width()+10, bound.height()+10);
       
       result.setCoords(ROUND(minx), ROUND(miny), ROUND(maxx), ROUND(maxy));
-      result = result.unite(brect_tmp);
+      result = result.united(brect_tmp);
       minx = result.left();
       miny = result.top();
       maxx = result.right();

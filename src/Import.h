@@ -49,7 +49,7 @@ class Import : public QObject
     /// Returns the appropriate filter string for the file dialog.
     virtual QString fileFilter()=0;
     /// Verifies if the machine is in a valid form for exporting 
-    //virtual bool validateMachine(Machine* ) { return TRUE; };
+    //virtual bool validateMachine(Machine* ) { return true; };
     /// Returns the default file extension
     virtual QString defaultExtension()=0;
 

@@ -100,7 +100,7 @@ void ExportVVVV::writeMain()
 	if (tinfoo.isEmpty())
 	  tinfoo = "Do" + sn2;
 
-	*out << sn1.latin1() << " " << tinfoi.latin1() << " " << sn2.latin1() << " " << tinfoo.latin1() << endl;
+	*out << sn1.toLatin1().toStdString() << " " << tinfoi.toLatin1().toStdString() << " " << sn2.toLatin1().toStdString() << " " << tinfoo.toLatin1().toStdString() << endl;
       }
     }
   }
@@ -124,7 +124,7 @@ void ExportVVVV::writeMain()
     if (options->getVVVVReset())
     {
 
-      *out << sn1.latin1() << " " << reset_event_name.latin1() << " " << reset_sn.latin1() << " " << reset_action_name.latin1() << " " << endl;
+      *out << sn1.toLatin1().toStdString() << " " << reset_event_name.toLatin1().toStdString() << " " << reset_sn.toLatin1().toStdString() << " " << reset_action_name.toLatin1().toStdString() << " " << endl;
     } 
 
     for(; it.hasNext();)
@@ -148,7 +148,7 @@ void ExportVVVV::writeMain()
 	  if (tinfoo.isEmpty())
 	    tinfoo = "Do" + sn2;
 
-	  *out << sn1.latin1() << " " << tinfoi.latin1() << " " << sn2.latin1() << " " << tinfoo.latin1() << endl;
+	  *out << sn1.toLatin1().toStdString() << " " << tinfoi.toLatin1().toStdString() << " " << sn2.toLatin1().toStdString() << " " << tinfoo.toLatin1().toStdString() << endl;
 	}
       }
     }

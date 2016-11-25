@@ -112,7 +112,7 @@ void ExportTestvectorASCII::generateVector()
               if(c>0)
               {
               input_separators.append(c);
-              qDebug(QString::number(c).latin1());
+              qDebug(QString::number(c).toLatin1());
               c++;
               }
               vector_name=s.left(s.indexOf("["));
@@ -122,7 +122,7 @@ void ExportTestvectorASCII::generateVector()
         if(c>0)
         {
         input_separators.append(c);
-        qDebug(QString::number(c).latin1());
+        qDebug(QString::number(c).toLatin1());
         c++;
         }
       }
@@ -145,7 +145,7 @@ void ExportTestvectorASCII::generateVector()
               if(c>0)
               {
               moore_output_separators.append(c);
-              qDebug(QString::number(c).latin1());
+              qDebug(QString::number(c).toLatin1());
               c++;
               }
               vector_name=s.left(s.indexOf("["));
@@ -155,7 +155,7 @@ void ExportTestvectorASCII::generateVector()
         if(c>0)
         {
         moore_output_separators.append(c);
-        qDebug(QString::number(c).latin1());
+        qDebug(QString::number(c).toLatin1());
         c++;
         }
       }
@@ -179,7 +179,7 @@ void ExportTestvectorASCII::generateVector()
               if(c>0)
               {
               mealy_output_separators.append(c);
-              qDebug(QString::number(c).latin1());
+              qDebug(QString::number(c).toLatin1());
               c++;
               }
               vector_name=s.left(s.indexOf("["));
@@ -189,7 +189,7 @@ void ExportTestvectorASCII::generateVector()
         if(c>0)
         {
         mealy_output_separators.append(c);
-        qDebug(QString::number(c).latin1());
+        qDebug(QString::number(c).toLatin1());
         c++;
         }
       }
@@ -206,13 +206,13 @@ void ExportTestvectorASCII::generateVector()
     omoore=i_omoore.next();
     ics=i_cs.next();
 
-    *out << " " << QString::number(c-1).latin1() << " ";
+    *out << " " << QString::number(c-1).toLatin1().toStdString() << " ";
 
     if(synchronous_reset || synchronous_enable)
     {
       s=ics->convertToBinStr(machine,options).replace("x","0");
       s.insert(1," ");
-      *out << s.latin1() << " ";
+      *out << s.toLatin1().toStdString() << " ";
     }
 
 
@@ -226,7 +226,7 @@ void ExportTestvectorASCII::generateVector()
           s.insert(i_sep.next()," ");
       }
     }
-    *out << s.latin1();
+    *out << s.toLatin1().toStdString();
 
     *out << " | ";
 
@@ -240,7 +240,7 @@ void ExportTestvectorASCII::generateVector()
           s.insert(i_sep.next()," ");
       }
     }
-    *out << s.latin1();
+    *out << s.toLatin1().toStdString();
 
     if(machine->getNumOutputs()>0 && machine->getNumMooreOutputs()>0)
         *out << " ";
@@ -255,7 +255,7 @@ void ExportTestvectorASCII::generateVector()
           s.insert(i_sep.next()," ");
       }
     }
-    *out << s.latin1();
+    *out << s.toLatin1().toStdString();
     *out << endl;
   }
 }
@@ -284,7 +284,7 @@ void ExportTestvectorASCII::writeHeader(QString,QString)
 
 
 
-  *out << "# Testpattern including expected results of " <<  machine->getName().latin1() <<  endl;
+  *out << "# Testpattern including expected results of " <<  machine->getName().toLatin1().toStdString() <<  endl;
   *out << "#" << endl;
 
   if(synchronous_reset || synchronous_enable)
@@ -292,11 +292,11 @@ void ExportTestvectorASCII::writeHeader(QString,QString)
     *out << "# control input signals:" << endl;
     *out << "# ----------------------" << endl;
     if(synchronous_reset && negated_reset)
-      *out << "# srst_n : " << bit_string.toLatin1().constData()  << ";" << endl;
+      *out << "# srst_n : " << bit_string.toLatin1()  << ";" << endl;
     else if(synchronous_reset && ! negated_reset)
-      *out << "# srst_p : " << bit_string.toLatin1().constData()  << ";"  << endl;
+      *out << "# srst_p : " << bit_string.toLatin1()  << ";"  << endl;
     if(synchronous_enable)
-      *out << "# sen_p : " << bit_string.toLatin1().constData()  << ";" << endl;
+      *out << "# sen_p : " << bit_string.toLatin1()  << ";" << endl;
     *out << endl;
   }
 
@@ -305,7 +305,7 @@ void ExportTestvectorASCII::writeHeader(QString,QString)
     *out << "# input signals:" << endl;
     *out << "# --------------" << endl;
     foreach(const QString& input, machine->getInputNameList())
-      *out << "# " << input.toLatin1().constData() << " : " << bit_string.toLatin1().constData() << ";" << endl;
+      *out << "# " << input.toLatin1() << " : " << bit_string.toLatin1() << ";" << endl;
     *out << endl;
   }
   if (machine->getNumOutputs()>0)
@@ -313,7 +313,7 @@ void ExportTestvectorASCII::writeHeader(QString,QString)
     *out << "# mealy outputs:" << endl;
     *out << "# --------------" << endl;
     foreach(const QString& input, machine->getOutputNameList())
-      *out << "# " << input.toLatin1().constData() << " : " << bit_string.toLatin1().constData() << ";" << endl;
+      *out << "# " << input.toLatin1() << " : " << bit_string.toLatin1() << ";" << endl;
     *out << endl;
   }
 
@@ -322,7 +322,7 @@ void ExportTestvectorASCII::writeHeader(QString,QString)
     *out << "# mooore outputs:" << endl;
     *out << "# --------------" << endl;
     foreach(const QString& input, machine->getMooreOutputList())
-      *out << "# " << input.toLatin1().constData() << " : " << bit_string.toLatin1().constData() << ";" << endl;
+      *out << "# " << input.toLatin1() << " : " << bit_string.toLatin1() << ";" << endl;
     *out << "#" << endl;
   }
 

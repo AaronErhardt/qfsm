@@ -32,7 +32,7 @@ class ExportTestbenchDlgImpl : public QDialog
     QFileDialog selectTestFile;
 
 public:
-    ExportTestbenchDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    ExportTestbenchDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~ExportTestbenchDlgImpl();
 
     /// Returns the 'std_logic package' flag 
@@ -107,17 +107,17 @@ public slots:
     void setFileDialogDirectory(QString);
 
 private:
-    /// if TRUE use std_logic_1164 package
+    /// if true use std_logic_1164 package
     bool stdlogic;
-    /// if TRUE export testbench with synchronous reset
+    /// if true export testbench with synchronous reset
     bool synchronousreset;
-    /// if TRUE export testbench with synchronous enable
+    /// if true export testbench with synchronous enable
     bool synchronousenable;
-    /// if TRUE export testbench with negated reset
+    /// if true export testbench with negated reset
     bool negatedreset;
-    /// if TRUE export testbench with input and output names
+    /// if true export testbench with input and output names
     bool io_names;
-    /// if TRUE write input/output description into header
+    /// if true write input/output description into header
     bool io_header;
     /// testbench generator algorithm: 0: Use algorithm 0 1: Use algorithm 1
     int algorithm;

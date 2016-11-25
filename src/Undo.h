@@ -28,7 +28,7 @@ removed setAutoDelete calls in constructor of class Undo
 #ifndef UNDO_H
 #define UNDO_H
 
-#include <q3ptrlist.h>
+#include <QList.h>
 #include <qstringlist.h>
 #include "GTransition.h"
 #include "GState.h"
@@ -52,7 +52,7 @@ enum UndoAction {AddState, AddTransition, ChangeState, ChangeTransition,
  */
 struct dtlist {
   /// Constructor
-//  dtlist() {tlist.setAutoDelete(FALSE); rlist.setAutoDelete(FALSE); };
+//  dtlist() {tlist.setAutoDelete(false); rlist.setAutoDelete(false); };
   /// First list of transitions
   QList<GTransition*> tlist;
   /// Second list of transition
@@ -151,7 +151,7 @@ class Undo
     int action;
     /// Pointer to the project
     Project* project;
-    /// TRUE if the project was modified before the action
+    /// true if the project was modified before the action
     bool modified;		
     /// State
     GState* state;

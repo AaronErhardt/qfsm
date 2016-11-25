@@ -57,7 +57,7 @@ GObject* Selection::select(DrawArea* sview, Machine* m, QPoint p,
     return NULL;
 
   o = m->getObject(p, scale, otype);
-  bool sel=FALSE;
+  bool sel=false;
 
   // clear previous selection
 
@@ -67,8 +67,8 @@ GObject* Selection::select(DrawArea* sview, Machine* m, QPoint p,
   for(; i.hasNext();)
   {
     tmp = i.next();
-    sel=TRUE;
-    tmp->select(FALSE);
+    sel=true;
+    tmp->select(false);
   }
   ssel_list.clear();
 
@@ -78,8 +78,8 @@ GObject* Selection::select(DrawArea* sview, Machine* m, QPoint p,
   for(; it.hasNext();)
   {
     t = it.next();
-    sel=TRUE;
-    t->select(FALSE);
+    sel=true;
+    t->select(false);
   }
   tsel_list.clear();
 
@@ -87,9 +87,9 @@ GObject* Selection::select(DrawArea* sview, Machine* m, QPoint p,
   itr = m->getInitialTransition();
   if (itr)
   {
-    itr->select(FALSE);
-    sel=TRUE;
-    itrans=FALSE;
+    itr->select(false);
+    sel=true;
+    itrans=false;
   }
 
   // select object
@@ -101,7 +101,7 @@ GObject* Selection::select(DrawArea* sview, Machine* m, QPoint p,
     else if (otype==TransitionT)
       tsel_list.append((GTransition*)o);
     else if (otype==ITransitionT)
-      itrans=TRUE;
+      itrans=true;
 
     sview->repaint();
 //    emit updateAll();
@@ -117,7 +117,7 @@ GObject* Selection::select(DrawArea* sview, Machine* m, QPoint p,
 
 
 /// Selects/deselects the state @a s
-void Selection::select(GState* s, bool sel/*=TRUE*/)
+void Selection::select(GState* s, bool sel/*=true*/)
 {
   if (!s)
     return;
@@ -131,7 +131,7 @@ void Selection::select(GState* s, bool sel/*=TRUE*/)
 
 
 /// Selects/deselects the transition @a t
-void Selection::select(GTransition* t, bool sel/*=TRUE*/)
+void Selection::select(GTransition* t, bool sel/*=true*/)
 {
   if (!t)
     return;
@@ -144,7 +144,7 @@ void Selection::select(GTransition* t, bool sel/*=TRUE*/)
 }
 
 /// Selects/deselects the initial transition @a t
-void Selection::select(GITransition* t, bool sel/*=TRUE*/)
+void Selection::select(GITransition* t, bool sel/*=true*/)
 {
   if (!t)
     return;
@@ -157,7 +157,7 @@ void Selection::select(GITransition* t, bool sel/*=TRUE*/)
  * Select all objects lying in the specified rectangle
  * @param m machine containing the objects
  * @param r rectangle which will be looked in
- * @return TRUE if any object lies in the rectangle otherwise FALSE.
+ * @return true if any object lies in the rectangle otherwise false.
  */
 bool Selection::selectRect(Machine* m, DRect& r, bool add)
 {
@@ -168,17 +168,17 @@ bool Selection::selectRect(Machine* m, DRect& r, bool add)
 //  int otype;
   double tmpx, tmpy;
   double tsx, tsy, tex, tey;//, tc1x, tc1y, tc2x, tc2y;
-  bool success=FALSE;
+  bool success=false;
 
   if (!m)
-    return FALSE;
+    return false;
 
 //  o = m->getObject(p, scale, otype);
   QList<GState*> ls = m->getSList();
   
   QListIterator<GState*> lsi(ls);
 
-  bool sel=FALSE;
+  bool sel=false;
 
   QListIterator<GState*> i(ssel_list);
 
@@ -188,8 +188,8 @@ bool Selection::selectRect(Machine* m, DRect& r, bool add)
   for(; i.hasNext();)
   {
     tmp = i.next();
-    sel=TRUE;
-    tmp->select(FALSE);
+    sel=true;
+    tmp->select(false);
   }
   ssel_list.clear();
 
@@ -198,8 +198,8 @@ bool Selection::selectRect(Machine* m, DRect& r, bool add)
   for(; it.hasNext();)
   {
     t = it.next();
-    sel=TRUE;
-    t->select(FALSE);
+    sel=true;
+    t->select(false);
   }
   tsel_list.clear();
   }
@@ -222,7 +222,7 @@ bool Selection::selectRect(Machine* m, DRect& r, bool add)
 	else if (add)
 	  ssel_list.remove(tmp);
 
-	success=TRUE;
+	success=true;
       }
       
       QListIterator<GTransition*> lti(tmp->tlist);
@@ -248,7 +248,7 @@ bool Selection::selectRect(Machine* m, DRect& r, bool add)
             {
 	      tsel_list.remove(t);
 	    }
-	    success=TRUE;
+	    success=true;
 	  }
         }
       }
@@ -281,7 +281,7 @@ bool Selection::selectRect(Machine* m, DRect& r, bool add)
 	else if (add)
 	  tsel_list.remove(t);
 
-	success=TRUE;
+	success=true;
       }
     }
   }
@@ -296,11 +296,11 @@ bool Selection::selectRect(Machine* m, DRect& r, bool add)
       itr->toggleSelect();
       if (itr->isSelected())
       {
-	itrans=TRUE;
+	itrans=true;
       }
       else if (add)
-	itrans=FALSE;
-      success=TRUE;
+	itrans=false;
+      success=true;
     }
   }
 
@@ -325,7 +325,7 @@ bool Selection::selectRect(Machine* m, DRect& r, bool add)
  * @param m machine containing the objects
  * @param p point on which will be looked for an object
  * @param scale current scale
- * @return TRUE if any object lies at point @p otherwise FALSE.
+ * @return true if any object lies at point @p otherwise false.
  */
 bool Selection::selectAdd(DrawArea* sview, Machine* m, QPoint p, double scale)
 {
@@ -336,10 +336,10 @@ bool Selection::selectAdd(DrawArea* sview, Machine* m, QPoint p, double scale)
   int otype;
 
   if (!m)
-    return FALSE;
+    return false;
 
   o = m->getObject(p, scale, otype);
-  bool sel=FALSE;
+  bool sel=false;
 
   QListIterator<GState*> i(ssel_list);
 
@@ -353,11 +353,11 @@ bool Selection::selectAdd(DrawArea* sview, Machine* m, QPoint p, double scale)
       else if (otype==TransitionT)
 	tsel_list.append((GTransition*)o);
       else if (otype==ITransitionT)
-        itrans=TRUE;
+        itrans=true;
 
       sview->repaint();
       emit updateAll();
-      return TRUE;
+      return true;
     }
     else
     {
@@ -368,7 +368,7 @@ bool Selection::selectAdd(DrawArea* sview, Machine* m, QPoint p, double scale)
       else if (otype==ITransitionT)
         deselect((GITransition*)o);
 
-      sel=TRUE;
+      sel=true;
     }
   }
   if (sel)
@@ -376,7 +376,7 @@ bool Selection::selectAdd(DrawArea* sview, Machine* m, QPoint p, double scale)
     sview->repaint();
     emit updateAll();
   }
-  return FALSE;
+  return false;
 
 }
 
@@ -443,16 +443,16 @@ bool Selection::selectAll(Machine* m, DRect& r)
   GITransition* itr;
 //  double tmpx, tmpy;
 //  double tsx, tsy, tex, tey;//, tc1x, tc1y, tc2x, tc2y;
-  bool success=FALSE;
+  bool success=false;
 
   if (!m)
-    return FALSE;
+    return false;
 
   QList<GState*> ls = m->getSList();
   
   QListIterator<GState*> lsi(ls);
 
-//  bool sel=FALSE;
+//  bool sel=false;
 
   QListIterator<GState*> i(ssel_list);
 
@@ -461,8 +461,8 @@ bool Selection::selectAll(Machine* m, DRect& r)
   for(; i.current(); ++i)
   {
     tmp = i.current();
-    sel=TRUE;
-    tmp->select(FALSE);
+    sel=true;
+    tmp->select(false);
   }
   ssel_list.clear();
 
@@ -471,8 +471,8 @@ bool Selection::selectAll(Machine* m, DRect& r)
   for(; it.current(); ++it)
   {
     t = it.current();
-    sel=TRUE;
-    t->select(FALSE);
+    sel=true;
+    t->select(false);
   }
   tsel_list.clear();
 */
@@ -486,7 +486,7 @@ bool Selection::selectAll(Machine* m, DRect& r)
     {
 	tmp->select();
 	ssel_list.append(tmp);
-	success=TRUE;
+	success=true;
       
       QListIterator<GTransition*> lti(tmp->tlist);
       
@@ -497,7 +497,7 @@ bool Selection::selectAll(Machine* m, DRect& r)
 	{
 	    t->select();
 	    tsel_list.append(t);
-	    success=TRUE;
+	    success=true;
         }
       }
     }
@@ -516,7 +516,7 @@ bool Selection::selectAll(Machine* m, DRect& r)
     {
 	t->select();
 	tsel_list.append(t);
-	success=TRUE;
+	success=true;
     }
   }
 
@@ -524,8 +524,8 @@ bool Selection::selectAll(Machine* m, DRect& r)
   if (itr)
   {
       itr->select();
-      itrans=TRUE;
-      success=TRUE;
+      itrans=true;
+      success=true;
   }
 
   if (success)
@@ -545,7 +545,7 @@ bool Selection::selectAll(Machine* m, DRect& r)
  * Checks if point @a p lies on a selected object.
  * @param p point on which an object will be looked for
  * @param scale current scale
- * @return TRUE if @a p is on a seleted object otherwise FALSE
+ * @return true if @a p is on a seleted object otherwise false
  */
 bool Selection::onSelectionOld(QPoint p, double scale)
 {
@@ -562,7 +562,7 @@ bool Selection::onSelectionOld(QPoint p, double scale)
   my = (double)p.y()/scale;
 
   if (ssel_list.isEmpty())
-    return FALSE;
+    return false;
 
   for(; si.hasNext();)
   {
@@ -576,10 +576,10 @@ bool Selection::onSelectionOld(QPoint p, double scale)
     rbottom = y+rad;
 
     if (mx>rleft && mx<rright && my>rtop && my<rbottom)
-      return TRUE;
+      return true;
   }
 
-  return FALSE;
+  return false;
 }
 
 /**
@@ -588,7 +588,7 @@ bool Selection::onSelectionOld(QPoint p, double scale)
  * @param p point on which an object will be looked for
  * @param m machine containing the objects
  * @param scale current scale
- * @return TRUE if @a p is on a seleted object otherwise FALSE
+ * @return true if @a p is on a seleted object otherwise false
  */
 bool Selection::onSelection(Machine* m, QPoint p, double scale)
 {
@@ -600,13 +600,13 @@ bool Selection::onSelection(Machine* m, QPoint p, double scale)
   double rleft, rright, rtop, rbottom;
   double rad;
   double mx, my;
-  bool found=FALSE;
+  bool found=false;
 
   mx = (double)p.x()/scale;
   my = (double)p.y()/scale;
 
   if (ssel_list.isEmpty())
-    return FALSE;
+    return false;
 
   while(si.hasNext() && !found)
   {
@@ -619,57 +619,57 @@ bool Selection::onSelection(Machine* m, QPoint p, double scale)
     rbottom = y+rad;
 
     if (mx>rleft && mx<rright && my>rtop && my<rbottom && !s->isDeleted())
-      found = TRUE;
+      found = true;
 
 
   }
   if (!found)
-    return FALSE;
+    return false;
 
   if (s && ssel_list.contains(s))
-      return TRUE;
+      return true;
 
-  return FALSE;
+  return false;
 }
 
 
 /**
  * Deselects the state @a s.
- * @return TRUE if state was selected otherwise FALSE.
+ * @return true if state was selected otherwise false.
  */
 bool Selection::deselect(GState* s)
 {
   bool found;
 
-  s->select(FALSE);
+  s->select(false);
   found = ssel_list.remove(s);
   return found;
 }
 
 /**
  * Deselects the transition @a t.
- * @return TRUE if transition was selected otherwise FALSE.
+ * @return true if transition was selected otherwise false.
  */
 bool Selection::deselect(GTransition* t)
 {
   bool found;
 
-  t->select(FALSE);
+  t->select(false);
   found = tsel_list.remove(t);
   return found;
 }
 
 /**
  * Deselects initial transition @a t.
- * @return TRUE if initial transition was selected otherwise FALSE.
+ * @return true if initial transition was selected otherwise false.
  */
 bool Selection::deselect(GITransition* t)
 {
   bool wasselected;
   wasselected = t->isSelected();
 
-  t->select(FALSE);
-  itrans=FALSE;
+  t->select(false);
+  itrans=false;
 
   return wasselected;
 }
@@ -695,7 +695,7 @@ void Selection::move(double x, double y, DrawArea* sv, Machine* m)
   for(; si.hasNext();)
   {
     s = si.next();
-    s->move(x, y, sv, m, FALSE);
+    s->move(x, y, sv, m, false);
   }
   s = m->getPhantomState();
   QListIterator<GTransition*> pi(s->tlist);
@@ -818,14 +818,14 @@ void Selection::deselectAll(Machine* m)
   for(; i.hasNext();)
   {
     tmp = i.next();
-    tmp->select(FALSE);
+    tmp->select(false);
 
     QListIterator<GTransition*> it(tmp->tlist);
 
     for(; it.hasNext();)
     {
       t = it.next();
-      t->select(FALSE);
+      t->select(false);
     }
   }
 
@@ -835,7 +835,7 @@ void Selection::deselectAll(Machine* m)
   for(; it.hasNext();)
   {
     t = it.next();
-    t->select(FALSE);
+    t->select(false);
   }
 
 
@@ -845,46 +845,46 @@ void Selection::deselectAll(Machine* m)
   itr = m->getInitialTransition();
   if (itr)
   {
-    itr->select(FALSE);
+    itr->select(false);
   }
-  itrans=FALSE;
+  itrans=false;
 }
 
 
-/// Returns TRUE if state @a sels is selected, otherwise FALSE
+/// Returns true if state @a sels is selected, otherwise false
 bool Selection::isStateSelected(State* sels)
 {
   QListIterator<GState*> i(ssel_list);
   State* s;
 
   if (!sels)
-    return FALSE;
+    return false;
 
   for(; i.hasNext();)
   {
     s = i.next();
     if (s==sels)
-      return TRUE;
+      return true;
   }
-  return FALSE;
+  return false;
 }
 
-/// Returns TRUE if transition @a selt is selected, otherwise FALSE
+/// Returns true if transition @a selt is selected, otherwise false
 bool Selection::isTransitionSelected(Transition* selt)
 {
   QListIterator<GTransition*> i(tsel_list);
   Transition* t;
 
   if (!selt)
-    return FALSE;
+    return false;
 
   for(; i.hasNext();)
   {
     t = i.next();
     if (t==selt)
-      return TRUE;
+      return true;
   }
-  return FALSE;
+  return false;
 }
 
 

@@ -29,7 +29,7 @@ replaced removeRef calls by the code that replaces a list item from the new QLis
 #define MACHINE_H
 
 #include <math.h>
-#include <q3ptrlist.h>
+#include <QList.h>
 #include <qobject.h>
 #include <qstringlist.h>
 
@@ -142,8 +142,8 @@ class Machine : public QObject
     QStringList translateNames(QString);
     QString retranslateNames(QStringList);
     bool addState(const QString , QString, int code, IOInfo* mooreout, double , double , 
-	int , double, QPen, bool endstate, bool withundo=TRUE, QString entry_actions="", QString exit_actions="");
-    bool addState(GState* , bool withundo=TRUE);
+    int , double, QPen, bool endstate, bool withundo=true, QString entry_actions="", QString exit_actions="");
+    bool addState(GState* , bool withundo=true);
     GState* getState(QPoint , double );
     GObject* getObject(QPoint p, double scale, int& type);
     void removeState(GState* );

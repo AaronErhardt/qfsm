@@ -44,7 +44,7 @@ ExportRagel::ExportRagel(Options* opt)
 bool ExportRagel::validateMachine(Machine* m)
 {
   QMutableListIterator<GState*> is(m->getSList());
-  bool result = TRUE;
+  bool result = true;
   QString msg = tr("The state name \'%1\' is invalid as it is has a special meaning for the Ragel state machine compiler.");
   QString msg2 = tr("The name of state \'%1\' begins with an invalid character.");
 
@@ -55,24 +55,24 @@ bool ExportRagel::validateMachine(Machine* m)
     QString n = is.next()->getStateName();
     if (n=="start")
     {
-      result = FALSE;
+      result = false;
       if (Error::warningOkCancel(msg.arg("start"))==QMessageBox::Cancel)
-	return FALSE;
+    return false;
     }
     else if (n=="final")
     {
-      result = FALSE;
+      result = false;
       if (Error::warningOkCancel(msg.arg("final"))==QMessageBox::Cancel)
-	return FALSE;
+    return false;
     }
     QString firstletter;
     firstletter = n[0];
     QRegExp regexp("[a-zA-Z_]");
     if (!regexp.exactMatch(firstletter))
     {
-      result = FALSE;
+      result = false;
       if (Error::warningOkCancel(msg2.arg(n))==QMessageBox::Cancel)
-	return FALSE;
+    return false;
     }
   }
   return result;
@@ -133,7 +133,7 @@ void ExportRagel::writeName()
 
   n = n.replace(QRegExp("\\s"), "_");
 
-  *out << "machine " << n.latin1() << ";" << endl << endl;
+  *out << "machine " << n.toLatin1().toStdString() << ";" << endl << endl;
 }
 
 
@@ -166,7 +166,7 @@ void ExportRagel::writeTransitions()
   IOInfo* tioinfo;
 //  Convert conv;
   bool first;
-  bool sfirst=TRUE;
+  bool sfirst=true;
   bool tfirst;
 
   //*out << "\tCASE fsm IS" << endl;
@@ -188,7 +188,7 @@ void ExportRagel::writeTransitions()
 	*out << "," << endl;
       if (machine->getInitialState()==s)
 	*out << "start:" << endl;
-      *out << sn.latin1() << ": (" << endl;
+      *out << sn.toLatin1().toStdString() << ": (" << endl;
     }
     if (s->countTransitions()==0)
     {
@@ -196,7 +196,7 @@ void ExportRagel::writeTransitions()
     }
 
     QMutableListIterator<GTransition*> it(s->tlist);
-    tfirst=TRUE;
+    tfirst=true;
 
     for(; it.hasNext();)
     {
@@ -218,7 +218,7 @@ void ExportRagel::writeTransitions()
 	if (strlist.count()>1)
 	  *out << "( ";
 
-	first = TRUE;
+    first = true;
 	for(ioit = strlist.begin(); ioit!=strlist.end(); ++ioit)
 	{
 	  iosingle = *ioit;
@@ -237,14 +237,14 @@ void ExportRagel::writeTransitions()
 	    */
 
 //      *out << iosingle;
-      *out << iosingle.latin1();
+      *out << iosingle.toLatin1().toStdString();
 
 	  /*
 	  if (iosingle[0]!='^' && iosingle[0]!='[')
 	    *out << ")";
 	    */
 
-	  first=FALSE;
+      first=false;
 	}
 
 	if (strlist.count()>1)
@@ -262,16 +262,16 @@ void ExportRagel::writeTransitions()
 	  *out << " @accept ";
 	else
 	  *out << " @not_accept ";
-	*out << " -> " << sn.latin1();
+    *out << " -> " << sn.toLatin1().toStdString();
 
-	tfirst=FALSE;
+    tfirst=false;
       }
     }
 
     //if (s->countTransitions()>0)
       *out << ")";
 
-    sfirst=FALSE;
+    sfirst=false;
   }
 
 }
@@ -292,13 +292,13 @@ int ExportRagel::writeActionFile(const char* filename, const char* ragelfile)
 
   if (lang_action==1) // Java
   {
-    aout << "public class FSM_" << n.latin1() << endl;
+    aout << "public class FSM_" << n.toLatin1().toStdString() << endl;
     aout << "{" << endl;
     aout << endl;
   }
 
   aout << "%%{" << endl << endl;
-  aout << "machine " << n.latin1() << ";" << endl << endl;
+  aout << "machine " << n.toLatin1().toStdString() << ";" << endl << endl;
   aout << "action accept { res = 1; }" << endl;
   aout << "action not_accept { res = 0; }" << endl << endl;
   aout << "include \"" << ragelfile << "\";" << endl << endl;

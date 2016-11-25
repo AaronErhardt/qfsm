@@ -389,6 +389,7 @@ else {
 TRANSLATIONS += po/English.ts \
     po/French.ts \
     po/German.ts
-QT += xml \
+QT += widgets \
+    xml \
     svg \
-    qt3support
+	printsupport

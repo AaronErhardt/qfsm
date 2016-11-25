@@ -11,7 +11,7 @@ class OptPrintingDlgImpl : public QDialog
         Ui::OptPrintingDlg optPrintingDlg;
 
 public:
-    OptPrintingDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    OptPrintingDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~OptPrintingDlgImpl();
 
     bool getPrintHeader() { return print_header; };

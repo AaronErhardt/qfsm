@@ -35,7 +35,7 @@ the simulator input
 #define IOINFO_H
 
 #include <qstring.h>
-#include <q3ptrlist.h>
+#include <QList.h>
 #include <qstringlist.h>
 //#include "IOInfo.h"
 //#include "IOInfoList.h"
@@ -57,7 +57,7 @@ enum IOType { IO_None, IO_MealyIn, IO_MealyOut, IO_MooreOut };
 class IOInfo
 {
   public:
-    IOInfo(IOType t, bool inv=FALSE);
+    IOInfo(IOType t, bool inv=false);
     virtual ~IOInfo();
 
     IOType getType() const { return type; };
@@ -83,17 +83,17 @@ class IOInfo
      * @param ascii Resulting array of ASCII characters
      * @param maxlen Length of the array
      * @param number of relevant ASCII characters in the array
-     * @param singlechar If TRUE only a single char is converted
-     * @returns TRUE if successful
+     * @param singlechar If true only a single char is converted
+     * @returns true if successful
      */
     virtual bool convertToASCII(unsigned char* ascii, int maxlen, int& length, 
-	bool singlechar=FALSE) const =0;
+    bool singlechar=false) const =0;
     /// Converts this object into an IOInfoBin object
     virtual IOInfoBin convertToBin(int numbits) const =0;
     /// Converts the I/O info into an integer value
     virtual int convertToInt() const =0;
     /// Converts the I/O info into a list of IOInfoBin objects
-    virtual void convertToBinList(IOInfoList& list, bool resolve_invert=TRUE) const =0;
+    virtual void convertToBinList(IOInfoList& list, bool resolve_invert=true) const =0;
 
     /// Produces a copy of this object and returns a pointer to it
     virtual IOInfo* clone()const=0;
@@ -112,7 +112,7 @@ class IOInfo
 
     /// Returns the length of this I/O info (in bits)
     virtual int getLength() const=0;
-    /// Returns TRUE if this I/O info is a single character
+    /// Returns true if this I/O info is a single character
     virtual bool isSingle() const=0;
     /// Returns a list of IOInfo objects with single characters representing this I/O info (does not take into account inversion)
 //    virtual QList<IOInfo> getSingles()=0;
@@ -138,11 +138,11 @@ class IOInfo
     virtual void updateDefaultInfo(const IOInfoList& /*other*/) {};
     
     virtual bool isRange(int& start, int& end) const { start=range_start; end=range_end; return range; };
-    virtual void setRange(int start, int end) { range_start = start; range_end = end; range=TRUE; };
+    virtual void setRange(int start, int end) { range_start = start; range_end = end; range=true; };
     virtual bool getAnyInput() const { return any; };
-    virtual void setAnyInput(bool ai) { any = ai; if (ai) {def=FALSE; invert=FALSE;} };
+    virtual void setAnyInput(bool ai) { any = ai; if (ai) {def=false; invert=false;} };
     virtual bool isDefault() const { return def; };
-    virtual void setDefault(bool de) { def = de; if (de) {any=FALSE; invert=FALSE;} };
+    virtual void setDefault(bool de) { def = de; if (de) {any=false; invert=false;} };
 
 
     virtual QStringList getRagelConditions()=0;

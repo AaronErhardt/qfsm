@@ -36,10 +36,10 @@ class ICheckDlgImpl : public QDialog
 
 
 public:
-    ICheckDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    ICheckDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~ICheckDlgImpl();
 
-    void enableCompleteness(bool ec=TRUE) {
+    void enableCompleteness(bool ec=true) {
       iCheckDlg.lb_completeness_val->setEnabled(ec); iCheckDlg.lb_completeness->setEnabled(ec); };
     void setUnambiguous(bool );
     void setInitial(bool );

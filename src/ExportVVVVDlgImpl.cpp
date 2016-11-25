@@ -1,13 +1,13 @@
 #include "ExportVVVVDlgImpl.h"
 #include "Options.h"
 
-ExportVVVVDlgImpl::ExportVVVVDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
+ExportVVVVDlgImpl::ExportVVVVDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WindowFlags fl )
 :QDialog(parent)
 {
   //load ui design for the current object
   exportVVVVDlg.setupUi(this);
 
-  exportVVVVDlg.pb_update->setVisible(FALSE);
+  exportVVVVDlg.pb_update->setVisible(false);
   //connect(exportVVVVDlg.pb_update, SIGNAL(clicked()), this, SIGNAL(updateClicked()));
 }
 

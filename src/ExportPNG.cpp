@@ -68,7 +68,7 @@ void ExportPNG::doExport()
   if (!scrollview)
   {
     delete painter;
-    exportSuccessful = FALSE;
+    exportSuccessful = false;
   }
 
   painter->translate(-rect.x(),-rect.y());
@@ -81,7 +81,7 @@ void ExportPNG::doExport()
   draw->drawStates(machine, painter, 0, 0, 1.0);
   draw->drawTransitions(machine, painter, 0, 0, 1.0);
   if (machine->getDrawITrans())
-    draw->drawInitialTransition(machine, machine->getInitialTransition(), painter, 0, 0, 1.0, textrect, FALSE);
+    draw->drawInitialTransition(machine, machine->getInitialTransition(), painter, 0, 0, 1.0, textrect, false);
   
   
   painter->end();

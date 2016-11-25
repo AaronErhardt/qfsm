@@ -49,7 +49,7 @@ Qt 4 QList
 #define UNDOBUFFER_H
 
 #include <qobject.h>
-#include <q3ptrlist.h>
+#include <QList.h>
 #include "Undo.h"
 
 class MainWindow;
@@ -66,7 +66,7 @@ class UndoBuffer
     UndoBuffer(QObject* );
     ~UndoBuffer();
 
-    /// Returns TRUE if the undo list is empty, otherwise FALSE
+    /// Returns true if the undo list is empty, otherwise false
     bool isEmpty() { return undolist.isEmpty(); };
     /// Clears the undo list
     void clear() { tidyUp(); undolist.clear(); };

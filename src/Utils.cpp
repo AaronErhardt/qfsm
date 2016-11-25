@@ -23,23 +23,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 /// Transforms a string @a s to upper case, removes leading and trailing white spaces and replaces other white spaces to underscores
 QString Utils::toUpperNoWS(QString s)
 {
-  s = s.stripWhiteSpace();
+  s = s.trimmed();
   s = s.replace(QRegExp("\\s"), "_");
-  s = s.upper();
+  s = s.toUpper();
   return s;
 }
 
 /// Removes leading and trailing white spaces and replaces other white spaces to underscores of string @a s
 QString Utils::noWS(QString s)
 {
-  s = s.stripWhiteSpace();
+  s = s.trimmed();
   s = s.replace(QRegExp("\\s"), "_");
   return s;
 }
 
 /**
  * Validates the a string of binary digits.
- * @returns TRUE if string valid, otherwise FALSE.
+ * @returns true if string valid, otherwise false.
  */
 bool Utils::binStringValid(QString s)
 {
@@ -50,10 +50,10 @@ bool Utils::binStringValid(QString s)
   do
   {
     c = s[count++];
-    cl = c.latin1();
-    if (cl!='0' && cl!='1' && c!=QChar::null)
-      return FALSE;
+    cl = c.toLatin1();
+    if (cl!='0' && cl!='1' && c!=QChar::Null)
+      return false;
   } while (c!=QChar::Null);
 
-  return TRUE;
+  return true;
 }

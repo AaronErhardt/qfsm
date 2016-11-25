@@ -27,7 +27,7 @@ under windows
 #define TRANSITIONPROPERTIESDLGIMPL_H
 
 #include <qlineedit.h>
-#include <q3textedit.h>
+//#include <q3textedit.h>
 #include <qcheckbox.h>
 #include "ui_TransitionPropertiesDlg.h"
 
@@ -42,7 +42,7 @@ class TransitionPropertiesDlgImpl : public QDialog
         Ui::TransitionPropertiesDlg transitionPropertiesDlg;
 
 public:
-    TransitionPropertiesDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
+    TransitionPropertiesDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~TransitionPropertiesDlgImpl();
 
     QString getInputs();// { return transitionPropertiesDlg.le_input->text(); };
@@ -52,7 +52,7 @@ public:
     /// Sets the outputs condition string
     void setOutputs(QString s) { transitionPropertiesDlg.le_output->setText(s); };
     /// Returns the string of the desription field
-    QString getDescription() { return transitionPropertiesDlg.te_description->text(); };
+    QString getDescription() { return transitionPropertiesDlg.te_description->toPlainText(); };
     /// Sets the string of the description field
     void setDescription(QString s) { transitionPropertiesDlg.te_description->setText(s); };
     /// Returns the state of the 'invert' checkbox

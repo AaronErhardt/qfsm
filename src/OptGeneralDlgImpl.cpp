@@ -28,9 +28,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *  name 'name' and widget flags set to 'f' 
  *
  *  The dialog will by default be modeless, unless you set 'modal' to
- *  TRUE to construct a modal dialog.
+ *  true to construct a modal dialog.
  */
-OptGeneralDlgImpl::OptGeneralDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
+OptGeneralDlgImpl::OptGeneralDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WindowFlags fl )
     : QDialog( parent, name, modal, fl )
 {
   optGeneralDlg.setupUi(this);
@@ -89,7 +89,7 @@ void OptGeneralDlgImpl::init()
 	QString tmppath;
 	QSettings settings("HKEY_LOCAL_MACHINE\\Software\\Qfsm", QSettings::NativeFormat);
 	tmppath = settings.value("Install_Dir", QVariant("-1")).toString();
-	qDebug("tmppath: %s", tmppath.latin1());
+	qDebug("tmppath: %s", tmppath.toLatin1());
 	if (tmppath=="-1")
 		dir = QDir::current();
 	else
@@ -101,7 +101,7 @@ void OptGeneralDlgImpl::init()
     apppath = QFSM_LANGUAGE_DIR;
     dir = QDir(apppath); //QDir::current();
 #endif
-    qDebug("Looking for language files in %s", apppath.latin1());
+    qDebug("Looking for language files in %s", apppath.toLatin1());
   }
   else
   {

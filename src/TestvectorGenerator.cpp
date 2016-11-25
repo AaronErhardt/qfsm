@@ -157,7 +157,7 @@ void TestvectorGenerator::generateTestvector()
 
             message="Transition: "+s2->getStateName()+" -> "+t->getInfo()->getInputsStr(machine)+" -> "+s1->getStateName();
             message+="Mark: "+QString::number(t->getMark());
-            qDebug(message.latin1());
+            qDebug(message.toLatin1());
 
             if(t->checkMark())
             {
@@ -218,7 +218,7 @@ void TestvectorGenerator::generateTestvector()
 
 
           mealy_output_vector.append(t->getInfo()->getOutputInfo());
-          qDebug(message.latin1());
+          qDebug(message.toLatin1());
           t->setMark(t->getMark()+1);
           if(t->checkMark() && ctl_in_finished)
             progress.setValue(progress.value()+1);
@@ -273,7 +273,7 @@ void TestvectorGenerator::generateTestvector()
         if(!s2->getMark())
         {
           progress.setValue(progress.value()+1);
-          qDebug(QString::number(progress.value()));
+          qDebug(QString::number(progress.value()).toLatin1());
         }
 
         s2->setMark(true);
@@ -295,7 +295,7 @@ void TestvectorGenerator::generateTestvector()
   message+=" Size Mealy Outputs: "+QString::number(mealy_output_vector.size());
   message+=" Size Inputs: "+QString::number(input_vector.size());
   message+=" Size Control Inputs: "+QString::number(control_signal_vector.size());
-  qDebug(message.latin1());
+  qDebug(message.toLatin1());
 
 
 }
@@ -334,8 +334,8 @@ QList<GState*> TestvectorGenerator::getPathRec(QList<GState*> path)
         return path;
       }
     }
-    qDebug(QString("State marked: ")+s->getStateName());
-    s->setMark(TRUE);
+    qDebug((QString("State marked: ")+s->getStateName()).toLatin1());
+    s->setMark(true);
   }
 
   //recursion

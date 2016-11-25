@@ -29,9 +29,9 @@ under windows
 
 #include <qlineedit.h>
 #include <qspinbox.h>
-#include <q3listbox.h>
+#include <QListWidget.h>
 #include <qlabel.h>
-#include <q3buttongroup.h>
+#include <qbuttongroup.h>
 #include <qcheckbox.h>
 #include "ui_MachinePropertiesDlg.h"
 
@@ -52,7 +52,7 @@ class MachinePropertiesDlgImpl : public QDialog
     Ui::MachinePropertiesDlg machinePropertiesDlg;
 
 public:
-    MachinePropertiesDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WindowFlags fl = 0 );
+    MachinePropertiesDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0 );
     ~MachinePropertiesDlgImpl();
 
     /// Returns the name of the machine.

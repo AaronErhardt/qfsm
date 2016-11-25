@@ -28,9 +28,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *  name 'name' and widget flags set to 'f' 
  *
  *  The dialog will by default be modeless, unless you set 'modal' to
- *  TRUE to construct a modal dialog.
+ *  true to construct a modal dialog.
  */
-ExportTestbenchDlgImpl::ExportTestbenchDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WFlags fl )
+ExportTestbenchDlgImpl::ExportTestbenchDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WindowFlags fl )
 :QDialog(parent)
 {
   stdlogic=true;
@@ -186,7 +186,7 @@ void ExportTestbenchDlgImpl::selectTestbenchClicked()
   testbench_vhdl_path=fileNames.at(0).right(fileNames.at(0).length()-base_directory.length());
 
 
-  if(testbench_vhdl_path.right(testbench_vhdl_path.length()-testbench_vhdl_path.lastIndexOf("/")-1).find(".")<0)
+  if(testbench_vhdl_path.right(testbench_vhdl_path.length()-testbench_vhdl_path.lastIndexOf("/")-1).indexOf(".")<0)
     testbench_vhdl_path.append(".vhd");
 
   if(testbench_vhdl_path.length()>0)
@@ -250,7 +250,7 @@ void ExportTestbenchDlgImpl::selectPackageClicked()
 
   package_vhdl_path=QFileDialog::getSaveFileName(this,"","","VHDL Files (*.vhd *.vhdl);;All Files (*.*)");
 
-  if(package_vhdl_path.right(package_vhdl_path.length()-package_vhdl_path.lastIndexOf("/")-1).find(".")<0)
+  if(package_vhdl_path.right(package_vhdl_path.length()-package_vhdl_path.lastIndexOf("/")-1).indexOf(".")<0)
     package_vhdl_path.append(".vhd");
 
 }
@@ -281,7 +281,7 @@ void ExportTestbenchDlgImpl::selectTestvectorClicked()
   else return;
 
 
-  if(testvector_ascii_path.right(testvector_ascii_path.length()-testvector_ascii_path.lastIndexOf("/")-1).find(".")<0)
+  if(testvector_ascii_path.right(testvector_ascii_path.length()-testvector_ascii_path.lastIndexOf("/")-1).indexOf(".")<0)
     testvector_ascii_path.append(".vec");
 ;
 }
@@ -305,7 +305,7 @@ void ExportTestbenchDlgImpl::selectLogfileClicked()
      fileNames = file_dialog->selectedFiles();
   else return;
 
-  if(logfile_path.right(logfile_path.length()-logfile_path.lastIndexOf("/")-1).find(".")<0)
+  if(logfile_path.right(logfile_path.length()-logfile_path.lastIndexOf("/")-1).indexOf(".")<0)
     logfile_path.append(".vec");
 }
 

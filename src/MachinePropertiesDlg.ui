@@ -81,7 +81,7 @@
     </layout>
    </item>
    <item>
-    <widget class="Q3ButtonGroup" name="bg_type">
+    <widget class="QGroupBox" name="bg_type">
      <property name="title">
       <string>Type</string>
      </property>
@@ -117,7 +117,7 @@
     </widget>
    </item>
    <item>
-    <widget class="Q3GroupBox" name="bg_moore">
+    <widget class="QGroupBox" name="bg_moore">
      <property name="title">
       <string>Inputs</string>
      </property>
@@ -165,7 +165,7 @@
     </widget>
    </item>
    <item>
-    <widget class="Q3GroupBox" name="bg_mealy">
+    <widget class="QGroupBox" name="bg_mealy">
      <property name="title">
       <string>Outputs</string>
      </property>
@@ -402,31 +402,6 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>Q3GroupBox</class>
-   <extends>QGroupBox</extends>
-   <header>Qt3Support/Q3GroupBox</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3Frame</class>
-   <extends>QFrame</extends>
-   <header>Qt3Support/Q3Frame</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3ButtonGroup</class>
-   <extends>Q3GroupBox</extends>
-   <header>Qt3Support/Q3ButtonGroup</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3ListBox</class>
-   <extends>Q3Frame</extends>
-   <header>q3listbox.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections>
   <connection>

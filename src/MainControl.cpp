@@ -61,7 +61,7 @@ void MainControl::quitWindow(MainWindow* w)
 void MainControl::addMRUEntry(QString fileName)
 {
   QStringList::Iterator it;
-//  it = mru_list.find(fileName);
+//  it = mru_list.indexOf(fileName);
 
 //  if (it != mru_list.end())
 //  {

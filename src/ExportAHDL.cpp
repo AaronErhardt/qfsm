@@ -90,16 +90,16 @@ void ExportAHDL::writeName()
   n = n.replace(QRegExp("\\s"), "_");
 
   /*
-  found = n.find(" ", count);
+  found = n.indexOf(" ", count);
   while (found!=-1)
   {
     n[found]='_';
     count=found+1;
-    found = n.find(" ", count);
+    found = n.indexOf(" ", count);
   }
   */
     
-  *out << "SUBDESIGN " << n.latin1() << endl;
+  *out << "SUBDESIGN " << n.toLatin1().toStdString() << endl;
 }
 
 
@@ -109,13 +109,13 @@ void ExportAHDL::writeIO()
   using namespace std;
 
   *out << "(clock, reset		:INPUT;" << endl;
-  *out << machine->getMealyInputNames().latin1() << "	:INPUT;" << endl;
-  *out << machine->getMealyOutputNames().latin1() << "	:OUTPUT;" << endl;
+  *out << machine->getMealyInputNames().toLatin1().toStdString() << "	:INPUT;" << endl;
+  *out << machine->getMealyOutputNames().toLatin1().toStdString() << "	:OUTPUT;" << endl;
   
   if (use_moore)
-    *out << machine->getMooreOutputNames().latin1() << "	:OUTPUT;" ;
+    *out << machine->getMooreOutputNames().toLatin1().toStdString() << "	:OUTPUT;" ;
   else
-    *out << machine->getStateEncodingOutputNames().latin1() << "	:OUTPUT;" ;
+    *out << machine->getStateEncodingOutputNames().toLatin1().toStdString() << "	:OUTPUT;" ;
 
   *out << ")" << endl << endl;
 }
@@ -128,11 +128,11 @@ void ExportAHDL::writeVariables()
 
   QString sn, c;
   GState* s;
-  bool first=TRUE;
+  bool first=true;
 
   *out << "VARIABLE" << endl;
   *out << "\tfsm\t:\tMACHINE OF BITS(" << /*machine->getMooreOutputNames()*/
-    machine->getStateEncodingOutputNames().latin1() << ")" << endl;
+    machine->getStateEncodingOutputNames().toLatin1().toStdString() << ")" << endl;
   *out << "\t\t\t\tWITH STATES (";
   
   QMutableListIterator<GState*> i(machine->getSList());
@@ -155,8 +155,8 @@ void ExportAHDL::writeVariables()
     if (!first)
       *out << ",";
     *out << endl << "\t\t\t\t\t";
-    *out << sn.latin1() << " = B\"" << c.latin1() << "\""; 
-    first=FALSE;
+    *out << sn.toLatin1().toStdString() << " = B\"" << c.toLatin1().toStdString() << "\""; 
+    first=false;
   }
 
   i.toFront();
@@ -174,8 +174,8 @@ void ExportAHDL::writeVariables()
       if (!first)
 	*out << ",";
       *out << endl << "\t\t\t\t\t";
-      *out << sn.latin1() << " = B\"" << c.latin1() << "\""; 
-      first=FALSE;
+      *out << sn.toLatin1().toStdString() << " = B\"" << c.toLatin1().toStdString() << "\""; 
+      first=false;
     }
   }
   *out << ");" << endl;
@@ -183,7 +183,7 @@ void ExportAHDL::writeVariables()
   if (sync_reset)
     *out << "\treset_async : NODE;" << endl; 
   if (use_moore)
-    *out << "\t" << machine->getMooreOutputNamesAsync().latin1() << " : NODE;" << endl;
+    *out << "\t" << machine->getMooreOutputNamesAsync().toLatin1().toStdString() << " : NODE;" << endl;
 
   *out << endl;
 }
@@ -218,7 +218,7 @@ void ExportAHDL::writeMain()
       name = *it;
       name_async = name + "_async";
 
-      *out << "\t" << name.latin1() << " = DFF(" << name_async.latin1() << ",clock,VCC,VCC);" << endl;
+      *out << "\t" << name.toLatin1().toStdString() << " = DFF(" << name_async.toLatin1().toStdString() << ",clock,VCC,VCC);" << endl;
     }
     *out << endl;
   }
@@ -256,7 +256,7 @@ void ExportAHDL::writeTransitions()
     sn = s->getStateName();
     sn.replace(QRegExp(" "), "_");
     if (s->countTransitions()>0)
-      *out << "\t\tWHEN " << sn.latin1() << " =>" << endl;
+      *out << "\t\tWHEN " << sn.toLatin1().toStdString() << " =>" << endl;
 
     QMutableListIterator<GTransition*> it(s->tlist);
 
@@ -270,7 +270,7 @@ void ExportAHDL::writeTransitions()
       {
 	QList<IOInfo*> iolist;
 	iolist = tioinfo->getSingles();
-//	iolist.setAutoDelete(TRUE);
+//	iolist.setAutoDelete(true);
 	
 	QMutableListIterator<IOInfo*> ioit(iolist);
 
@@ -278,7 +278,7 @@ void ExportAHDL::writeTransitions()
   if(machine->getNumInputs()>0)
         *out << "\t\t\tIF (";
 
-	first = TRUE;
+	first = true;
 	for(; ioit.hasNext();)
 	{
 
@@ -296,7 +296,7 @@ void ExportAHDL::writeTransitions()
 		*out << "OR ";
 	      *out << endl << "\t\t\t\t";
 	    }
-	    *out << machine->getMealyInputNames().latin1();
+	    *out << machine->getMealyInputNames().toLatin1().toStdString();
 	    if (tioinfo->isInverted())
 	      *out << ") != B\"";
 	    else
@@ -307,8 +307,8 @@ void ExportAHDL::writeTransitions()
 	    for(int k=slen; k<numin; k++)
 	      *out << "0";
 
-	    *out << tinfoi.latin1() << "\" ";
-	    first=FALSE;
+	    *out << tinfoi.toLatin1().toStdString() << "\" ";
+	    first=false;
 	  }
 	}
 
@@ -319,14 +319,14 @@ void ExportAHDL::writeTransitions()
         // mealy outputs
 	if (!tinfoo.isEmpty())
 	{
-	  *out << "\t\t\t\t(" << machine->getMealyOutputNames().latin1() << ") = B\"";
+	  *out << "\t\t\t\t(" << machine->getMealyOutputNames().toLatin1().toStdString() << ") = B\"";
 
 	  int slen = tinfoo.length();
 	  int numout = machine->getNumOutputs();
 	  for(int l=slen; l<numout; l++)
 	    *out << "0";
 
-	  *out << tinfoo.latin1() << "\";" << endl;
+	  *out << tinfoo.toLatin1().toStdString() << "\";" << endl;
 	}
 	// next state
 	stmp = t->getEnd();
@@ -337,7 +337,7 @@ void ExportAHDL::writeTransitions()
         }
 	if (stmp!=s)
         {
-	  *out << "\t\t\t\tfsm = " << sn.latin1() << ";" << endl;
+	  *out << "\t\t\t\tfsm = " << sn.toLatin1().toStdString() << ";" << endl;
 
 	  if (use_moore)
 	  {
@@ -347,14 +347,14 @@ void ExportAHDL::writeTransitions()
 	    if (mooreinfo->getLength()>0)
 	    {
 	      *out << "\t\t\t\t(" <<
-		machine->getMooreOutputNamesAsync().latin1() << ") = B\"";
+		machine->getMooreOutputNamesAsync().toLatin1().toStdString() << ") = B\"";
   
 	      int slen = smooreinfo.length();
 	      int numout = machine->getNumMooreOutputs();
 	      for(int l=slen; l<numout; l++)
 	        *out << "0";
 
-	      *out << smooreinfo.latin1() << "\";" << endl;
+	      *out << smooreinfo.toLatin1().toStdString() << "\";" << endl;
 	    }
 	  }
 	}

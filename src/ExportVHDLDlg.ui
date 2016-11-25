@@ -256,7 +256,7 @@
           </layout>
          </item>
          <item>
-          <widget class="Q3ButtonGroup" name="bg_cond_notation">
+          <widget class="QGroupBox" name="bg_cond_notation">
            <property name="title">
             <string>Transiton Conditions</string>
            </property>
@@ -394,15 +394,15 @@
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <customwidgets>
   <customwidget>
-   <class>Q3GroupBox</class>
+   <class>QGroupBox</class>
    <extends>QGroupBox</extends>
-   <header>Qt3Support/Q3GroupBox</header>
+   <header>Qt3Support/QGroupBox</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>Q3ButtonGroup</class>
-   <extends>Q3GroupBox</extends>
-   <header>Qt3Support/Q3ButtonGroup</header>
+   <class>QGroupBox</class>
+   <extends>QGroupBox</extends>
+   <header>Qt3Support/QGroupBox</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

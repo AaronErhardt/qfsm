@@ -50,7 +50,7 @@
           </widget>
          </item>
          <item>
-          <widget class="Q3ButtonGroup" name="bg_orientation" >
+          <widget class="QGroupBox" name="bg_orientation" >
            <property name="title" >
             <string>Orientation</string>
            </property>
@@ -188,9 +188,9 @@
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <customwidgets>
   <customwidget>
-   <class>Q3ButtonGroup</class>
-   <extends>Q3GroupBox</extends>
-   <header>Qt3Support/Q3ButtonGroup</header>
+   <class>QGroupBox</class>
+   <extends>QGroupBox</extends>
+   <header>Qt3Support/QGroupBox</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

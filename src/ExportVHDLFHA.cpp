@@ -81,23 +81,23 @@ void ExportVHDLFHA::writeEntity()
   mname = machine->getName();
   mname.replace(QRegExp(" "), "_");
 
-  *out << "ENTITY " << mname.latin1() << " IS" << endl;
+  *out << "ENTITY " << mname.toLatin1() << " IS" << endl;
 //  *out << "--  generic (prop_delay : Time := 10 ns);" << endl;
-  *out << "  PORT (clk: IN " << bit_string.latin1() << ";" << endl;
-  *out << "        rst_n: IN " << bit_string.latin1() << ";" << endl;
+  *out << "  PORT (clk: IN " << bit_string.toLatin1() << ";" << endl;
+  *out << "        rst_n: IN " << bit_string.toLatin1() << ";" << endl;
   if(synchronous_reset)
-    *out << "        srst_n: IN " << bit_string.latin1() << ";" << endl;
+    *out << "        srst_n: IN " << bit_string.toLatin1() << ";" << endl;
   QStringList inputs=machine->getInputNameList();
   QStringList::const_iterator i;
   for (i = inputs.constBegin(); i != inputs.constEnd(); ++i)
-    *out << "        " << i->latin1() << ": IN "<< bit_string.latin1() << ";\n";
+    *out << "        " << i->toLatin1() << ": IN "<< bit_string.toLatin1() << ";\n";
 
   if (machine->getNumMooreOutputs()>0)
   {
     QStringList mooreOutputs=machine->getMooreOutputList();
     for (i = mooreOutputs.constBegin(); i != mooreOutputs.constEnd(); ++i)
     {
-      *out << "        " << i->latin1() << ": OUT "<< bit_string.latin1();
+      *out << "        " << i->toLatin1() << ": OUT "<< bit_string.toLatin1();
       if((i+1)!=mooreOutputs.constEnd() || machine->getNumOutputs()>0)
         *out<< ";\n";
     }
@@ -107,14 +107,14 @@ void ExportVHDLFHA::writeEntity()
     QStringList mealyOutputs=machine->getOutputNameList();
     for (i = mealyOutputs.constBegin(); i != mealyOutputs.constEnd(); ++i)
     {
-      *out << "        " << i->latin1() << ": OUT "<< bit_string.latin1();
+      *out << "        " << i->toLatin1() << ": OUT "<< bit_string.toLatin1();
       if((i+1)!=mealyOutputs.constEnd())
         *out<< ";\n";
     }
   }
   *out << ");\n";
 
-  *out << "END " << mname.latin1() << ";" << endl << endl;
+  *out << "END " << mname.toLatin1() << ";" << endl << endl;
 }
 
 
@@ -129,7 +129,7 @@ void ExportVHDLFHA::writeArchitecture()
   bit_string = "std_ulogic";
 
 
-  *out << "ARCHITECTURE behave OF " << mname.latin1() << " IS" << endl << endl;
+  *out << "ARCHITECTURE behave OF " << mname.toLatin1() << " IS" << endl << endl;
 
   QList<GState*> slist = machine->getSList();
   QString stmp;
@@ -143,7 +143,7 @@ void ExportVHDLFHA::writeArchitecture()
     stmp += Utils::noWS(st->getStateName());
     first=FALSE;
   }
-  *out << "TYPE state_type IS (" << stmp.latin1() << ");" << endl;
+  *out << "TYPE state_type IS (" << stmp.toLatin1() << ");" << endl;
   *out << "SIGNAL next_state, current_state : state_type;" << endl << endl;
 
 /*
@@ -186,7 +186,7 @@ void ExportVHDLFHA::writeClockProcess()
 
 
   *out << "      current_state <= " <<
-      Utils::noWS(stmp->getStateName()).latin1() 
+      Utils::noWS(stmp->getStateName()).toLatin1() 
       << ";" << endl;
     
   *out << "    ELSIF rising_edge(clk) THEN" << endl;
@@ -197,7 +197,7 @@ void ExportVHDLFHA::writeClockProcess()
     
     *out << "      IF srst_n='0' THEN " << endl; 
     *out << "        current_state <= " <<
-        Utils::noWS(istate->getStateName()).latin1() 
+        Utils::noWS(istate->getStateName()).toLatin1() 
         << ";" << endl;
         
     *out << "      ELSE" << endl;
@@ -231,7 +231,7 @@ void ExportVHDLFHA::writeStateProcess()
 
 
   for (i=inputs.constBegin(); i != inputs.constEnd(); ++i)
-    *out << " , " << i->latin1();
+    *out << " , " << i->toLatin1();
   *out << ")\n";
   if(machine->getNumInputs()>0)
     *out << "    VARIABLE temp_input : std_ulogic_vector("<< machine->getNumInputs()-1 << " DOWNTO 0);" << endl;
@@ -246,13 +246,13 @@ void ExportVHDLFHA::writeStateProcess()
 
   i=inputs.constBegin();
   if(machine->getNumInputs() == 1)
-    *out << "    temp_input(0) := " << i->latin1();
+    *out << "    temp_input(0) := " << i->toLatin1();
   else if(machine->getNumInputs() >1)
   {
-    *out << "    temp_input := " << i->latin1();
+    *out << "    temp_input := " << i->toLatin1();
     ++i;
     for (; i != inputs.constEnd(); ++i)
-      *out << " & " << i->latin1();
+      *out << " & " << i->toLatin1();
   }
   *out << ";\n";
 
@@ -269,7 +269,7 @@ void ExportVHDLFHA::writeStateProcess()
     sn.replace(QRegExp(" "), "_");
     if (s->countTransitions()>0)
     {
-      *out << endl << "      WHEN " << Utils::noWS(s->getStateName()).latin1() << " =>";
+      *out << endl << "      WHEN " << Utils::noWS(s->getStateName()).toLatin1() << " =>";
 
       if (machine->getNumMooreOutputs() > 0) 
       {
@@ -333,7 +333,7 @@ void ExportVHDLFHA::writeStateProcess()
               for(int k=slen; k<numin; k++)
                 *out << "0";
     
-              *out << tinfoi.latin1() << "\"";
+              *out << tinfoi.toLatin1() << "\"";
               first=FALSE;
             }
           }
@@ -350,7 +350,7 @@ void ExportVHDLFHA::writeStateProcess()
             for(int l=slen; l<numout; l++)
               *out << "0";
 
-            *out << tinfoo.latin1() << "\";" << endl << "            ";
+            *out << tinfoo.toLatin1() << "\";" << endl << "            ";
           }
           stmp = t->getEnd();
           if (stmp)
@@ -361,7 +361,7 @@ void ExportVHDLFHA::writeStateProcess()
     
 
           *out << " next_state <= " <<
-              Utils::noWS(stmp->getStateName()).latin1() << ";";
+              Utils::noWS(stmp->getStateName()).toLatin1() << ";";
             
         }
       }
@@ -380,7 +380,7 @@ void ExportVHDLFHA::writeStateProcess()
   int c=machine->getNumMooreOutputs()-1;
   while (i != outputs.constEnd())
   {
-    *out << "    " << i->latin1() << " <= temp_output(" << c << ");\n";
+    *out << "    " << i->toLatin1() << " <= temp_output(" << c << ");\n";
     c--;
     ++i;
   }
@@ -392,7 +392,7 @@ void ExportVHDLFHA::writeStateProcess()
   int c=machine->getNumOutputs()-1;
   while (i != outputs.constEnd())
   {
-    *out << "    " << i->latin1() << " <= temp_mealy_output(" << c << ");\n";
+    *out << "    " << i->toLatin1() << " <= temp_mealy_output(" << c << ");\n";
     c--;
     ++i;
   }
@@ -404,16 +404,16 @@ void ExportVHDLFHA::writeStateProcess()
 /// Writes a comment to the top of the output stream 
 void ExportVHDLFHA::writeHeader(QString commentstart, QString commentend)
 {
-  *out << commentstart.latin1() << "----------------------------------------------------------------" << commentend.latin1() << endl;
-  *out << commentstart.latin1() << " Module     : " << machine->getName().latin1() << commentend.latin1() << endl;
-  *out << commentstart.latin1() << "----------------------------------------------------------------" << commentend.latin1() << endl;
-  *out << commentstart.latin1() << " Author     : " << commentend.latin1() << endl;
-  *out << commentstart.latin1() << " Company    : University of Applied Sciences Augsburg" << commentend.latin1() << endl;
-  *out << commentstart.latin1() << "----------------------------------------------------------------" << commentend.latin1() << endl;
-  *out << commentstart.latin1() << " Description: " << commentend.latin1() << endl;
-  *out << commentstart.latin1() << "----------------------------------------------------------------" << commentend.latin1() << endl;
-  *out << commentstart.latin1() << " Revisions : " << machine->getVersion().latin1() << " - " << commentend.latin1() << endl;
-  *out << commentstart.latin1() << "----------------------------------------------------------------" << commentend.latin1() << endl;
+  *out << commentstart.toLatin1() << "----------------------------------------------------------------" << commentend.toLatin1() << endl;
+  *out << commentstart.toLatin1() << " Module     : " << machine->getName().toLatin1() << commentend.toLatin1() << endl;
+  *out << commentstart.toLatin1() << "----------------------------------------------------------------" << commentend.toLatin1() << endl;
+  *out << commentstart.toLatin1() << " Author     : " << commentend.toLatin1() << endl;
+  *out << commentstart.toLatin1() << " Company    : University of Applied Sciences Augsburg" << commentend.toLatin1() << endl;
+  *out << commentstart.toLatin1() << "----------------------------------------------------------------" << commentend.toLatin1() << endl;
+  *out << commentstart.toLatin1() << " Description: " << commentend.toLatin1() << endl;
+  *out << commentstart.toLatin1() << "----------------------------------------------------------------" << commentend.toLatin1() << endl;
+  *out << commentstart.toLatin1() << " Revisions : " << machine->getVersion().toLatin1() << " - " << commentend.toLatin1() << endl;
+  *out << commentstart.toLatin1() << "----------------------------------------------------------------" << commentend.toLatin1() << endl;
 }
 
 /// Writes the machine description to the output stream
@@ -428,7 +428,7 @@ void ExportVHDLFHA::writeDescription()
     QStringList::const_iterator i;
     for(i=inputs.constBegin(); i!=inputs.constEnd(); ++i)
     {
-      *out << "   "<< i->latin1();
+      *out << "   "<< i->toLatin1();
     }
     *out << endl;
   }
@@ -439,7 +439,7 @@ void ExportVHDLFHA::writeDescription()
     QStringList::const_iterator i;
     for(i=outputs.constBegin(); i!=outputs.constEnd(); ++i)
     {
-      *out << "   "<< i->latin1();
+      *out << "   "<< i->toLatin1();
     }
     *out << endl;
   }
@@ -457,7 +457,7 @@ void ExportVHDLFHA::writeDescription()
   }
   textLen[0]++;
 
-  *out << "-- State/Output" << QString(textLen[0]-13,' ').latin1();
+  *out << "-- State/Output" << QString(textLen[0]-13,' ').toLatin1();
 
 
   if(machine->getNumMooreOutputs()>0)
@@ -469,7 +469,7 @@ void ExportVHDLFHA::writeDescription()
     {
       textLen[spc]=i->length()+1;
       spc++;
-      *out << " "<< i->latin1();
+      *out << " "<< i->toLatin1();
     }
   }
   *out << endl;
@@ -480,7 +480,7 @@ void ExportVHDLFHA::writeDescription()
   for(is=states.constBegin(); is!=states.constEnd(); ++is)
   {
     int spc=0;
-    *out << "-- " << (*is)->getStateName().latin1() << QString(textLen[spc]-(*is)->getStateName().length(),' ').latin1();
+    *out << "-- " << (*is)->getStateName().toLatin1() << QString(textLen[spc]-(*is)->getStateName().length(),' ').toLatin1();
     spc++;
     if(machine->getNumMooreOutputs()>0)
     {
@@ -489,7 +489,7 @@ void ExportVHDLFHA::writeDescription()
       int c=0;
       while(c<sMooreOutput.length())
       {
-        *out << sMooreOutput[c].toLatin1() << QString(textLen[spc]-1,' ').latin1();
+        *out << sMooreOutput[c].toLatin1() << QString(textLen[spc]-1,' ').toLatin1();
         c++;
         spc++;
       }
