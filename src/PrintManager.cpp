@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <qprinter.h>
 //#include <q3paintdevicemetrics.h>
+#include <QPrintDialog.h>
 
 #include "PrintManager.h"
 #include "MainWindow.h"
@@ -48,7 +49,9 @@ PrintManager::~PrintManager()
  */
 void PrintManager::print()
 {
-  if (printer->setup(main))
+	QPrintDialog dialog(printer, main);
+
+	if (dialog.exec()) 
   {
     QPainter p;
     Machine* m = main->project->machine;
@@ -63,16 +66,18 @@ void PrintManager::print()
 
     name = printer->printerName();
 //    qDebug(name);
-    if (!printer->outputToFile() && name.isEmpty())
+    if (name.isEmpty())
     {
       Error::info(tr("The printer could not be initialised."));
       return;
     }
     p.begin(printer);
 
-    Q3PaintDeviceMetrics metrics(printer);
-    w = metrics.width();
-    h = metrics.height();
+//	Q3PaintDeviceMetrics metrics(printer);
+//	w = metrics.width();
+//	h = metrics.height();
+	w = printer->widthMM();
+    h = printer->heightMM();
  
     m->getCanvasSize(canvw, canvh);
     scale = (double)w/canvw;

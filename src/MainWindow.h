@@ -293,89 +293,89 @@ private:
 
     // menu item IDs
     // file
-    int id_open;		///< Menu id 'File->Open'
-    int id_save;		///< Menu id 'File->Save'
-    int id_saveas;		///< Menu id 'File->Save as'
-    int id_print;		///< Menu id 'File->Print'
-    int id_close; 		///< Menu id 'File->Close'
-    int id_import;		///< Menu id 'File->Import'
-    int id_import_graphviz;     ///< Menu id 'File->Import->Graphviz'
-    int id_export;		///< Menu id 'File->Export'
-    int id_export_eps;		///< Menu id 'File->Export->EPS'
-    int id_export_svg;		///< Menu id 'File->Export->SVG'
-    int id_export_png;      ///< Menu id 'File->Export->PNG'
-    int id_export_ahdl;		///< Menu id 'File->Export->AHDL'
-    int id_export_vhdl;		///< Menu id 'File->Export->VDHL'
-    int id_export_iodescription;   ///< Menu id 'File->Export->IO Description'
-    int id_export_testbench;   /// <Menu id 'File->Export->VHDL Testbench'
-    int id_export_verilog;	///< Menu id 'File->Export->Verilog HDL'
-    int id_export_kiss;		///< Menu id 'File->Export->KISS'
-    int id_export_vvvv;		///< Menu id 'File->Export->vvvv Automata code'
-    int id_export_scxml;	///< Menu id 'File->Export->SCXML'
-    int id_export_stascii;	///< Menu id 'File->Export->ASCII state table'
-    int id_export_stlat;	///< Menu id 'File->Export->Latex state table'
-    int id_export_sthtml;	///< Menu id 'File->Export->HTML state table'
-    int id_export_ragel;	///< Menu id 'File->Export->Ragel'
-    int id_export_smc;		///< Menu id 'File->Export->SMC'
+    QAction* id_open;		///< Menu id 'File->Open'
+    QAction* id_save;		///< Menu id 'File->Save'
+    QAction* id_saveas;		///< Menu id 'File->Save as'
+    QAction* id_print;		///< Menu id 'File->Print'
+    QAction* id_close; 		///< Menu id 'File->Close'
+    QAction* id_import;		///< Menu id 'File->Import'
+    QAction* id_import_graphviz;     ///< Menu id 'File->Import->Graphviz'
+    QAction* id_export;		///< Menu id 'File->Export'
+    QAction* id_export_eps;		///< Menu id 'File->Export->EPS'
+    QAction* id_export_svg;		///< Menu id 'File->Export->SVG'
+    QAction* id_export_png;      ///< Menu id 'File->Export->PNG'
+    QAction* id_export_ahdl;		///< Menu id 'File->Export->AHDL'
+    QAction* id_export_vhdl;		///< Menu id 'File->Export->VDHL'
+    QAction* id_export_iodescription;   ///< Menu id 'File->Export->IO Description'
+    QAction* id_export_testbench;   /// <Menu id 'File->Export->VHDL Testbench'
+    QAction* id_export_verilog;	///< Menu id 'File->Export->Verilog HDL'
+    QAction* id_export_kiss;		///< Menu id 'File->Export->KISS'
+    QAction* id_export_vvvv;		///< Menu id 'File->Export->vvvv Automata code'
+    QAction* id_export_scxml;	///< Menu id 'File->Export->SCXML'
+    QAction* id_export_stascii;	///< Menu id 'File->Export->ASCII state table'
+    QAction* id_export_stlat;	///< Menu id 'File->Export->Latex state table'
+    QAction* id_export_sthtml;	///< Menu id 'File->Export->HTML state table'
+    QAction* id_export_ragel;	///< Menu id 'File->Export->Ragel'
+    QAction* id_export_smc;		///< Menu id 'File->Export->SMC'
 
     // edit
-    int id_undo;		///< Menu id 'Edit->Undo'
-    int id_cut;			///< Menu id 'Edit->Cut'
-    int id_copy;		///< Menu id 'Edit->Copy'
-    int id_paste;		///< Menu id 'Edit->Paste'
-    int id_delete;		///< Menu id 'Edit->Delete'
-    int id_select; 		///< Menu id 'Edit->Select'
-    int id_selectall;		///< Menu id 'Edit->Select all'
-    int id_deselectall;		///< Menu id 'Edit->Deselect all'
+    QAction* id_undo;		///< Menu id 'Edit->Undo'
+    QAction* id_cut;			///< Menu id 'Edit->Cut'
+    QAction* id_copy;		///< Menu id 'Edit->Copy'
+    QAction* id_paste;		///< Menu id 'Edit->Paste'
+    QAction* id_delete;		///< Menu id 'Edit->Delete'
+    QAction* id_select; 		///< Menu id 'Edit->Select'
+    QAction* id_selectall;		///< Menu id 'Edit->Select all'
+    QAction* id_deselectall;		///< Menu id 'Edit->Deselect all'
 
     // view
-    int id_pan; 		///< Menu id 'View->Pan'
-    int id_zoom;		///< Menu id 'View->Zoom'
-    int id_zoomin;		///< Menu id 'View->Zoom in'
-    int id_zoomout;		///< Menu id 'View->Zoom out'
-    int id_zoom100;		///< Menu id 'View->Zoom 100%'
-    int id_viewstateenc;	///< Menu id 'View->State codes'
-    int id_viewmoore;		///< Menu id 'View->Moore outputs'
-    int id_viewmealyin;		///< Menu id 'View->Mealy inputs'
-    int id_viewmealyout;	///< Menu id 'View->Mealy outputs'
-    int id_viewgrid;		///< Menu id 'View->Grid'
-    int id_viewshadows;		///< Menu id 'View->Shadows'
-    int id_ioview;		///<Menu id 'View->IO View'
+    QAction* id_pan; 		///< Menu id 'View->Pan'
+    QAction* id_zoom;		///< Menu id 'View->Zoom'
+    QAction* id_zoomin;		///< Menu id 'View->Zoom in'
+    QAction* id_zoomout;		///< Menu id 'View->Zoom out'
+    QAction* id_zoom100;		///< Menu id 'View->Zoom 100%'
+    QAction* id_viewstateenc;	///< Menu id 'View->State codes'
+    QAction* id_viewmoore;		///< Menu id 'View->Moore outputs'
+    QAction* id_viewmealyin;		///< Menu id 'View->Mealy inputs'
+    QAction* id_viewmealyout;	///< Menu id 'View->Mealy outputs'
+    QAction* id_viewgrid;		///< Menu id 'View->Grid'
+    QAction* id_viewshadows;		///< Menu id 'View->Shadows'
+    QAction* id_ioview;		///<Menu id 'View->IO View'
 
     // machine
-    int id_machineedit;		///< Menu id 'Machine->Edit'
-    int id_machinesim;		///< Menu id 'Machine->Simulate'
-    int id_correctcodes;  ///<Menu id 'Machine->Auto correct State Codes'
-    int id_machineicheck;	///< Menu id 'Machine->Check integrity'
+    QAction* id_machineedit;		///< Menu id 'Machine->Edit'
+    QAction* id_machinesim;		///< Menu id 'Machine->Simulate'
+    QAction* id_correctcodes;  ///<Menu id 'Machine->Auto correct State Codes'
+    QAction* id_machineicheck;	///< Menu id 'Machine->Check integrity'
 
     // state
-    int id_editstate;		///< Menu id 'State->Edit'
-    int id_newstate;		///< Menu id 'State->New'
-    int id_setinitial;		///< Menu id 'State->Set initial'
-    int id_setend;		///< Menu id 'State->Toggle end state'
+    QAction* id_editstate;		///< Menu id 'State->Edit'
+    QAction* id_newstate;		///< Menu id 'State->New'
+    QAction* id_setinitial;		///< Menu id 'State->Set initial'
+    QAction* id_setend;		///< Menu id 'State->Toggle end state'
 
     // transition
-    int id_edittrans;		///< Menu id 'Transition->Edit'
-    int id_newtrans;		///< Menu id 'Transition->New'
-    int id_trans_straight;	///< Menu id 'Transition->Straighten'
+    QAction* id_edittrans;		///< Menu id 'Transition->Edit'
+    QAction* id_newtrans;		///< Menu id 'Transition->New'
+    QAction* id_trans_straight;	///< Menu id 'Transition->Straighten'
 
     // context menu item IDs
     // state
-    int id_ceditstate;		///< Context menu id 'Edit state'
-    int id_csetinitial;		///< Context menu id 'Set initial state'
-    int id_csetend;		///< Context menu id 'Toggle end state'
-    int id_csundo;		///< Context menu id 'Undo' (State)
-    int id_cscut;		///< Context menu id 'Cut' (State)
-    int id_cscopy;		///< Context menu id 'Copy' (State)
-    int id_csdelete; 		///< Context menu id 'Delete' (State)
+    QAction* id_ceditstate;		///< Context menu id 'Edit state'
+    QAction* id_csetinitial;		///< Context menu id 'Set initial state'
+    QAction* id_csetend;		///< Context menu id 'Toggle end state'
+    QAction* id_csundo;		///< Context menu id 'Undo' (State)
+    QAction* id_cscut;		///< Context menu id 'Cut' (State)
+    QAction* id_cscopy;		///< Context menu id 'Copy' (State)
+    QAction* id_csdelete; 		///< Context menu id 'Delete' (State)
 
     // transition
-    int id_cedittrans;		///< Context menu id 'Edit transition'
-    int id_ctrans_straight;	///< Context menu id 'Straighten transition'
-    int id_ctundo;		///< Context menu id 'Undo' (Transition)
-    int id_ctcut;		///< Context menu id 'Cut' (Transition)
-    int id_ctcopy;		///< Context menu id 'Copy' (Transition)
-    int id_ctdelete; 		///< Context menu id 'Delete' (Transition)
+    QAction* id_cedittrans;		///< Context menu id 'Edit transition'
+    QAction* id_ctrans_straight;	///< Context menu id 'Straighten transition'
+    QAction* id_ctundo;		///< Context menu id 'Undo' (Transition)
+    QAction* id_ctcut;		///< Context menu id 'Cut' (Transition)
+    QAction* id_ctcopy;		///< Context menu id 'Copy' (Transition)
+    QAction* id_ctdelete; 		///< Context menu id 'Delete' (Transition)
 
 
     /// Messagebox that is opend when the user wants to close a changed file

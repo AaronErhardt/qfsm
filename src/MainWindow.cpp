@@ -116,7 +116,7 @@ using namespace std;
  * Initialises the mainwindow with all its menus.
  */
 MainWindow::MainWindow(QObject* parent , const char* name )
-           :QMainWindow(NULL, name)
+           :QMainWindow(NULL)
 {
   control = (MainControl*)parent;
   project = NULL;
@@ -129,7 +129,7 @@ MainWindow::MainWindow(QObject* parent , const char* name )
 //  QPixmap pix("qfsm_64.png", "PNG");
 //  setIcon(pix);
   QPixmap paicon((const char**)qfsm_64_xpm);
-  setIcon(paicon);
+  setWindowIcon(paicon);
 
   createToolBar();
 
@@ -137,10 +137,10 @@ MainWindow::MainWindow(QObject* parent , const char* name )
   //menubar=new QMenuBar(this);
   menu_mru = new QMenu(this);
 
-  menu_import = new QMenu(this);
+  menu_import = new QMenu(tr("Import"), this);
   menu_import->setMouseTracking(true);
 #ifdef GRAPHVIZ_FOUND
-  id_import_graphviz = menu_import->insertItem(tr("&Graphviz..."), this, SLOT(fileImportGraphviz()));
+  id_import_graphviz = menu_import->addAction(tr("&Graphviz..."), this, SLOT(fileImportGraphviz()));
 #endif
 
   /*
@@ -162,207 +162,159 @@ MainWindow::MainWindow(QObject* parent , const char* name )
   */
 
   // File -> Export
-  menu_export = new QMenu(this);
+  menu_export = new QMenu(tr("Export"), this);
   menu_export->setMouseTracking(true);
-  id_export_eps = menu_export->insertItem(tr("E&PS..."), this, SLOT(fileExportEPS()));
-  id_export_svg = menu_export->insertItem(tr("&SVG..."), this, SLOT(fileExportSVG()));
-  id_export_png = menu_export->insertItem(tr("&PNG..."), this, SLOT(fileExportPNG()));
-  menu_export->insertSeparator();
-  id_export_ahdl = menu_export->insertItem(tr("&AHDL..."), this, SLOT(fileExportAHDL()));
-  id_export_vhdl = menu_export->insertItem(tr("&VHDL..."), this, SLOT(fileExportVHDL()));
-  id_export_verilog = menu_export->insertItem(tr("V&erilog HDL..."), this,
-      SLOT(fileExportVerilog()));
-  id_export_kiss = menu_export->insertItem(tr("&KISS"), this, SLOT(fileExportKISS()));
-  menu_export->insertSeparator();
-  id_export_testbench = menu_export->insertItem(tr("VHDL &Testbench"),this,SLOT(fileExportTestbench()));
-  id_export_iodescription = menu_export->insertItem(tr("I/O &Description"), this, SLOT(fileExportIODescription()));
+  id_export_eps = menu_export->addAction(tr("E&PS..."), this, SLOT(fileExportEPS()));
+  id_export_svg = menu_export->addAction(tr("&SVG..."), this, SLOT(fileExportSVG()));
+  id_export_png = menu_export->addAction(tr("&PNG..."), this, SLOT(fileExportPNG()));
+  menu_export->insertSeparator(id_export_png);
+  id_export_ahdl = menu_export->addAction(tr("&AHDL..."), this, SLOT(fileExportAHDL()));
+  id_export_vhdl = menu_export->addAction(tr("&VHDL..."), this, SLOT(fileExportVHDL()));
+  id_export_verilog = menu_export->addAction(tr("V&erilog HDL..."), this, SLOT(fileExportVerilog()));
+  id_export_kiss = menu_export->addAction(tr("&KISS"), this, SLOT(fileExportKISS()));
+  menu_export->insertSeparator(id_export_kiss);
+  id_export_testbench = menu_export->addAction(tr("VHDL &Testbench"),this,SLOT(fileExportTestbench()));
+  id_export_iodescription = menu_export->addAction(tr("I/O &Description"), this, SLOT(fileExportIODescription()));
 
-  menu_export->insertSeparator();
-  id_export_scxml = menu_export->insertItem(tr("SC&XML"), this, SLOT(fileExportSCXML()));
-  id_export_vvvv = menu_export->insertItem(tr("vvvv A&utomata code"), this, SLOT(fileExportVVVV()));
-  menu_export->insertSeparator();
-  id_export_stascii = menu_export->insertItem(tr("State Table (ASC&II)..."), 
-      this, SLOT(fileExportSTASCII()));
-  id_export_stlat = menu_export->insertItem(tr("State Table (&Latex)..."), 
-      this, SLOT(fileExportSTLatex()));
-  id_export_sthtml = menu_export->insertItem(tr("State Table (&HTML)..."), 
-      this, SLOT(fileExportSTHTML()));
-  menu_export->insertSeparator();
-  id_export_ragel = menu_export->insertItem(tr("&Ragel..."), this, SLOT(fileExportRagel()));
-  id_export_smc = menu_export->insertItem(tr("SM&C..."), this, SLOT(fileExportSMC()));
+  menu_export->insertSeparator(id_export_iodescription);
+  id_export_scxml = menu_export->addAction(tr("SC&XML"), this, SLOT(fileExportSCXML()));
+  id_export_vvvv = menu_export->addAction(tr("vvvv A&utomata code"), this, SLOT(fileExportVVVV()));
+  menu_export->insertSeparator(id_export_vvvv);
+  id_export_stascii = menu_export->addAction(tr("State Table (ASC&II)..."), this, SLOT(fileExportSTASCII()));
+  id_export_stlat = menu_export->addAction(tr("State Table (&Latex)..."), this, SLOT(fileExportSTLatex()));
+  id_export_sthtml = menu_export->addAction(tr("State Table (&HTML)..."), this, SLOT(fileExportSTHTML()));
+  menu_export->insertSeparator(id_export_sthtml);
+  id_export_ragel = menu_export->addAction(tr("&Ragel..."), this, SLOT(fileExportRagel()));
+  id_export_smc = menu_export->addAction(tr("SM&C..."), this, SLOT(fileExportSMC()));
 
   // File
   menu_file = new QMenu(this);
   menu_file->setMouseTracking(true);
-  menu_file->insertItem(*pnew, tr("&New..."), this, SLOT(fileNew()), Qt::CTRL+Qt::Key_N);
-  id_open = menu_file->insertItem(*popen, tr("&Open..."), this, SLOT(fileOpen()), 
-    Qt::CTRL+Qt::Key_O);
-  menu_file->insertItem(tr("Open &Recent"), menu_mru);
-  menu_file->insertSeparator();
-  id_save = menu_file->insertItem(*saveset, tr("&Save"), this, SLOT(fileSave()), 
-    Qt::CTRL+Qt::Key_S);
-  id_saveas = menu_file->insertItem(tr("Save &As..."), this, SLOT(fileSaveAs()));
-  menu_file->insertSeparator();
-  id_import = menu_file->insertItem(tr("&Import"), menu_import);
-  id_export = menu_file->insertItem(tr("&Export"), menu_export);
-  menu_file->insertSeparator();
-  id_print = menu_file->insertItem(*printset, tr("&Print..."), this, 
-    SLOT(filePrint()), Qt::CTRL+Qt::Key_P);
-  menu_file->insertSeparator();
-  menu_file->insertItem(tr("New &Window"), control, SLOT(newWindow()) );
-  menu_file->insertSeparator();
-  id_close = menu_file->insertItem(tr("&Close"), this, SLOT(fileClose()),
-    Qt::CTRL+Qt::Key_W );
-  menu_file->insertItem(tr("&Quit"), this, SLOT(fileQuit()), Qt::CTRL+Qt::Key_Q);
+  menu_file->addAction(*pnew, tr("&New..."), this, SLOT(fileNew()), Qt::CTRL+Qt::Key_N);
+  id_open = menu_file->addAction(*popen, tr("&Open..."), this, SLOT(fileOpen()), Qt::CTRL+Qt::Key_O);
+  menu_file->addAction(tr("Open &Recent"), menu_mru);
+  menu_file->insertSeparator(id_open);
+  id_save = menu_file->addAction(*saveset, tr("&Save"), this, SLOT(fileSave()), Qt::CTRL+Qt::Key_S);
+  id_saveas = menu_file->addAction(tr("Save &As..."), this, SLOT(fileSaveAs()));
+  menu_file->insertSeparator(id_save);
+  id_import = menu_file->addAction(tr("&Import"), menu_import);
+  id_export = menu_file->addAction(tr("&Export"), menu_export);
+  menu_file->insertSeparator(id_export);
+  id_print = menu_file->addAction(*printset, tr("&Print..."), this, SLOT(filePrint()), Qt::CTRL+Qt::Key_P);
+  menu_file->insertSeparator(id_print);
+  menu_file->addAction(tr("New &Window"), control, SLOT(newWindow()) );
+  id_close = menu_file->addAction(tr("&Close"), this, SLOT(fileClose()), Qt::CTRL+Qt::Key_W );
+  menu_file->addAction(tr("&Quit"), this, SLOT(fileQuit()), Qt::CTRL+Qt::Key_Q);
+  menu_file->insertSeparator(id_close);
 
   // Edit
   menu_edit = new QMenu(this);
   menu_edit->setCheckable(true);
   menu_edit->setMouseTracking(true);
-  id_undo = menu_edit->insertItem(*undoset, tr("U&ndo"), this, SLOT(editUndo()), 
-    Qt::CTRL+Qt::Key_Z);
-  menu_edit->insertSeparator();
-  id_cut = menu_edit->insertItem(*cutset, tr("C&ut"), this, SLOT(editCut()), Qt::CTRL+Qt::Key_X);
-  id_copy = menu_edit->insertItem(*copyset, tr("&Copy"), this, 
-    SLOT(editCopy()), Qt::CTRL+Qt::Key_C);
-  id_paste = menu_edit->insertItem(*pasteset, tr("&Paste"), this, 
-    SLOT(editPaste()), Qt::CTRL+Qt::Key_V);
-  id_delete = menu_edit->insertItem(tr("De&lete"), this, SLOT(editDelete()),
-   Qt::Key_Delete);
-  menu_edit->insertSeparator();
-  id_select = menu_edit->insertItem(*selset, tr("&Select"), this, 
-    SLOT(editSelect()), Qt::CTRL+Qt::SHIFT+Qt::Key_S);
-  id_selectall = menu_edit->insertItem(tr("Select &All"), this, 
-    SLOT(editSelectAll()), Qt::CTRL+Qt::Key_A);
-  id_deselectall = menu_edit->insertItem(tr("&Deselect All"), this, 
-    SLOT(editDeselectAll()), Qt::CTRL+Qt::Key_D);
-  menu_edit->insertSeparator();
-  menu_edit->insertItem(tr("&Options"), this, SLOT(editOptions()));
+  id_undo = menu_edit->addAction(*undoset, tr("U&ndo"), this, SLOT(editUndo()),  Qt::CTRL+Qt::Key_Z);
+  menu_edit->insertSeparator(id_undo);
+  id_cut = menu_edit->addAction(*cutset, tr("C&ut"), this, SLOT(editCut()), Qt::CTRL+Qt::Key_X);
+  id_copy = menu_edit->addAction(*copyset, tr("&Copy"), this, SLOT(editCopy()), Qt::CTRL+Qt::Key_C);
+  id_paste = menu_edit->addAction(*pasteset, tr("&Paste"), this, SLOT(editPaste()), Qt::CTRL+Qt::Key_V);
+  id_delete = menu_edit->addAction(tr("De&lete"), this, SLOT(editDelete()),  Qt::Key_Delete);
+  menu_edit->insertSeparator(id_delete);
+  id_select = menu_edit->addAction(*selset, tr("&Select"), this, SLOT(editSelect()), Qt::CTRL+Qt::SHIFT+Qt::Key_S);
+  id_selectall = menu_edit->addAction(tr("Select &All"), this, SLOT(editSelectAll()), Qt::CTRL+Qt::Key_A);
+  id_deselectall = menu_edit->addAction(tr("&Deselect All"), this, SLOT(editDeselectAll()), Qt::CTRL+Qt::Key_D);
+  menu_edit->insertSeparator(id_deselectall);
+  menu_edit->addAction(tr("&Options"), this, SLOT(editOptions()));
 
   // View
   menu_view = new QMenu(this);
   menu_view->setCheckable(true);
   menu_view->setMouseTracking(true);
-  id_viewstateenc = menu_view->insertItem(tr("State &Codes"), this,
-    SLOT(viewStateEncoding()));
-  id_viewmoore = menu_view->insertItem(tr("Moo&re Outputs"), this,
-    SLOT(viewMooreOutputs()), Qt::CTRL+Qt::Key_M);
-  id_viewmealyin = menu_view->insertItem(tr("Mealy I&nputs"), this,
-    SLOT(viewMealyInputs()));
-  id_viewmealyout = menu_view->insertItem(tr("Mea&ly Outputs"), this,
-    SLOT(viewMealyOutputs()));
-  menu_view->insertSeparator();
-  id_viewshadows = menu_view->insertItem(tr("&Shadows"), this,
-    SLOT(viewShadows()));
-  id_viewgrid = menu_view->insertItem(tr("&Grid"), this, SLOT(viewGrid()));
-  menu_view->insertSeparator();
-  id_ioview = menu_view->insertItem(tr("&IO View"),this,SLOT(viewIOView()));
-  menu_view->insertSeparator();
-  id_pan = menu_view->insertItem(*panset, tr("&Pan view"), this, 
-    SLOT(viewPan()), Qt::CTRL+Qt::SHIFT+Qt::Key_P);
-  id_zoom = menu_view->insertItem(*zoomset, tr("&Zoom"), this, 
-    SLOT(viewZoom()), Qt::CTRL+Qt::SHIFT+Qt::Key_Z);
-  id_zoomin = menu_view->insertItem(*pzoomin, tr("Zoom &In"), this, 
-    SLOT(viewZoomIn()), Qt::CTRL+Qt::Key_I);
-  id_zoomout = menu_view->insertItem(*pzoomout, tr("Zoom &Out"), this, 
-    SLOT(viewZoomOut()), Qt::CTRL+Qt::Key_U);
-  id_zoom100 = menu_view->insertItem(tr("Zoom &100%"), this,
-    SLOT(viewZoom100()), Qt::CTRL+Qt::Key_R);
+  id_viewstateenc = menu_view->addAction(tr("State &Codes"), this, SLOT(viewStateEncoding()));
+  id_viewmoore = menu_view->addAction(tr("Moo&re Outputs"), this, SLOT(viewMooreOutputs()), Qt::CTRL+Qt::Key_M);
+  id_viewmealyin = menu_view->addAction(tr("Mealy I&nputs"), this, SLOT(viewMealyInputs()));
+  id_viewmealyout = menu_view->addAction(tr("Mea&ly Outputs"), this, SLOT(viewMealyOutputs()));
+  menu_view->insertSeparator(id_viewmealyout);
+  id_viewshadows = menu_view->addAction(tr("&Shadows"), this, SLOT(viewShadows()));
+  id_viewgrid = menu_view->addAction(tr("&Grid"), this, SLOT(viewGrid()));
+  menu_view->insertSeparator(id_viewgrid);
+  id_ioview = menu_view->addAction(tr("&IO View"),this,SLOT(viewIOView()));
+  menu_view->insertSeparator(id_ioview);
+  id_pan = menu_view->addAction(*panset, tr("&Pan view"), this,   SLOT(viewPan()), Qt::CTRL+Qt::SHIFT+Qt::Key_P);
+  id_zoom = menu_view->addAction(*zoomset, tr("&Zoom"), this,     SLOT(viewZoom()), Qt::CTRL+Qt::SHIFT+Qt::Key_Z);
+  id_zoomin = menu_view->addAction(*pzoomin, tr("Zoom &In"), this,     SLOT(viewZoomIn()), Qt::CTRL+Qt::Key_I);
+  id_zoomout = menu_view->addAction(*pzoomout, tr("Zoom &Out"), this,     SLOT(viewZoomOut()), Qt::CTRL+Qt::Key_U);
+  id_zoom100 = menu_view->addAction(tr("Zoom &100%"), this,    SLOT(viewZoom100()), Qt::CTRL+Qt::Key_R);
 
   // Machine
   menu_machine = new QMenu(this);
   menu_machine->setMouseTracking(true);
-  id_machineedit = menu_machine->insertItem(tr("&Edit..."), this, 
-    SLOT(machineEdit()));
-  id_correctcodes = menu_machine->insertItem(tr("&Auto correct State Codes..."), this, 
-                                            SLOT(machineCorrectCodes()));
-  id_machinesim = menu_machine->insertItem(*machinesimset, tr("&Simulate..."), 
-    this, SLOT(machineSimulate()), Qt::CTRL+Qt::SHIFT+Qt::Key_I);
-  id_machineicheck = menu_machine->insertItem(tr("&Integrity Check"), this,
-      SLOT(machineICheck()));
+  id_machineedit = menu_machine->addAction(tr("&Edit..."), this,     SLOT(machineEdit()));
+  id_correctcodes = menu_machine->addAction(tr("&Auto correct State Codes..."), this,    SLOT(machineCorrectCodes()));
+  id_machinesim = menu_machine->addAction(*machinesimset, tr("&Simulate..."),   this, SLOT(machineSimulate()), Qt::CTRL+Qt::SHIFT+Qt::Key_I);
+  id_machineicheck = menu_machine->addAction(tr("&Integrity Check"), this,   SLOT(machineICheck()));
   
   // State
   menu_state = new QMenu(this);
   menu_state->setCheckable(true);
   menu_state->setMouseTracking(true);
-  id_newstate = menu_state->insertItem(*statenewset, tr("&New"), this, 
-    SLOT(stateNew()), Qt::CTRL+Qt::SHIFT+Qt::Key_N);
-  id_editstate = menu_state->insertItem(tr("&Edit..."), this, 
-      SLOT(stateEdit()));
-  id_setinitial = menu_state->insertItem(tr("Set &Initial State"), this,
-    SLOT(stateSetInitial()));
-  id_setend = menu_state->insertItem(tr("&Toggle Final State"), this,
-    SLOT(stateSetFinal()), Qt::CTRL+Qt::Key_E);
+  id_newstate = menu_state->addAction(*statenewset, tr("&New"), this, SLOT(stateNew()), Qt::CTRL+Qt::SHIFT+Qt::Key_N);
+  id_editstate = menu_state->addAction(tr("&Edit..."), this,  SLOT(stateEdit()));
+  id_setinitial = menu_state->addAction(tr("Set &Initial State"), this,  SLOT(stateSetInitial()));
+  id_setend = menu_state->addAction(tr("&Toggle Final State"), this, SLOT(stateSetFinal()), Qt::CTRL+Qt::Key_E);
 
 
   // Transition
   menu_trans = new QMenu(this);
   menu_trans->setMouseTracking(true);
-  id_newtrans = menu_trans->insertItem(*transnewset, tr("&New"), this,
-    SLOT(transNew()), Qt::CTRL+Qt::SHIFT+Qt::Key_T);
-  id_edittrans = menu_trans->insertItem(tr("&Edit..."), this, 
-      SLOT(transEdit()));
-  id_trans_straight = menu_trans->insertItem(*transstraightenset, 
-    tr("&Straighten"), this, SLOT(transStraighten()), Qt::CTRL+Qt::Key_T);
+  id_newtrans = menu_trans->addAction(*transnewset, tr("&New"), this, SLOT(transNew()), Qt::CTRL+Qt::SHIFT+Qt::Key_T);
+  id_edittrans = menu_trans->addAction(tr("&Edit..."), this,  SLOT(transEdit()));
+  id_trans_straight = menu_trans->addAction(*transstraightenset,  tr("&Straighten"), this, SLOT(transStraighten()), Qt::CTRL+Qt::Key_T);
 
   // Help
 /*  menu_help = new QMenu(this);
   menu_help->setMouseTracking(true);
-  menu_help->insertItem(tr("&About..."), this, SLOT(helpAbout()));
+  menu_help->addAction(tr("&About..."), this, SLOT(helpAbout()));
   menu_help->insertSeparator();
-  menu_help->insertItem(tr("About &Qt..."), this, SLOT(helpAboutQt()));
+  menu_help->addAction(tr("About &Qt..."), this, SLOT(helpAboutQt()));
 */
   menu_help = new QMenu(this);
   menu_help->setMouseTracking(true);
   menu_help->addAction (tr("Qfsm &Manual..."), this, SLOT(helpManual()), Qt::Key_F1);
-  menu_help->insertSeparator();
   menu_help->addAction (tr("&About..."), this, SLOT(helpAbout()));
   menu_help->addAction (tr("About &Qt..."), this, SLOT(helpAboutQt()));
 
 
-  menubar->insertItem(tr("&File"), menu_file);
-  menubar->insertItem(tr("&Edit"), menu_edit);
-  menubar->insertItem(tr("&View"), menu_view);
-  menubar->insertItem(tr("&Machine"), menu_machine);
-  menubar->insertItem(tr("&State"), menu_state);
-  menubar->insertItem(tr("&Transition"), menu_trans);
-  menubar->insertItem(tr("&Help"), menu_help);
+  menubar->addAction(tr("&File"), menu_file);
+  menubar->addAction(tr("&Edit"), menu_edit);
+  menubar->addAction(tr("&View"), menu_view);
+  menubar->addAction(tr("&Machine"), menu_machine);
+  menubar->addAction(tr("&State"), menu_state);
+  menubar->addAction(tr("&Transition"), menu_trans);
+  menubar->addAction(tr("&Help"), menu_help);
   
   // Context Menu: State
   cmenu_state = new QMenu(this);
   cmenu_state->setMouseTracking(true);
-  id_csundo = cmenu_state->insertItem(*undoset, tr("U&ndo"), this, 
-    SLOT(editUndo()), Qt::CTRL+Qt::Key_Z);
-  cmenu_state->insertSeparator();
-  id_cscut = cmenu_state->insertItem(*cutset, tr("C&ut"), this, 
-    SLOT(editCut()), Qt::CTRL+Qt::Key_X);
-  id_cscopy = cmenu_state->insertItem(*copyset, tr("&Copy"), this, 
-    SLOT(editCopy()), Qt::CTRL+Qt::Key_C);
-  id_csdelete = cmenu_state->insertItem(tr("De&lete"), this, 
-    SLOT(editDelete()), Qt::Key_Delete);
-  cmenu_state->insertSeparator();
-  id_ceditstate = cmenu_state->insertItem(tr("&Edit..."), this, SLOT(stateEdit()));
-  id_csetinitial = cmenu_state->insertItem(tr("Set &Initial State"), this,
-    SLOT(stateSetInitial()));
-  id_csetend = cmenu_state->insertItem(tr("&Toggle Final State"), this,
-    SLOT(stateSetFinal()));
+  id_csundo = cmenu_state->addAction(*undoset, tr("U&ndo"), this, SLOT(editUndo()), Qt::CTRL+Qt::Key_Z);
+  cmenu_state->insertSeparator(id_csundo);
+  id_cscut = cmenu_state->addAction(*cutset, tr("C&ut"), this, SLOT(editCut()), Qt::CTRL+Qt::Key_X);
+  id_cscopy = cmenu_state->addAction(*copyset, tr("&Copy"), this,  SLOT(editCopy()), Qt::CTRL+Qt::Key_C);
+  id_csdelete = cmenu_state->addAction(tr("De&lete"), this, SLOT(editDelete()), Qt::Key_Delete);
+  cmenu_state->insertSeparator(id_csdelete);
+  id_ceditstate = cmenu_state->addAction(tr("&Edit..."), this, SLOT(stateEdit()));
+  id_csetinitial = cmenu_state->addAction(tr("Set &Initial State"), this, SLOT(stateSetInitial()));
+  id_csetend = cmenu_state->addAction(tr("&Toggle Final State"), this, SLOT(stateSetFinal()));
 
   // Context Menu: Transition
   cmenu_trans = new QMenu(this);
   cmenu_trans->setMouseTracking(true);
-  id_ctundo = cmenu_trans->insertItem(*undoset, tr("U&ndo"), this, SLOT(editUndo()), 
-    Qt::CTRL+Qt::Key_Z);
+  id_ctundo = cmenu_trans->addAction(*undoset, tr("U&ndo"), this, SLOT(editUndo()), Qt::CTRL+Qt::Key_Z);
+  cmenu_trans->insertSeparator(id_ctundo);
+  id_ctcut = cmenu_trans->addAction(*cutset, tr("C&ut"), this, SLOT(editCut()), Qt::CTRL+Qt::Key_X);
+  id_ctcopy = cmenu_trans->addAction(*copyset, tr("&Copy"), this, SLOT(editCopy()), Qt::CTRL+Qt::Key_C);
+  id_ctdelete = cmenu_trans->addAction(tr("De&lete"), this, SLOT(editDelete()), Qt::Key_Delete);
   cmenu_trans->insertSeparator();
-  id_ctcut = cmenu_trans->insertItem(*cutset, tr("C&ut"), this, 
-    SLOT(editCut()), Qt::CTRL+Qt::Key_X);
-  id_ctcopy = cmenu_trans->insertItem(*copyset, tr("&Copy"), this, 
-    SLOT(editCopy()), Qt::CTRL+Qt::Key_C);
-  id_ctdelete = cmenu_trans->insertItem(tr("De&lete"), this, 
-    SLOT(editDelete()), Qt::Key_Delete);
-  cmenu_trans->insertSeparator();
-  id_cedittrans = cmenu_trans->insertItem(tr("&Edit..."), this, SLOT(transEdit()));
-  id_ctrans_straight = cmenu_trans->insertItem(*transstraightenset, 
-    tr("&Straighten"), this, SLOT(transStraighten()), Qt::CTRL+Qt::Key_T);
+  id_cedittrans = cmenu_trans->addAction(tr("&Edit..."), this, SLOT(transEdit()));
+  id_ctrans_straight = cmenu_trans->addAction(*transstraightenset, tr("&Straighten"), this, SLOT(transStraighten()), Qt::CTRL+Qt::Key_T);
 
   // Context Menu: ScrollView
   cmenu_sview = menu_edit;
@@ -391,7 +343,7 @@ MainWindow::MainWindow(QObject* parent , const char* name )
   fileio->loadOptions(&doc_options);
   fileio->loadMRU(control->getMRUList());
 
-  tabdialog = new Q3TabDialog(this, 0, true);
+  tabdialog = new TabDialog(this, 0, true);
   tabdialog->resize(400, 300);
   tabdialog->setCaption(tr("Qfsm Options"));
 
@@ -522,7 +474,7 @@ void MainWindow::createToolBar()
   QPixmap psave((const char**)filesave);
   QPixmap psaveoff((const char**)filesaveoff);
   saveset = new QIcon(psave);
-  saveset->setPixmap(psaveoff, QIcon::Automatic, QIcon::Disabled);
+  saveset->addPixmap(psaveoff, QIcon::Automatic, QIcon::Disabled);
   tbsave = new QToolButton(psave, tr("Save File"), tr("Saves this file"), 
     this, SLOT(fileSave()), toolbar);
   tbsave->setIconSet(*saveset);
@@ -531,7 +483,7 @@ void MainWindow::createToolBar()
   QPixmap pprint((const char**)fileprint);
   QPixmap pprintoff((const char**)fileprintoff);
   printset = new QIcon(pprint);
-  printset->setPixmap(pprintoff, QIcon::Automatic, QIcon::Disabled);
+  printset->addPixmap(pprintoff, QIcon::Automatic, QIcon::Disabled);
   tbprint = new QToolButton(pprint,tr("Print"), tr("Prints this file"), 
     this, SLOT(filePrint()), toolbar);
   tbprint->setIconSet(*printset);
@@ -540,7 +492,7 @@ void MainWindow::createToolBar()
   QPixmap pundo((const char**)editundo);
   QPixmap pundooff((const char**)editundooff);
   undoset = new QIcon(pundo);
-  undoset->setPixmap(pundooff, QIcon::Automatic, QIcon::Disabled);
+  undoset->addPixmap(pundooff, QIcon::Automatic, QIcon::Disabled);
   tbundo = new QToolButton(pundo,tr("Undo"), tr("Undo last action"), 
     this, SLOT(editUndo()), toolbar);
   tbundo->setIconSet(*undoset);
@@ -549,7 +501,7 @@ void MainWindow::createToolBar()
   QPixmap pcut((const char**)editcut);
   QPixmap pcutoff((const char**)editcutoff);
   cutset = new QIcon(pcut);
-  cutset->setPixmap(pcutoff, QIcon::Automatic, QIcon::Disabled);
+  cutset->addPixmap(pcutoff, QIcon::Automatic, QIcon::Disabled);
   tbcut = new QToolButton(pcut,tr("Cut"), tr("Cuts Selection"), 
     this, SLOT(editCut()), toolbar);
   tbcut->setIconSet(*cutset);
@@ -558,7 +510,7 @@ void MainWindow::createToolBar()
   QPixmap pcopy((const char**)editcopy);
   QPixmap pcopyoff((const char**)editcopyoff);
   copyset = new QIcon(pcopy);
-  copyset->setPixmap(pcopyoff, QIcon::Automatic, QIcon::Disabled);
+  copyset->addPixmap(pcopyoff, QIcon::Automatic, QIcon::Disabled);
   tbcopy = new QToolButton(pcopy,tr("Copy"), tr("Copies Selection"), 
     this, SLOT(editCopy()), toolbar);
   tbcopy->setIconSet(*copyset);
@@ -567,7 +519,7 @@ void MainWindow::createToolBar()
   QPixmap ppaste((const char**)editpaste);
   QPixmap ppasteoff((const char**)editpasteoff);
   pasteset = new QIcon(ppaste);
-  pasteset->setPixmap(ppasteoff, QIcon::Automatic, QIcon::Disabled);
+  pasteset->addPixmap(ppasteoff, QIcon::Automatic, QIcon::Disabled);
   tbpaste = new QToolButton(ppaste,tr("Paste"), tr("Pastes the clipboard"), 
     this, SLOT(editPaste()), toolbar);
   tbpaste->setIconSet(*pasteset);
@@ -578,7 +530,7 @@ void MainWindow::createToolBar()
   QPixmap pselect((const char**)sel);
   QPixmap pselectoff((const char**)selectoff);
   selset = new QIcon(pselect);
-  selset->setPixmap(pselectoff, QIcon::Automatic, QIcon::Disabled);
+  selset->addPixmap(pselectoff, QIcon::Automatic, QIcon::Disabled);
   tbselect = new QToolButton(pselect,tr("Select"), tr("Select objects"), 
     this, SLOT(editSelect()), toolbar);
   tbselect->setIconSet(*selset);
@@ -588,7 +540,7 @@ void MainWindow::createToolBar()
   QPixmap ppan((const char**)pan);
   QPixmap ppanoff((const char**)panoff);
   panset = new QIcon(ppan);
-  panset->setPixmap(ppanoff, QIcon::Automatic, QIcon::Disabled);
+  panset->addPixmap(ppanoff, QIcon::Automatic, QIcon::Disabled);
   tbpan = new QToolButton(ppan,tr("Pan"), tr("Pan view"), 
     this, SLOT(viewPan()), toolbar);
   tbpan->setIconSet(*panset);
@@ -598,7 +550,7 @@ void MainWindow::createToolBar()
   QPixmap pzoom((const char**)zoom);
   QPixmap pzoomoff((const char**)zoomoff);
   zoomset = new QIcon(pzoom);
-  zoomset->setPixmap(pzoomoff, QIcon::Automatic, QIcon::Disabled);
+  zoomset->addPixmap(pzoomoff, QIcon::Automatic, QIcon::Disabled);
   tbzoom = new QToolButton(pzoom,tr("Zoom"), tr("Switches to zoom mode"), 
     this, SLOT(viewZoom()), toolbar);
   tbzoom->setIconSet(*zoomset);
@@ -608,7 +560,7 @@ void MainWindow::createToolBar()
   QPixmap pstatenew((const char**)statenew);
   QPixmap pstatenewoff((const char**)statenewoff);
   statenewset = new QIcon(pstatenew);
-  statenewset->setPixmap(pstatenewoff, QIcon::Automatic, QIcon::Disabled);
+  statenewset->addPixmap(pstatenewoff, QIcon::Automatic, QIcon::Disabled);
   tbstatenew = new QToolButton(pstatenew,tr("Add State"), tr("Add new states"), 
     this, SLOT(stateNew()), toolbar);
   tbstatenew->setIconSet(*statenewset);
@@ -618,7 +570,7 @@ void MainWindow::createToolBar()
   QPixmap ptransnew((const char**)transnew);
   QPixmap ptransnewoff((const char**)transnewoff);
   transnewset = new QIcon(ptransnew);
-  transnewset->setPixmap(ptransnewoff, QIcon::Automatic, QIcon::Disabled);
+  transnewset->addPixmap(ptransnewoff, QIcon::Automatic, QIcon::Disabled);
   tbtransnew = new QToolButton(ptransnew,tr("Add Transition"), tr("Add new transitions"), 
     this, SLOT(transNew()), toolbar);
   tbtransnew->setIconSet(*transnewset);
@@ -628,7 +580,7 @@ void MainWindow::createToolBar()
   QPixmap pmachinesim((const char**)machinesim);
   QPixmap pmachinesimoff((const char**)machinesimoff);
   machinesimset = new QIcon(pmachinesim);
-  machinesimset->setPixmap(pmachinesimoff, QIcon::Automatic, QIcon::Disabled);
+  machinesimset->addPixmap(pmachinesimoff, QIcon::Automatic, QIcon::Disabled);
   tbmachinesim = new QToolButton(pmachinesim,tr("Simulate"), tr("Simulates this machine"), 
     this, SLOT(machineSimulate()), toolbar);
   tbmachinesim->setIconSet(*machinesimset);
@@ -650,7 +602,7 @@ void MainWindow::createToolBar()
   QPixmap ptransstraighten((const char**)transstraighten);
   QPixmap ptransstraightenoff((const char**)transstraightenoff);
   transstraightenset = new QIcon(ptransstraighten);
-  transstraightenset->setPixmap(ptransstraightenoff, QIcon::Automatic, 
+  transstraightenset->addPixmap(ptransstraightenoff, QIcon::Automatic, 
     QIcon::Disabled);
   tbtransstraighten = new QToolButton(ptransstraighten,tr("Straighten Transitions"), 
     tr("Straightens selected transitions"), 
@@ -892,12 +844,12 @@ void MainWindow::setMode(int m)
   switch (m)
   {
     case DocStatus::Select:
-      menu_view->setItemChecked(id_select, true);
-      menu_view->setItemChecked(id_pan, false);
-      menu_view->setItemChecked(id_newstate, false);
-      menu_view->setItemChecked(id_newtrans, false);
-      menu_view->setItemChecked(id_zoom, false);
-      menu_view->setItemChecked(id_machinesim, false);
+	  id_select->setChecked(true);
+      id_pan->setChecked(false);
+      id_newstate->setChecked(false);
+      id_newtrans->setChecked(false);
+      id_zoom->setChecked(false);
+      id_machinesim->setChecked(false);
       tbselect->setOn(true);
       tbpan->setOn(false);
       tbzoom->setOn(false);
@@ -906,12 +858,12 @@ void MainWindow::setMode(int m)
       tbmachinesim->setOn(false);
       break;
     case DocStatus::Pan:
-      menu_view->setItemChecked(id_select, false);
-      menu_view->setItemChecked(id_pan, true);
-      menu_view->setItemChecked(id_newstate, false);
-      menu_view->setItemChecked(id_newtrans, false);
-      menu_view->setItemChecked(id_zoom, false);
-      menu_view->setItemChecked(id_machinesim, false);
+		id_select->setChecked(false);
+		id_pan->setChecked(true);
+		id_newstate->setChecked(false);
+		id_newtrans->setChecked(false);
+		id_zoom->setChecked(false);
+		id_machinesim->setChecked(false);
       tbselect->setOn(false);
       tbpan->setOn(true);
       tbzoom->setOn(false);
@@ -920,13 +872,14 @@ void MainWindow::setMode(int m)
       tbmachinesim->setOn(false);
       break;
     case DocStatus::NewState:
-      menu_view->setItemChecked(id_select, false);
-      menu_view->setItemChecked(id_pan, false);
-      menu_view->setItemChecked(id_newstate, true);
-      menu_view->setItemChecked(id_newtrans, false);
-      menu_view->setItemChecked(id_zoom, false);
-      menu_view->setItemChecked(id_machinesim, false);
-      tbselect->setOn(false);
+		id_select->setChecked(false);
+		id_pan->setChecked(false);
+		id_newstate->setChecked(true);
+		id_newtrans->setChecked(false);
+		id_zoom->setChecked(false);
+		id_machinesim->setChecked(false);
+		menu_view->setItemChecked(id_select, false);
+       tbselect->setOn(false);
       tbpan->setOn(false);
       tbzoom->setOn(false);
       tbstatenew->setOn(true);
@@ -934,12 +887,12 @@ void MainWindow::setMode(int m)
       tbmachinesim->setOn(false);
       break;
     case DocStatus::NewTransition:
-      menu_view->setItemChecked(id_select, false);
-      menu_view->setItemChecked(id_pan, false);
-      menu_view->setItemChecked(id_newstate, false);
-      menu_view->setItemChecked(id_newtrans, true);
-      menu_view->setItemChecked(id_zoom, false);
-      menu_view->setItemChecked(id_machinesim, false);
+		id_select->setChecked(false);
+		id_pan->setChecked(false);
+		id_newstate->setChecked(false);
+		id_newtrans->setChecked(true);
+		id_zoom->setChecked(false);
+		id_machinesim->setChecked(false);
       tbselect->setOn(false);
       tbpan->setOn(false);
       tbzoom->setOn(false);
@@ -948,12 +901,12 @@ void MainWindow::setMode(int m)
       tbmachinesim->setOn(false);
       break;
     case DocStatus::Zooming:
-      menu_view->setItemChecked(id_select, false);
-      menu_view->setItemChecked(id_pan, false);
-      menu_view->setItemChecked(id_newstate, false);
-      menu_view->setItemChecked(id_newtrans, false);
-      menu_view->setItemChecked(id_zoom, true);
-      menu_view->setItemChecked(id_machinesim, false);
+		id_select->setChecked(false);
+		id_pan->setChecked(false);
+		id_newstate->setChecked(false);
+		id_newtrans->setChecked(false);
+		id_zoom->setChecked(true);
+		id_machinesim->setChecked(false);
       tbselect->setOn(false);
       tbpan->setOn(false);
       tbzoom->setOn(true);
@@ -962,12 +915,13 @@ void MainWindow::setMode(int m)
       tbmachinesim->setOn(false);
       break;
     case DocStatus::Simulating:
-      menu_view->setItemChecked(id_select, false);
-      menu_view->setItemChecked(id_pan, false);
-      menu_view->setItemChecked(id_newstate, false);
-      menu_view->setItemChecked(id_newtrans, false);
-      menu_view->setItemChecked(id_zoom, false);
-      menu_view->setItemChecked(id_machinesim, true);
+		id_select->setChecked(false);
+		id_pan->setChecked(false);
+		id_newstate->setChecked(false);
+		id_newtrans->setChecked(false);
+		id_zoom->setChecked(false);
+		id_machinesim->setChecked(true);
+		menu_view->setItemChecked(id_select, false);
       tbselect->setOn(false);
       tbpan->setOn(false);
       tbzoom->setOn(false);
@@ -1384,7 +1338,7 @@ void MainWindow::refreshMRU()
 
   for(it = list.begin(); it != list.end(); ++it)
   {
-    id = menu_mru->insertItem(*it);
+    id = menu_mru->addAction(*it);
     switch(index)
     {
       case 0: menu_mru->connectItem(id, this, SLOT(fileOpenRecent0())); break;
@@ -1552,7 +1506,7 @@ void MainWindow::fileOpen()
     else
       wscroll->widget()->repaint();
   
-//    menu_mru->insertItem(fileio->getActFile(), -1, 0);
+//    menu_mru->addAction(fileio->getActFile(), -1, 0);
       control->addMRUEntry(fileio->getActFilePath());
       fileio->saveMRU(control->getMRUList());
 
@@ -1625,7 +1579,7 @@ void MainWindow::fileOpenRecent(QString fileName)
     else
       wscroll->widget()->repaint();
   
-//    menu_mru->insertItem(fileio->getActFile(), -1, 0);
+//    menu_mru->addAction(fileio->getActFile(), -1, 0);
       control->addMRUEntry(fileio->getActFilePath());
       fileio->saveMRU(control->getMRUList());
   }

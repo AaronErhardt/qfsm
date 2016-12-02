@@ -28,19 +28,27 @@ replaced p->moveTo and p->lineTo drawing commands by p->drawLine
 
 class QListbox;
 
+class ListBoxItem : QListWidgetItem
+{
+public:
+	ListBoxItem(QListWidget*);
+	QPixmap *icon_to_be_shown;
+private:
+	QListWidget* list;
+};
 /**
  * @class LBArrowLine
  * @brief Listbox item for the machine properties dialog.
  *
  * Listbox item which paints the unfilled arrowhead for a transition.
  */
-class LBArrowLine : public Q3ListBoxItem
+class LBArrowLine : public ListBoxItem
 {
   public:
-    LBArrowLine(Q3ListBox*);
+    LBArrowLine(QListWidget*);
 
-    int height(const Q3ListBox*) const;
-    int width(const Q3ListBox*) const;
+    int height(const QListWidget*) const;
+    int width(const QListWidget*) const;
     void paint(QPainter*);
 
   private:
@@ -55,13 +63,13 @@ class LBArrowLine : public Q3ListBoxItem
  * ListBox item for the machine properties dialog.
  * Listbox item which paints the filled arrowhead for a transition.
  */
-class LBArrowFilled : public Q3ListBoxItem
+class LBArrowFilled : public ListBoxItem
 {
   public:
-    LBArrowFilled(Q3ListBox*);
+    LBArrowFilled(QListWidget*);
 
-    int height(const Q3ListBox*) const;
-    int width(const Q3ListBox*) const;
+    int height(const QListWidget*) const;
+    int width(const QListWidget*) const;
     void paint(QPainter*);
 
   private:
@@ -77,13 +85,13 @@ class LBArrowFilled : public Q3ListBoxItem
  * ListBox item for the machine properties dialog.
  * Listbox item which paints the white arrowhead for a transition.
  */
-class LBArrowWhite : public Q3ListBoxItem
+class LBArrowWhite : public ListBoxItem
 {
   public:
-    LBArrowWhite(Q3ListBox*);
+    LBArrowWhite(QListWidget*);
 
-    int height(const Q3ListBox*) const;
-    int width(const Q3ListBox*) const;
+    int height(const QListWidget*) const;
+    int width(const QListWidget*) const;
     void paint(QPainter*);
 
   private:
@@ -99,13 +107,13 @@ class LBArrowWhite : public Q3ListBoxItem
  * ListBox item for the machine properties dialog.
  * Listbox item which paints the filled pointed arrowhead for a transition.
  */
-class LBArrowFilledPointed : public Q3ListBoxItem
+class LBArrowFilledPointed : public ListBoxItem
 {
   public:
-    LBArrowFilledPointed(Q3ListBox*);
+    LBArrowFilledPointed(QListWidget*);
 
-    int height(const Q3ListBox*) const;
-    int width(const Q3ListBox*) const;
+    int height(const QListWidget*) const;
+    int width(const QListWidget*) const;
     void paint(QPainter*);
 
   private:
@@ -120,13 +128,13 @@ class LBArrowFilledPointed : public Q3ListBoxItem
  * ListBox item for the machine properties dialog.
  * Listbox item which paints the white pointed arrowhead for a transition.
  */
-class LBArrowWhitePointed : public Q3ListBoxItem
+class LBArrowWhitePointed : public ListBoxItem
 {
   public:
-    LBArrowWhitePointed(Q3ListBox*);
+    LBArrowWhitePointed(QListWidget*);
 
-    int height(const Q3ListBox*) const;
-    int width(const Q3ListBox*) const;
+    int height(const QListWidget*) const;
+    int width(const QListWidget*) const;
     void paint(QPainter*);
 
   private:

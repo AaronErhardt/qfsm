@@ -1447,13 +1447,35 @@ QStringList IOInfoASCII::getRagelConditions()
     result.append(single_chars);
   }
 
+  #if 1
+  int it1, it2;
+  // replace 'upper' and 'lower' by 'alpha'
+  it1 = result.indexOf("upper");
+  it2 = result.indexOf("lower");
+  if (it1 > 0 && it2 > 0)
+  {
+	  result.removeAt(it1);
+	  result.removeAt(it2);
+	  result.append("alpha");
+  }
+
+  // replace 'alpha' and 'digit' by 'alnum'
+  it1 = result.indexOf("alpha");
+  it2 = result.indexOf("digit");
+  if (it1 > 0 && it2 > 0)
+  {
+	  result.removeAt(it1);
+	  result.removeAt(it2);
+	  result.append("alnum");
+  }
+#else
   QStringList::iterator it1, it2;
   // replace 'upper' and 'lower' by 'alpha'
   it1 = result.indexOf("upper");
   it2 = result.indexOf("lower");
   if (it1!=result.end() && it2!=result.end())
   {
-    result.erase(it1);
+    result.erase(it1); 
     result.erase(it2);
     result.append("alpha");
   }
@@ -1467,7 +1489,7 @@ QStringList IOInfoASCII::getRagelConditions()
     result.erase(it2);
     result.append("alnum");
   }
-
+#endif
   return result;
 }
 

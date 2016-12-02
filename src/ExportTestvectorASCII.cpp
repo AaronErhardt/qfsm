@@ -292,11 +292,11 @@ void ExportTestvectorASCII::writeHeader(QString,QString)
     *out << "# control input signals:" << endl;
     *out << "# ----------------------" << endl;
     if(synchronous_reset && negated_reset)
-      *out << "# srst_n : " << bit_string.toLatin1()  << ";" << endl;
+      *out << "# srst_n : " << bit_string.toStdString()  << ";" << endl;
     else if(synchronous_reset && ! negated_reset)
-      *out << "# srst_p : " << bit_string.toLatin1()  << ";"  << endl;
+      *out << "# srst_p : " << bit_string.toStdString()  << ";"  << endl;
     if(synchronous_enable)
-      *out << "# sen_p : " << bit_string.toLatin1()  << ";" << endl;
+      *out << "# sen_p : " << bit_string.toStdString()  << ";" << endl;
     *out << endl;
   }
 
@@ -305,7 +305,7 @@ void ExportTestvectorASCII::writeHeader(QString,QString)
     *out << "# input signals:" << endl;
     *out << "# --------------" << endl;
     foreach(const QString& input, machine->getInputNameList())
-      *out << "# " << input.toLatin1() << " : " << bit_string.toLatin1() << ";" << endl;
+      *out << "# " << input.toStdString() << " : " << bit_string.toStdString() << ";" << endl;
     *out << endl;
   }
   if (machine->getNumOutputs()>0)
@@ -313,7 +313,7 @@ void ExportTestvectorASCII::writeHeader(QString,QString)
     *out << "# mealy outputs:" << endl;
     *out << "# --------------" << endl;
     foreach(const QString& input, machine->getOutputNameList())
-      *out << "# " << input.toLatin1() << " : " << bit_string.toLatin1() << ";" << endl;
+      *out << "# " << input.toStdString() << " : " << bit_string.toStdString() << ";" << endl;
     *out << endl;
   }
 
@@ -322,7 +322,7 @@ void ExportTestvectorASCII::writeHeader(QString,QString)
     *out << "# mooore outputs:" << endl;
     *out << "# --------------" << endl;
     foreach(const QString& input, machine->getMooreOutputList())
-      *out << "# " << input.toLatin1() << " : " << bit_string.toLatin1() << ";" << endl;
+      *out << "# " << input.toStdString() << " : " << bit_string.toStdString() << ";" << endl;
     *out << "#" << endl;
   }
 

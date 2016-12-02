@@ -60,27 +60,28 @@ void MainControl::quitWindow(MainWindow* w)
 /// Adds an entry to the MRU file list
 void MainControl::addMRUEntry(QString fileName)
 {
-  QStringList::Iterator it;
-//  it = mru_list.indexOf(fileName);
+	QStringList::Iterator it;
+	QStringList::reverse_iterator rit;
+	//  it = mru_list.indexOf(fileName);
 
 //  if (it != mru_list.end())
 //  {
-  mru_list.remove(fileName);
+  mru_list.removeOne(fileName);
 
   mru_list.prepend(fileName);
   
   if (mru_list.count()>MAX_MRUENTRIES)
   {
-    it = mru_list.fromLast();
-    if (it != mru_list.end())
-      mru_list.remove(it);
+	  rit = mru_list.rend();
+    if (rit != mru_list.rend())
+      mru_list.removeOne(*it);
   }
 }
 
 /// Removes an entry from the MRU file list
 void MainControl::removeMRUEntry(QString fileName)
 {
-  mru_list.remove(fileName);
+  mru_list.removeOne(fileName);
 }
 
 

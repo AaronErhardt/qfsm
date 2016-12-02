@@ -13,7 +13,7 @@
  *  true to construct a modal dialog.
  */
 ExportRagelDlgImpl::ExportRagelDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WindowFlags fl )
-    : QDialog( parent, name, modal, fl )
+    : QDialog( parent/*, name, modal*/, fl )
 {
   exportRagelDlg.setupUi(this);
 

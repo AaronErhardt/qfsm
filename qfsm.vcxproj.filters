@@ -453,17 +453,8 @@
     <ClCompile Include="mocs\moc_XMLHandler.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="TabDialog.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mocs\moc_TabDialog.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneralTab.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mocs\moc_GeneralTab.cpp">
-      <Filter>Generated Files</Filter>
+    <ClCompile Include="src\TabDialog.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1085,11 +1076,8 @@
     <CustomBuild Include="pics\zoomoutoff.xpm">
       <Filter>Distribution Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="TabDialog.h">
-      <Filter>Generated Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="GeneralTab.h">
-      <Filter>Generated Files</Filter>
+    <CustomBuild Include="src\TabDialog.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

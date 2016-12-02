@@ -182,7 +182,7 @@ QString loadLanguage(QTranslator* trans)
 
   QString qfsmpath;
   QDir dir = QDir::home();
-  QDir qfsmdir(dir.absPath()+"/.qfsm");
+  QDir qfsmdir(dir.absolutePath()+"/.qfsm");
   if (!qfsmdir.exists())
   {
     if (!dir.mkdir(".qfsm"))
@@ -190,7 +190,7 @@ QString loadLanguage(QTranslator* trans)
 //    qDebug(dir.absPath());
   }
 
-  QFile file(qfsmdir.absPath()+"/language");
+  QFile file(qfsmdir.absolutePath()+"/language");
   QTextStream fin(&file);
   
 //  qDebug(file.name());
@@ -279,7 +279,7 @@ QString loadLanguage(QTranslator* trans)
   }
 
   if (dir.exists())
-    trans->load(s+".qm", dir.absPath());
+    trans->load(s+".qm", dir.absolutePath());
 
 
   file.close();

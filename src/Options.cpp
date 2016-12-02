@@ -16,20 +16,23 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
+#include <iostream>
 #include <qdir.h>
 //#include <q3textstream.h>
 #include <qregexp.h>
+#include <QTextStream.h>
 
 #include "MainWindow.h"
 #include "Options.h"
 
+using std::endl;
 
 /**
  * Constructor.
  * Initialises the options object with standard values.
  */
 Options::Options(QObject* parent/*=NULL*/, const char* name/*=0*/)
- 	:QObject(parent, name)
+ 	:QObject(parent)
 {
   viewStateEncoding = false;
   viewMoore = true;
@@ -112,7 +115,7 @@ void Options::applyOptions(MainWindow* pMain)
   QString lang;
   QString path;
   QDir dir = QDir::home();
-  path = dir.absPath()+"/.qfsm/language";
+  path = dir.absolutePath()+"/.qfsm/language";
 
   QFile file(path);
   QTextStream fout(&file);
@@ -126,7 +129,7 @@ void Options::applyOptions(MainWindow* pMain)
   OptGeneralDlgImpl* optgen;
   optgen = pMain->getOptGeneral();
   lang = optgen->getLanguage();
-  fout << lang << endl;
+  fout << lang.toLatin1() << endl;
 
   file.close();
 

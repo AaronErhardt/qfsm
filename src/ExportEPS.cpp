@@ -62,8 +62,8 @@ void ExportEPS::doExport()
 
     printer = new QPrinter(QPrinter::ScreenResolution);
 
-    printer->setOutputToFile(true);
-    printer->setOutputFormat(QPrinter::PostScriptFormat);
+//FA   printer->setOutputToFile(true);
+//FA    printer->setOutputFormat(QPrinter::PostScriptFormat);
     printer->setOutputFileName(fileName);
     printer->setColorMode(QPrinter::Color);
 	printer->setFontEmbeddingEnabled(true);
@@ -126,17 +126,18 @@ bool ExportEPS::fixEPS(const QString &fileName, QRect rect) const
 
     // now open the file and make a correct eps out of it
     QFile epsfile(fileName);
-    if (! epsfile.open(IO_ReadOnly)) {
+    if (! epsfile.open(QIODevice::ReadOnly)) {
         return false;
     }
     // read
     QTextStream ts(&epsfile);
-    QString fileContent = ts.read();
+    QString fileContent = ts.readAll();
     epsfile.close();
 
     // read information
     QRegExp rx("%%BoundingBox:\\s*(-?[\\d\\.:]+)\\s*(-?[\\d\\.:]+)\\s*(-?[\\d\\.:]+)\\s*(-?[\\d\\.:]+)");
-    const int pos = rx.search(fileContent);
+	int pos = 0;
+	pos = rx.indexIn(fileContent, pos);
     if (pos < 0) {
         cerr << "ExportEPS::fixEPS(" << fileName.toLatin1().toStdString()
                   << "): cannot find %%BoundingBox" << endl;
@@ -144,8 +145,8 @@ bool ExportEPS::fixEPS(const QString &fileName, QRect rect) const
     }
 
     // write new content to file
-    if (! epsfile.open(IO_WriteOnly | IO_Truncate)) {
-        cerr << "ExportEPS::fixEPS(" << fileName.toLatin1()
+    if (! epsfile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+        cerr << "ExportEPS::fixEPS(" << fileName.toLatin1().toStdString()
                   << "): cannot open file for writing" << endl;
         return false;
     }

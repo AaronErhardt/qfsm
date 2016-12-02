@@ -1,7 +1,7 @@
 #include "ExportStateTableDlgImpl.h"
 
 #include <qcheckbox.h>
-#include <q3buttongroup.h>
+//#include <q3buttongroup.h>
 
 #include "Options.h"
 
@@ -13,7 +13,7 @@
  *  true to construct a modal dialog.
  */
 ExportStateTableDlgImpl::ExportStateTableDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WindowFlags fl )
-    : QDialog( parent, name, modal, fl )
+    : QDialog( parent/*, name, modal*/ , fl )
 {
   exportStateTableDlg.setupUi(this);
 
@@ -53,7 +53,7 @@ void ExportStateTableDlgImpl::init(Options* opt)
   resolve_inverted = opt->getStateTableResolveInverted();
   exportStateTableDlg.cb_resolve_invert->setChecked(resolve_inverted);
   orientation = opt->getStateTableOrientation();
-  exportStateTableDlg.bg_orientation->setButton(orientation);
+//FA  exportStateTableDlg.bg_orientation->setButton(orientation);
 }
 
 

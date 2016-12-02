@@ -314,7 +314,7 @@
       </widget>
      </item>
      <item>
-      <widget class="Q3ListBox" name="lbox_arrowtype">
+      <widget class="QListView" name="lbox_arrowtype">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
          <horstretch>0</horstretch>

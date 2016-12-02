@@ -43,10 +43,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "MimeMachine.h"
 
 
-DrawArea::DrawArea(QWidget*parent,MainWindow*m,const char*name) :QWidget(parent)
+DrawArea::DrawArea(QWidget*parent,MainWindow*m,const char*name) : QWidget(parent)
 {
   main = m;
-  setBackgroundColor(m->palette().window().color());
+  palette.setColor(QPalette::Background, m->palette().window().color());
+  setPalette(palette);
+//  setBackgroundColor(m->palette().window().color());
   oldCursor = QCursor(Qt::ArrowCursor);
 
   setMouseTracking(true);
@@ -105,7 +107,8 @@ void DrawArea::updateBackground()
       bgcol.setRgb(255, 255, 255);
     else
       bgcol.setRgb(220, 220, 220);
-    setBackgroundColor(bgcol);
+	palette.setColor(QPalette::Background, bgcol);
+//    setBackgroundColor(bgcol);
   }
 }
 
@@ -665,7 +668,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
             lastITextRect = QRect();
           }
         }
-        udrect.normalize();
+        udrect.normalized();
         udrect.adjust(-2-2*CPOINT_SIZE, -2-2*CPOINT_SIZE, +4+2*CPOINT_SIZE, +4+2*CPOINT_SIZE);
 
         /*        if (!dragITransition)     // draw normal transition
@@ -698,7 +701,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
 
           QRect r1;
           r1.setCoords((int)dragStartX, (int)dragStartY, (int)lastMousePosX, (int)lastMousePosY);
-          r1 = r1.normalize();
+          r1 = r1.normalized();
 
           selectionRect.setCoords(dragStartX, dragStartY, (double)p.x()/scale,
                                   (double)p.y()/scale);
@@ -743,7 +746,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
           newselrect = selectionRect.getQRect();
           udrect = oldselrect;
           udrect = udrect.united(newselrect);
-          udrect.normalize();
+          udrect.normalized();
           udrect.adjust(-2, -2, +4, +4);
           //          pa.drawRect(selectionRect.getQRect());
           mainPoint=mapTo(main,p);
@@ -781,7 +784,7 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
       firstTransitionDraw=false;
 
       udrect.setRect(int(udrect.x()*scale), int(udrect.y()*scale), int(udrect.width()*scale), int(udrect.height()*scale));
-      repaint(udrect, false);
+      repaint(udrect);
     }
     break;
   case DocStatus::Pan:
@@ -892,11 +895,11 @@ void DrawArea::mouseMoveEvent(QMouseEvent* e)
           rtmp.setCoords((int)c1x, (int)c1y, (int)c2x, (int)c2y);
           udrect = udrect.united(rtmp);
           udrect = udrect.united(lastrect);
-          udrect.normalize();
+          udrect.normalized();
           udrect.adjust(-15, -15, +30, +30);
           udrect.setRect(int(udrect.x()*scale), int(udrect.y()*scale), int(udrect.width()*scale), int(udrect.height()*scale));
 
-          repaint(udrect, false);
+          repaint(udrect);
 
           /*        draw->drawTransition(m, lastTransitionDragged, &pa, contentsX(),
                              contentsY(), scale, m->getNumInputs(), m->getNumOutputs(),
@@ -2020,13 +2023,13 @@ QRect DrawArea::tooltipRect(const QPoint& p, QString& tinfo)
 
   p_norm = QPoint(int(p.x()/scale), int(p.y()/scale));
   result = obj->getToolTipRect(p_norm/*+offset*/);
-  result.normalize();
+  result.normalized();
 
   result_scaled.setLeft(int(result.left()*scale));
   result_scaled.setTop(int(result.top()*scale));
   result_scaled.setWidth(int(result.width()*scale));
   result_scaled.setHeight(int(result.height()*scale));
-  result_scaled.moveBy(-offset.x(), -offset.y());
+  result_scaled.translate(-offset.x(), -offset.y());
 
 
   return result_scaled;

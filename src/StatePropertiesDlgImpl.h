@@ -53,7 +53,7 @@ public:
     /// Sets the string of the name field
     void setName(const QString& s) {statePropertiesDlg.le_name->setText(s); };
     /// Returns the string of the description field 
-    QString getDescription() {return statePropertiesDlg.te_description->text(); };
+    QString getDescription() {return statePropertiesDlg.te_description->toPlainText(); };
     /// Sets the string of the description field
     void setDescription(QString s) {statePropertiesDlg.te_description->setText(s); };
     /// Returns the code
@@ -87,7 +87,7 @@ public:
     /// Sets the state to edit
     void setState(GState* s) { state=s; };
     /// Sets the color of the the state
-    void setColor(QColor c) { color=c; statePropertiesDlg.lb_colorpreview->setBackgroundColor(c); };
+    void setColor(QColor c) { color=c; /* //FA statePropertiesDlg.lb_colorpreview->palette().setColor(QPalette::Normal, QPalette::Background, c);*/ };
     /// Returns the color
     QColor getColor() { return color; };
 

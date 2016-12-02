@@ -17,9 +17,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include <qstring.h>
-#include <q3valuelist.h>
-//Added by qt3to4:
-#include <Q3PtrList>
 
 #include "TransitionInfo.h"
 #include "IOInfoBin.h"

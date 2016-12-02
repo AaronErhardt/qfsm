@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 MimeMachine::MimeMachine(const QString& str)
 	   : QMimeData()
 {
-  setData("text/qfsm-objects",str.toAscii());
+  setData("text/qfsm-objects",str.toLatin1());
 //  setSubtype("plain");
 }
 

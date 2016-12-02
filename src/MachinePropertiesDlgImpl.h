@@ -105,11 +105,11 @@ public:
     void setTFont(QFont f) { tfont = f; machinePropertiesDlg.lb_transfont->setText(f.family());
       machinePropertiesDlg.lb_transfont->setFont(f); };
     /// Returns the arrow type used for the transitions
-      int getArrowType() { return machinePropertiesDlg.lbox_arrowtype->currentItem(); };
+      int getArrowType() { return machinePropertiesDlg.lbox_arrowtype->modelColumn() /*currentItem()*/; };
     /// Sets the arrow type used for the transitions
-      void setArrowType(int at) { machinePropertiesDlg.lbox_arrowtype->setCurrentItem(at); };
+      void setArrowType(int at) { machinePropertiesDlg.lbox_arrowtype->setModelColumn(at) /*setCurrentItem(at)*/; };
           /// Returns the string of the desription field
-      QString getDescription() { return machinePropertiesDlg.te_description->text(); };
+      QString getDescription() { return machinePropertiesDlg.te_description->toPlainText(); };
     /// Sets the string of the description field
       void setAuthor(QString s) { machinePropertiesDlg.le_author->setText(s); };
           /// Returns the string of the desription field

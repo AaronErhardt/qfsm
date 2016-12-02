@@ -140,7 +140,6 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GeneralTab.cpp" />
     <ClCompile Include="mocs\moc_AppInfo.cpp" />
     <ClCompile Include="mocs\moc_Draw.cpp" />
     <ClCompile Include="mocs\moc_DrawArea.cpp" />
@@ -155,7 +154,6 @@
     <ClCompile Include="mocs\moc_ExportVHDLDlgImpl.cpp" />
     <ClCompile Include="mocs\moc_ExportVVVVDlgImpl.cpp" />
     <ClCompile Include="mocs\moc_FileIO.cpp" />
-    <ClCompile Include="mocs\moc_GeneralTab.cpp" />
     <ClCompile Include="mocs\moc_GState.cpp" />
     <ClCompile Include="mocs\moc_ICheckDlgImpl.cpp" />
     <ClCompile Include="mocs\moc_Import.cpp" />
@@ -178,7 +176,6 @@
     <ClCompile Include="mocs\moc_StateManager.cpp" />
     <ClCompile Include="mocs\moc_StatePropertiesDlgImpl.cpp" />
     <ClCompile Include="mocs\moc_StatusBar.cpp" />
-    <ClCompile Include="mocs\moc_TabDialog.cpp" />
     <ClCompile Include="mocs\moc_TableBuilder.cpp" />
     <ClCompile Include="mocs\moc_TableBuilderASCII.cpp" />
     <ClCompile Include="mocs\moc_TableBuilderHTML.cpp" />
@@ -255,6 +252,7 @@
     <ClCompile Include="src\StateManager.cpp" />
     <ClCompile Include="src\StatePropertiesDlgImpl.cpp" />
     <ClCompile Include="src\StatusBar.cpp" />
+    <ClCompile Include="src\TabDialog.cpp" />
     <ClCompile Include="src\TableBuilder.cpp" />
     <ClCompile Include="src\TableBuilderASCII.cpp" />
     <ClCompile Include="src\TableBuilderHTML.cpp" />
@@ -275,7 +273,6 @@
     <ClCompile Include="src\XMLHandler.cpp" />
     <ClCompile Include="src\Zoom.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="TabDialog.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="src\AppInfo.h">
@@ -3497,7 +3494,7 @@
     <ResourceCompile Include="desktop\qfsm.rc" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="GeneralTab.h" />
+    <CustomBuild Include="src\TabDialog.h" />
     <ClInclude Include="GeneratedFiles\ui_ExportAHDLDlg.h" />
     <ClInclude Include="GeneratedFiles\ui_ExportRagelDlg.h" />
     <ClInclude Include="GeneratedFiles\ui_ExportStateTableDlg.h" />
@@ -3514,16 +3511,6 @@
     <ClInclude Include="GeneratedFiles\ui_SimulatorDlg.h" />
     <ClInclude Include="GeneratedFiles\ui_StatePropertiesDlg.h" />
     <ClInclude Include="GeneratedFiles\ui_TransitionPropertiesDlg.h" />
-    <CustomBuild Include="TabDialog.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing TabDialog.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\mocs\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\mocs\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DWIN64 -DQFSM_LANGUAGE_DIR=\"po\" -DQFSM_HELP_DIR=\"doc\user\" -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_CORE_LIB "-I." "-I.\src" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtSvg" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtANGLE" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtCore" "-I.\mocs" "-I$(QTDIR)\mkspecs\win32-msvc2015" "-I.\GeneratedFiles"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing TabDialog.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\mocs\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\mocs\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DWIN64 -DQFSM_LANGUAGE_DIR=\"po\" -DQFSM_HELP_DIR=\"doc\user\" -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_CORE_LIB -DNDEBUG "-I." "-I.\src" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtSvg" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtANGLE" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtPrintSupport" "-I$(QTDIR)\include\QtCore" "-I.\mocs" "-I$(QTDIR)\mkspecs\win32-msvc2015" "-I.\GeneratedFiles"</Command>
-    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

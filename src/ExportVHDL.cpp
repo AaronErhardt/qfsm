@@ -164,7 +164,7 @@ void ExportVHDL::writeEntity(std::ofstream*out)
   mname.replace(' ', '_');
   if (mname.isEmpty()) mname="StateMachine";
 
-  *out << "ENTITY " << mname.toLatin1() << " IS" << endl;
+  *out << "ENTITY " << mname.toStdString() << " IS" << endl;
   //*out << "--  generic (prop_delay : Time := 10 ns);" << endl;
   *out << "  PORT (clk: IN " << bit_string << ";" << endl;
   if (synchronous_reset_t)
@@ -189,7 +189,7 @@ void ExportVHDL::writeEntity(std::ofstream*out)
       foreach(QString input, machine->retranslateNames(machine->getInputNameList()).split(","))
       {
         QString vector=appendableVectorDefinition(input);
-        *out << "        " << input.toLatin1() << ": IN "<< bit_string << vector.toLatin1() << ";\n";
+        *out << "        " << input.toStdString() << ": IN "<< bit_string << vector.toStdString() << ";\n";
       }
     }
 
@@ -201,7 +201,7 @@ void ExportVHDL::writeEntity(std::ofstream*out)
       foreach(QString output, mooreOutputs)
       {
         QString vector=appendableVectorDefinition(output);
-        *out << "        " << output.toLatin1() << ": OUT "<< bit_string << vector.toLatin1();
+        *out << "        " << output.toStdString() << ": OUT "<< bit_string << vector.toStdString();
         if ((++counter)!=size || machine->getNumOutputs()>0 || debug_state)
           *out<< ";" << endl;
       }
@@ -215,7 +215,7 @@ void ExportVHDL::writeEntity(std::ofstream*out)
       foreach(QString output, mealyOutputs)
       {
         QString vector=appendableVectorDefinition(output);
-        *out << "        " << output.toLatin1() << ": OUT "<< bit_string << vector.toLatin1();
+        *out << "        " << output.toStdString() << ": OUT "<< bit_string << vector.toStdString();
         if ((++counter)!=size || debug_state)
           *out<< ";" << endl;
       }
@@ -247,7 +247,7 @@ void ExportVHDL::writeEntity(std::ofstream*out)
     *out << ");" << endl;
   }  // end if
 
-  *out << "END " << mname.toLatin1() << ";" << endl << endl;
+  *out << "END " << mname.toStdString() << ";" << endl << endl;
 }
 
 
@@ -267,7 +267,7 @@ void ExportVHDL::writeArchitecture(std::ofstream*out)
 
 
 
-  *out << "ARCHITECTURE " << architecture_name.toLatin1() << " OF " << mname.toLatin1() << " IS" << endl << endl;
+  *out << "ARCHITECTURE " << architecture_name.toStdString() << " OF " << mname.toStdString() << " IS" << endl << endl;
   if (!state_encoding_t)
   {
     QList<GState*> slist = machine->getSList();
@@ -296,14 +296,14 @@ void ExportVHDL::writeArchitecture(std::ofstream*out)
         GState* st = it.next();
         if (st->isDeleted())
           continue;
-        *out << "CONSTANT " << Utils::noWS(st->getStateName()).toLatin1() << " : "
+        *out << "CONSTANT " << Utils::noWS(st->getStateName()).toStdString() << " : "
              << bit_string << "_vector(" << machine->getNumEncodingBits()-1 << " DOWNTO 0)"
-             <<" := \"" << st->getCodeStr().toLatin1() << "\";\n";
+             <<" := \"" << st->getCodeStr().toStdString() << "\";\n";
       }
     }
     else
     {
-      *out << "TYPE state_type IS (" << stmp.toLatin1() << ");" << endl;
+      *out << "TYPE state_type IS (" << stmp.toStdString() << ");" << endl;
       *out << "SIGNAL next_state, current_state : state_type;" << endl;
     }
   }
@@ -342,7 +342,7 @@ void ExportVHDL::writeArchitecture(std::ofstream*out)
     writeOutputBufferProcess(out);
   }
 
-  *out << "END " << architecture_name.toLatin1() << ";" << endl;
+  *out << "END " << architecture_name.toStdString() << ";" << endl;
 }
 
 
@@ -391,13 +391,13 @@ void ExportVHDL::writeClockProcess(std::ofstream*out)
     if (state_encoding_t)
     {
       *out << "      current_state <= \"";
-      *out << Convert::intToBinStr(stmp->getEncoding(), machine->getNumEncodingBits()).toLatin1()
+      *out << Convert::intToBinStr(stmp->getEncoding(), machine->getNumEncodingBits()).toStdString()
       << "\";" << endl;
     }
     else
     {
       *out << "      current_state <= " <<
-      Utils::noWS(stmp->getStateName()).toLatin1()
+      Utils::noWS(stmp->getStateName()).toStdString()
       << ";" << endl;
     }
 
@@ -420,13 +420,13 @@ void ExportVHDL::writeClockProcess(std::ofstream*out)
     if (state_encoding_t)
     {
       *out << "      current_state <= \"";
-      *out << Convert::intToBinStr(istate->getEncoding(), machine->getNumEncodingBits()).toLatin1()
+      *out << Convert::intToBinStr(istate->getEncoding(), machine->getNumEncodingBits()).toStdString()
       << "\";" << endl;
     }
     else
     {
       *out << "        current_state <= " <<
-      Utils::noWS(istate->getStateName()).toLatin1()
+      Utils::noWS(istate->getStateName()).toStdString()
       << ";" << endl;
     }
 
@@ -520,7 +520,7 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
         i->replace(".."," DOWNTO ");
         i->replace('[','(');
         i->replace(']',')');
-        *out << ", " << i->toLatin1();
+        *out << ", " << i->toStdString();
       }
     }
     else
@@ -552,17 +552,17 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
     i->replace('[','(');
     i->replace(']',')');
     if (machine->getNumInputs() == 1)
-      *out << "    temp_input(0) := " << i->toLatin1();
+      *out << "    temp_input(0) := " << i->toStdString();
     else if (machine->getNumInputs() >1)
     {
-      *out << "    temp_input := " << i->toLatin1();
+      *out << "    temp_input := " << i->toStdString();
       i++;
 
       for (; i != inputs.end(); ++i)
       {
         i->replace('[','(');
         i->replace(']',')');
-        *out << " & " << i->toLatin1();
+        *out << " & " << i->toStdString();
       }
     }
     *out << ";\n";
@@ -580,13 +580,13 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
     if (state_encoding_t)
     {
       *out << "      next_state <= \"";
-      *out << Convert::intToBinStr(istate->getEncoding(), machine->getNumEncodingBits()).toLatin1()
+      *out << Convert::intToBinStr(istate->getEncoding(), machine->getNumEncodingBits()).toStdString()
           << "\";" << endl;
     }
     else
     {
       *out << "        next_state <= " <<
-          Utils::noWS(istate->getStateName()).toLatin1()
+          Utils::noWS(istate->getStateName()).toStdString()
           << ";" << endl;
     }
 
@@ -612,12 +612,12 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
       {
         *out << "      WHEN \"" <<
             Convert::intToBinStr(s->getEncoding(),
-                                 machine->getNumEncodingBits()).toLatin1()
+                                 machine->getNumEncodingBits()).toStdString()
             << "\" =>";
       }
       else
       {
-        *out << "      WHEN " << Utils::noWS(s->getStateName()).toLatin1() << " =>";
+        *out << "      WHEN " << Utils::noWS(s->getStateName()).toStdString() << " =>";
       }
       if (machine->getNumMooreOutputs() > 0 && !sync_look_ahead)
       {
@@ -628,15 +628,15 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
         {   
           *out << (io_names_t?" temp_output := \"":" q <= \"");
 	  if (debug_state) 
-	    //*out << Convert::intToBinStr(s->getEncoding(), machine->getNumEncodingBits()).toLatin1();
+	    //*out << Convert::intToBinStr(s->getEncoding(), machine->getNumEncodingBits()).toStdString();
 	  {
 	    QString sbincode = Convert::intToBinStr(s->getEncoding(), numStateBits);
 	    if (sbincode==QString::null)
 	      sbincode = Convert::intToBinStr(0, numStateBits);
-	    *out << sbincode.toLatin1();
+	    *out << sbincode.toStdString();
 	  }
 
-          *out << smout.left(machine->getMooreOutputList().size()).toLatin1();
+          *out << smout.left(machine->getMooreOutputList().size()).toStdString();
           *out << "\";\n";
         }
         else
@@ -752,7 +752,7 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
                   if(iosingle->convertToBinStr() == iosingle2->convertToBinStr())
                   {
                     iolist.removeAt(c2);
-                    qDebug(QString("removed "+iosingle->convertToBinStr()).toLatin1());
+                    qDebug(QString("removed "+iosingle->convertToBinStr()).toStdString().c_str());
                     c2--;
                   }
                 }
@@ -814,7 +814,7 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
                     for (int k=slen; k<numin; k++)
                       *out << '0';
 
-                    *out << tinfoi.toLatin1() << "\" ";
+                    *out << tinfoi.toStdString() << "\" ";
                     first=false;
                   }
                 }
@@ -841,7 +841,7 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
               for (int l=tinfoo.length(); l<numout; l++)
                 *out << '0';
 
-              *out << tinfoo.toLatin1() << "\";" << endl;
+              *out << tinfoo.toStdString() << "\";" << endl;
             }
             stmp = t->getEnd();
             if (stmp)
@@ -858,12 +858,12 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
             {
               *out << "          next_state <= \""
                   << Convert::intToBinStr(stmp->getEncoding(),
-                                          machine->getNumEncodingBits()).toLatin1() << "\";" << endl;
+                                          machine->getNumEncodingBits()).toStdString() << "\";" << endl;
             }
             else
             {
               *out << "          next_state <= " <<
-                  Utils::noWS(stmp->getStateName()).toLatin1() << ";" << endl;
+                  Utils::noWS(stmp->getStateName()).toStdString() << ";" << endl;
             }
 
 
@@ -921,19 +921,19 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
           for (int l=tinfoo.length(); l<numout; l++)
             *out << '0';
 
-          *out << tinfoo.toLatin1() << "\";" << endl;
+          *out << tinfoo.toStdString() << "\";" << endl;
         }
 
         if (state_encoding_t)
         {
           *out << "        next_state <= \""
               << Convert::intToBinStr(stmp->getEncoding(),
-                                      machine->getNumEncodingBits()).toLatin1() << "\";" << endl;
+                                      machine->getNumEncodingBits()).toStdString() << "\";" << endl;
         }
         else
         {
           *out << "      next_state <= " <<
-              Utils::noWS(stmp->getStateName()).toLatin1() << ";" << endl;
+              Utils::noWS(stmp->getStateName()).toStdString() << ";" << endl;
         }
       }
     }
@@ -948,27 +948,27 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
   if(io_names_t)
   {
     if(machine->getNumMooreOutputs()>0 && machine->getNumOutputs()==0 && ! sync_look_ahead)
-      *out << "      WHEN OTHERS => temp_output := (OTHERS =>\'" << out_bit_string.toLatin1() << endl;
+      *out << "      WHEN OTHERS => temp_output := (OTHERS =>\'" << out_bit_string.toStdString() << endl;
     else if(machine->getNumMooreOutputs()>0 && machine->getNumOutputs()>0)
     {
-      *out << "      WHEN OTHERS => temp_output := (OTHERS =>\'" << out_bit_string.toLatin1() << endl;
-      *out << "        temp_mealy_output := (OTHERS =>\'" << out_bit_string.toLatin1() << endl;
+      *out << "      WHEN OTHERS => temp_output := (OTHERS =>\'" << out_bit_string.toStdString() << endl;
+      *out << "        temp_mealy_output := (OTHERS =>\'" << out_bit_string.toStdString() << endl;
     }
     else if(machine->getNumOutputs()>0)
-            *out << "      WHEN OTHERS => temp_mealy_output := (OTHERS =>\'" << out_bit_string.toLatin1() << endl;
+            *out << "      WHEN OTHERS => temp_mealy_output := (OTHERS =>\'" << out_bit_string.toStdString() << endl;
      else *out << "      WHEN OTHERS => NULL;" << endl;
 
   }
   else {
      if(machine->getNumMooreOutputs()>0 && machine->getNumOutputs()==0 && ! sync_look_ahead)
-      *out << "      WHEN OTHERS => q <= (OTHERS =>\'" << out_bit_string.toLatin1() << endl;
+      *out << "      WHEN OTHERS => q <= (OTHERS =>\'" << out_bit_string.toStdString() << endl;
     else if(machine->getNumMooreOutputs()>0 && machine->getNumOutputs()>0 && !sync_look_ahead)
     {
-      *out << "      WHEN OTHERS => q <= (OTHERS =>\'" << out_bit_string.toLatin1() << endl;
-      *out << "        o <= (OTHERS =>\'" << out_bit_string.toLatin1() << endl;
+      *out << "      WHEN OTHERS => q <= (OTHERS =>\'" << out_bit_string.toStdString() << endl;
+      *out << "        o <= (OTHERS =>\'" << out_bit_string.toStdString() << endl;
     }
     else if(machine->getNumOutputs()>0)
-            *out << "      WHEN OTHERS => o <= (OTHERS =>\'" << out_bit_string.toLatin1() << endl;
+            *out << "      WHEN OTHERS => o <= (OTHERS =>\'" << out_bit_string.toStdString() << endl;
      else *out << "      WHEN OTHERS => NULL;" << endl;
 
   }
@@ -977,8 +977,8 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
       *out << "      next_state <= ";
       if (state_encoding_t)
         *out << "\"" << Convert::intToBinStr(machine->getInitialTransition()->getEnd()->getEncoding(),
-                                             machine->getNumEncodingBits()).toLatin1() << "\";" << endl;
-      else *out << Utils::noWS(machine->getInitialTransition()->getEnd()->getStateName()).toLatin1() << ";" << endl;
+                                             machine->getNumEncodingBits()).toStdString() << "\";" << endl;
+      else *out << Utils::noWS(machine->getInitialTransition()->getEnd()->getStateName()).toStdString() << ";" << endl;
 
       *out << "    END CASE;" << endl;
       if (alliance)
@@ -995,7 +995,7 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
           output.replace('[','(');
           output.replace(']',')');
 
-          *out << "    " << output.toLatin1() << " <= temp_output(" << --c << ");\n";
+          *out << "    " << output.toStdString() << " <= temp_output(" << --c << ");\n";
         }
       }
       if (debug_state) 
@@ -1013,7 +1013,7 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
           output.replace('[','(');
           output.replace(']',')');
 
-          *out << "    " << output.toLatin1() << " <= temp_mealy_output(" << --c << ");\n";
+          *out << "    " << output.toStdString() << " <= temp_mealy_output(" << --c << ");\n";
         }
       }
     }
@@ -1034,14 +1034,14 @@ void ExportVHDL::writeDescription(std::ofstream*out)
   {
     *out << "-- Inputs:";
     foreach(const QString& input, machine->getInputNameList())
-      *out << "   " << input.toLatin1();
+      *out << "   " << input.toStdString();
     *out << endl;
   }
   if (machine->getNumOutputs()>0)
   {
     *out << "-- Mealy Outputs:";
     foreach(const QString& output, machine->getOutputNameList())
-      *out << "   " << output.toLatin1();
+      *out << "   " << output.toStdString();
     *out << endl;
   }
 
@@ -1054,7 +1054,7 @@ void ExportVHDL::writeDescription(std::ofstream*out)
       textLen[0]=state->getStateName().length();
   textLen[0]++;
 
-  *out << "-- State/Output" << QString(textLen[0]-13,' ').toLatin1();
+  *out << "-- State/Output" << QString(textLen[0]-13,' ').toStdString();
 
 
   if (machine->getNumMooreOutputs()>0)
@@ -1066,7 +1066,7 @@ void ExportVHDL::writeDescription(std::ofstream*out)
     {
       textLen[spc]=i->length()+1;
       spc++;
-      *out << ' '<< i->toLatin1();
+      *out << ' '<< i->toStdString();
     }
   }
   *out << endl;
@@ -1079,7 +1079,7 @@ void ExportVHDL::writeDescription(std::ofstream*out)
     if (state->isDeleted())
       continue;
     int spc=0;
-    *out << "-- " << state->getStateName().toLatin1() << QString(textLen[spc]-state->getStateName().length(),' ').toLatin1();
+    *out << "-- " << state->getStateName().toStdString() << QString(textLen[spc]-state->getStateName().length(),' ').toStdString();
     spc++;
     if (machine->getNumMooreOutputs()>0)
     {
@@ -1088,7 +1088,7 @@ void ExportVHDL::writeDescription(std::ofstream*out)
       int c=0;
       while (c<sMooreOutput.length())
       {
-        *out << sMooreOutput[c].toLatin1().toStdString() << QString(textLen[spc]-1,' ').toLatin1();
+        *out << sMooreOutput[c].toLatin1() << QString(textLen[spc]-1,' ').toStdString();
         c++;
         spc++;
       }
@@ -1137,15 +1137,15 @@ void ExportVHDL::writeOutputProcess(std::ofstream*out)
     {
       *out << "      WHEN \"" <<
           Convert::intToBinStr(s->getEncoding(),
-                               machine->getNumEncodingBits()).toLatin1()
+                               machine->getNumEncodingBits()).toStdString()
           << "\" =>";
     }
     else
     {
-      *out << "      WHEN " << Utils::noWS(s->getStateName()).toLatin1() << " =>";
+      *out << "      WHEN " << Utils::noWS(s->getStateName()).toStdString() << " =>";
     }
 
-    *out << " next_output <= \"" << s->getMooreOutputsStr(machine,options).toLatin1().toStdString() << "\";" << endl;
+    *out << " next_output <= \"" << s->getMooreOutputsStr(machine,options).toStdString() << "\";" << endl;
 
   }
 
@@ -1157,7 +1157,7 @@ void ExportVHDL::writeOutputProcess(std::ofstream*out)
 
 
   if(machine->getNumMooreOutputs()>0)
-          *out << "      WHEN OTHERS => next_output <= (OTHERS =>\'" << out_bit_string.toLatin1() << endl;
+          *out << "      WHEN OTHERS => next_output <= (OTHERS =>\'" << out_bit_string.toStdString() << endl;
    else *out << "      WHEN OTHERS => NULL;" << endl;
 
 
@@ -1220,7 +1220,7 @@ void ExportVHDL::writeOutputBufferProcess(std::ofstream*out)
         output.replace('[','(');
         output.replace(']',')');
 
-        *out << "    " << output.toLatin1() << " <= '" << init_outputs[--c].toLatin1() << "';\n";
+        *out << "    " << output.toStdString() << " <= '" << init_outputs[--c].toLatin1() << "';\n";
       }
     }
 
@@ -1251,7 +1251,7 @@ void ExportVHDL::writeOutputBufferProcess(std::ofstream*out)
           output.replace('[','(');
           output.replace(']',')');
 
-          *out << "    " << output.toLatin1() << " <= '" << init_outputs[--c].toLatin1() << "';\n";
+          *out << "    " << output.toStdString() << " <= '" << init_outputs[--c].toLatin1() << "';\n";
         }
       }
 
@@ -1271,7 +1271,7 @@ void ExportVHDL::writeOutputBufferProcess(std::ofstream*out)
               output.replace('[','(');
               output.replace(']',')');
 
-              *out << "    " << output.toLatin1() << " <= next_output(" << --c << ");\n";
+              *out << "    " << output.toStdString() << " <= next_output(" << --c << ");\n";
             }
           }
           *out << "      END IF;" << endl;
@@ -1291,7 +1291,7 @@ void ExportVHDL::writeOutputBufferProcess(std::ofstream*out)
                 output.replace('[','(');
                 output.replace(']',')');
 
-                *out << "    " << output.toLatin1() << " <= next_output(" << --c << ");\n";
+                *out << "    " << output.toStdString() << " <= next_output(" << --c << ");\n";
               }
             }
             *out << "      END IF;" << endl;
@@ -1305,7 +1305,7 @@ void ExportVHDL::writeOutputBufferProcess(std::ofstream*out)
                 output.replace('[','(');
                 output.replace(']',')');
 
-                *out << "    " << output.toLatin1() << " <= next_output(" << --c << ");\n";
+                *out << "    " << output.toStdString() << " <= next_output(" << --c << ");\n";
               }
             }
           }
@@ -1325,27 +1325,27 @@ void ExportVHDL::writeHeader(std::ofstream*out,QString commentstart, QString com
 #ifdef FHA
   QString description = machine->getDescription();
   description.replace('\n',"\n"+commentstart+"              ");
-  *out << commentstart.toLatin1() << "----------------------------------------------------------------" << commentend.toLatin1() << "\n";
-  *out << commentstart.toLatin1() << " Module     : " << machine->getName().toLatin1() << commentend.toLatin1() << "\n";
-  *out << commentstart.toLatin1() << "----------------------------------------------------------------" << commentend.toLatin1() << "\n";
-  *out << commentstart.toLatin1() << " Author     : " << machine->getAuthor().toLatin1() << commentend.toLatin1() << "\n";
-  *out << commentstart.toLatin1() << " Company    : University of Applied Sciences Augsburg" << commentend.toLatin1() << "\n";
-  *out << commentstart.toLatin1() << "----------------------------------------------------------------" << commentend.toLatin1() << "\n";
-  *out << commentstart.toLatin1() << " Description: "  << description.toLatin1() << commentend.toLatin1() << "\n";
-  *out << commentstart.toLatin1() << "----------------------------------------------------------------" << commentend.toLatin1() << "\n";
-  *out << commentstart.toLatin1() << " Revisions : " << machine->getVersion().toLatin1() << " - " << commentend.toLatin1() << "\n";
-  *out << commentstart.toLatin1() << "----------------------------------------------------------------" << commentend.toLatin1() << "\n";
+  *out << commentstart.toStdString() << "----------------------------------------------------------------" << commentend.toStdString() << "\n";
+  *out << commentstart.toStdString() << " Module     : " << machine->getName().toStdString() << commentend.toStdString() << "\n";
+  *out << commentstart.toStdString() << "----------------------------------------------------------------" << commentend.toStdString() << "\n";
+  *out << commentstart.toStdString() << " Author     : " << machine->getAuthor().toStdString() << commentend.toStdString() << "\n";
+  *out << commentstart.toStdString() << " Company    : University of Applied Sciences Augsburg" << commentend.toStdString() << "\n";
+  *out << commentstart.toStdString() << "----------------------------------------------------------------" << commentend.toStdString() << "\n";
+  *out << commentstart.toStdString() << " Description: "  << description.toStdString() << commentend.toStdString() << "\n";
+  *out << commentstart.toStdString() << "----------------------------------------------------------------" << commentend.toStdString() << "\n";
+  *out << commentstart.toStdString() << " Revisions : " << machine->getVersion().toStdString() << " - " << commentend.toStdString() << "\n";
+  *out << commentstart.toStdString() << "----------------------------------------------------------------" << commentend.toStdString() << "\n";
 #else
   // Write some comment
-  QWidget* wm = qApp->mainWidget();
+  QWidget* wm = qApp->activeWindow();
   AppInfo ai(wm);
 
-  *out << commentstart.toLatin1().toStdString() << " This file was generated by				" <<
-    commentend.toLatin1().toStdString() << endl;
-  *out << commentstart.toLatin1().toStdString() << " Qfsm Version " << ai.getVersionMajor() << "."
-       << ai.getVersionMinor() << "					" << commentend.toLatin1().toStdString() << endl;
-  *out << commentstart.toLatin1().toStdString() << " (C) " << ai.getAuthor().toLatin1().toStdString() << "			"
-       << commentend.toLatin1().toStdString() << endl << endl;
+  *out << commentstart.toStdString() << " This file was generated by				" <<
+    commentend.toStdString() << endl;
+  *out << commentstart.toStdString() << " Qfsm Version " << ai.getVersionMajor() << "."
+       << ai.getVersionMinor() << "					" << commentend.toStdString() << endl;
+  *out << commentstart.toStdString() << " (C) " << ai.getAuthor().toStdString() << "			"
+       << commentend.toStdString() << endl << endl;
 #endif
 }
 

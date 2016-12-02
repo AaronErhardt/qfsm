@@ -289,7 +289,7 @@ void ExportTestbenchVHDL::writeComponent(std::ofstream*out)
       for (i = inputs.begin(); i != inputs.end(); ++i)
       {
       vector="";
-        if((pos1=i->find("[")) !=-1 && i->find("..") !=-1 && (pos2=i->find("]")) !=-1)
+        if((pos1=i->indexOf("[")) !=-1 && i->indexOf("..") !=-1 && (pos2=i->indexOf("]")) !=-1)
         {
           vector="_vector"+i->mid(pos1,pos2-pos1+1);
           vector.replace(".."," DOWNTO ");
@@ -307,7 +307,7 @@ void ExportTestbenchVHDL::writeComponent(std::ofstream*out)
       for (i = mooreOutputs.begin(); i != mooreOutputs.end(); ++i)
       {
       vector="";
-        if((pos1=i->find("[")) !=-1 && i->find("..") !=-1 && (pos2=i->find("]")) !=-1)
+        if((pos1=i->indexOf("[")) !=-1 && i->indexOf("..") !=-1 && (pos2=i->indexOf("]")) !=-1)
         {
           vector="_vector"+i->mid(pos1,pos2-pos1+1);
           vector.replace(".."," DOWNTO ");
@@ -327,7 +327,7 @@ void ExportTestbenchVHDL::writeComponent(std::ofstream*out)
       for (i = mealyOutputs.begin(); i != mealyOutputs.end(); ++i)
       {
       vector="";
-        if((pos1=i->find("[")) !=-1 && i->find("..") !=-1 && (pos2=i->find("]")) !=-1)
+        if((pos1=i->indexOf("[")) !=-1 && i->indexOf("..") !=-1 && (pos2=i->indexOf("]")) !=-1)
         {
           vector="_vector"+i->mid(pos1,pos2-pos1+1);
           vector.replace(".."," DOWNTO ");
@@ -335,7 +335,7 @@ void ExportTestbenchVHDL::writeComponent(std::ofstream*out)
           vector.replace("]",")");
           i->remove(pos1,pos2-pos1+1);
         }
-  *out << "          " << i->toLatin1().toStdString() << ": OUT "<< bit_string.toLatin1().toStdString() << vector.toLatin1();
+  *out << "          " << i->toLatin1().toStdString() << ": OUT "<< bit_string.toLatin1().toStdString() << vector.toLatin1().toStdString();
   if((i+1)!=mealyOutputs.end())
     *out<< ";\n";
       }
@@ -453,7 +453,7 @@ void ExportTestbenchVHDL::writeDefinitions(std::ofstream*out)
       for (i = inputs.begin(); i != inputs.end(); ++i)
       {
       vector="";
-        if((pos1=i->find("[")) !=-1 && i->find("..") !=-1 && (pos2=i->find("]")) !=-1)
+        if((pos1=i->indexOf("[")) !=-1 && i->indexOf("..") !=-1 && (pos2=i->indexOf("]")) !=-1)
         {
           vector="_vector"+i->mid(pos1,pos2-pos1+1);
           vector.replace(".."," DOWNTO ");
@@ -471,7 +471,7 @@ void ExportTestbenchVHDL::writeDefinitions(std::ofstream*out)
       for (i = mooreOutputs.begin(); i != mooreOutputs.end(); ++i)
       {
       vector="";
-        if((pos1=i->find("[")) !=-1 && i->find("..") !=-1 && (pos2=i->find("]")) !=-1)
+        if((pos1=i->indexOf("[")) !=-1 && i->indexOf("..") !=-1 && (pos2=i->indexOf("]")) !=-1)
         {
           vector="_vector"+i->mid(pos1,pos2-pos1+1);
           vector.replace(".."," DOWNTO ");
@@ -479,7 +479,7 @@ void ExportTestbenchVHDL::writeDefinitions(std::ofstream*out)
           vector.replace("]",")");
           i->remove(pos1,pos2-pos1+1);
         }
-  *out << "  SIGNAL " << i->toLatin1().toStdString() << ": "<< bit_string.toLatin1().toStdString() << vector.toLatin1();
+  *out << "  SIGNAL " << i->toLatin1().toStdString() << ": " << bit_string.toLatin1().toStdString() << vector.toStdString();
   if((i+1)!=mooreOutputs.end() || machine->getNumOutputs()>0)
     *out<< ";\n";
       }
@@ -491,7 +491,7 @@ void ExportTestbenchVHDL::writeDefinitions(std::ofstream*out)
       for (i = mealyOutputs.begin(); i != mealyOutputs.end(); ++i)
       {
       vector="";
-        if((pos1=i->find("[")) !=-1 && i->find("..") !=-1 && (pos2=i->find("]")) !=-1)
+        if((pos1=i->indexOf("[")) !=-1 && i->indexOf("..") !=-1 && (pos2=i->indexOf("]")) !=-1)
         {
           vector="_vector"+i->mid(pos1,pos2-pos1+1);
           vector.replace(".."," DOWNTO ");
@@ -499,7 +499,7 @@ void ExportTestbenchVHDL::writeDefinitions(std::ofstream*out)
           vector.replace("]",")");
           i->remove(pos1,pos2-pos1+1);
         }
-  *out << "  SIGNAL " << i->toLatin1().toStdString() << ": "<< bit_string.toLatin1().toStdString() << vector.toLatin1();
+  *out << "  SIGNAL " << i->toLatin1().toStdString() << ": "<< bit_string.toStdString() << vector.toStdString();
   if((i+1)!=mealyOutputs.end())
     *out<< ";\n";
       }
@@ -576,7 +576,7 @@ void ExportTestbenchVHDL::writeInstantiation(std::ofstream*out)
     {
       for (i = inputs.begin(); i != inputs.end(); ++i)
       {
-        if((pos1=i->find("[")) !=-1 && i->find("..") !=-1 && (pos2=i->find("]")) !=-1)
+        if((pos1=i->indexOf("[")) !=-1 && i->indexOf("..") !=-1 && (pos2=i->indexOf("]")) !=-1)
         {
           i->remove(pos1,pos2-pos1+1);
         }
@@ -589,11 +589,11 @@ void ExportTestbenchVHDL::writeInstantiation(std::ofstream*out)
       QStringList mooreOutputs=(machine->retranslateNames(machine->getMooreOutputList())).split(",");
       for (i = mooreOutputs.begin(); i != mooreOutputs.end(); ++i)
       {
-        if((pos1=i->find("[")) !=-1 && i->find("..") !=-1 && (pos2=i->find("]")) !=-1)
+        if((pos1=i->indexOf("[")) !=-1 && i->indexOf("..") !=-1 && (pos2=i->indexOf("]")) !=-1)
         {
           i->remove(pos1,pos2-pos1+1);
         }
-  *out << "      " << i->toLatin1().toStdString() << " => " << i->toLatin1();
+  *out << "      " << i->toLatin1().toStdString() << " => " << i->toLatin1().toStdString();
   if((i+1)!=mooreOutputs.end() || machine->getNumOutputs()>0)
     *out<< ",\n";
       }
@@ -603,11 +603,11 @@ void ExportTestbenchVHDL::writeInstantiation(std::ofstream*out)
       QStringList mealyOutputs=(machine->retranslateNames(machine->getOutputNameList())).split(",");
       for (i = mealyOutputs.begin(); i != mealyOutputs.end(); ++i)
       {
-        if((pos1=i->find("[")) !=-1 && i->find("..") !=-1 && (pos2=i->find("]")) !=-1)
+        if((pos1=i->indexOf("[")) !=-1 && i->indexOf("..") !=-1 && (pos2=i->indexOf("]")) !=-1)
         {
           i->remove(pos1,pos2-pos1+1);
         }
-  *out << "      " << i->toLatin1().toStdString() << " => " << i->toLatin1();
+  *out << "      " << i->toLatin1().toStdString() << " => " << i->toLatin1().toStdString();
   if((i+1)!=mealyOutputs.end())
     *out<< ",\n";
       }
@@ -687,12 +687,12 @@ void ExportTestbenchVHDL::writeObserverProcess(std::ofstream*out)
   if(use_std_logic)
   {
     *out << "    VARIABLE vector : bit_vector(";
-    *out << QString::number(input_count+output_count-1).toLatin1();
+    *out << QString::number(input_count+output_count-1).toStdString();
     *out << " DOWNTO 0);" << endl;
   }
 
   *out << "    VARIABLE test_vector : " << bit_string.toLatin1().toStdString() << "_vector(";
-  *out << QString::number(input_count+output_count-1).toLatin1();
+  *out << QString::number(input_count+output_count-1).toLatin1().toStdString();
   *out << " DOWNTO 0);" << endl;
 
 
@@ -718,7 +718,7 @@ void ExportTestbenchVHDL::writeObserverProcess(std::ofstream*out)
     for (i = inputs.begin(); i != inputs.end(); ++i)
     {
       stimuli_counter--;
-      if(i->find("[") !=-1 && i->find("]") !=-1)
+      if(i->indexOf("[") !=-1 && i->indexOf("]") !=-1)
       {
         i->replace("[","(");
         i->replace("]",")");
@@ -749,14 +749,14 @@ void ExportTestbenchVHDL::writeObserverProcess(std::ofstream*out)
       QStringList::iterator i;
       for (i = mooreOutputs.begin(); i != mooreOutputs.end(); ++i)
       {
-        if(i->find("[") !=-1 && i->find("]") !=-1)
+        if(i->indexOf("[") !=-1 && i->indexOf("]") !=-1)
           {
             i->replace("[","(");
             i->replace("]",")");
           }
         if(i==mooreOutputs.begin())
-          *out << i->toLatin1();
-        else *out << " & " << i->toLatin1();
+          *out << i->toLatin1().toStdString();
+        else *out << " & " << i->toLatin1().toStdString();
       }
     }
     if (machine->getNumOutputs()>0)
@@ -766,14 +766,14 @@ void ExportTestbenchVHDL::writeObserverProcess(std::ofstream*out)
       QStringList::iterator i;
       for (i = mealyOutputs.begin(); i != mealyOutputs.end(); ++i)
       {
-        if(i->find("[") !=-1 && i->find("]") !=-1)
+        if(i->indexOf("[") !=-1 && i->indexOf("]") !=-1)
           {
             i->replace("[","(");
             i->replace("]",")");
           }
         if(i==mealyOutputs.begin() && machine->getNumMooreOutputs()==0)
-          *out << i->toLatin1();
-        else *out << " & " << i->toLatin1();
+          *out << i->toLatin1().toStdString();
+        else *out << " & " << i->toLatin1().toStdString();
       }
     }
     *out << ")";
@@ -836,7 +836,7 @@ void ExportTestbenchVHDL::writeDescription(std::ofstream*out)
     QStringList::const_iterator i;
     for(i=inputs.constBegin(); i!=inputs.constEnd(); ++i)
     {
-      *out << "   "<< i->toLatin1();
+      *out << "   "<< i->toLatin1().toStdString();
     }
     *out << endl;
   }
@@ -847,7 +847,7 @@ void ExportTestbenchVHDL::writeDescription(std::ofstream*out)
     QStringList::const_iterator i;
     for(i=outputs.constBegin(); i!=outputs.constEnd(); ++i)
     {
-      *out << "   "<< i->toLatin1();
+      *out << "   "<< i->toLatin1().toStdString();
     }
     *out << endl;
   }
@@ -865,7 +865,7 @@ void ExportTestbenchVHDL::writeDescription(std::ofstream*out)
   }
   textLen[0]++;
 
-  *out << "-- State/Output" << QString(textLen[0]-13,' ').toLatin1();
+  *out << "-- State/Output" << QString(textLen[0]-13,' ').toStdString();
 
 
   if(machine->getNumMooreOutputs()>0)
@@ -877,7 +877,7 @@ void ExportTestbenchVHDL::writeDescription(std::ofstream*out)
     {
       textLen[spc]=i->length()+1;
       spc++;
-      *out << " "<< i->toLatin1();
+      *out << " "<< i->toLatin1().toStdString();
     }
   }
   *out << endl;
@@ -899,7 +899,7 @@ void ExportTestbenchVHDL::writeDescription(std::ofstream*out)
       int c=0;
       while(c<sMooreOutput.length())
       {
-        *out << sMooreOutput[c].toLatin1().toStdString() << QString(textLen[spc]-1,' ').toLatin1().toStdString();
+        *out << sMooreOutput[c].toLatin1() << QString(textLen[spc]-1,' ').toStdString();
         c++;
         spc++;
       }
@@ -1185,7 +1185,7 @@ void ExportTestbenchVHDL::writeNewObserverProcess(std::ofstream*out)
     {
       for (i = inputs.begin(); i != inputs.end(); ++i)
       {
-        if((pos1=i->find("[")) !=-1 && i->find("..") !=-1 && (pos2=i->find("]")) !=-1)
+        if((pos1=i->indexOf("[")) !=-1 && i->indexOf("..") !=-1 && (pos2=i->indexOf("]")) !=-1)
         {
           i->remove(pos1,pos2-pos1+1);
         }
@@ -1215,7 +1215,7 @@ void ExportTestbenchVHDL::writeNewObserverProcess(std::ofstream*out)
       QStringList mooreOutputs=(machine->retranslateNames(machine->getMooreOutputList())).split(",");
       for (i = mooreOutputs.begin(); i != mooreOutputs.end(); ++i)
       {
-        if((pos1=i->find("[")) !=-1 && i->find("..") !=-1 && (pos2=i->find("]")) !=-1)
+        if((pos1=i->indexOf("[")) !=-1 && i->indexOf("..") !=-1 && (pos2=i->indexOf("]")) !=-1)
         {
           i->remove(pos1,pos2-pos1+1);
         }
@@ -1229,7 +1229,7 @@ void ExportTestbenchVHDL::writeNewObserverProcess(std::ofstream*out)
       QStringList mealyOutputs=(machine->retranslateNames(machine->getOutputNameList())).split(",");
       for (i = mealyOutputs.begin(); i != mealyOutputs.end(); ++i)
       {
-        if((pos1=i->find("[")) !=-1 && i->find("..") !=-1 && (pos2=i->find("]")) !=-1)
+        if((pos1=i->indexOf("[")) !=-1 && i->indexOf("..") !=-1 && (pos2=i->indexOf("]")) !=-1)
         {
           i->remove(pos1,pos2-pos1+1);
         }
@@ -1306,7 +1306,7 @@ void ExportTestbenchVHDL::writeHeader(std::ofstream*out,QString commentstart, QS
   using namespace std;
 
   // Write some comment
-  QWidget* wm = qApp->mainWidget();
+  QWidget* wm = qApp->activeWindow();
   AppInfo ai(wm);
 
   *out << commentstart.toLatin1().toStdString() << " This file was generated by		" <<

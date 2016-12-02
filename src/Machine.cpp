@@ -34,7 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 /// Constructor.
 Machine::Machine(QObject* parent/*=NULL*/, const char* n/*=0*/)
-	: QObject(parent, n)
+	: QObject(parent)
 {
   name = "";
   version = "";
@@ -800,9 +800,9 @@ QStringList Machine::translateNames(QString names)
   for(i=parts.constBegin(); i!=parts.constEnd(); ++i)
   {
     ok=false;
-    pos1=i->find('[');
-    pos2=i->find("..",pos1);
-    pos3=i->find(']',pos2);
+    pos1=i->indexOf('[');
+    pos2=i->indexOf("..",pos1);
+    pos3=i->indexOf(']',pos2);
 
     if(pos1 !=-1 && pos2 !=-1 && pos3!=-1)
     {
@@ -839,8 +839,8 @@ QString Machine::retranslateNames(QStringList names)
   for(i=names.constBegin(); i!=names.constEnd(); ++i)
   {
     ok=false;
-    pos1=i->find('[');
-    pos2=i->find(']',pos1);
+    pos1=i->indexOf('[');
+    pos2=i->indexOf(']',pos1);
     oldArrayName=arrayName;
     arrayName=i->left(pos1);
 

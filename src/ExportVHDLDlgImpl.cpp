@@ -192,7 +192,7 @@ void ExportVHDLDlgImpl::init(Options* opt, Machine* m)
   architecture_name = opt->getVHDLArchitectureName();
   exportVHDLDlg.le_architecture_name->setText(architecture_name);
   exportVHDLDlg.cb_state_code->setChecked(state_code);
-  exportVHDLDlg.bg_cond_notation->setButton(cond_notation);
+//FA  exportVHDLDlg.bg_cond_notation->setButton(cond_notation);
   setSepFiles(sep_files);
 
   if(m==NULL)
@@ -272,7 +272,7 @@ void ExportVHDLDlgImpl::lookAheadClicked()
 void ExportVHDLDlgImpl::architectureNameChanged(QString)
 {
   architecture_name=exportVHDLDlg.le_architecture_name->text();
-  qDebug("architecture name chaned: "+architecture_name);
+  qDebug(QString("architecture name chaned: " + architecture_name).toStdString().c_str());
 }
 
 /**

@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <qpainter.h>
 #include <qstyle.h>
 //Added by qt3to4:
-//#include <Q3PointArray>
+//#include <QPolygon>
 #include <QStyle>
 #include <QStyleOptionFocusRect>
 #include <QListWidget>
@@ -30,13 +30,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "ListBoxItems.h"
 #include "Const.h"
 
+ListBoxItem::ListBoxItem(QListWidget* list) : list(list)
+{
+
+}
+
 
 /** 
  * Constructor.
  * Intialises the list box item for the listbox @a lb.
  */
 LBArrowLine::LBArrowLine(QListWidget* lb)
-	   : QListBoxItem(lb)
+	   : ListBoxItem(lb)
 {
   h = 30;
   w = 30;
@@ -45,13 +50,13 @@ LBArrowLine::LBArrowLine(QListWidget* lb)
 
 
 /// Returns the height of the listbox item
-int LBArrowLine::height(const Q3ListBox* ) const
+int LBArrowLine::height(const QListWidget* ) const
 {
   return 30;
 }
 
 /// Returns the width of the listbox item
-int LBArrowLine::width(const Q3ListBox* ) const
+int LBArrowLine::width(const QListWidget* ) const
 {
   return 30;
 }
@@ -111,8 +116,8 @@ void LBArrowLine::paint(QPainter* p)
  * Constructor.
  * Initialises the listbox item for the listbox @a lb.
  */
-LBArrowFilled::LBArrowFilled(Q3ListBox* lb)
-	   : Q3ListBoxItem(lb)
+LBArrowFilled::LBArrowFilled(QListWidget* lb)
+	   : ListBoxItem(lb)
 {
   h = 30;
   w = 30;
@@ -121,13 +126,13 @@ LBArrowFilled::LBArrowFilled(Q3ListBox* lb)
 
 
 /// Returns the height of the listbox
-int LBArrowFilled::height(const Q3ListBox* ) const
+int LBArrowFilled::height(const QListWidget* ) const
 {
   return 30;
 }
 
 /// Returns the width of the listbox
-int LBArrowFilled::width(const Q3ListBox* ) const
+int LBArrowFilled::width(const QListWidget* ) const
 {
   return 30;
 }
@@ -142,7 +147,7 @@ void LBArrowFilled::paint(QPainter* p)
   int wi, le;
   int ofx, ofy;
   QRect r(0, 0, listBox()->viewport()->width(), 30);
-  Q3PointArray pa(3);
+  QPolygon pa(3);
 //  r = listBox()->itemRect(this);
 
 
@@ -198,8 +203,8 @@ void LBArrowFilled::paint(QPainter* p)
  * Constructor.
  * Initialises the listbox item for the listbox @a lb.
  */
-LBArrowWhite::LBArrowWhite(Q3ListBox* lb)
-	   : Q3ListBoxItem(lb)
+LBArrowWhite::LBArrowWhite(QListWidget* lb)
+	   : ListBoxItem(lb)
 {
   h = 30;
   w = 30;
@@ -208,13 +213,13 @@ LBArrowWhite::LBArrowWhite(Q3ListBox* lb)
 
 
 /// Returns the height of the listbox
-int LBArrowWhite::height(const Q3ListBox* ) const
+int LBArrowWhite::height(const QListWidget* ) const
 {
   return 30;
 }
 
 /// Returns the width of the listbox
-int LBArrowWhite::width(const Q3ListBox* ) const
+int LBArrowWhite::width(const QListWidget* ) const
 {
   return 30;
 }
@@ -229,7 +234,7 @@ void LBArrowWhite::paint(QPainter* p)
   int wi, le;
   int ofx, ofy;
   QRect r(0, 0, listBox()->viewport()->width(), 30);
-  Q3PointArray pa(3);
+  QPolygon pa(3);
 //  r = listBox()->itemRect(this);
 
 
@@ -286,8 +291,8 @@ void LBArrowWhite::paint(QPainter* p)
  * Constructor.
  * Initialises the listbox item for the listbox @a lb.
  */
-LBArrowFilledPointed::LBArrowFilledPointed(Q3ListBox* lb)
-	   : Q3ListBoxItem(lb)
+LBArrowFilledPointed::LBArrowFilledPointed(QListWidget* lb)
+	   : ListBoxItem(lb)
 {
   h = 30;
   w = 30;
@@ -296,13 +301,13 @@ LBArrowFilledPointed::LBArrowFilledPointed(Q3ListBox* lb)
 
 
 /// Returns the height of the listbox
-int LBArrowFilledPointed::height(const Q3ListBox* ) const
+int LBArrowFilledPointed::height(const QListWidget* ) const
 {
   return 30;
 }
 
 /// Returns the width of the listbox
-int LBArrowFilledPointed::width(const Q3ListBox* ) const
+int LBArrowFilledPointed::width(const QListWidget* ) const
 {
   return 30;
 }
@@ -317,7 +322,7 @@ void LBArrowFilledPointed::paint(QPainter* p)
   int wi, le;
   int ofx, ofy;
   QRect r(0, 0, listBox()->viewport()->width(), 30);
-  Q3PointArray pa(4);
+  QPolygon pa(4);
 //  r = listBox()->itemRect(this);
 
 
@@ -374,8 +379,8 @@ void LBArrowFilledPointed::paint(QPainter* p)
  * Constructor.
  * Initialises the listbox item for the listbox @a lb.
  */
-LBArrowWhitePointed::LBArrowWhitePointed(Q3ListBox* lb)
-	   : Q3ListBoxItem(lb)
+LBArrowWhitePointed::LBArrowWhitePointed(QListWidget* lb)
+	   : ListBoxItem(lb)
 {
   h = 30;
   w = 30;
@@ -384,13 +389,13 @@ LBArrowWhitePointed::LBArrowWhitePointed(Q3ListBox* lb)
 
 
 /// Returns the height of the listbox
-int LBArrowWhitePointed::height(const Q3ListBox* ) const
+int LBArrowWhitePointed::height(const QListWidget* ) const
 {
   return 30;
 }
 
 /// Returns the width of the listbox
-int LBArrowWhitePointed::width(const Q3ListBox* ) const
+int LBArrowWhitePointed::width(const QListWidget* ) const
 {
   return 30;
 }
@@ -405,7 +410,7 @@ void LBArrowWhitePointed::paint(QPainter* p)
   int wi, le;
   int ofx, ofy;
   QRect r(0, 0, listBox()->viewport()->width(), 30);
-  Q3PointArray pa(4);
+  QPolygon pa(4);
 //  r = listBox()->itemRect(this);
 
 

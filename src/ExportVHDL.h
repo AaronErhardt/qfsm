@@ -107,9 +107,9 @@ class ExportVHDL : public Export
   for(c=0; c<keywords.size(); c++)
   {
     bracket_pos=s.indexOf('[');
-    if(keywords[c]==s.lower())
+    if(keywords[c]==s.toLower())
       return false;
-    if(bracket_pos!=-1 && s.left(bracket_pos).lower()==keywords[c])
+    if(bracket_pos!=-1 && s.left(bracket_pos).toLower()==keywords[c])
       return false;
   }
 

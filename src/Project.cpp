@@ -28,7 +28,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 /// Constructor
 Project::Project(QObject* parent/*=NULL*/, const char* name/*=0*/)
-	: QObject(parent, name)
+	: QObject(parent)
 {
   main = (MainWindow*)parent;
   machine = NULL;
@@ -114,7 +114,7 @@ QDomDocument Project::getDomDocument(bool onlyselected/*=false*/, GObject* obj/*
     QList<GState*> slist;
     QList<GTransition*> tlist; 
     double xpos, ypos, endx, endy, c1x, c1y, c2x, c2y;
-    AppInfo appinfo(qApp->mainWidget());
+    AppInfo appinfo(qApp->activeWindow());
 
     domdoc.setContent(prolog);
 

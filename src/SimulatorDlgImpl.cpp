@@ -635,7 +635,7 @@ void SimulatorDlgImpl::clockPressed()
 //  hz /= 10;
   msec = 1000/hz;
 
-  if (!simulatorDlg.pb_clock->isOn())
+  if (!simulatorDlg.pb_clock->isDown())
   {
     timer->start((int)msec);
     simulatorDlg.lb_frequency->setEnabled(false);

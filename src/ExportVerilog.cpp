@@ -323,7 +323,7 @@ void ExportVerilog::writeStateProcess()
 	    for(int k=slen; k<numin; k++)
 	      *out << "0";
 
-	    *out << tinfoi.toLatin1();
+	    *out << tinfoi.toStdString();
 	    first=false;
 	  }
 	}
@@ -340,7 +340,7 @@ void ExportVerilog::writeStateProcess()
 	  for(int l=slen; l<numout; l++)
 	    *out << "0";
 
-	  *out << tinfoo.toLatin1().toStdString() << ";" << endl;
+	  *out << tinfoo.toStdString() << ";" << endl;
 	}
 	stmp = t->getEnd();
 	if (stmp)

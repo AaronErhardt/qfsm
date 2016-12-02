@@ -154,9 +154,6 @@
      </item>
      <item>
       <widget class="QTextEdit" name="te_description">
-       <property name="hScrollBarMode">
-        <enum>Q3ScrollView::AlwaysOff</enum>
-       </property>
       </widget>
      </item>
      <item>

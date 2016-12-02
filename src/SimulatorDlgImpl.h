@@ -116,7 +116,7 @@ public:
     /// Returns true if @a ASCII is checked for the outputs otherwise false
       bool isOASCIIChecked() { return simulatorDlg.rb_oascii->isChecked(); };
     /// Returns true if 'clock' is pressed, otherwise false
-      bool isClockOn() { return simulatorDlg.pb_clock->isOn(); };
+      bool isClockOn() { return simulatorDlg.pb_clock->isDown(); };
     void setState(int);
 
     void resetButtons();

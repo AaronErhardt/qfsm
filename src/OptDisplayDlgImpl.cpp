@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *  true to construct a modal dialog.
  */
 OptDisplayDlgImpl::OptDisplayDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WindowFlags fl )
-    : QDialog( parent, name, modal, fl )
+    : QDialog( parent/*, name, modal*/, fl )
 {
   
   optDisplayDlg.setupUi(this);
@@ -58,7 +58,9 @@ void OptDisplayDlgImpl::init(Options* opt)
   int gsize;
   QString stext;
   gridcolor = opt->getGridColor();
-  optDisplayDlg.lb_gridcolor->setBackgroundColor(gridcolor);
+  QPalette palette;
+  palette.setColor(optDisplayDlg.lb_gridcolor->backgroundRole(), gridcolor);
+  optDisplayDlg.lb_gridcolor->setPalette(palette);
 
   gsize = opt->getGridSize();
   if (gsize<3)
@@ -67,8 +69,9 @@ void OptDisplayDlgImpl::init(Options* opt)
   optDisplayDlg.sb_gridsize->setValue(gsize);
 
   shadowcolor = opt->getStateShadowColor();
-  optDisplayDlg.lb_shadowcolor->setBackgroundColor(shadowcolor);
-
+  palette.setColor(optDisplayDlg.lb_shadowcolor->backgroundRole(), shadowcolor);
+  optDisplayDlg.lb_shadowcolor->setPalette(palette);
+ 
   bshadows = opt->getStateShadows();
   optDisplayDlg.cb_shadows->setChecked(bshadows);
 
@@ -101,13 +104,10 @@ void OptDisplayDlgImpl::chooseGridColor()
 
   if (c.isValid())
   {
-    /*
-    QPalette pal;
-    pal.setColor(lb_gridcolor->backgroundRole(), c);
-    lb_gridcolor->setPalette(pal);
-    */
-    optDisplayDlg.lb_gridcolor->setBackgroundColor(c);
-    gridcolor = c;
+		QPalette palette;
+		 palette.setColor(optDisplayDlg.lb_gridcolor->backgroundRole(), c);
+		optDisplayDlg.lb_gridcolor->setPalette(palette);
+		gridcolor = c;
   }
 }
 
@@ -121,7 +121,9 @@ void OptDisplayDlgImpl::chooseShadowColor()
 
   if (c.isValid())
   {
-    optDisplayDlg.lb_shadowcolor->setBackgroundColor(c);
+	  QPalette palette;
+	  palette.setColor(optDisplayDlg.lb_shadowcolor->backgroundRole(), c);
+    optDisplayDlg.lb_shadowcolor->setPalette(palette);
     shadowcolor = c;
   }
 }

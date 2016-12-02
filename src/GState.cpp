@@ -21,7 +21,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <qpen.h>
 #include <qbrush.h>
 #include <qcolor.h>
-#include <q3ptrlist.h>
 #include <qregexp.h>
 
 #include "GState.h"

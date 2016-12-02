@@ -191,6 +191,8 @@ class DrawArea : public QWidget
     Grid* grid;
     /// Tooltip window
     ToolTipSV* tooltip;
+	/// Patelle
+	QPalette palette;
 
     void mousePressEvent(QMouseEvent* );
     void mouseMoveEvent(QMouseEvent* );

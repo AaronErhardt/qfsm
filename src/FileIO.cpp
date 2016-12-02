@@ -18,7 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <qwidget.h>
 #include <QFileDialog>
-#include <q3textstream.h>
+//#include <QTextStream.h>
 #include <qcolor.h>
 #include <qmap.h>
 #include <qdom.h>
@@ -127,7 +127,7 @@ FileIO::~FileIO()
   if (!file.open(QIODevice::ReadOnly))
     return NULL;
 
-  Q3TextStream s(&file);
+  QTextStream s(&file);
 
   int version_major, version_minor;
   QString mname, mversion, mauthor, mdescription;
@@ -360,7 +360,8 @@ Project* FileIO::openFileXML(QString mrufile /*=QString::null*/)
       act_file = QString::null;
       return p;
     }
-    act_file = filedlg->selectedFile();
+//FA    act_file = filedlg-selectedFile();
+	act_file = filedlg->selectedFiles().at(0);
   }
   else
   {
@@ -377,7 +378,7 @@ Project* FileIO::openFileXML(QString mrufile /*=QString::null*/)
   
   p = new Project(main);
   XMLHandler handler(p);
-  QXmlInputSource source(file);
+  QXmlInputSource source(&file);
   QXmlSimpleReader reader;
 
   reader.setContentHandler(&handler);
@@ -612,7 +613,7 @@ bool FileIO::saveFileAs(Project* p)
 
   if (filedlg->exec())
   {
-    act_file = filedlg->selectedFile();
+    act_file = filedlg->selectedFiles()[0];
 	
 	QString name=act_file.right(act_file.length()-act_file.lastIndexOf("/"));
   if(name.right(4)!=".fsm")
@@ -679,7 +680,7 @@ bool FileIO::doSave(Project* p)
       qDebug("file cannot be opened for writing");
       return false;
     }
-    Q3TextStream s(&file);
+    QTextStream s(&file);
 
     list = m->getSList();
     QMutableListIterator<GState*> i(list);
@@ -725,10 +726,10 @@ bool FileIO::doSave(Project* p)
       state = i.next();
       state->getPos(xpos, ypos);
       
-      s.setf(Q3TextStream::bin);
+ 	  s << bin;
       s << state->getEncoding() << endl;
       s << state->getMooreOutputsStr() << endl;
-      s.setf(Q3TextStream::dec);
+      s << dec;
 
       s << state->getStateName() << endl;
       s << state->getDescription() << endl;
@@ -746,9 +747,9 @@ bool FileIO::doSave(Project* p)
     {
       state = i.next();
 
-      s.setf(Q3TextStream::bin);
-      s << state->getEncoding() << endl;
-      s.setf(Q3TextStream::dec);
+	  s << bin;
+	  s << state->getEncoding() << endl;
+	  s << dec;
 
       tlist = state->tlist;
       QMutableListIterator<GTransition*> j(tlist);
@@ -761,12 +762,12 @@ bool FileIO::doSave(Project* p)
 
         dest_state = t->getEnd();
 
-	s.setf(Q3TextStream::bin);
-	if (dest_state)
+		s << bin;
+		if (dest_state)
 	  s << dest_state->getEncoding() << endl;
 	else
 	  s << -1 << endl;
-	s.setf(Q3TextStream::dec);
+		s << dec;
 
         s << t->getInfo()->getType() << endl;
         s << t->getDescription() << endl;
@@ -808,12 +809,12 @@ bool FileIO::doSave(Project* p)
 
       dest_state = t->getEnd();
 
-      s.setf(Q3TextStream::bin);
-      if (dest_state)
+	  s << bin;
+     if (dest_state)
 	s << dest_state->getEncoding() << endl;
       else
 	s << -1 << endl;
-      s.setf(Q3TextStream::dec);
+	  s << dec;
 
       s << t->getInfo()->getType() << endl;
       s << t->getDescription() << endl;
@@ -1280,14 +1281,14 @@ int FileIO::saveOptions(Options* opt)
   QDir qfsmdir=createQfsmDir();
 
 
-  QFile file(qfsmdir.absPath()+"/qfsmrc");
+  QFile file(qfsmdir.absolutePath()+"/qfsmrc");
   if (!file.open(QIODevice::WriteOnly))
   {
     qDebug("options not saved");
     return 1;
   }
 
-  Q3TextStream fout(&file);
+  QTextStream fout(&file);
 
   fout << "view_stateenc " << (int)opt->getViewStateEncoding() << endl;
   fout << "view_moore " << (int)opt->getViewMoore() << endl;
@@ -1410,9 +1411,9 @@ int FileIO::loadOptions(Options* opt)
   QString key, value;
 
 #ifdef WIN32
-  QFile file(dir.absPath()+"/Application Data/qfsm/qfsmrc");
+  QFile file(dir.absolutePath()+"/Application Data/qfsm/qfsmrc");
 #else
-  QFile file(dir.absPath()+"/.qfsm/qfsmrc");
+  QFile file(dir.absolutePath()+"/.qfsm/qfsmrc");
 #endif
 
   if (!file.open(QIODevice::ReadOnly))
@@ -1421,11 +1422,11 @@ int FileIO::loadOptions(Options* opt)
     return 1;
   }
 
-  Q3TextStream fin(&file);
+  QTextStream fin(&file);
 
   fin >> key >> value;
 
-  while (!fin.eof())
+  while (!fin.atEnd())
   {
     _map.insert(key, value);
     fin >> key >> value;
@@ -1454,7 +1455,7 @@ void FileIO::setOptions(QMap<QString, QString>* _map, Options* opt)
   for(it = _map->begin(); it != _map->end(); ++it)
   {
     key = it.key();
-    data = it.data();
+    data = it.value();
     if (data==getEmptyFieldString())
       data="";
     idata = data.toInt();
@@ -1622,14 +1623,15 @@ Project* FileIO::importFile(Import* imp, ScrollView* sv/*=NULL*/)
   Project* p=NULL;
   importdlg->setAcceptMode(QFileDialog::AcceptOpen);
   importdlg->setFileMode(QFileDialog::ExistingFile);
-  importdlg->setFilter(imp->fileFilter()+";;All Files (*)");
+  QDir::Filters filters(QDir::AllEntries);
+  importdlg->setFilter(filters);
 
   if (!importdlg->exec())
   {
     act_importfile = QString::null;
     return p;
   }
-  act_importfile = importdlg->selectedFile();
+  act_importfile = importdlg->selectedFiles()[0];
   act_import_dir = importdlg->directory().absolutePath();
 
   QString name=act_importfile.right(act_importfile.length()-act_importfile.lastIndexOf("/"));
@@ -1638,7 +1640,7 @@ Project* FileIO::importFile(Import* imp, ScrollView* sv/*=NULL*/)
 
   //p = new Project(main);
 
-  ifstream fin(act_importfile);
+  ifstream fin(act_importfile.toStdString());
 
   if (!fin)
     return NULL;
@@ -1678,11 +1680,12 @@ bool FileIO::exportFile(Project* p, Export* exp, ScrollView* sv/*=NULL*/)
     exportdlg->selectFile(act_exportfile);
   else exportdlg->selectFile(p->machine->getName());
 
-  exportdlg->setFilter(exp->fileFilter()+";;All Files (*)");
+  QDir::Filters filters(QDir::AllEntries);
+  exportdlg->setFilter(filters);
 
   if(exportdlg->exec())
   {
-    act_exportfile = exportdlg->selectedFile();
+    act_exportfile = exportdlg->selectedFiles()[0];
 //    act_export_dir = exportdlg->dirPath();
     act_export_dir = exportdlg->directory().absolutePath();
 	
@@ -1698,7 +1701,7 @@ bool FileIO::exportFile(Project* p, Export* exp, ScrollView* sv/*=NULL*/)
 	return false;
     }
 
-    ofstream fout(act_exportfile);
+    ofstream fout(act_exportfile.toStdString());
 
     if (!fout)
       return false;
@@ -1723,14 +1726,14 @@ bool FileIO::saveMRU(QStringList list)
  
   QDir qfsmdir=createQfsmDir();
 
-  QFile file(qfsmdir.absPath()+"/mru_files");
+  QFile file(qfsmdir.absolutePath()+"/mru_files");
   if (!file.open(QIODevice::WriteOnly))
   {
     qDebug("mru_files not saved");
     return false;
   }
 
-  Q3TextStream fout(&file);
+  QTextStream fout(&file);
 
   QStringList::Iterator it;
 
@@ -1757,14 +1760,14 @@ bool FileIO::loadMRU(QStringList& _list)
   QDir qfsmdir=createQfsmDir();
 
 
-  QFile file(qfsmdir.absPath()+"/mru_files");
+  QFile file(qfsmdir.absolutePath()+"/mru_files");
   if (!file.open(QIODevice::ReadOnly))
   {
     qDebug("mru_files not opened");
     return false;
   }
 
-  Q3TextStream fin(&file);
+  QTextStream fin(&file);
 
   do
   {
@@ -1786,10 +1789,10 @@ QDir FileIO::createQfsmDir()
 {
   QDir dir=QDir::home();
 #ifdef WIN32
-  QDir qfsmdir(dir.absPath()+"/Application Data/qfsm");
+  QDir qfsmdir(dir.absolutePath()+"/Application Data/qfsm");
   if (!qfsmdir.exists())
   {
-    QDir appdir(dir.absPath()+"/Application Data");
+    QDir appdir(dir.absolutePath()+"/Application Data");
     if(!appdir.exists())
     {
       if (!dir.mkdir("Application Data"))

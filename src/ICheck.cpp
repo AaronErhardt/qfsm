@@ -137,7 +137,7 @@ int ICheck::checkMachine(Machine* m)
   
   icheckdlg->setProtocolText(protocol);
   qDebug("Protocol:");
-  qDebug(protocol);
+  qDebug(protocol.toStdString().c_str());
   qDebug("End Protocol");
 
 

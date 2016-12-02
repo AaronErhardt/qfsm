@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *  true to construct a modal dialog.
  */
 ICheckDlgImpl::ICheckDlgImpl( QWidget* parent,  const char* name, bool modal, Qt::WindowFlags fl )
-    : QDialog( parent, name, modal, fl )
+    : QDialog( parent/*, name, modal*/, fl )
 {
   pm_tick = new QPixmap((const char**)tick_xpm);
   pm_cross = new QPixmap((const char**)cross_xpm);
