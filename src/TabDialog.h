@@ -57,40 +57,36 @@ class QDialogButtonBox;
 class QFileInfo;
 class QTabWidget;
 
-class GeneralTab : public QWidget
-{
-	Q_OBJECT
+class GeneralTab : public QWidget {
+    Q_OBJECT
 
-public:
-	explicit GeneralTab(const QFileInfo &fileInfo, QWidget *parent = 0);
+  public:
+    explicit GeneralTab(const QFileInfo &fileInfo, QWidget *parent = 0);
 };
 
-class PermissionsTab : public QWidget
-{
-	Q_OBJECT
+class PermissionsTab : public QWidget {
+    Q_OBJECT
 
-public:
-	explicit PermissionsTab(const QFileInfo &fileInfo, QWidget *parent = 0);
+  public:
+    explicit PermissionsTab(const QFileInfo &fileInfo, QWidget *parent = 0);
 };
 
-class ApplicationsTab : public QWidget
-{
-	Q_OBJECT
+class ApplicationsTab : public QWidget {
+    Q_OBJECT
 
-public:
-	explicit ApplicationsTab(const QFileInfo &fileInfo, QWidget *parent = 0);
+  public:
+    explicit ApplicationsTab(const QFileInfo &fileInfo, QWidget *parent = 0);
 };
 
-class TabDialog : public QDialog
-{
-	Q_OBJECT
+class TabDialog : public QDialog {
+    Q_OBJECT
 
-public:
-	explicit TabDialog(const QString &fileName, QWidget *parent = 0);
+  public:
+    explicit TabDialog(const QString &fileName, QWidget *parent = 0);
 
-private:
-	QTabWidget *tabWidget;
-	QDialogButtonBox *buttonBox;
+  private:
+    QTabWidget *tabWidget;
+    QDialogButtonBox *buttonBox;
 };
 
 #endif

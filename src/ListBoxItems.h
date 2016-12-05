@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -23,18 +23,16 @@ replaced p->moveTo and p->lineTo drawing commands by p->drawLine
 
 */
 
-#ifndef LISTBOXITEMS_H
-#define LISTBOXITEMS_H
+#pragma once
 
 class QListbox;
 
-class ListBoxItem : QListWidgetItem
-{
-public:
-	ListBoxItem(QListWidget*);
-	QPixmap *icon_to_be_shown;
-private:
-	QListWidget* list;
+class ListBoxItem : public QListWidgetItem {
+  public:
+    ListBoxItem(QListWidget*);
+    QPixmap *icon_to_be_shown;
+  private:
+    QListWidget* list;
 };
 /**
  * @class LBArrowLine
@@ -42,8 +40,7 @@ private:
  *
  * Listbox item which paints the unfilled arrowhead for a transition.
  */
-class LBArrowLine : public ListBoxItem
-{
+class LBArrowLine : public ListBoxItem {
   public:
     LBArrowLine(QListWidget*);
 
@@ -63,8 +60,7 @@ class LBArrowLine : public ListBoxItem
  * ListBox item for the machine properties dialog.
  * Listbox item which paints the filled arrowhead for a transition.
  */
-class LBArrowFilled : public ListBoxItem
-{
+class LBArrowFilled : public ListBoxItem {
   public:
     LBArrowFilled(QListWidget*);
 
@@ -85,8 +81,7 @@ class LBArrowFilled : public ListBoxItem
  * ListBox item for the machine properties dialog.
  * Listbox item which paints the white arrowhead for a transition.
  */
-class LBArrowWhite : public ListBoxItem
-{
+class LBArrowWhite : public ListBoxItem {
   public:
     LBArrowWhite(QListWidget*);
 
@@ -107,8 +102,7 @@ class LBArrowWhite : public ListBoxItem
  * ListBox item for the machine properties dialog.
  * Listbox item which paints the filled pointed arrowhead for a transition.
  */
-class LBArrowFilledPointed : public ListBoxItem
-{
+class LBArrowFilledPointed : public ListBoxItem {
   public:
     LBArrowFilledPointed(QListWidget*);
 
@@ -128,8 +122,7 @@ class LBArrowFilledPointed : public ListBoxItem
  * ListBox item for the machine properties dialog.
  * Listbox item which paints the white pointed arrowhead for a transition.
  */
-class LBArrowWhitePointed : public ListBoxItem
-{
+class LBArrowWhitePointed : public ListBoxItem {
   public:
     LBArrowWhitePointed(QListWidget*);
 
@@ -143,6 +136,3 @@ class LBArrowWhitePointed : public ListBoxItem
     /// Width of the item
     int w;
 };
-
-
-#endif

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -21,10 +21,10 @@ Qt 4 Port by Rainer Strobel
 replaced Qt 3 iterators by Qt 4 iterators
 */
 
-#ifndef TRANSITIONINFO_H
-#define TRANSITIONINFO_H
+#pragma once
 
 #include <qstring.h>
+#include "Qfsm.h"
 
 class IOInfo;
 class Options;
@@ -37,8 +37,7 @@ enum TransitionType {Binary, Ascii, Text};
  * @class TransitionInfo
  * @brief Base class for all kind of transition conditions.
  */
-class TransitionInfo
-{
+class TransitionInfo {
   public:
     TransitionInfo();
     virtual ~TransitionInfo();
@@ -47,37 +46,61 @@ class TransitionInfo
     virtual TransitionInfo* clone()=0;
 
     /// Returns the inputs
-    IOInfo* getInputInfo() { return inputs; };
+    IOInfo* getInputInfo() {
+        return inputs;
+    };
     /// Returns the outputs
-    IOInfo* getOutputInfo() { return outputs; };
+    IOInfo* getOutputInfo() {
+        return outputs;
+    };
     /// Returns a string representing the inputs (including NOT, any, default etc.)
-    virtual QString getCompleteInputsStr(Machine* m=NULL, Options* opt=NULL) { return getInputsStr(); };
+    virtual QString getCompleteInputsStr(Machine* m=NULL, Options* opt=NULL) {
+        return getInputsStr();
+    };
     /// Returns a string representing the inputs
     virtual QString getInputsStr(Machine* m=NULL, Options* opt=NULL)=0;
     /// Returns a string representing the outputs
     virtual QString getOutputsStr(Machine* m=NULL, Options* opt=NULL)=0;
     /// Returns a binary string representing the inputs
-    virtual QString getInputsStrBin(Machine* =NULL, Options* =NULL) { return ""; };
+    virtual QString getInputsStrBin(Machine* =NULL, Options* =NULL) {
+        return "";
+    };
     /// Returns a binary string representing the outputs
-    virtual QString getOutputsStrBin(Machine* =NULL, Options* =NULL) { return ""; };
+    virtual QString getOutputsStrBin(Machine* =NULL, Options* =NULL) {
+        return "";
+    };
     /// Returns a hexadecimal string representing the inputs
-    virtual QString getInputsStrHex(/*int*/) { return ""; };
+    virtual QString getInputsStrHex(/*int*/) {
+        return "";
+    };
     /// Returns a hexadecimal string representing the outputs
-    virtual QString getOutputsStrHex(/*int*/) { return ""; };
+    virtual QString getOutputsStrHex(/*int*/) {
+        return "";
+    };
     /// Returns an ASCII string representing the inputs
-    virtual QString getInputsStrASCII() { return ""; };
+    virtual QString getInputsStrASCII() {
+        return "";
+    };
     /// Returns an ASCII string representing the outputs
-    virtual QString getOutputsStrASCII() { return ""; };
+    virtual QString getOutputsStrASCII() {
+        return "";
+    };
     /// Returns the separator string used between inputs and outputs string
-    virtual QString getSeparator(Options*) { return ""; };
+    virtual QString getSeparator(Options*) {
+        return "";
+    };
     /// Sets the inputs
     virtual void setInputs(QString, int numin=-1)=0;
     /// Sets the outputs
     virtual void setOutputs(QString, int numout=-1)=0;
     /// Returns the type of the transition (Binary, ASCII).
-    int getType() { return type; };
+    int getType() {
+        return type;
+    };
     /// Sets the type of the transition (Binary, ASCII).
-    void setType(int t) { type = t; };
+    void setType(int t) {
+        type = t;
+    };
     /// Sets the input size (in bits)
     virtual void setInputsSize(int bits)=0;
     /// Sets the output size (in bits)
@@ -94,8 +117,5 @@ class TransitionInfo
     IOInfo* outputs;
     /// Type of the transition. 0: Binary / 1: ASCII
     int type;
-   
+
 };
-
-
-#endif

@@ -28,7 +28,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 /// Constructor
 MachineManager::MachineManager(QObject* parent, const char* name)
-	      : QObject(parent, name)
+	      : QObject(parent)
 {
   main = (MainWindow*)parent;
 //  machine_props = new DMachineProperties;

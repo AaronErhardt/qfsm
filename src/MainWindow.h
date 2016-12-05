@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -21,7 +21,7 @@ Qt 4 Port by Rainer Strobel
 added Qt:: to all constants
 changed QList.getFirst calls to QList.front
 
-modified method ExportVHDL to switch between 
+modified method ExportVHDL to switch between
 ExportVHDL and ExportVHDLFHA class
 
 in constructor:
@@ -65,6 +65,8 @@ All buttons must be added to the toolbar by calling addWidget.
 #include <QToolBar>
 #include <QMenu>
 
+#include "Qfsm.h"
+
 #include "ScrollView.h"
 #include "DocStatus.h"
 #include "StateManager.h"
@@ -105,52 +107,85 @@ class ICheck;
  * Stores all the menus, the status bar, the project, the file-io object, the
  * options and the control classes.
  */
-class MainWindow : public QMainWindow
-{
-  Q_OBJECT
+class MainWindow : public QMainWindow {
+    Q_OBJECT
   public:
     MainWindow(QObject* parent=0, const char* name=0);
     ~MainWindow();
 
     /// Returns the options.
-    Options* getOptions() { return &doc_options; }
+    Options* getOptions() {
+        return &doc_options;
+    }
     /// Returns the scroll view.
-    ScrollView* getScrollView() { return wscroll; }
+    ScrollView* getScrollView() {
+        return wscroll;
+    }
     /// Returns the status bar.
-    StatusBar* getStatusBar() { return statusbar; }
+    StatusBar* getStatusBar() {
+        return statusbar;
+    }
     /// Returns the tab dialog for the general options
-    OptGeneralDlgImpl* getOptGeneral() { return opt_general; }
+    OptGeneralDlgImpl* getOptGeneral() {
+        return opt_general;
+    }
     /// Returns the tab dialog for the display options
-    OptDisplayDlgImpl* getOptDisplay() { return opt_display; }
+    OptDisplayDlgImpl* getOptDisplay() {
+        return opt_display;
+    }
     /// Returns the tab dialog for the printing options
-    OptPrintingDlgImpl* getOptPrinting() { return opt_printing; }
-    /// Returns the AHDL export dialog 
-    ExportAHDLDlgImpl* getExportAHDL() { return ahdl_export; }
-    /// Returns the VHDL export dialog 
-    ExportVHDLDlgImpl* getExportVHDL() { return vhdl_export; }
-        /// Returns the VHDL export dialog
-    ExportTestbenchDlgImpl* getExportTestbench() { return testbench_export; }
-    /// Returns the Verilog export dialog 
-    ExportVerilogDlgImpl* getExportVerilog() { return ver_export; }
-    /// Returns the State table export dialog 
-    ExportStateTableDlgImpl* getExportStateTable() {return statetable_export;}
+    OptPrintingDlgImpl* getOptPrinting() {
+        return opt_printing;
+    }
+    /// Returns the AHDL export dialog
+    ExportAHDLDlgImpl* getExportAHDL() {
+        return ahdl_export;
+    }
+    /// Returns the VHDL export dialog
+    ExportVHDLDlgImpl* getExportVHDL() {
+        return vhdl_export;
+    }
+    /// Returns the VHDL export dialog
+    ExportTestbenchDlgImpl* getExportTestbench() {
+        return testbench_export;
+    }
+    /// Returns the Verilog export dialog
+    ExportVerilogDlgImpl* getExportVerilog() {
+        return ver_export;
+    }
+    /// Returns the State table export dialog
+    ExportStateTableDlgImpl* getExportStateTable() {
+        return statetable_export;
+    }
     /// Returns the Ragel export dialog
-    ExportRagelDlgImpl* getExportRagel() { return ragel_export; }
-    /// Returns the VVVV export dialog 
-    ExportVVVVDlgImpl* getExportVVVV() { return vvvv_export; }
-    /// Sets the string with the language 
-    void setLanguage(QString s) { language = s; 
-      opt_general->setLanguage(language);}
-    /// Gets the string with the language 
-    QString getLanguage() { return language; }
+    ExportRagelDlgImpl* getExportRagel() {
+        return ragel_export;
+    }
+    /// Returns the VVVV export dialog
+    ExportVVVVDlgImpl* getExportVVVV() {
+        return vvvv_export;
+    }
+    /// Sets the string with the language
+    void setLanguage(QString s) {
+        language = s;
+        opt_general->setLanguage(language);
+    }
+    /// Gets the string with the language
+    QString getLanguage() {
+        return language;
+    }
     void updateIOView(Machine*);
     bool runDragOperation(bool force_copy);
- 
+
 //    void repaintView() { wscroll->viewport()->repaint(); };
     /// Returns true if the shift key is pressed otherwise false
-    bool shiftPressed() { return shift_pressed; }
+    bool shiftPressed() {
+        return shift_pressed;
+    }
     /// Returns true if the control key is pressed otherwise false
-    bool controlPressed() { return control_pressed; }
+    bool controlPressed() {
+        return control_pressed;
+    }
 
     /// The project this window contains
     Project* project;
@@ -166,7 +201,9 @@ class MainWindow : public QMainWindow
     PrintManager* printmanager;
 
     /// Returns the current mode.
-    int getMode() { return doc_status.getMode(); }
+    int getMode() {
+        return doc_status.getMode();
+    }
 
     /// true if this window is about to close
     bool aboutToClose;
@@ -180,7 +217,7 @@ class MainWindow : public QMainWindow
     virtual void dropEvent(QDropEvent* );
 
 
-private:
+  private:
     void createToolBar();
     void destroyToolBar();
 
@@ -383,12 +420,12 @@ private:
     /// Status bar
     StatusBar* statusbar;
     /// Doc status
-    DocStatus doc_status;   
+    DocStatus doc_status;
     /// Options
     Options doc_options;
     /// Edit object
     Edit* edit;
-    
+
     /// Tabdialog (options)
     TabDialog* tabdialog;
     /// General options dialog
@@ -461,7 +498,7 @@ private:
     void showContextTrans();
     void showContext();
 
-    void sbMessage(QString s); 
+    void sbMessage(QString s);
     void sbMessage(QString s, int t);
     void setWaitCursor();
     void setPreviousCursor();

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -35,11 +35,11 @@ in method drawCondition:
 removed declaration of Qt::white
 */
 
-#ifndef DRAW_H
-#define DRAW_H
+#pragma once
 
 #include <qpainter.h>
 #include <qobject.h>
+#include "Qfsm.h"
 
 class Machine;
 class GState;
@@ -50,39 +50,38 @@ class GITransition;
 class Grid;
 class Transition;
 
-/** 
+/**
  * @class Draw
  * @brief Drawing class responsible for all graphical representation.
  *
  */
 
-class Draw : public QObject
-{
-  Q_OBJECT
+class Draw : public QObject {
+    Q_OBJECT
   public:
     Draw(QObject*, Options* );
 
     void drawStates(Machine* , QPainter* , int , int , double );
-//    void drawState(Machine* m, GState* , QPainter* , int , int , double , 
- //     bool drawxor=true);
+//    void drawState(Machine* m, GState* , QPainter* , int , int , double ,
+//     bool drawxor=true);
     void drawTransitions(Machine* , QPainter* , int, int, double /*, int, int*/);
-    void drawTransition(Machine*, GTransition* , QPainter* , int , int , 
-      double , /*int, int,*/ bool drawxor=true, bool dotted=true, 
-      bool control_lines=false, bool first=false);
+    void drawTransition(Machine*, GTransition* , QPainter* , int , int ,
+                        double , /*int, int,*/ bool drawxor=true, bool dotted=true,
+                        bool control_lines=false, bool first=false);
     void drawArrow(GTransition*, QPainter*, QPen, int);
     void drawArrow(GITransition*, QPainter*, QPen, int);
-    void drawCondition(Machine* m, GTransition* , QPainter* , int, int, 
-      double/*, int, int*/);
-    void drawInitialTransition(Machine* m, GITransition* , QPainter*, int contx, int conty, 
-      double scale, QRect& textrect,
-      bool drawxor=false, bool first=false, bool transptext=false);
+    void drawCondition(Machine* m, GTransition* , QPainter* , int, int,
+                       double/*, int, int*/);
+    void drawInitialTransition(Machine* m, GITransition* , QPainter*, int contx, int conty,
+                               double scale, QRect& textrect,
+                               bool drawxor=false, bool first=false, bool transptext=false);
     void drawGrid(Grid*, QPainter*, int, int, double);
 
     void calcArrow(GTransition*, double&, double&, double&, double&, double& xm, double& ym);
     void calcArrow(GITransition*, double&, double&, double&, double&, double& xm, double& ym);
-    void calcArrow(double p1x, double p1y, double p2x, double p2y, 
-		     double& xl, double& yl, double& xr, double& yr,
-		     double& xm, double& ym);
+    void calcArrow(double p1x, double p1y, double p2x, double p2y,
+                   double& xl, double& yl, double& xr, double& yr,
+                   double& xm, double& ym);
 
     void drawHeadline(Machine* , QPainter*); // , double);
     QRect getBoundingBox(Machine* , QPainter* );
@@ -93,8 +92,3 @@ class Draw : public QObject
     bool grid_calculated;  // not used (yet)
     QPixmap grid_pixmap;  // not used (yet)
 };
-
-
-
-
-#endif
