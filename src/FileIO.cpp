@@ -1617,7 +1617,7 @@ Project* FileIO::importFile(Import* imp, ScrollView* sv/*=NULL*/)
   QString ext;
 
   if (!imp)
-    return FALSE;
+    return NULL;
 
   Project* p=NULL;
   importdlg->setAcceptMode(QFileDialog::AcceptOpen);
