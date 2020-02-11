@@ -23,7 +23,7 @@ Features include:
 
 Requirements
 ------------
-- Qt 4.8 or higher (available from http://qt.nokia.com)
+- Qt 4.8 or higher (available from https://www.qt.io)
 
 Optional: 
 - graphviz  (to import graphviz (.gv) files)
