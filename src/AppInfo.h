@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -24,7 +24,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 class MainWindow;
 
-/** 
+/**
  * @class AppInfo
  * @brief Provides general information about the application.
  *
@@ -32,38 +32,48 @@ class MainWindow;
  * display a info dialogbox.
  */
 
-class AppInfo : public QObject
-{
+class AppInfo : public QObject {
   Q_OBJECT
-  public:
-    AppInfo(QWidget*);
+public:
+  AppInfo(QWidget *);
 
-    int getVersionMajor() /// returns major version number. 
-      { return version_major; }; 
-    int getVersionMinor() /// returns minor version number. 
-      { return version_minor; }; 
-    /// Returns the version number as a single double value
-    double getVersionDouble();
-    QString getVersion() /// returns version string.
-      { return QString::number(version_major)+"."+QString::number(version_minor); };
-	QString getDate() /// returns date string.
-	{ return date; };
-    QString getAuthor() /// returns author of application
-      { return author; }; 
+  int getVersionMajor() /// returns major version number.
+  {
+    return version_major;
+  };
+  int getVersionMinor() /// returns minor version number.
+  {
+    return version_minor;
+  };
+  /// Returns the version number as a single double value
+  double getVersionDouble();
+  QString getVersion() /// returns version string.
+  {
+    return QString::number(version_major) + "." +
+           QString::number(version_minor);
+  };
+  QString getDate() /// returns date string.
+  {
+    return date;
+  };
+  QString getAuthor() /// returns author of application
+  {
+    return author;
+  };
 
-    void about();
+  void about();
 
-  private:
-    /// Parent widget (used as parent of the about dialog)
-    QWidget* parent_widget;  
-    /// Major version number
-    int version_major; 
-    /// Minor version number
-    int version_minor;
-    /// Author
-    QString author;
-	/// Date
-	QString date;
+private:
+  /// Parent widget (used as parent of the about dialog)
+  QWidget *parent_widget;
+  /// Major version number
+  int version_major;
+  /// Minor version number
+  int version_minor;
+  /// Author
+  QString author;
+  /// Date
+  QString date;
 };
 
 #endif

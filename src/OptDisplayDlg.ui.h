@@ -6,68 +6,24 @@
 ** a constructor, and a destroy() slot in place of a destructor.
 *****************************************************************************/
 
+void OptDisplayDlg::chooseGridColor() {}
 
-void OptDisplayDlg::chooseGridColor()
-{
+void OptDisplayDlg::tooltipsClicked() {}
 
-}
+void OptDisplayDlg::startDescChanged() {}
 
-void OptDisplayDlg::tooltipsClicked()
-{
+void OptDisplayDlg::ioMarkClicked() {}
 
-}
+void OptDisplayDlg::chooseShadowColor() {}
 
-void OptDisplayDlg::startDescChanged()
-{
+void OptDisplayDlg::shadowsClicked() {}
 
-}
+void OptDisplayDlg::ioNamesClicked() {}
 
-void OptDisplayDlg::ioMarkClicked()
-{
+void OptDisplayDlg::drawBoxClicked() {}
 
-}
+void OptDisplayDlg::inversionDescChanged() {}
 
+void OptDisplayDlg::anyInputDescChanged() {}
 
-void OptDisplayDlg::chooseShadowColor()
-{
-
-}
-
-
-void OptDisplayDlg::shadowsClicked()
-{
-
-}
-
-
-
-
-
-void OptDisplayDlg::ioNamesClicked()
-{
-
-}
-
-
-void OptDisplayDlg::drawBoxClicked()
-{
-
-}
-
-
-void OptDisplayDlg::inversionDescChanged()
-{
-
-}
-
-
-void OptDisplayDlg::anyInputDescChanged()
-{
-
-}
-
-
-void OptDisplayDlg::defaultDescChanged()
-{
-
-}
+void OptDisplayDlg::defaultDescChanged() {}

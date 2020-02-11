@@ -3,7 +3,6 @@
 
 #include <qvariant.h>
 
-
 #include <Qt3Support/Q3MimeSourceFactory>
 #include <Qt3Support/Q3TextEdit>
 #include <QtCore/QVariant>
@@ -18,34 +17,33 @@
 #include <QtGui/QPushButton>
 #include <QtGui/QVBoxLayout>
 
-class Ui_StatePropertiesDlg
-{
+class Ui_StatePropertiesDlg {
 public:
-    QVBoxLayout *vboxLayout;
-    QVBoxLayout *vboxLayout1;
-    QGridLayout *gridLayout;
-    QLineEdit *le_linewidth;
-    QLineEdit *le_name;
-    QLineEdit *le_code;
-    QLabel *lb_colorpreview;
-    QLabel *TextLabel3;
-    QLabel *TextLabel2;
-    QPushButton *PushButton1;
-    QLabel *TextLabel1;
-    QLineEdit *le_radius;
-    QLabel *textLabel1;
-    QLineEdit *le_mooreoutputs;
-    QLabel *TextLabel4;
-    QLabel *TextLabel1_2;
-    Q3TextEdit *te_description;
-    QHBoxLayout *hboxLayout;
-    QPushButton *PushButton2;
-    QPushButton *PushButton3;
+  QVBoxLayout *vboxLayout;
+  QVBoxLayout *vboxLayout1;
+  QGridLayout *gridLayout;
+  QLineEdit *le_linewidth;
+  QLineEdit *le_name;
+  QLineEdit *le_code;
+  QLabel *lb_colorpreview;
+  QLabel *TextLabel3;
+  QLabel *TextLabel2;
+  QPushButton *PushButton1;
+  QLabel *TextLabel1;
+  QLineEdit *le_radius;
+  QLabel *textLabel1;
+  QLineEdit *le_mooreoutputs;
+  QLabel *TextLabel4;
+  QLabel *TextLabel1_2;
+  Q3TextEdit *te_description;
+  QHBoxLayout *hboxLayout;
+  QPushButton *PushButton2;
+  QPushButton *PushButton3;
 
-    void setupUi(QDialog *StatePropertiesDlg)
-    {
+  void setupUi(QDialog *StatePropertiesDlg) {
     if (StatePropertiesDlg->objectName().isEmpty())
-        StatePropertiesDlg->setObjectName(QString::fromUtf8("StatePropertiesDlg"));
+      StatePropertiesDlg->setObjectName(
+          QString::fromUtf8("StatePropertiesDlg"));
     StatePropertiesDlg->resize(314, 410);
     vboxLayout = new QVBoxLayout(StatePropertiesDlg);
     vboxLayout->setSpacing(6);
@@ -125,7 +123,6 @@ public:
 
     gridLayout->addWidget(TextLabel4, 4, 0, 1, 1);
 
-
     vboxLayout1->addLayout(gridLayout);
 
     TextLabel1_2 = new QLabel(StatePropertiesDlg);
@@ -155,9 +152,7 @@ public:
 
     hboxLayout->addWidget(PushButton3);
 
-
     vboxLayout1->addLayout(hboxLayout);
-
 
     vboxLayout->addLayout(vboxLayout1);
 
@@ -171,52 +166,65 @@ public:
     QWidget::setTabOrder(PushButton2, PushButton3);
 
     retranslateUi(StatePropertiesDlg);
-    QObject::connect(PushButton3, SIGNAL(clicked()), StatePropertiesDlg, SLOT(reject()));
-    QObject::connect(PushButton2, SIGNAL(clicked()), StatePropertiesDlg, SLOT(validate()));
-    QObject::connect(PushButton1, SIGNAL(clicked()), StatePropertiesDlg, SLOT(chooseFGColor()));
+    QObject::connect(PushButton3, SIGNAL(clicked()), StatePropertiesDlg,
+                     SLOT(reject()));
+    QObject::connect(PushButton2, SIGNAL(clicked()), StatePropertiesDlg,
+                     SLOT(validate()));
+    QObject::connect(PushButton1, SIGNAL(clicked()), StatePropertiesDlg,
+                     SLOT(chooseFGColor()));
 
     QMetaObject::connectSlotsByName(StatePropertiesDlg);
-    } // setupUi
+  } // setupUi
 
-    void retranslateUi(QDialog *StatePropertiesDlg)
-    {
-    StatePropertiesDlg->setWindowTitle(QApplication::translate("StatePropertiesDlg", "State Properties", 0, QApplication::UnicodeUTF8));
-    le_linewidth->setText(QApplication::translate("StatePropertiesDlg", "1", 0, QApplication::UnicodeUTF8));
+  void retranslateUi(QDialog *StatePropertiesDlg) {
+    StatePropertiesDlg->setWindowTitle(
+        QApplication::translate("StatePropertiesDlg", "State Properties", 0,
+                                QApplication::UnicodeUTF8));
+    le_linewidth->setText(QApplication::translate("StatePropertiesDlg", "1", 0,
+                                                  QApplication::UnicodeUTF8));
     lb_colorpreview->setText(QString());
-    TextLabel3->setText(QApplication::translate("StatePropertiesDlg", "Radius:", 0, QApplication::UnicodeUTF8));
-    TextLabel2->setText(QApplication::translate("StatePropertiesDlg", "Code:", 0, QApplication::UnicodeUTF8));
-    PushButton1->setText(QApplication::translate("StatePropertiesDlg", "Color", 0, QApplication::UnicodeUTF8));
-    TextLabel1->setText(QApplication::translate("StatePropertiesDlg", "Name:", 0, QApplication::UnicodeUTF8));
-    le_radius->setText(QApplication::translate("StatePropertiesDlg", "40", 0, QApplication::UnicodeUTF8));
-    textLabel1->setText(QApplication::translate("StatePropertiesDlg", "Moore Outputs:", 0, QApplication::UnicodeUTF8));
-    TextLabel4->setText(QApplication::translate("StatePropertiesDlg", "Line width:", 0, QApplication::UnicodeUTF8));
-    TextLabel1_2->setText(QApplication::translate("StatePropertiesDlg", "Description:", 0, QApplication::UnicodeUTF8));
-    PushButton2->setText(QApplication::translate("StatePropertiesDlg", "OK", 0, QApplication::UnicodeUTF8));
-    PushButton3->setText(QApplication::translate("StatePropertiesDlg", "Cancel", 0, QApplication::UnicodeUTF8));
+    TextLabel3->setText(QApplication::translate(
+        "StatePropertiesDlg", "Radius:", 0, QApplication::UnicodeUTF8));
+    TextLabel2->setText(QApplication::translate(
+        "StatePropertiesDlg", "Code:", 0, QApplication::UnicodeUTF8));
+    PushButton1->setText(QApplication::translate("StatePropertiesDlg", "Color",
+                                                 0, QApplication::UnicodeUTF8));
+    TextLabel1->setText(QApplication::translate(
+        "StatePropertiesDlg", "Name:", 0, QApplication::UnicodeUTF8));
+    le_radius->setText(QApplication::translate("StatePropertiesDlg", "40", 0,
+                                               QApplication::UnicodeUTF8));
+    textLabel1->setText(QApplication::translate(
+        "StatePropertiesDlg", "Moore Outputs:", 0, QApplication::UnicodeUTF8));
+    TextLabel4->setText(QApplication::translate(
+        "StatePropertiesDlg", "Line width:", 0, QApplication::UnicodeUTF8));
+    TextLabel1_2->setText(QApplication::translate(
+        "StatePropertiesDlg", "Description:", 0, QApplication::UnicodeUTF8));
+    PushButton2->setText(QApplication::translate("StatePropertiesDlg", "OK", 0,
+                                                 QApplication::UnicodeUTF8));
+    PushButton3->setText(QApplication::translate("StatePropertiesDlg", "Cancel",
+                                                 0, QApplication::UnicodeUTF8));
     Q_UNUSED(StatePropertiesDlg);
-    } // retranslateUi
-
+  } // retranslateUi
 };
 
 namespace Ui {
-    class StatePropertiesDlg: public Ui_StatePropertiesDlg {};
+class StatePropertiesDlg : public Ui_StatePropertiesDlg {};
 } // namespace Ui
 
-class StatePropertiesDlg : public QDialog, public Ui::StatePropertiesDlg
-{
-    Q_OBJECT
+class StatePropertiesDlg : public QDialog, public Ui::StatePropertiesDlg {
+  Q_OBJECT
 
 public:
-    StatePropertiesDlg(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
-    ~StatePropertiesDlg();
+  StatePropertiesDlg(QWidget *parent = 0, const char *name = 0,
+                     bool modal = false, Qt::WindowFlags fl = 0);
+  ~StatePropertiesDlg();
 
 public slots:
-    virtual void chooseFGColor();
-    virtual void validate();
+  virtual void chooseFGColor();
+  virtual void validate();
 
 protected slots:
-    virtual void languageChange();
-
+  virtual void languageChange();
 };
 
 #endif // STATEPROPERTIESDLG_H

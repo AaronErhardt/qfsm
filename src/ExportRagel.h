@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -32,32 +32,31 @@ added .latin1() to out << iosingle
  * @class ExportRAGEL
  * @brief Class that manages export to ragel FSM files.
  *
- * The ragel file can be used to generate code with the programs from the (separate) ragel project. 
- * This is useful for parser generation or to automatically create (complicated) program logic.
+ * The ragel file can be used to generate code with the programs from the
+ * (separate) ragel project. This is useful for parser generation or to
+ * automatically create (complicated) program logic.
  */
 
-class ExportRagel : public Export
-{
+class ExportRagel : public Export {
   Q_OBJECT
 
-  public:
-    ExportRagel(Options* opt);
+public:
+  ExportRagel(Options *opt);
 
-    bool validateMachine(Machine* );
-    void doExport();
-    QString fileFilter();
-	QString defaultExtension();
+  bool validateMachine(Machine *);
+  void doExport();
+  QString fileFilter();
+  QString defaultExtension();
 
-    int writeActionFile(const char* filename, const char* ragelfile);
+  int writeActionFile(const char *filename, const char *ragelfile);
 
-  private:
-    void writeName();
-    void writeMain();
-    void writeTransitions();
+private:
+  void writeName();
+  void writeMain();
+  void writeTransitions();
 
-
-    bool create_action;
-    int lang_action;
+  bool create_action;
+  int lang_action;
 };
 
 #endif

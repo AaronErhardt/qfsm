@@ -1,8 +1,8 @@
 #include "ExportStateTableDlg.h"
 
-#include <qvariant.h>
 #include <qimage.h>
 #include <qpixmap.h>
+#include <qvariant.h>
 
 #include "ExportStateTableDlg.ui.h"
 /*
@@ -12,27 +12,21 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  true to construct a modal dialog.
  */
-ExportStateTableDlg::ExportStateTableDlg(QWidget* parent, const char* name, bool modal, Qt::WindowFlags fl)
-    : QDialog(parent, name, modal, fl)
-{
-    setupUi(this);
-
+ExportStateTableDlg::ExportStateTableDlg(QWidget *parent, const char *name,
+                                         bool modal, Qt::WindowFlags fl)
+    : QDialog(parent, name, modal, fl) {
+  setupUi(this);
 }
 
 /*
  *  Destroys the object and frees any allocated resources
  */
-ExportStateTableDlg::~ExportStateTableDlg()
-{
-    // no need to delete child widgets, Qt does it all for us
+ExportStateTableDlg::~ExportStateTableDlg() {
+  // no need to delete child widgets, Qt does it all for us
 }
 
 /*
  *  Sets the strings of the subwidgets using the current
  *  language.
  */
-void ExportStateTableDlg::languageChange()
-{
-    retranslateUi(this);
-}
-
+void ExportStateTableDlg::languageChange() { retranslateUi(this); }

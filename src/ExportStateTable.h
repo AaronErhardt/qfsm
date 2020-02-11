@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -30,19 +30,18 @@ class Options;
  *
  */
 
-class ExportStateTable : public Export
-{
-  public:
-    ExportStateTable(Options* opt, TableBuilder* );
-    void doExport();
-    QString fileFilter();
-	QString defaultExtension();
+class ExportStateTable : public Export {
+public:
+  ExportStateTable(Options *opt, TableBuilder *);
+  void doExport();
+  QString fileFilter();
+  QString defaultExtension();
 
-  private:
-    void writeMain();
+private:
+  void writeMain();
 
-    /// Pointer of the 'table builder' to use
-    TableBuilder* tablebuilder;
+  /// Pointer of the 'table builder' to use
+  TableBuilder *tablebuilder;
 };
 
 #endif

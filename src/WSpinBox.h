@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -36,24 +36,22 @@ removed delete call
 
 /**
  * @class WSpinBox
- * @brief A spinbox for double values with one decimal with a range from 0.1 to 10.0.
+ * @brief A spinbox for double values with one decimal with a range from 0.1
+ * to 10.0.
  */
-//class WSpinBox : public QSpinBox
-class WSpinBox :public QDoubleSpinBox
-{
+// class WSpinBox : public QSpinBox
+class WSpinBox : public QDoubleSpinBox {
   Q_OBJECT
-  public:
-    WSpinBox(QWidget* parent=0, const char* name=0);
-    ~WSpinBox();
+public:
+  WSpinBox(QWidget *parent = 0, const char *name = 0);
+  ~WSpinBox();
 
-    QString mapValueToText( int value );
-    int mapTextToValue( bool* ok );
+  QString mapValueToText(int value);
+  int mapTextToValue(bool *ok);
 
-  private:
-    /// Double validator
-    //QDoubleValidator* dval;
+private:
+  /// Double validator
+  // QDoubleValidator* dval;
 };
-
-
 
 #endif

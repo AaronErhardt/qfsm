@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -26,23 +26,21 @@ correctly
 #ifndef MIMEMACHINE_H
 #define MIMEMACHINE_H
 
+#include <q3dragobject.h>
 #include <qmime.h>
 #include <qstring.h>
-#include <q3dragobject.h>
 
 /**
  * @class MimeMachine
  * @brief Drag and drop object for transfering machines
  */
-class MimeMachine : public QMimeData
-{
-  public:
-    MimeMachine(const QString&);
-  
-    const char* format(int i=0) const;
+class MimeMachine : public QMimeData {
+public:
+  MimeMachine(const QString &);
 
-  private:
+  const char *format(int i = 0) const;
+
+private:
 };
-
 
 #endif

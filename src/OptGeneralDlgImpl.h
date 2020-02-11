@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -24,29 +24,26 @@ if(!QString) replaced by if(QString.isEmpty())
 #ifndef OPTGENERALDLGIMPL_H
 #define OPTGENERALDLGIMPL_H
 
-#include <qcombobox.h>
 #include "ui_OptGeneralDlg.h"
+#include <qcombobox.h>
 
 /**
  * @class OptGeneralDlgImpl
  * @brief Tab dialog for the general options.
  */
-class OptGeneralDlgImpl : public QDialog
-{ 
-    Q_OBJECT
-        
-        Ui::OptGeneralDlg optGeneralDlg;
+class OptGeneralDlgImpl : public QDialog {
+  Q_OBJECT
+
+  Ui::OptGeneralDlg optGeneralDlg;
 
 public:
-    OptGeneralDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
-    ~OptGeneralDlgImpl();
+  OptGeneralDlgImpl(QWidget *parent = 0, const char *name = 0,
+                    bool modal = FALSE, Qt::WFlags fl = 0);
+  ~OptGeneralDlgImpl();
 
-    void init();
-    QString getLanguage();
-    void setLanguage(QString s); 
-
+  void init();
+  QString getLanguage();
+  void setLanguage(QString s);
 };
-
-
 
 #endif // OPTGENERALDLGIMPL_H

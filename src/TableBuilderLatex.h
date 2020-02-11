@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -31,24 +31,23 @@ changed .toFirst calls to .toFront calls
  * @class TableBuilderLatex
  * @brief Constructs a state table in Latex format.
  */
-class TableBuilderLatex : public TableBuilder
-{
+class TableBuilderLatex : public TableBuilder {
   Q_OBJECT
 
-  public:
-    TableBuilderLatex(QObject* par, Machine* m, Options* opt);
-    ~TableBuilderLatex();
+public:
+  TableBuilderLatex(QObject *par, Machine *m, Options *opt);
+  ~TableBuilderLatex();
 
-    QString getHead();
-    QString getFoot();
-    QString fileFilter();
-	QString defaultExtension();
-    QString getCommentStart() { return "%"; };
-    QString getCommentEnd() { return ""; };
+  QString getHead();
+  QString getFoot();
+  QString fileFilter();
+  QString defaultExtension();
+  QString getCommentStart() { return "%"; };
+  QString getCommentEnd() { return ""; };
 
-  private:
-    QString getRow(GState* );
-    QString getRow(IOInfo* );
+private:
+  QString getRow(GState *);
+  QString getRow(IOInfo *);
 };
 
 #endif

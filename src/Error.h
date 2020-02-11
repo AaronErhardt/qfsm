@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,21 +19,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef ERROR_H
 #define ERROR_H
 
-
 /**
  * @class Error
  * @brief This class provides an easy interface for error messageboxes.
  *
  */
 class Error {
-  public:
-    Error();
+public:
+  Error();
 
-    static int info(QString text);
-    static int warningOk(QString text);
-    static int warningOkCancel(QString text);
+  static int info(QString text);
+  static int warningOk(QString text);
+  static int warningOkCancel(QString text);
 };
-
-
 
 #endif

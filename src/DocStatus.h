@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,7 +19,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef DOCSTATUS_H
 #define DOCSTATUS_H
 
-
 /**
  * @class DocStatus
  * @brief Stores the current status of the document.
@@ -29,38 +28,36 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  * inside the view.
  */
 
+class DocStatus {
+public:
+  DocStatus();
+  ~DocStatus();
 
+  /**
+   * Document modes.
+   * These are the modes a document can be in. The default one is @a Select.
+   */
+  enum Mode {
+    Select,        ///< Select
+    Pan,           ///< Pan view
+    NewState,      ///< Add new states
+    NewTransition, ///< Add new transitions
+    Zooming,       ///< Zoom in/out
+    Simulating     ///< Simultate the machine
+  };
 
-class DocStatus
-{
-  public:
-    DocStatus();
-    ~DocStatus();
+  int getMode() /// Gets the current mode of the document.
+  {
+    return mode;
+  };
+  void setMode(int m) /// Sets the current mode @a m of the document.
+  {
+    mode = m;
+  };
 
-    /**
-     * Document modes.
-     * These are the modes a document can be in. The default one is @a Select.
-     */
-    enum Mode {
-      Select, 		///< Select 
-      Pan,		///< Pan view
-      NewState, 	///< Add new states
-      NewTransition, 	///< Add new transitions
-      Zooming, 		///< Zoom in/out
-      Simulating	///< Simultate the machine
-    };
-
-    int getMode() /// Gets the current mode of the document. 
-      { return mode; };
-    void setMode(int m) /// Sets the current mode @a m of the document. 
-      { mode = m; };
-
-  private:
-    /// Mode 
-    int mode;
+private:
+  /// Mode
+  int mode;
 };
-
-
-
 
 #endif

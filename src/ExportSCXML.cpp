@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -25,41 +25,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //#include "AppInfo.h"
 #include "IOInfo.h"
 
-//using namespace std;
+// using namespace std;
 
-
-ExportSCXML::ExportSCXML(Options* opt)
-  	  : Export(opt)
-{
-}
+ExportSCXML::ExportSCXML(Options *opt) : Export(opt) {}
 
 /// Writes all the relevant data into the tdf file.
-void ExportSCXML::doExport()
-{
-  writeMain();
-}
+void ExportSCXML::doExport() { writeMain(); }
 
-
-QString ExportSCXML::fileFilter()
-{
-  return "SCXML (*.xml)";
-}
-QString ExportSCXML::defaultExtension()
-{
-	return "xml";
-}
-
+QString ExportSCXML::fileFilter() { return "SCXML (*.xml)"; }
+QString ExportSCXML::defaultExtension() { return "xml"; }
 
 /// Writes the reset state and the transitions to the output stream
-void ExportSCXML::writeMain()
-{
+void ExportSCXML::writeMain() {
   using namespace std;
 
-  GState* initial=NULL;
+  GState *initial = NULL;
 
   initial = machine->getInitialState();
 
-  *out << "<scxml xmlns=\"http://www.w3.org/2005/07/scxml\" version=\"1.0\" initialstate=\"" << initial->getStateName().latin1() << "\">" << endl;
+  *out << "<scxml xmlns=\"http://www.w3.org/2005/07/scxml\" version=\"1.0\" "
+          "initialstate=\""
+       << initial->getStateName().latin1() << "\">" << endl;
   *out << endl;
 
   writeHeader("<!--", "-->");
@@ -68,26 +54,22 @@ void ExportSCXML::writeMain()
   *out << "</scxml>" << endl;
 }
 
-
 /// Writes the transitions to the output stream
-void ExportSCXML::writeTransitions()
-{
+void ExportSCXML::writeTransitions() {
   using namespace std;
 
-  GState* s;
-  GTransition* t;
+  GState *s;
+  GTransition *t;
   QString tinfoi, tinfoo, sn1, sn2;
-  State* stmp;
-  TransitionInfo* tinfo;
+  State *stmp;
+  TransitionInfo *tinfo;
   QStringList tinfoo_list;
   QString tinfoi_processed, tinfoo_processed;
   QStringList::iterator sit;
 
-  
-  QMutableListIterator<GState*> is(machine->getSList());
+  QMutableListIterator<GState *> is(machine->getSList());
 
-  for(; is.hasNext();)
-  {
+  for (; is.hasNext();) {
     s = is.next();
     if (s->isDeleted())
       continue;
@@ -100,54 +82,49 @@ void ExportSCXML::writeTransitions()
     else
       *out << "  <state id=\"" << sn1.latin1() << "\">" << endl;
 
-    QMutableListIterator<GTransition*> it(s->tlist);
+    QMutableListIterator<GTransition *> it(s->tlist);
 
-    for(; it.hasNext();)
-    {
+    for (; it.hasNext();) {
       t = it.next();
       tinfo = t->getInfo();
 
-      if (!t->isDeleted() && t->getEnd())
-      {
-	tinfoi = tinfo->getInputsStr();
-	tinfoo = tinfo->getOutputsStr();
-	tinfoo_list = tinfoo.split(',');
+      if (!t->isDeleted() && t->getEnd()) {
+        tinfoi = tinfo->getInputsStr();
+        tinfoo = tinfo->getOutputsStr();
+        tinfoo_list = tinfoo.split(',');
 
-	tinfoi_processed = tinfoi.trimmed();
-	tinfoi_processed.replace(QRegExp(" "), "_");
-	stmp = t->getEnd();
+        tinfoi_processed = tinfoi.trimmed();
+        tinfoi_processed.replace(QRegExp(" "), "_");
+        stmp = t->getEnd();
 
-	if (!tinfoi.isEmpty() && stmp)
-	{
-	  sn2 = stmp->getStateName();
-	  sn2.replace(QRegExp(" "), "_");
+        if (!tinfoi.isEmpty() && stmp) {
+          sn2 = stmp->getStateName();
+          sn2.replace(QRegExp(" "), "_");
 
-	  *out << "    <transition event=\"" << tinfoi_processed.latin1() << "\" target=\"" << sn2.latin1() << "\" >" << endl;
-	  /*
-	  if (!tinfoo.isEmpty())
-	    *out << "      <log expr=\"\'" << tinfoo.latin1() << "\'\" />" << endl;
-	    */
-	  if (!tinfoo.isEmpty())
-	  {
-	    sit = tinfoo_list.begin();
-	    while (sit!=tinfoo_list.end())
-	    {
-	      tinfoo_processed = (*sit).trimmed();
-	      tinfoo_processed.replace(QRegExp(" "), "_");
-	      *out << "      <send event=\"" << tinfoo_processed.latin1() << "\" />" << endl;
-	      ++sit;
-	    }
-	  }
-	  *out << "    </transition>" << endl;
-	}
+          *out << "    <transition event=\"" << tinfoi_processed.latin1()
+               << "\" target=\"" << sn2.latin1() << "\" >" << endl;
+          /*
+          if (!tinfoo.isEmpty())
+            *out << "      <log expr=\"\'" << tinfoo.latin1() << "\'\" />" <<
+          endl;
+            */
+          if (!tinfoo.isEmpty()) {
+            sit = tinfoo_list.begin();
+            while (sit != tinfoo_list.end()) {
+              tinfoo_processed = (*sit).trimmed();
+              tinfoo_processed.replace(QRegExp(" "), "_");
+              *out << "      <send event=\"" << tinfoo_processed.latin1()
+                   << "\" />" << endl;
+              ++sit;
+            }
+          }
+          *out << "    </transition>" << endl;
+        }
       }
     }
     if (s->isFinalState())
-      *out << "  </final>" << endl; 
+      *out << "  </final>" << endl;
     else
-      *out << "  </state>" << endl; 
+      *out << "  </state>" << endl;
   }
-
 }
-
-

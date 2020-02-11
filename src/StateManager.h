@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -24,44 +24,37 @@ replaced Qt 3 iterators by Qt 4 iterators
 #ifndef STATEMANAGER_H
 #define STATEMANAGER_H
 
+#include "GState.h"
 #include <qobject.h>
 #include <qstring.h>
-#include "GState.h"
 
-//class DStateProperties;
+// class DStateProperties;
 class StatePropertiesDlgImpl;
 class MainWindow;
 class Machine;
-
 
 /**
  * @class StateManager
  * @brief Control class for states.
  */
-class StateManager : public QObject
-{
+class StateManager : public QObject {
   Q_OBJECT
-  public:
-    StateManager(MainWindow* );
+public:
+  StateManager(MainWindow *);
 
-    bool addState(double , double );
-    void setInitialState(Machine* , GState* );
-    void setFinalStates(Machine* , const QList<GState*>& sl);
-    void editState(GState*);
-    QString getNewName();
-    QString getNewBinCode();
-    int getNewCode();
+  bool addState(double, double);
+  void setInitialState(Machine *, GState *);
+  void setFinalStates(Machine *, const QList<GState *> &sl);
+  void editState(GState *);
+  QString getNewName();
+  QString getNewBinCode();
+  int getNewCode();
 
-  private:
-    /// Pointer to the main window
-    MainWindow* main;
-    /// State properties dialog
-    StatePropertiesDlgImpl* state_props;
-
+private:
+  /// Pointer to the main window
+  MainWindow *main;
+  /// State properties dialog
+  StatePropertiesDlgImpl *state_props;
 };
-
-
-
-
 
 #endif

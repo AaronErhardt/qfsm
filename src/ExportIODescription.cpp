@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,40 +19,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <iostream>
 #include <qregexp.h>
 
+#include "Convert.h"
 #include "ExportIODescription.h"
-#include "Machine.h"
-#include "TransitionInfo.h"
 #include "IOInfo.h"
 #include "IOInfoList.h"
-#include "Convert.h"
-#include "Utils.h"
+#include "Machine.h"
 #include "Options.h"
+#include "TransitionInfo.h"
+#include "Utils.h"
 
-//using namespace std;
+// using namespace std;
 
-
-ExportIODescription::ExportIODescription(Options* opt)
-  	  : Export(opt)
-{
-}
-
+ExportIODescription::ExportIODescription(Options *opt) : Export(opt) {}
 
 /// Writes all the relevant data into the tdf file.
-void ExportIODescription::doExport()
-{
-  writeTable();
+void ExportIODescription::doExport() { writeTable(); }
+
+QString ExportIODescription::fileFilter() {
+  return "Comma-Separated Values (*.csv)";
 }
 
-
-QString ExportIODescription::fileFilter()
-{
-	return "Comma-Separated Values (*.csv)";
-}
-
-QString ExportIODescription::defaultExtension()
-{
-	return "csv";
-}
+QString ExportIODescription::defaultExtension() { return "csv"; }
 
 /*
   "Inputs";"write_p";"tx_rdy_p";"txbaud_en_p";"";""
@@ -64,60 +51,50 @@ QString ExportIODescription::defaultExtension()
         "synchronous_clear";;;;;;
 */
 /// Writes the table with states and outputs
-void ExportIODescription::writeTable()
-{
+void ExportIODescription::writeTable() {
   using namespace std;
 
-  if(machine->getNumInputs()>0)
-  {
+  if (machine->getNumInputs() > 0) {
     *out << "\"Inputs\"";
-    QStringList inputs=machine->getInputNameList();
+    QStringList inputs = machine->getInputNameList();
     QStringList::const_iterator i;
-    for(i=inputs.constBegin(); i!=inputs.constEnd(); ++i)
-    {
-      *out << ";\""<< i->latin1() << "\"";
+    for (i = inputs.constBegin(); i != inputs.constEnd(); ++i) {
+      *out << ";\"" << i->latin1() << "\"";
     }
     *out << endl;
   }
-  if(machine->getNumOutputs()>0)
-  {
+  if (machine->getNumOutputs() > 0) {
     *out << "\"Mealy Outputs\"";
-    QStringList outputs=machine->getOutputNameList();
+    QStringList outputs = machine->getOutputNameList();
     QStringList::const_iterator i;
-    for(i=outputs.constBegin(); i!=outputs.constEnd(); ++i)
-    {
-      *out << ";\""<< i->latin1() << "\"";
+    for (i = outputs.constBegin(); i != outputs.constEnd(); ++i) {
+      *out << ";\"" << i->latin1() << "\"";
     }
     *out << endl;
   }
-      
+
   *out << "\"State/Output\"";
 
-  if(machine->getNumMooreOutputs()>0)
-  {
-    QStringList outputs=machine->getMooreOutputList();
+  if (machine->getNumMooreOutputs() > 0) {
+    QStringList outputs = machine->getMooreOutputList();
     QStringList::const_iterator i;
-    for(i=outputs.constBegin(); i!=outputs.constEnd(); ++i)
-    {
-      *out << ";\""<< i->latin1() << "\"";
+    for (i = outputs.constBegin(); i != outputs.constEnd(); ++i) {
+      *out << ";\"" << i->latin1() << "\"";
     }
   }
   *out << endl;
-  QList<GState*>states= machine->getSList();
-  QList<GState*>::const_iterator is;
-  IOInfo*mooreOutput;
+  QList<GState *> states = machine->getSList();
+  QList<GState *>::const_iterator is;
+  IOInfo *mooreOutput;
   QString sMooreOutput;
 
-  for(is=states.constBegin(); is!=states.constEnd(); ++is)
-  {
+  for (is = states.constBegin(); is != states.constEnd(); ++is) {
     *out << "\"" << (*is)->getStateName().latin1() << "\"";
-    if(machine->getNumMooreOutputs()>0)
-    {
-      mooreOutput=(*is)->getMooreOutputs();
-      sMooreOutput=mooreOutput->convertToBinStr();
-      int c=0;
-      while(c<sMooreOutput.length())
-      {
+    if (machine->getNumMooreOutputs() > 0) {
+      mooreOutput = (*is)->getMooreOutputs();
+      sMooreOutput = mooreOutput->convertToBinStr();
+      int c = 0;
+      while (c < sMooreOutput.length()) {
         *out << ";\"" << sMooreOutput[c].toLatin1() << "\"";
         c++;
       }
@@ -126,9 +103,5 @@ void ExportIODescription::writeTable()
   }
 }
 
-
-/// Writes a comment to the top of the output stream 
-void ExportIODescription::writeHeader(QString, QString)
-{
-  ;
-}
+/// Writes a comment to the top of the output stream
+void ExportIODescription::writeHeader(QString, QString) { ; }

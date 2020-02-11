@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -18,26 +18,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "MimeMachine.h"
 
-
 /// Constructor
-MimeMachine::MimeMachine(const QString& str)
-	   : QMimeData()
-{
-  setData("text/qfsm-objects",str.toAscii());
-//  setSubtype("plain");
+MimeMachine::MimeMachine(const QString &str) : QMimeData() {
+  setData("text/qfsm-objects", str.toAscii());
+  //  setSubtype("plain");
 }
-
 
 /**
  * Returns the format string (MIME-Type).
  * This is "text/qfsm-objects".
  * Only one format is available so if i!=0, this method will return NULL.
  */
-const char* MimeMachine::format(int i) const
-{
-  if (i==0)
+const char *MimeMachine::format(int i) const {
+  if (i == 0)
     return "text/qfsm-objects";
   else
     return NULL;
 }
-

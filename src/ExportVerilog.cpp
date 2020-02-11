@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,88 +19,80 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <iostream>
 #include <qregexp.h>
 
+#include "Convert.h"
 #include "ExportVerilog.h"
-#include "Machine.h"
-#include "TransitionInfo.h"
 #include "IOInfo.h"
 #include "IOInfoList.h"
-#include "Convert.h"
-#include "Utils.h"
+#include "Machine.h"
 #include "Options.h"
+#include "TransitionInfo.h"
+#include "Utils.h"
 
-//using namespace std;
+// using namespace std;
 
-
-ExportVerilog::ExportVerilog(Options* opt)
-  	     : Export(opt)
-{
-}
+ExportVerilog::ExportVerilog(Options *opt) : Export(opt) {}
 
 /// Writes all the relevant data into the tdf file.
-void ExportVerilog::doExport()
-{
+void ExportVerilog::doExport() {
   writeHeader("//", "");
   writeModule();
 }
 
+QString ExportVerilog::fileFilter() { return "Verilog HDL (*.v)"; }
 
-QString ExportVerilog::fileFilter()
-{
-  return "Verilog HDL (*.v)";
-}
-
-QString ExportVerilog::defaultExtension()
-{
-	return "v";
-}
-
+QString ExportVerilog::defaultExtension() { return "v"; }
 
 /// Writes the 'module' block to the output stream
-void ExportVerilog::writeModule()
-{
+void ExportVerilog::writeModule() {
   using namespace std;
 
   QString mname = machine->getName();
   mname.replace(QRegExp("\\s"), "_");
 
   *out << "module " << mname.latin1() << " (clock, reset, in, ";
-  if (machine->getNumOutputs()>0)
+  if (machine->getNumOutputs() > 0)
     *out << "out, ";
   *out << "state";
-  if (machine->getNumMooreOutputs()>0)
+  if (machine->getNumMooreOutputs() > 0)
     *out << ", moore";
   *out << ");" << endl;
 
   *out << "  input     clock, reset;" << endl;
-  *out << "  input  [" << machine->getNumInputs()-1 << ":0]  in;" << endl;
-  if (machine->getNumOutputs()>0)
-    *out << "  output [" << machine->getNumOutputs()-1 << ":0]  out;" << endl;
-  if (machine->getNumMooreOutputs()>0)
-    *out << "  output [" << machine->getNumMooreOutputs()-1 << ":0]  moore;" << endl;
-  *out << "  output [" << machine->getNumEncodingBits()-1 << ":0]  state;" << endl << endl;
+  *out << "  input  [" << machine->getNumInputs() - 1 << ":0]  in;" << endl;
+  if (machine->getNumOutputs() > 0)
+    *out << "  output [" << machine->getNumOutputs() - 1 << ":0]  out;" << endl;
+  if (machine->getNumMooreOutputs() > 0)
+    *out << "  output [" << machine->getNumMooreOutputs() - 1 << ":0]  moore;"
+         << endl;
+  *out << "  output [" << machine->getNumEncodingBits() - 1 << ":0]  state;"
+       << endl
+       << endl;
 
-  if (machine->getNumOutputs()>0)
-    *out << "  reg[" << machine->getNumOutputs()-1 << ":0]      out;" << endl;
-  if (machine->getNumMooreOutputs()>0)
-    *out << "  reg[" << machine->getNumMooreOutputs()-1 << ":0]      moore;" << endl;
-  *out << "  reg[" << machine->getNumEncodingBits()-1 << ":0]      state, nextstate;" << endl;
+  if (machine->getNumOutputs() > 0)
+    *out << "  reg[" << machine->getNumOutputs() - 1 << ":0]      out;" << endl;
+  if (machine->getNumMooreOutputs() > 0)
+    *out << "  reg[" << machine->getNumMooreOutputs() - 1 << ":0]      moore;"
+         << endl;
+  *out << "  reg[" << machine->getNumEncodingBits() - 1
+       << ":0]      state, nextstate;" << endl;
   *out << endl;
   *out << "  parameter ";
 
-  QList<GState*> slist = machine->getSList();
+  QList<GState *> slist = machine->getSList();
   QString stmp;
-  QMutableListIterator<GState*> it(slist);
-  bool first=TRUE;
-  for(; it.hasNext();)
-  {
-    GState* st = it.next();
+  QMutableListIterator<GState *> it(slist);
+  bool first = TRUE;
+  for (; it.hasNext();) {
+    GState *st = it.next();
     if (st->isDeleted())
       continue;
     if (!first)
       stmp += ", ";
     stmp += Utils::noWS(st->getStateName());
-    stmp += " = " + QString::number(machine->getNumEncodingBits()) + "\'b" + Convert::intToBinStr(st->getEncoding(), machine->getNumEncodingBits());
-    first=FALSE;
+    stmp +=
+        " = " + QString::number(machine->getNumEncodingBits()) + "\'b" +
+        Convert::intToBinStr(st->getEncoding(), machine->getNumEncodingBits());
+    first = FALSE;
   }
   *out << stmp.latin1() << ";" << endl << endl;
 
@@ -109,40 +101,32 @@ void ExportVerilog::writeModule()
   *out << "endmodule" << endl;
 }
 
-
-
-
 /// Writes the reset/clock process to the output stream
-void ExportVerilog::writeClockProcess()
-{
+void ExportVerilog::writeClockProcess() {
   using namespace std;
 
-  GState* stmp = machine->getInitialState();
-  GState* s;
+  GState *stmp = machine->getInitialState();
+  GState *s;
   QString sn;
-  IOInfo* mout;
+  IOInfo *mout;
   QString smout;
 
-  if (options->getVerilogSyncReset())
-  {
+  if (options->getVerilogSyncReset()) {
     *out << "  always @ (posedge clock) begin" << endl;
-  }
-  else
-  {
+  } else {
     *out << "  always @ (posedge reset or posedge clock) begin" << endl;
   }
 
   *out << "    if (reset)" << endl;
   *out << "      begin" << endl;
-  *out << "        state <= " << Utils::noWS(stmp->getStateName()).latin1() << ";" << endl;
-  if (machine->getNumMooreOutputs()>0)
-  {
+  *out << "        state <= " << Utils::noWS(stmp->getStateName()).latin1()
+       << ";" << endl;
+  if (machine->getNumMooreOutputs() > 0) {
     mout = stmp->getMooreOutputs();
     smout = mout->convertToBinStr();
 
-    if (!smout.isEmpty())
-    {
-      *out << "        moore <= " << machine->getNumMooreOutputs() <<  "\'b";
+    if (!smout.isEmpty()) {
+      *out << "        moore <= " << machine->getNumMooreOutputs() << "\'b";
       *out << smout.latin1() << ";" << endl;
     }
   }
@@ -153,34 +137,32 @@ void ExportVerilog::writeClockProcess()
   *out << "      begin" << endl;
   *out << "        state <= nextstate;" << endl;
 
-  if (machine->getNumMooreOutputs()>0)
-  {
+  if (machine->getNumMooreOutputs() > 0) {
     *out << "        case (nextstate)" << endl;
 
-    QMutableListIterator<GState*> is(machine->getSList());
+    QMutableListIterator<GState *> is(machine->getSList());
 
-    for(; is.hasNext();)
-    {
+    for (; is.hasNext();) {
       s = is.next();
       if (s->isDeleted())
-	continue;
+        continue;
       sn = s->getStateName();
       sn.replace(QRegExp(" "), "_");
-      //if (s->countTransitions()>0)
+      // if (s->countTransitions()>0)
       {
-	*out << "          " << Utils::noWS(s->getStateName()).latin1() << ":" << endl;
+        *out << "          " << Utils::noWS(s->getStateName()).latin1() << ":"
+             << endl;
       }
       //*out << "          begin" << endl;
-      if (machine->getNumMooreOutputs()>0)
-      {
-	mout = s->getMooreOutputs();
-	smout = mout->convertToBinStr();
+      if (machine->getNumMooreOutputs() > 0) {
+        mout = s->getMooreOutputs();
+        smout = mout->convertToBinStr();
 
-	if (!smout.isEmpty())
-	{
-	  *out << "            moore <= " << machine->getNumMooreOutputs() << "\'b";
-	  *out << smout.latin1() << ";" << endl;
-	}
+        if (!smout.isEmpty()) {
+          *out << "            moore <= " << machine->getNumMooreOutputs()
+               << "\'b";
+          *out << smout.latin1() << ";" << endl;
+        }
       }
 
       //*out << "          end" << endl;
@@ -188,49 +170,40 @@ void ExportVerilog::writeClockProcess()
 
     *out << "        endcase" << endl;
   }
-    
+
   *out << "      end" << endl;
   *out << "  end" << endl << endl;
 }
 
-
-
-
-
-
 /// Writes the input/current_state process to the output stream
-void ExportVerilog::writeStateProcess()
-{
+void ExportVerilog::writeStateProcess() {
   using namespace std;
 
-  GState* s;
-  GTransition* t;
+  GState *s;
+  GTransition *t;
   QString tinfoi, tinfoo, sn;
-  State* stmp;
-  TransitionInfo* tinfo;
-  IOInfo* iosingle;
-  IOInfo* tioinfo;
+  State *stmp;
+  TransitionInfo *tinfo;
+  IOInfo *iosingle;
+  IOInfo *tioinfo;
   bool first, first_trans;
 
-  if (options->getVerilogSyncReset())
-  {
-    GState* sinit;
+  if (options->getVerilogSyncReset()) {
+    GState *sinit;
 
     sinit = machine->getInitialState();
 
     *out << "  always @ (reset or in or state) begin" << endl;
     *out << "    if (reset)" << endl;
-    *out << "      nextstate = " <<
-      Utils::noWS(sinit->getStateName()).latin1() << ";" << endl;
+    *out << "      nextstate = " << Utils::noWS(sinit->getStateName()).latin1()
+         << ";" << endl;
     *out << "    else begin" << endl;
-  }
-  else
+  } else
     *out << "  always @ (in or state) begin" << endl;
 
-  if (machine->getNumOutputs()>0)
-  {
+  if (machine->getNumOutputs() > 0) {
     *out << "      out = " << machine->getNumOutputs() << "\'b";
-    for(int i=0; i<machine->getNumOutputs(); i++)
+    for (int i = 0; i < machine->getNumOutputs(); i++)
       *out << "0";
     *out << ";" << endl;
   }
@@ -239,18 +212,18 @@ void ExportVerilog::writeStateProcess()
 
   *out << "      case (state)" << endl;
 
-  QMutableListIterator<GState*> is(machine->getSList());
+  QMutableListIterator<GState *> is(machine->getSList());
 
-  for(; is.hasNext();)
-  {
+  for (; is.hasNext();) {
     s = is.next();
     if (s->isDeleted())
       continue;
     sn = s->getStateName();
     sn.replace(QRegExp(" "), "_");
-    //if (s->countTransitions()>0)
+    // if (s->countTransitions()>0)
     {
-      *out << "        " << Utils::noWS(s->getStateName()).latin1() << ":" << endl;
+      *out << "        " << Utils::noWS(s->getStateName()).latin1() << ":"
+           << endl;
     }
     *out << "        begin" << endl;
     /*
@@ -266,94 +239,86 @@ void ExportVerilog::writeStateProcess()
     }
     */
 
-    QMutableListIterator<GTransition*> it(s->tlist);
+    QMutableListIterator<GTransition *> it(s->tlist);
 
-    first_trans=TRUE;
+    first_trans = TRUE;
 
-    for(; it.hasNext();)
-    {
+    for (; it.hasNext();) {
       t = it.next();
       tinfo = t->getInfo();
       tioinfo = tinfo->getInputInfo();
 
-      if (!t->isDeleted() && t->getEnd())
-      {
-	IOInfoList iolist;
-	tioinfo->convertToBinList(iolist, FALSE);
-//	iolist.setAutoDelete(TRUE);
-	
-	QMutableListIterator<IOInfo*> ioit(iolist);
+      if (!t->isDeleted() && t->getEnd()) {
+        IOInfoList iolist;
+        tioinfo->convertToBinList(iolist, FALSE);
+        //	iolist.setAutoDelete(TRUE);
 
-	*out << "          ";
-	if (!first_trans)
-	  *out << "else ";
-	*out << "if (in";
-	if (tioinfo->isInverted())
-	  *out << "!=";
-	else
-	  *out << "==";
-	*out << machine->getNumInputs() << "\'b";
-	first_trans=FALSE;
+        QMutableListIterator<IOInfo *> ioit(iolist);
 
-	first = TRUE;
-	for(; ioit.hasNext();)
-	{
+        *out << "          ";
+        if (!first_trans)
+          *out << "else ";
+        *out << "if (in";
+        if (tioinfo->isInverted())
+          *out << "!=";
+        else
+          *out << "==";
+        *out << machine->getNumInputs() << "\'b";
+        first_trans = FALSE;
 
-	  iosingle = ioit.next();
-	  tinfoi = iosingle->convertToBinStr();  
+        first = TRUE;
+        for (; ioit.hasNext();) {
 
-	  if (!tinfoi.isEmpty())
-	  {
-	    if (!first)
-	    {
-	      if (tioinfo->isInverted())
-		*out << " && ";
-	      else
-		*out << " || " ;
-	      *out << endl << "              in";
-	      if (tioinfo->isInverted())
-		*out << "!="; 
-	      else
-		*out << "==";
-	      *out << machine->getNumInputs() << "\'b";
-	    }
+          iosingle = ioit.next();
+          tinfoi = iosingle->convertToBinStr();
 
-	    int slen = tinfoi.length();
-	    int numin = machine->getNumInputs();
-	    for(int k=slen; k<numin; k++)
-	      *out << "0";
+          if (!tinfoi.isEmpty()) {
+            if (!first) {
+              if (tioinfo->isInverted())
+                *out << " && ";
+              else
+                *out << " || ";
+              *out << endl << "              in";
+              if (tioinfo->isInverted())
+                *out << "!=";
+              else
+                *out << "==";
+              *out << machine->getNumInputs() << "\'b";
+            }
 
-	    *out << tinfoi.latin1();
-	    first=FALSE;
-	  }
-	}
-	*out << ")" << endl;
+            int slen = tinfoi.length();
+            int numin = machine->getNumInputs();
+            for (int k = slen; k < numin; k++)
+              *out << "0";
 
-	tinfoo = tinfo->getOutputsStrBin();
-	*out << "          begin" << endl;
-	if (!tinfoo.isEmpty())
-	{
-	  *out << "            out = " << machine->getNumOutputs() << "\'b";
+            *out << tinfoi.latin1();
+            first = FALSE;
+          }
+        }
+        *out << ")" << endl;
 
-	  int slen = tinfoo.length();
-	  int numout = machine->getNumOutputs();
-	  for(int l=slen; l<numout; l++)
-	    *out << "0";
+        tinfoo = tinfo->getOutputsStrBin();
+        *out << "          begin" << endl;
+        if (!tinfoo.isEmpty()) {
+          *out << "            out = " << machine->getNumOutputs() << "\'b";
 
-	  *out << tinfoo.latin1() << ";" << endl;
-	}
-	stmp = t->getEnd();
-	if (stmp)
-        {
-	  sn = stmp->getStateName();
+          int slen = tinfoo.length();
+          int numout = machine->getNumOutputs();
+          for (int l = slen; l < numout; l++)
+            *out << "0";
+
+          *out << tinfoo.latin1() << ";" << endl;
+        }
+        stmp = t->getEnd();
+        if (stmp) {
+          sn = stmp->getStateName();
           sn.replace(QRegExp(" "), "_");
         }
-	if (stmp!=s)
-	{
-	  *out << "            nextstate = " <<
-	    Utils::noWS(stmp->getStateName()).latin1() << ";" << endl;
-	}
-	*out << "          end" << endl;
+        if (stmp != s) {
+          *out << "            nextstate = "
+               << Utils::noWS(stmp->getStateName()).latin1() << ";" << endl;
+        }
+        *out << "          end" << endl;
       }
     }
     *out << "        end" << endl;
@@ -364,4 +329,3 @@ void ExportVerilog::writeStateProcess()
     *out << "    end" << endl;
   *out << "  end" << endl << endl;
 }
-

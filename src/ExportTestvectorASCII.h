@@ -16,8 +16,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-
-
 #ifndef EXPORTTESTVECTORASCII_H
 #define EXPORTTESTVECTORASCII_H
 
@@ -32,40 +30,40 @@ class TestvectorGenerator;
  *
  */
 
-class ExportTestvectorASCII : public Export
-{
-  public:
-    ExportTestvectorASCII(Options* opt);
+class ExportTestvectorASCII : public Export {
+public:
+  ExportTestvectorASCII(Options *opt);
 
-    ~ExportTestvectorASCII();
+  ~ExportTestvectorASCII();
 
-    void doExport();
-    QString fileFilter();
-    QString defaultExtension();
+  void doExport();
+  QString fileFilter();
+  QString defaultExtension();
 
-    void generateVector();
+  void generateVector();
 
-    void writeHeader(QString,QString);
+  void writeHeader(QString, QString);
 
-  private:
+private:
+  /// TestvectorGenerator object for current machine
+  TestvectorGenerator *generator;
 
-    /// TestvectorGenerator object for current machine
-    TestvectorGenerator* generator;
+  /// If TRUE, the reset signal will be handled synchronously, otherwise
+  /// asynchronously.
+  bool synchronous_reset;
 
-    /// If TRUE, the reset signal will be handled synchronously, otherwise asynchronously.
-    bool synchronous_reset;
+  /// If TRUE an enable signal will be added
+  bool synchronous_enable;
 
-     /// If TRUE an enable signal will be added
-    bool synchronous_enable;
+  /// If TRUE the reset signal is negated
+  bool negated_reset;
 
-    /// If TRUE the reset signal is negated
-    bool negated_reset;
+  /// If TRUE, 'std_logic' is used instead of 'bit'
+  bool use_std_logic;
 
-    /// If TRUE, 'std_logic' is used instead of 'bit'
-    bool use_std_logic;
-
-    /// If TRUE, the names of the inputs/outputs are used, otherwise the vectors a,o,q
-    bool io_names;
+  /// If TRUE, the names of the inputs/outputs are used, otherwise the vectors
+  /// a,o,q
+  bool io_names;
 };
 
 #endif // EXPORTTESTVECTORASCII_H

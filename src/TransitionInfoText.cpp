@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -18,25 +18,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <typeinfo>
 
-#include "TransitionInfoText.h"
+#include "Const.h"
 #include "Convert.h"
 #include "IOInfoText.h"
-#include "Const.h"
 #include "Machine.h"
 #include "Options.h"
-
+#include "TransitionInfoText.h"
 
 /// Constructor
-TransitionInfoText::TransitionInfoText()
-{
+TransitionInfoText::TransitionInfoText() {
   type = Text;
   inputs = new IOInfoText(IO_MealyIn);
   outputs = new IOInfoText(IO_MealyOut);
 }
 
 /// Constructor
-TransitionInfoText::TransitionInfoText(IOInfoText ain, IOInfoText aout)
-{
+TransitionInfoText::TransitionInfoText(IOInfoText ain, IOInfoText aout) {
   type = Text;
 
   inputs = new IOInfoText(ain);
@@ -44,8 +41,7 @@ TransitionInfoText::TransitionInfoText(IOInfoText ain, IOInfoText aout)
 }
 
 /// Constructor
-TransitionInfoText::TransitionInfoText(QString sin, QString sout)
-{
+TransitionInfoText::TransitionInfoText(QString sin, QString sout) {
   type = Text;
 
   inputs = new IOInfoText(IO_MealyIn, sin);
@@ -53,8 +49,7 @@ TransitionInfoText::TransitionInfoText(QString sin, QString sout)
 }
 
 /// Destructor
-TransitionInfoText::~TransitionInfoText()
-{
+TransitionInfoText::~TransitionInfoText() {
   if (inputs)
     delete inputs;
   if (outputs)
@@ -62,10 +57,9 @@ TransitionInfoText::~TransitionInfoText()
 }
 
 /// Copy constructor
-TransitionInfoText::TransitionInfoText(const TransitionInfoText& t) 
-		  : TransitionInfo()
-{
-//  IOInfoText ioascii;
+TransitionInfoText::TransitionInfoText(const TransitionInfoText &t)
+    : TransitionInfo() {
+  //  IOInfoText ioascii;
 
   inputs = t.inputs->clone();
   outputs = t.outputs->clone();
@@ -73,24 +67,19 @@ TransitionInfoText::TransitionInfoText(const TransitionInfoText& t)
   type = t.type;
 }
 
-
 /// Assignment operator
-TransitionInfoText& TransitionInfoText::operator=(const TransitionInfoText& t)
-{
-  if (this!=&t)
-  {
-    if (inputs)
-    {
+TransitionInfoText &TransitionInfoText::operator=(const TransitionInfoText &t) {
+  if (this != &t) {
+    if (inputs) {
       delete inputs;
       inputs = NULL;
     }
-    if (outputs)
-    {
+    if (outputs) {
       delete outputs;
       outputs = NULL;
     }
 
-    //IOInfoText ioascii;
+    // IOInfoText ioascii;
 
     inputs = t.inputs->clone();
     outputs = t.outputs->clone();
@@ -99,73 +88,54 @@ TransitionInfoText& TransitionInfoText::operator=(const TransitionInfoText& t)
   return *this;
 }
 
-
-QString TransitionInfoText::getInputsStr(Machine* m/*=NULL*/, Options* opt/*=NULL*/)
-{
-  return inputs->convertToString(m, opt); //getInfo();
+QString TransitionInfoText::getInputsStr(Machine *m /*=NULL*/,
+                                         Options *opt /*=NULL*/) {
+  return inputs->convertToString(m, opt); // getInfo();
 }
 
-QString TransitionInfoText::getOutputsStr(Machine* m/*=NULL*/, Options* opt/*=NULL*/)
-{
-  return outputs->convertToString(m, opt); //getInfo();
+QString TransitionInfoText::getOutputsStr(Machine *m /*=NULL*/,
+                                          Options *opt /*=NULL*/) {
+  return outputs->convertToString(m, opt); // getInfo();
 }
 
-QString TransitionInfoText::getOutputsStrBin(Machine* /*m=NULL*/, Options* /*opt=NULL*/)
-{
+QString TransitionInfoText::getOutputsStrBin(Machine * /*m=NULL*/,
+                                             Options * /*opt=NULL*/) {
   Convert conv;
   unsigned char ascii[MAX_CHARARRAY_LENGTH];
   int length;
 
-  conv.resolveEscapes(outputs->convertToString(), ascii, MAX_CHARARRAY_LENGTH, length);
-  return conv.asciiToBinStr(8, ascii, length); //getInfo());
+  conv.resolveEscapes(outputs->convertToString(), ascii, MAX_CHARARRAY_LENGTH,
+                      length);
+  return conv.asciiToBinStr(8, ascii, length); // getInfo());
 }
 
-QString TransitionInfoText::getOutputsStrHex()
-{
+QString TransitionInfoText::getOutputsStrHex() {
   Convert conv;
   unsigned char ascii[MAX_CHARARRAY_LENGTH];
   int length;
 
-  conv.resolveEscapes(outputs->convertToString(), ascii, MAX_CHARARRAY_LENGTH, length);
+  conv.resolveEscapes(outputs->convertToString(), ascii, MAX_CHARARRAY_LENGTH,
+                      length);
   return conv.asciiToHexStr(ascii, length);
 }
 
-QString TransitionInfoText::getInputsStrASCII()
-{
-  return getInputsStr();
-}
+QString TransitionInfoText::getInputsStrASCII() { return getInputsStr(); }
 
+QString TransitionInfoText::getOutputsStrASCII() { return getOutputsStr(); }
 
-QString TransitionInfoText::getOutputsStrASCII()
-{
-  return getOutputsStr();
-}
-
-
-void TransitionInfoText::setInputs(QString sin, int numbits)
-{
+void TransitionInfoText::setInputs(QString sin, int numbits) {
   inputs->setString(sin, numbits);
 }
 
-void TransitionInfoText::setOutputs(QString sout, int numbits)
-{
+void TransitionInfoText::setOutputs(QString sout, int numbits) {
   outputs->setString(sout, numbits);
 }
 
+void TransitionInfoText::setInputsSize(int) {}
 
-void TransitionInfoText::setInputsSize(int )
-{
-}
+void TransitionInfoText::setOutputsSize(int) {}
 
-void TransitionInfoText::setOutputsSize(int )
-{
-}
-
-
-
-bool TransitionInfoText::matches(IOInfo* io)
-{
-//  return inputs->matches(io);
+bool TransitionInfoText::matches(IOInfo *io) {
+  //  return inputs->matches(io);
   return inputs->equals(io);
 }
-

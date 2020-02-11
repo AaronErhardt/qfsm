@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -36,18 +36,17 @@ class Options;
  *
  */
 
-class ExportSVG : public Export
-{
-  public:
-    ExportSVG(Options* opt);
+class ExportSVG : public Export {
+public:
+  ExportSVG(Options *opt);
 
-    void doExport();
-    QString fileFilter();
-	QString defaultExtension();
+  void doExport();
+  QString fileFilter();
+  QString defaultExtension();
 
-  private:
-    void writeHeader(QString , QString ) { return; };
-    //bool fixEPS(const QString &fileName, QRect rect) const;
+private:
+  void writeHeader(QString, QString) { return; };
+  // bool fixEPS(const QString &fileName, QRect rect) const;
 };
 
 #endif

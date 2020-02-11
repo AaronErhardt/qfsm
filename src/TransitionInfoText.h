@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -26,44 +26,40 @@ two IOInfo objects to keep simulator working
 #ifndef TRANSITIONINFOTEXT_H
 #define TRANSITIONINFOTEXT_H
 
-#include "TransitionInfo.h"
 #include "IOInfoText.h"
-
+#include "TransitionInfo.h"
 
 /**
  * @class TransitionInfoText
  * @brief Stores information about an ASCII transition condition.
  */
-class TransitionInfoText : public TransitionInfo
-{
-  public:
-    TransitionInfoText();
-    TransitionInfoText(IOInfoText ain, IOInfoText aout);
-    TransitionInfoText(QString sin, QString sout);
-    TransitionInfoText(const TransitionInfoText& t) ;
-    ~TransitionInfoText();
+class TransitionInfoText : public TransitionInfo {
+public:
+  TransitionInfoText();
+  TransitionInfoText(IOInfoText ain, IOInfoText aout);
+  TransitionInfoText(QString sin, QString sout);
+  TransitionInfoText(const TransitionInfoText &t);
+  ~TransitionInfoText();
 
-    TransitionInfoText& operator=(const TransitionInfoText& t);
+  TransitionInfoText &operator=(const TransitionInfoText &t);
 
-    TransitionInfo* clone() { return new TransitionInfoText(*this); };
+  TransitionInfo *clone() { return new TransitionInfoText(*this); };
 
-    QString getInputsStr(Machine* m=NULL, Options* opt=NULL);
-    QString getOutputsStr(Machine* m=NULL, Options* opt=NULL);
-    QString getOutputsStrBin(Machine* m=NULL, Options* opt=NULL);
-    QString getOutputsStrHex();
-    QString getInputsStrASCII();
-    QString getOutputsStrASCII();
-    QString getSeparator(Options* ) { return " / "; };
-    void setInputs(QString, int numin=-1);
-    void setOutputs(QString, int numout=-1);
-    void setInputsSize(int bits);
-    void setOutputsSize(int bits);
+  QString getInputsStr(Machine *m = NULL, Options *opt = NULL);
+  QString getOutputsStr(Machine *m = NULL, Options *opt = NULL);
+  QString getOutputsStrBin(Machine *m = NULL, Options *opt = NULL);
+  QString getOutputsStrHex();
+  QString getInputsStrASCII();
+  QString getOutputsStrASCII();
+  QString getSeparator(Options *) { return " / "; };
+  void setInputs(QString, int numin = -1);
+  void setOutputs(QString, int numout = -1);
+  void setInputsSize(int bits);
+  void setOutputsSize(int bits);
 
-    bool matches(IOInfo* );
+  bool matches(IOInfo *);
 
-  private:
-
+private:
 };
-
 
 #endif

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,50 +19,43 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef IOVIEWDLGIMPL_H
 #define IOVIEWDLGIMPL_H
 
-#include <QCloseEvent>
-#include <QShowEvent>
 #include "Machine.h"
 #include "ui_IOViewDlg.h"
+#include <QCloseEvent>
+#include <QShowEvent>
 
 class MainWindow;
-
 
 /**
  * @class IOViewDlgImpl
  * @brief IO view dialog
  */
-class IOViewDlgImpl : public QDialog
-{ 
-    Q_OBJECT
-        
-        Ui::IOViewDlg ioViewDlg;
+class IOViewDlgImpl : public QDialog {
+  Q_OBJECT
 
+  Ui::IOViewDlg ioViewDlg;
 
 public:
+  IOViewDlgImpl(QWidget *parent = 0, const char *name = 0, bool modal = FALSE,
+                Qt::WFlags fl = 0);
+  ~IOViewDlgImpl();
 
-
-    IOViewDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
-    ~IOViewDlgImpl();
-
-
-    void updateIOList(Machine*m);
+  void updateIOList(Machine *m);
 
 signals:
-    /// Emited when the dialog is about to close
-    void closing();
+  /// Emited when the dialog is about to close
+  void closing();
 
 public slots:
 
-
 private:
-    /// Pointer to the main window
-    MainWindow* main;
-    ///Content of text window
-    QString content;
+  /// Pointer to the main window
+  MainWindow *main;
+  /// Content of text window
+  QString content;
 
-    virtual void closeEvent(QCloseEvent* );
-    virtual void showEvent(QShowEvent* );
-
+  virtual void closeEvent(QCloseEvent *);
+  virtual void showEvent(QShowEvent *);
 };
 
 #endif // SIMULATORDLGIMPL_H

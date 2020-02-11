@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -29,8 +29,8 @@ changed sort call to qSort(..)
 #ifndef TABLEBUILDER_H
 #define TABLEBUILDER_H
 
-#include <qstring.h>
 #include <qobject.h>
+#include <qstring.h>
 
 #include "GState.h"
 #include "IOInfoList.h"
@@ -44,41 +44,37 @@ class Options;
  * @brief Base class for all classes that build state tables.
  *
  */
-class TableBuilder : public QObject
-{
+class TableBuilder : public QObject {
   Q_OBJECT
 
-  public:
-    TableBuilder(QObject* parent, Machine* m, Options* opt);
-    virtual ~TableBuilder();
-    /// Returns the head of the table
-    virtual QString getHead()=0;
-    /// Returns the foot of the table
-    virtual QString getFoot()=0;
-    virtual QString getBody();
-    /// Returns the file filter to use for the file dialog
-    virtual QString fileFilter()=0;
-	/// Returns the default file extension
-	virtual QString defaultExtension()=0;
-    /// Returns the comment start string
-    virtual QString getCommentStart()=0;
-    /// Returns the comment end string
-    virtual QString getCommentEnd()=0;
+public:
+  TableBuilder(QObject *parent, Machine *m, Options *opt);
+  virtual ~TableBuilder();
+  /// Returns the head of the table
+  virtual QString getHead() = 0;
+  /// Returns the foot of the table
+  virtual QString getFoot() = 0;
+  virtual QString getBody();
+  /// Returns the file filter to use for the file dialog
+  virtual QString fileFilter() = 0;
+  /// Returns the default file extension
+  virtual QString defaultExtension() = 0;
+  /// Returns the comment start string
+  virtual QString getCommentStart() = 0;
+  /// Returns the comment end string
+  virtual QString getCommentEnd() = 0;
 
-  protected:
-    /// Returns a row of the table corresponding to the state @a s
-    virtual QString getRow(GState* s)=0;
-    virtual QString getRow(IOInfo* io)=0;
+protected:
+  /// Returns a row of the table corresponding to the state @a s
+  virtual QString getRow(GState *s) = 0;
+  virtual QString getRow(IOInfo *io) = 0;
 
-    /// List of events (columns of the table)
-    IOInfoList eventlist;
-    /// Pointer to the machine
-    Machine* machine;
-    /// Pointer to the application options
-    Options* options;
-}; 
-
-
+  /// List of events (columns of the table)
+  IOInfoList eventlist;
+  /// Pointer to the machine
+  Machine *machine;
+  /// Pointer to the application options
+  Options *options;
+};
 
 #endif
-

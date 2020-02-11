@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -18,23 +18,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <math.h>
 
-#include <qpen.h>
+#include <q3ptrlist.h>
 #include <qbrush.h>
 #include <qcolor.h>
-#include <q3ptrlist.h>
+#include <qpen.h>
 #include <qregexp.h>
 
-#include "GState.h"
-#include "GObject.h"
-#include "ScrollView.h"
 #include "Const.h"
-#include "Machine.h"
 #include "Convert.h"
-#include "Project.h"
-#include "UndoBuffer.h"
-#include "TransitionInfoBin.h"
-#include "IOInfoList.h"
 #include "DrawArea.h"
+#include "GObject.h"
+#include "GState.h"
+#include "IOInfoList.h"
+#include "Machine.h"
+#include "Project.h"
+#include "ScrollView.h"
+#include "TransitionInfoBin.h"
+#include "UndoBuffer.h"
 
 /**
  * Constructor.
@@ -45,59 +45,56 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  * @param r radius
  * @param p pen to draw the state with
  */
-GState::GState(Machine* m, const QString n, QString d, int c, IOInfo* moore, double x, 
-    	       double y, int r, QPen p, bool end, QString ena, QString exa)
-      : QObject(), State(m, n, d, c, moore, end, ena, exa), GObject(x, y)
-{
+GState::GState(Machine *m, const QString n, QString d, int c, IOInfo *moore,
+               double x, double y, int r, QPen p, bool end, QString ena,
+               QString exa)
+    : QObject(), State(m, n, d, c, moore, end, ena, exa), GObject(x, y) {
   machine = m;
   pen = p;
-  brush.setColor(QColor(255,255,255));
+  brush.setColor(QColor(255, 255, 255));
   brush.setStyle(Qt::SolidPattern);
-//  scode = Convert::intToBinStr(c, numbits);
+  //  scode = Convert::intToBinStr(c, numbits);
   radius = r;
-  mark=false;
+  mark = false;
 
-//  tlist.setAutoDelete(TRUE);
-//  reflist.setAutoDelete(FALSE);
+  //  tlist.setAutoDelete(TRUE);
+  //  reflist.setAutoDelete(FALSE);
 }
 
 /**
  * Constructor.
  * Initialises a standard GState
  */
-GState::GState(Machine* m) : QObject(), State(m), GObject(0,0)
-{
+GState::GState(Machine *m) : QObject(), State(m), GObject(0, 0) {
   machine = m;
-  pen.setColor(QColor(0,0,0));
+  pen.setColor(QColor(0, 0, 0));
   pen.setWidth(1);
-  brush.setColor(QColor(255,255,255));
+  brush.setColor(QColor(255, 255, 255));
   brush.setStyle(Qt::SolidPattern);
-//  scode = ""; 
+  //  scode = "";
   radius = 40;
-  mark=false;
+  mark = false;
 
-//  tlist.setAutoDelete(TRUE);
-//  reflist.setAutoDelete(FALSE);
+  //  tlist.setAutoDelete(TRUE);
+  //  reflist.setAutoDelete(FALSE);
 }
 
 /// Constructor
-GState::GState() : QObject(), State(), GObject(0,0)
-{
-  pen.setColor(QColor(0,0,0));
+GState::GState() : QObject(), State(), GObject(0, 0) {
+  pen.setColor(QColor(0, 0, 0));
   pen.setWidth(1);
-  brush.setColor(QColor(255,255,255));
+  brush.setColor(QColor(255, 255, 255));
   brush.setStyle(Qt::SolidPattern);
-//  scode = ""; 
+  //  scode = "";
   radius = 40;
-  mark=false;
+  mark = false;
 
-//  tlist.setAutoDelete(TRUE);
-//  reflist.setAutoDelete(FALSE);
+  //  tlist.setAutoDelete(TRUE);
+  //  reflist.setAutoDelete(FALSE);
 }
 
 /// Copy Constructor (dummy)
-GState::GState(GState&gs) : QObject(), State(), GObject(0,0)
-{
+GState::GState(GState &gs) : QObject(), State(), GObject(0, 0) {
 
   setPen(gs.getPen());
   setBrush(gs.getBrush());
@@ -105,10 +102,9 @@ GState::GState(GState&gs) : QObject(), State(), GObject(0,0)
   setLineWidth(gs.getLineWidth());
   setMark(gs.getMark());
 
-//  tlist.setAutoDelete(TRUE);
-//  reflist.setAutoDelete(FALSE);
+  //  tlist.setAutoDelete(TRUE);
+  //  reflist.setAutoDelete(FALSE);
 }
-
 
 /**
  * Makes a deep copy of the transitions of a state.
@@ -117,112 +113,102 @@ GState::GState(GState&gs) : QObject(), State(), GObject(0,0)
  * @param deleteold if TRUE deletes the old transitions in this state otherwise
  * not.
  */
-void GState::copyTransitions(GState* s, bool deleteold/*=FALSE*/)
-{
-  QMutableListIterator<GTransition*> i(s->tlist);
-  QMutableListIterator<GTransition*> j(s->reflist);
+void GState::copyTransitions(GState *s, bool deleteold /*=FALSE*/) {
+  QMutableListIterator<GTransition *> i(s->tlist);
+  QMutableListIterator<GTransition *> j(s->reflist);
 
   GTransition *t, *tmp, *tr;
 
-//  tlist.setAutoDelete(deleteold);
-//  reflist.setAutoDelete(deleteold); //FALSE);
-  if(deleteold)
-  {
+  //  tlist.setAutoDelete(deleteold);
+  //  reflist.setAutoDelete(deleteold); //FALSE);
+  if (deleteold) {
     qDeleteAll(tlist);
     qDeleteAll(reflist);
   }
-  
+
   tlist.clear();
   reflist.clear();
 
-  for(; i.hasNext();)
-  {
+  for (; i.hasNext();) {
     t = i.next();
-    
+
     tmp = new GTransition();
     *tmp = *t;
 
     tlist.append(tmp);
   }
 
-  for(; j.hasNext();)
-  {
+  for (; j.hasNext();) {
     tr = j.next();
 
-    if (tr->getEnd()!=this)
-    {
+    if (tr->getEnd() != this) {
       tmp = new GTransition();
       *tmp = *tr;
 
-      reflist.append(tmp); //tr); //tmp);
+      reflist.append(tmp); // tr); //tmp);
     }
   }
-//  tlist.setAutoDelete(TRUE);
-//  reflist.setAutoDelete(TRUE);
+  //  tlist.setAutoDelete(TRUE);
+  //  reflist.setAutoDelete(TRUE);
 }
 
 /**
  * Copys the attributes of transitions.
- * The attributes of the transitions in the list @clist are copied into the 
+ * The attributes of the transitions in the list @clist are copied into the
  * transitions in of the state @a s.
  * @param s state containing the transitions which will be copied into
  * @param clist list containing the transitions which will be copied
  */
-void GState::copyTransitionAttributes(GState* s, QList<GTransition*>* clist)
-{
-  QMutableListIterator<GTransition*> si(s->tlist);
-  QMutableListIterator<GTransition*> sj(s->reflist);
-  QMutableListIterator<GTransition*> ci(*clist); 	// destination pointers
+void GState::copyTransitionAttributes(GState *s, QList<GTransition *> *clist) {
+  QMutableListIterator<GTransition *> si(s->tlist);
+  QMutableListIterator<GTransition *> sj(s->reflist);
+  QMutableListIterator<GTransition *> ci(*clist); // destination pointers
 
   GTransition *t1, *t2;
 
-//  for (; si.current(); ++si)
-  for (; si.hasNext();)
-  {
-//    t1 = ci.current();
-//    t2 = si.current();
+  //  for (; si.current(); ++si)
+  for (; si.hasNext();) {
+    //    t1 = ci.current();
+    //    t2 = si.current();
     t1 = ci.peekNext();
     t2 = si.next();
 
-//    if (!t2)
+    //    if (!t2)
     if (!ci.hasNext())
       return;
 
     *t1 = *t2;
-//    ++ci;
+    //    ++ci;
     ci.next();
   }
-//  for (; sj.current(); ++sj)
-  for (; sj.hasNext();)
-  {
-//    t1 = ci.current();
-//    t2 = sj.current();
+  //  for (; sj.current(); ++sj)
+  for (; sj.hasNext();) {
+    //    t1 = ci.current();
+    //    t2 = sj.current();
     t1 = ci.peekNext();
     t2 = sj.next();
 
     *t1 = *t2;
-//    if (!t2)
+    //    if (!t2)
     if (!ci.hasNext())
       return;
 
-//    ++ci;
+    //    ++ci;
     ci.next();
   }
 }
 
 /// Used for debugging
-void GState::debugTransitions(/*int numin, int numout*/)
-{
-  QMutableListIterator<GTransition*> i(tlist);
-  QMutableListIterator<GTransition*> j(reflist);
+void GState::debugTransitions(/*int numin, int numout*/) {
+  QMutableListIterator<GTransition *> i(tlist);
+  QMutableListIterator<GTransition *> j(reflist);
 
   GTransition *t;
   double x, y, ex, ey, c1x, c1y, c2x, c2y;
-  TransitionInfo* info;
+  TransitionInfo *info;
 
   qDebug("tlist\n");
-  for(; i.hasNext();)
-  {
+  for (; i.hasNext();) {
     t = i.next();
 
     t->getPos(x, y);
@@ -240,8 +226,7 @@ void GState::debugTransitions(/*int numin, int numout*/)
   }
 
   qDebug("reflist\n");
-  for(; j.hasNext();)
-  {
+  for (; j.hasNext();) {
     t = j.next();
 
     t->getPos(x, y);
@@ -257,20 +242,16 @@ void GState::debugTransitions(/*int numin, int numout*/)
     qDebug("Outputs:     %s", info->getOutputsStrBin(/*numout*/).latin1());
     qDebug(" ");
   }
-
 }
-
 
 /**
  * Returns the number of all (non-deleted) transitions which start at this state
  */
-int GState::countTransitions()
-{
-  QMutableListIterator<GTransition*> i(tlist);
+int GState::countTransitions() {
+  QMutableListIterator<GTransition *> i(tlist);
 
-  int count=0;
-  for(; i.hasNext();)
-  {
+  int count = 0;
+  for (; i.hasNext();) {
     if (!i.next()->isDeleted())
       count++;
   }
@@ -280,41 +261,36 @@ int GState::countTransitions()
 /**
  * Returns the number of all (non-deleted) transitions which end at this state
  */
-int GState::countRefTransitions()
-{
-  QMutableListIterator<GTransition*> i(reflist);
+int GState::countRefTransitions() {
+  QMutableListIterator<GTransition *> i(reflist);
 
-  int count=0;
-  for(; i.hasNext();)
-  {
+  int count = 0;
+  for (; i.hasNext();) {
     if (!i.next()->isDeleted())
       count++;
   }
   return count;
 }
 
-
 /**
  * Copys attributes of the state @a s.
  */
-void GState::copyAttributes(GState* s)
-{
+void GState::copyAttributes(GState *s) {
   machine = s->machine;
-    xpos = s->xpos;
-    ypos = s->ypos;
-    sname = s->sname;
-    sdescription = s->sdescription;
-    code = s->code;
-    moore_outputs = s->moore_outputs;
+  xpos = s->xpos;
+  ypos = s->ypos;
+  sname = s->sname;
+  sdescription = s->sdescription;
+  code = s->code;
+  moore_outputs = s->moore_outputs;
 
-    pen = s->pen;
-    brush = s->brush;
-    radius = s->radius;
-    entry_actions = s->entry_actions;
-    exit_actions = s->exit_actions;
-//    scode = s->scode;
+  pen = s->pen;
+  brush = s->brush;
+  radius = s->radius;
+  entry_actions = s->entry_actions;
+  exit_actions = s->exit_actions;
+  //    scode = s->scode;
 }
-
 
 /**
  * Adds a new transition in this state
@@ -333,22 +309,18 @@ void GState::copyAttributes(GState* s)
  *   will be treated as not straight
  * @param withundo If TRUE this step will be put into the undo buffer.
  */
-void GState::addTransition(Project* p, GState* s, TransitionInfo* i,
-			   double sx, double sy, double ex, 
-			   double ey, double c1x/*=0*/, double c1y/*=0*/,
-			   double c2x/*=0*/, double c2y/*=0*/, QString description/*=""*/,
-			   bool str/*=TRUE*/, bool withundo/*=TRUE*/)
-{
-  GTransition* t;
-  if (c1x==0 && c1y==0 && c2x==0 && c2y==0)
-  {
-    t = new GTransition(this, s, i, /*numin, in, numout, out,*/ sx, sy, 
-      ex, ey, description, str);
-  }
-  else
-  {
-    t = new GTransition(this, s, i, /*numin, in, numout, out,*/ sx, sy, 
-      c1x, c1y, c2x, c2y, ex, ey, description, str);
+void GState::addTransition(Project *p, GState *s, TransitionInfo *i, double sx,
+                           double sy, double ex, double ey, double c1x /*=0*/,
+                           double c1y /*=0*/, double c2x /*=0*/,
+                           double c2y /*=0*/, QString description /*=""*/,
+                           bool str /*=TRUE*/, bool withundo /*=TRUE*/) {
+  GTransition *t;
+  if (c1x == 0 && c1y == 0 && c2x == 0 && c2y == 0) {
+    t = new GTransition(this, s, i, /*numin, in, numout, out,*/ sx, sy, ex, ey,
+                        description, str);
+  } else {
+    t = new GTransition(this, s, i, /*numin, in, numout, out,*/ sx, sy, c1x,
+                        c1y, c2x, c2y, ex, ey, description, str);
   }
 
   tlist.append(t);
@@ -366,17 +338,16 @@ void GState::addTransition(Project* p, GState* s, TransitionInfo* i,
  * @param t Transition to add
  * @param withundo If TRUE this step will be put into the undo buffer.
  */
-void GState::addTransition(Project* p, GTransition* t, bool withundo/*=TRUE*/)
-{
+void GState::addTransition(Project *p, GTransition *t,
+                           bool withundo /*=TRUE*/) {
   tlist.append(t);
   if (withundo)
     p->getUndoBuffer()->addTransition(t);
 
-  GState* e = (GState*)t->getEnd();
+  GState *e = (GState *)t->getEnd();
   if (e)
     e->reflist.append(t);
 }
-
 
 /**
  * Moves the state.
@@ -387,45 +358,36 @@ void GState::addTransition(Project* p, GTransition* t, bool withundo/*=TRUE*/)
  * @param redraw if TRUE the scrollview will be redrawn otherwise it won't
  * @param firstRedraw if TRUE it is the first movement of a series
  */
-void GState::move(double x, double y, DrawArea* sv, Machine* m,
-                  bool redraw/*=TRUE*/, bool firstRedraw/*=FALSE*/)
-{
-  GTransition* t;
-  QMutableListIterator<GTransition*> it(reflist);
-  QMutableListIterator<GTransition*> i(tlist);
+void GState::move(double x, double y, DrawArea *sv, Machine *m,
+                  bool redraw /*=TRUE*/, bool firstRedraw /*=FALSE*/) {
+  GTransition *t;
+  QMutableListIterator<GTransition *> it(reflist);
+  QMutableListIterator<GTransition *> i(tlist);
 
   // move Transitions starting at this state
 
-  for (;i.hasNext();)
-  {
+  for (; i.hasNext();) {
     t = i.next();
 
     if (redraw)
       sv->drawTransition(t, firstRedraw);
 
-    if (t->getEnd()==NULL && sv->getDragMultiple()) 
-    {						// transitions w/o dest
-      if (t->isSelected())
-      {
-	t->moveStart(x, y, FALSE, TRUE);
+    if (t->getEnd() == NULL && sv->getDragMultiple()) { // transitions w/o dest
+      if (t->isSelected()) {
+        t->moveStart(x, y, FALSE, TRUE);
         t->moveEnd(x, y, FALSE, FALSE);
-      }
-      else
+      } else
         t->moveStart(x, y);
-    }
-    else if (t->getEnd()!=this) 		// no loops
+    } else if (t->getEnd() != this) // no loops
     {
-      if ( sv->getDragMultiple() && ((GState*)t->getEnd())->isSelected() &&
-        !t->isStraight() )
-      {
+      if (sv->getDragMultiple() && ((GState *)t->getEnd())->isSelected() &&
+          !t->isStraight()) {
         t->moveStart(x, y, FALSE, TRUE, FALSE);
-      }
-      else if (t->isStraight())
+      } else if (t->isStraight())
         t->moveStart(x, y);
       else
         t->moveStart(x, y, FALSE, TRUE, FALSE);
-    }
-    else					// loops
+    } else // loops
     {
       t->moveStart(x, y, FALSE, TRUE);
     }
@@ -436,30 +398,25 @@ void GState::move(double x, double y, DrawArea* sv, Machine* m,
 
   // move Transitions ending at thie state
 
-  for (;it.hasNext();)
-  {
+  for (; it.hasNext();) {
     t = it.next();
     if (redraw)
       sv->drawTransition(t, firstRedraw);
 
-    if (t->getStart()==m->getPhantomState() && sv->getDragMultiple() )
-    {					// transition from phantom state
-      if (t->isSelected())
-      {
-	t->moveStart(x, y, FALSE, FALSE);
-	t->moveEnd(x, y, FALSE, TRUE);
-      }
-      else
-	t->moveEnd(x, y);
-    }
-    else if (t->getStart()!=this)		// no loops
+    if (t->getStart() == m->getPhantomState() &&
+        sv->getDragMultiple()) { // transition from phantom state
+      if (t->isSelected()) {
+        t->moveStart(x, y, FALSE, FALSE);
+        t->moveEnd(x, y, FALSE, TRUE);
+      } else
+        t->moveEnd(x, y);
+    } else if (t->getStart() != this) // no loops
     {
       if (t->isStraight())
         t->moveEnd(x, y);
       else
-        t->moveEnd(x, y, FALSE, TRUE , FALSE);
-    }
-    else					// loops
+        t->moveEnd(x, y, FALSE, TRUE, FALSE);
+    } else // loops
     {
       t->moveEnd(x, y, FALSE);
     }
@@ -468,9 +425,8 @@ void GState::move(double x, double y, DrawArea* sv, Machine* m,
       sv->drawTransition(t);
   }
 
-  if (m->getInitialState()==this)
-  {
-    GITransition* it = m->getInitialTransition();
+  if (m->getInitialState() == this) {
+    GITransition *it = m->getInitialTransition();
     if (redraw && m->getDrawITrans())
       sv->drawInitialTransition(it, firstRedraw);
     it->move(x, y);
@@ -481,17 +437,15 @@ void GState::move(double x, double y, DrawArea* sv, Machine* m,
   GObject::move(x, y);
 }
 
-
-
-// 
+//
 // Name:		circleEdge
-// Description:		calculates a point at the edge of the state relative 
+// Description:		calculates a point at the edge of the state relative
 //			to the position (mousex, mousey)
-//		
+//
 // x, y			state position
 // rad			state radius
 // mousex, mousey 	mouse position (inside state)
-// destx, desty		return values 
+// destx, desty		return values
 // addphi		angle to add (in deg)
 //
 /**
@@ -502,35 +456,33 @@ void GState::move(double x, double y, DrawArea* sv, Machine* m,
  * @param rad state radius
  * @param mousex mouse x position (inside state)
  * @param mousey mouse y position (inside state)
- * @param destx resulting x coordinate 
+ * @param destx resulting x coordinate
  * @param desty resulting y coordinate
  * @param addphi angle to add to the point. (relative to center of circle)
  */
-void GState::circleEdge(double x, double y, int rad, double mousex, 
-                double mousey, double& destx, double& desty, 
-		double addphi/*=0*/)
-{
+void GState::circleEdge(double x, double y, int rad, double mousex,
+                        double mousey, double &destx, double &desty,
+                        double addphi /*=0*/) {
   double m;
   double phi;
 
-  if (x==mousex && y==mousey)
-    mousey+=1;
+  if (x == mousex && y == mousey)
+    mousey += 1;
 
-  if (mousex!=x)
-    m = (mousey-y)/(mousex-x);
+  if (mousex != x)
+    m = (mousey - y) / (mousex - x);
   else
-    m = (mousey-y)/0.000001;
+    m = (mousey - y) / 0.000001;
 
   phi = atan(m);
-  phi += (addphi*PI/180);
+  phi += (addphi * PI / 180);
 
   destx = rad * cos(phi);
   desty = rad * sin(phi);
 
-  if (mousex<x)
-  {
-    destx*=(-1);
-    desty*=(-1);
+  if (mousex < x) {
+    destx *= (-1);
+    desty *= (-1);
   }
 
   destx += x;
@@ -550,34 +502,31 @@ void GState::circleEdge(double x, double y, int rad, double mousex,
  * @param c2x x coordinate of the second control point
  * @param c2y y coordinate of the second control point
  */
-void GState::calcLoop(double x, double y, int rad, double mousex, 
-                double mousey, double& c1x, double& c1y, double& c2x, 
-		double& c2y)
-{
+void GState::calcLoop(double x, double y, int rad, double mousex, double mousey,
+                      double &c1x, double &c1y, double &c2x, double &c2y) {
   double m;
   double phi;
   double phi1, phi2;
 
-  if (x==mousex && y==mousey)
-    mousey+=1;
+  if (x == mousex && y == mousey)
+    mousey += 1;
 
-  if (mousex!=x)
-    m = (mousey-y)/(mousex-x);
-  else 
-    m = (mousey-y)/0.000001;
+  if (mousex != x)
+    m = (mousey - y) / (mousex - x);
+  else
+    m = (mousey - y) / 0.000001;
 
   phi = atan(m);
-  if (mousex<x)
-  {
+  if (mousex < x) {
     phi += PI;
   }
-  phi1 = phi-(15*PI/180);
-  phi2 = phi+(55*PI/180);
+  phi1 = phi - (15 * PI / 180);
+  phi2 = phi + (55 * PI / 180);
 
-  c1x = (rad+80) * cos(phi1);
-  c1y = (rad+80) * sin(phi1);
-  c2x = (rad+80) * cos(phi2);
-  c2y = (rad+80) * sin(phi2);
+  c1x = (rad + 80) * cos(phi1);
+  c1y = (rad + 80) * sin(phi1);
+  c2x = (rad + 80) * cos(phi2);
+  c2y = (rad + 80) * sin(phi2);
 
   c1x += x;
   c1y += y;
@@ -585,40 +534,35 @@ void GState::calcLoop(double x, double y, int rad, double mousex,
   c2y += y;
 }
 
-
 /**
  * Removes the transition @a trem from the list of this state.
  */
-void GState::removeTransition(GTransition* trem)
-{
-  //GState* s;
-  //s = (GState*)trem->getEnd();
+void GState::removeTransition(GTransition *trem) {
+  // GState* s;
+  // s = (GState*)trem->getEnd();
 
   trem->select(FALSE);
   trem->setDeleted();
 }
-      
+
 /**
  * Removes the transition @a trem which ends at this state from the list
  */
-void GState::removeTransitionEnd(GTransition* trem)
-{
-//  reflist.removeRef(trem);
-    reflist.removeAll(trem);
+void GState::removeTransitionEnd(GTransition *trem) {
+  //  reflist.removeRef(trem);
+  reflist.removeAll(trem);
 }
-
 
 /**
  * Returns the bounding rectangle of this state.
  */
-DRect GState::getMaxRect()
-{
+DRect GState::getMaxRect() {
   double x1, x2, y1, y2;
   double k;
 
   k = radius / sqrt(2.0);
   if (isFinalState())
-    k-=2;
+    k -= 2;
 
   x1 = xpos - k;
   y1 = ypos - k;
@@ -629,72 +573,61 @@ DRect GState::getMaxRect()
   return r;
 }
 
+bool GState::hasDefaultTransition() {
+  QListIterator<GTransition *> it(tlist);
+  GTransition *t;
 
-bool GState::hasDefaultTransition()
-{
-  QListIterator<GTransition*> it(tlist);
-  GTransition* t;
-
-  for(; it.hasNext(); )
-  {
+  for (; it.hasNext();) {
     t = it.next();
     if (!t->isDeleted() && t->getInfo()->getInputInfo()->isDefault())
       return true;
   }
-  return false;   
+  return false;
 }
 
-bool GState::hasAnyTransition()
-{
-  QListIterator<GTransition*> it(tlist);
-  GTransition* t;
+bool GState::hasAnyTransition() {
+  QListIterator<GTransition *> it(tlist);
+  GTransition *t;
 
-  for(; it.hasNext(); )
-  {
+  for (; it.hasNext();) {
     t = it.next();
     if (!t->isDeleted() && t->getInfo()->getInputInfo()->getAnyInput())
       return true;
   }
-  return false;   
+  return false;
 }
 
-
-
-/** 
+/**
  * Sets transitions to the boundary of this state.
  * Sets all transitions which start and end at this state to the boundary of
  * the circle of this state.
  * @param m machine containing this state
  * @param radius new radius
  */
-void GState::setTransitionsToRadius(Machine* m, int radius)
-{
-  GTransition* t;
-  GITransition* it;
+void GState::setTransitionsToRadius(Machine *m, int radius) {
+  GTransition *t;
+  GITransition *it;
   double tx, ty, tnx, tny;
-  
-  QMutableListIterator<GTransition*> i(tlist);
-  for(;i.hasNext();)
-  {
-    t=i.next();
+
+  QMutableListIterator<GTransition *> i(tlist);
+  for (; i.hasNext();) {
+    t = i.next();
     t->getPos(tx, ty);
     GState::circleEdge(xpos, ypos, radius, tx, ty, tnx, tny);
-    if (t->getEnd()!=this)
+    if (t->getEnd() != this)
       t->setPos(tnx, tny);
     else
-      t->move(tnx-tx, tny-ty);
+      t->move(tnx - tx, tny - ty);
   }
-  QMutableListIterator<GTransition*> j(reflist);
-  for(;j.hasNext();)
-  {
-    t=j.next();
+  QMutableListIterator<GTransition *> j(reflist);
+  for (; j.hasNext();) {
+    t = j.next();
     t->getEndPos(tx, ty);
     GState::circleEdge(xpos, ypos, radius, tx, ty, tnx, tny);
-    if (t->getStart()!=this)
+    if (t->getStart() != this)
       t->setEndPos(tnx, tny);
   }
-  if (m->getInitialState()==this)
-  {
+  if (m->getInitialState() == this) {
     it = m->getInitialTransition();
     it->getEndPos(tx, ty);
     GState::circleEdge(xpos, ypos, radius, tx, ty, tnx, tny);
@@ -702,12 +635,11 @@ void GState::setTransitionsToRadius(Machine* m, int radius)
   }
 }
 
-QString GState::getToolTipInfo(Machine* /*m=NULL*/, Options* /*opt=NULL*/)
-{
+QString GState::getToolTipInfo(Machine * /*m=NULL*/, Options * /*opt=NULL*/) {
   QString result;
   QString desc;
   QString dname, ddesc, dmooreout, dcode;
-  unsigned int longest=0;
+  unsigned int longest = 0;
   int valuepos;
   QString padding;
 
@@ -722,72 +654,64 @@ QString GState::getToolTipInfo(Machine* /*m=NULL*/, Options* /*opt=NULL*/)
     longest = dname.length();
   if (!desc.isEmpty() && ddesc.length() > longest)
     longest = ddesc.length();
-  if (!(machine && machine->getType()==Text))
-  {
+  if (!(machine && machine->getType() == Text)) {
     if (dmooreout.length() > longest)
       longest = dmooreout.length();
     if (dcode.length() > longest)
       longest = dcode.length();
   }
 
-  valuepos = longest+1;
-  
-  result  = dname + padding.fill(' ', valuepos-dname.length()) + sname + "\n";
-  if (!desc.isEmpty())
-  {
+  valuepos = longest + 1;
+
+  result = dname + padding.fill(' ', valuepos - dname.length()) + sname + "\n";
+  if (!desc.isEmpty()) {
     desc.replace(QRegExp("\n"), "\n" + padding.fill(' ', valuepos));
-    result += ddesc + padding.fill(' ', valuepos-ddesc.length()) + desc + "\n";
+    result +=
+        ddesc + padding.fill(' ', valuepos - ddesc.length()) + desc + "\n";
   }
-  if (!(machine && machine->getType()==Text))
-  {
-    result += dmooreout + padding.fill(' ', valuepos-dmooreout.length()) + getMooreOutputsStr() + "\n";
-    result += dcode + padding.fill(' ', valuepos-dcode.length()) + getCodeStr();
+  if (!(machine && machine->getType() == Text)) {
+    result += dmooreout + padding.fill(' ', valuepos - dmooreout.length()) +
+              getMooreOutputsStr() + "\n";
+    result +=
+        dcode + padding.fill(' ', valuepos - dcode.length()) + getCodeStr();
   }
 
   return result;
 }
 
-QRect GState::getToolTipRect(const QPoint& )
-{
-  return QRect(int(xpos)-radius, int(ypos)-radius, radius*2, radius*2);
+QRect GState::getToolTipRect(const QPoint &) {
+  return QRect(int(xpos) - radius, int(ypos) - radius, radius * 2, radius * 2);
 }
 
-
 /// Returns the following state assuming inputs @a in are input to the machine
-GState* GState::next(IOInfo* in, IOInfo*& out)
-{
-  GTransition* t;
+GState *GState::next(IOInfo *in, IOInfo *&out) {
+  GTransition *t;
 
-  QMutableListIterator<GTransition*> i(tlist);
-  TransitionInfo* tinfo;
+  QMutableListIterator<GTransition *> i(tlist);
+  TransitionInfo *tinfo;
 
-  for(; i.hasNext();)
-  {
+  for (; i.hasNext();) {
     t = i.next();
 
     tinfo = t->getInfo();
-    if (!t->isDeleted() && tinfo->matches(in))
-    {  
+    if (!t->isDeleted() && tinfo->matches(in)) {
       out = tinfo->getOutputInfo();
-      return (GState*)t->getEnd();
+      return (GState *)t->getEnd();
     }
   }
   return NULL;
 }
 
+void GState::updateDefaultTransition() {
+  GTransition *t;
 
-void GState::updateDefaultTransition()
-{
-  GTransition* t;
-
-  QMutableListIterator<GTransition*> i(tlist);
-  TransitionInfo* tinfo;
-  IOInfo* def_info=NULL;
+  QMutableListIterator<GTransition *> i(tlist);
+  TransitionInfo *tinfo;
+  IOInfo *def_info = NULL;
   IOInfoList list;
-//  list.setAutoDelete(TRUE);
+  //  list.setAutoDelete(TRUE);
 
-  for(; i.hasNext();)
-  {
+  for (; i.hasNext();) {
     t = i.next();
 
     tinfo = t->getInfo();
@@ -798,8 +722,7 @@ void GState::updateDefaultTransition()
     return;
 
   i.toFront();
-  for(; i.hasNext();)
-  {
+  for (; i.hasNext();) {
     t = i.next();
 
     tinfo = t->getInfo();
@@ -808,6 +731,3 @@ void GState::updateDefaultTransition()
   }
   def_info->updateDefaultInfo(list);
 }
-
-
-

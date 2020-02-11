@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -26,28 +26,25 @@ class QPrinter;
 class MainWindow;
 class Draw;
 
-
 /**
  * @class PrintManager
  * @brief Control class for printing.
  */
-class PrintManager : public QObject
-{
+class PrintManager : public QObject {
   Q_OBJECT
-  public:
-    PrintManager(QWidget* );
-    ~PrintManager();
+public:
+  PrintManager(QWidget *);
+  ~PrintManager();
 
-    void print();
+  void print();
 
-  private:
-    /// Pointer to the main window
-    MainWindow* main;
-    /// QPrinter object
-    QPrinter* printer;
-    /// Draw object
-    Draw* draw;
+private:
+  /// Pointer to the main window
+  MainWindow *main;
+  /// QPrinter object
+  QPrinter *printer;
+  /// Draw object
+  Draw *draw;
 };
-
 
 #endif

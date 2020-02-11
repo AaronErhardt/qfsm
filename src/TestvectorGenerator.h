@@ -18,11 +18,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #ifndef TESTVECTORGENERATOR_H
 #define TESTVECTORGENERATOR_H
-#include <qstring.h>
-#include <qobject.h>
 #include <QList>
-
-
+#include <qobject.h>
+#include <qstring.h>
 
 class Machine;
 class GState;
@@ -34,61 +32,58 @@ class IOInfo;
  *
  */
 
-class TestvectorGenerator : public QObject
-{
+class TestvectorGenerator : public QObject {
   Q_OBJECT
 
-  public:
-    TestvectorGenerator();
-    virtual ~TestvectorGenerator();
+public:
+  TestvectorGenerator();
+  virtual ~TestvectorGenerator();
 
-    void init(Machine*,bool,bool,bool);
+  void init(Machine *, bool, bool, bool);
 
-    void generateTestvector();
+  void generateTestvector();
 
+  QList<IOInfo *> getControlSignalVector() { return control_signal_vector; }
 
-    QList<IOInfo*> getControlSignalVector() {return control_signal_vector;}
+  QList<IOInfo *> getInputVector() { return input_vector; }
 
-    QList<IOInfo*> getInputVector() {return input_vector;}
+  QList<IOInfo *> getMooreOutputVector() { return moore_output_vector; }
 
-    QList<IOInfo*> getMooreOutputVector() {return moore_output_vector;}
+  QList<IOInfo *> getMealyOutputVector() { return mealy_output_vector; }
 
-    QList<IOInfo*> getMealyOutputVector() {return mealy_output_vector;}
+  QList<GState *> getPathRec(QList<GState *> path);
 
-    QList<GState*> getPathRec(QList<GState*> path);
+  QList<GState *> getResetPathRec(QList<GState *> path);
 
-    QList<GState*> getResetPathRec(QList<GState*> path);
+  /// Returns the length of the testvector or -1 when
+  int getTestvectorLength() { return testvector_length; }
 
-    /// Returns the length of the testvector or -1 when
-    int getTestvectorLength() {return testvector_length;}
+protected:
+  /// Pointer to the machine for testvector generation
+  Machine *machine;
 
-  protected:
-    /// Pointer to the machine for testvector generation
-    Machine* machine;
+  /// Input data vector
+  QList<IOInfo *> input_vector;
 
-    /// Input data vector
-    QList<IOInfo*>input_vector;
+  /// Control signal vector (synchronous reset, synchronous enable)
+  QList<IOInfo *> control_signal_vector;
 
-    /// Control signal vector (synchronous reset, synchronous enable)
-    QList<IOInfo*>control_signal_vector;
+  /// Expected data of mealy outputs
+  QList<IOInfo *> mealy_output_vector;
 
-    /// Expected data of mealy outputs
-    QList<IOInfo*>mealy_output_vector;
+  /// Expected data of moore outputs
+  QList<IOInfo *> moore_output_vector;
 
-    /// Expected data of moore outputs
-    QList<IOInfo*>moore_output_vector;
+  /// Number of enteries in the test vector
+  int testvector_length;
 
-    /// Number of enteries in the test vector
-    int testvector_length;
+  /// If TRUE, the testvector will contain a synchronous reset signal
+  bool synchronous_reset;
 
-    /// If TRUE, the testvector will contain a synchronous reset signal
-    bool synchronous_reset;
+  /// If TRUE, the testvector will contain a synchronous enable signal
+  bool synchronous_enable;
 
-    /// If TRUE, the testvector will contain a synchronous enable signal
-    bool synchronous_enable;
-
-    /// If TRUE, a low-active reset signal is used
-    bool negated_reset;
-
+  /// If TRUE, a low-active reset signal is used
+  bool negated_reset;
 };
 #endif // TESTVECTORGENERATOR_H

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -21,34 +21,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <qobject.h>
 
-//class DMachineProperties;
+// class DMachineProperties;
 class MachinePropertiesDlgImpl;
 class MainWindow;
 class Project;
-
 
 /**
  * @class MachineManager
  * @brief Control class for machines in a project.
  */
-class MachineManager : public QObject
-{
+class MachineManager : public QObject {
   Q_OBJECT
-  public:
-    MachineManager(QObject* parent=NULL, const char* name=0);
-    ~MachineManager();
+public:
+  MachineManager(QObject *parent = NULL, const char *name = 0);
+  ~MachineManager();
 
-    int addMachine(Project* );
-    void editMachine(Project* );
+  int addMachine(Project *);
+  void editMachine(Project *);
 
-  private:
-    /// Pointer to the main window
-    MainWindow* main;
-    /// Machine properties dialog
-    MachinePropertiesDlgImpl* machine_props;
-
+private:
+  /// Pointer to the main window
+  MainWindow *main;
+  /// Machine properties dialog
+  MachinePropertiesDlgImpl *machine_props;
 };
-
-
 
 #endif

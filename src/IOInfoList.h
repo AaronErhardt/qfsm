@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -23,37 +23,32 @@ changed parameters the method compareItems to IOInfo* because
 generic items do not exist in Qt 4
 */
 
-
-
 #ifndef IOINFOLIST_H
 #define IOINFOLIST_H
 
-#include <q3ptrlist.h>
-#include <q3ptrcollection.h>
 #include "IOInfo.h"
-//class IOInfo;
+#include <q3ptrcollection.h>
+#include <q3ptrlist.h>
+// class IOInfo;
 
 /**
  * @class IOInfoList
  * @brief List of IOInfo objects.
  */
-class IOInfoList : public QList<IOInfo*>
-{
-//  int compareItems(IOInfo* io1, IOInfo* io2);
-  public:
-    static int compareItems(IOInfo* ci1, IOInfo* ci2);
-    static bool lessThan(IOInfo*& ci1, IOInfo*& ci2);
-    IOInfoList& operator=(const QList<IOInfo*>& iolist);
+class IOInfoList : public QList<IOInfo *> {
+  //  int compareItems(IOInfo* io1, IOInfo* io2);
+public:
+  static int compareItems(IOInfo *ci1, IOInfo *ci2);
+  static bool lessThan(IOInfo *&ci1, IOInfo *&ci2);
+  IOInfoList &operator=(const QList<IOInfo *> &iolist);
 
+  // bool isInverted() { return invert; };
+  void setInvert(bool inv);
 
-    //bool isInverted() { return invert; };
-    void setInvert( bool inv );
-    
-    bool contains(IOInfo *info);
+  bool contains(IOInfo *info);
 
-  private:
-    bool invert;
-
+private:
+  bool invert;
 };
 
 #endif

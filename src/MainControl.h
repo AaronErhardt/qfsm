@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -38,30 +38,28 @@ class MainWindow;
  *
  * It also holds a list of the most recently used files.
  */
-class MainControl : public QObject
-{
+class MainControl : public QObject {
   Q_OBJECT
 
-  public:
-    MainControl(QString lang);
-    void addMRUEntry(QString fileName);
-    void removeMRUEntry(QString fileName);
-    /// Returns the MRU file list
-    QStringList& getMRUList() { return mru_list; }
+public:
+  MainControl(QString lang);
+  void addMRUEntry(QString fileName);
+  void removeMRUEntry(QString fileName);
+  /// Returns the MRU file list
+  QStringList &getMRUList() { return mru_list; }
 
-  private:
-    /// Language
-    QString language;
-    /// List of main windows
-    QList<MainWindow*> window_list;
-    /// List of most recently used files
-    QStringList mru_list;
+private:
+  /// Language
+  QString language;
+  /// List of main windows
+  QList<MainWindow *> window_list;
+  /// List of most recently used files
+  QStringList mru_list;
 
-  public slots:
-    void newWindow();
-    void newWindow(const char* fileName);
-    void quitWindow(MainWindow*);
-};  
-
+public slots:
+  void newWindow();
+  void newWindow(const char *fileName);
+  void quitWindow(MainWindow *);
+};
 
 #endif

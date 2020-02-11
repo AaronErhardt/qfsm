@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -18,7 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 /*
 Qt 4 Port by Rainer Strobel
 
-modified VHDL export class which is compatible with the standards of 
+modified VHDL export class which is compatible with the standards of
 the university of applied sciences augsburg
 */
 
@@ -35,22 +35,19 @@ class Options;
  *
  */
 
-class ExportIODescription : public Export
-{
-  public:
-    ExportIODescription(Options* opt);
+class ExportIODescription : public Export {
+public:
+  ExportIODescription(Options *opt);
 
-    void doExport();
-    QString fileFilter();
-	QString defaultExtension();
+  void doExport();
+  QString fileFilter();
+  QString defaultExtension();
 
-  private:
+private:
+  void writeTable();
 
-    void writeTable();
-
-    
-    /// Writes a comment to the top of the output stream 
-    virtual void writeHeader(QString commentstart, QString commentend="");
+  /// Writes a comment to the top of the output stream
+  virtual void writeHeader(QString commentstart, QString commentend = "");
 };
 
 #endif

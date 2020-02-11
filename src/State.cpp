@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,10 +19,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <math.h>
 #include <string.h>
 
-#include "State.h"
-#include "Transition.h"
 #include "Convert.h"
 #include "Machine.h"
+#include "State.h"
+#include "Transition.h"
 #include "TransitionInfo.h"
 #include "Utils.h"
 
@@ -30,48 +30,45 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  * Constructor.
  * Initialises a state object with name @a n and code @a c.
  */
-State::State(Machine* m, const QString n, QString d, int c, IOInfo* mooreout, bool ends, QString ena/*=""*/, QString exa/*=""*/)
-{
+State::State(Machine *m, const QString n, QString d, int c, IOInfo *mooreout,
+             bool ends, QString ena /*=""*/, QString exa /*=""*/) {
   machine = m;
   sname = n;
   sdescription = d;
   moore_outputs = mooreout;
-  finalstate=ends;
+  finalstate = ends;
 
-  code=c;
+  code = c;
   entry_actions = ena;
   exit_actions = exa;
 }
 
 /// Constructor
-State::State(Machine* m)
-{
-  machine=m;
+State::State(Machine *m) {
+  machine = m;
   sname = "";
-  sdescription="";
+  sdescription = "";
   code = 0;
-  finalstate=FALSE;
-  moore_outputs=NULL;
-  entry_actions="";
-  exit_actions="";
+  finalstate = FALSE;
+  moore_outputs = NULL;
+  entry_actions = "";
+  exit_actions = "";
 }
 
 /// Standard constructor.
-State::State()
-{
-  machine=NULL;
+State::State() {
+  machine = NULL;
   sname = "";
-  sdescription="";
+  sdescription = "";
   code = 0;
-  finalstate=FALSE;
-  moore_outputs=NULL;
-  entry_actions="";
-  exit_actions="";
+  finalstate = FALSE;
+  moore_outputs = NULL;
+  entry_actions = "";
+  exit_actions = "";
 }
 
 /// Copy constructor.
-State::State(const State& st)  
-{
+State::State(const State &st) {
   machine = st.machine;
   sname = st.sname;
   sdescription = st.sdescription;
@@ -82,18 +79,15 @@ State::State(const State& st)
   else
     moore_outputs = NULL;
 
-  finalstate=st.finalstate;
+  finalstate = st.finalstate;
   entry_actions = st.entry_actions;
   exit_actions = st.exit_actions;
 }
 
-
 /// Overloaded assignment operator.
-State& State::operator=(const State& st) 
-{
-  if (this != &st)
-  {
-    machine=st.machine;
+State &State::operator=(const State &st) {
+  if (this != &st) {
+    machine = st.machine;
     sname = st.sname;
     sdescription = st.sdescription;
     code = st.code;
@@ -103,7 +97,7 @@ State& State::operator=(const State& st)
     else
       moore_outputs = NULL;
 
-    finalstate=st.finalstate;
+    finalstate = st.finalstate;
     entry_actions = st.entry_actions;
     exit_actions = st.exit_actions;
   }
@@ -111,26 +105,19 @@ State& State::operator=(const State& st)
 }
 
 /// Destructor
-State::~State()
-{
-}
-
+State::~State() {}
 
 /**
  * Validates the code in string @a s.
- * 
+ *
  * @param mtype Machine type
  * @param s String to validate
  * @returns TRUE if the code is valid, otherwise FALSE
  */
-bool State::codeValid(int mtype, QString s)
-{
-  if (mtype==Binary)
-  {
+bool State::codeValid(int mtype, QString s) {
+  if (mtype == Binary) {
     return Utils::binStringValid(s);
-  }
-  else
-  {
+  } else {
     int icode;
     bool ok;
     icode = s.toInt(&ok);
@@ -146,67 +133,53 @@ bool State::codeValid(int mtype, QString s)
  * @param s String to validate
  * @returns TRUE if the moore output is valid, otherwise FALSE
  */
-bool State::mooreOutputValid(int mtype, QString s)
-{
-  if (mtype==Binary)
-  {
+bool State::mooreOutputValid(int mtype, QString s) {
+  if (mtype == Binary) {
     return Utils::binStringValid(s);
-  }
-  else
-  {
-    return (Transition::conditionValid(mtype, s, FALSE)==0);
+  } else {
+    return (Transition::conditionValid(mtype, s, FALSE) == 0);
   }
 }
-
-
 
 /**
  * Returns a string representing the coding of the state
  *
- * @param type If 'Binary' a binary string is returned, otherwise an integer string.
+ * @param type If 'Binary' a binary string is returned, otherwise an integer
+ * string.
  * @returns The resulting string
  */
-QString State::getCodeStr(int type/*=-1*/)
-{
+QString State::getCodeStr(int type /*=-1*/) {
   Convert conv;
   QString res;
   int stateCodeSize;
-  stateCodeSize=machine->getNumEncodingBits();
+  stateCodeSize = machine->getNumEncodingBits();
 
-  if (type==-1)
+  if (type == -1)
     type = machine->getType();
 
-  switch (type)
-  {
-    case Binary:
-      res = conv.intToBinStr(code, stateCodeSize);
-      return res;
-    default:
-      res.setNum(code);
-      return res;
+  switch (type) {
+  case Binary:
+    res = conv.intToBinStr(code, stateCodeSize);
+    return res;
+  default:
+    res.setNum(code);
+    return res;
   }
 }
 
-void State::setEncoding(int c)
-{
-
-  code=c;
-}
+void State::setEncoding(int c) { code = c; }
 
 /**
  * Returns a string representing the moore outputs of the state
  *
  * @returns The resulting string
  */
-QString State::getMooreOutputsStr(Machine* m/*=NULL*/, Options* opt/*=NULL*/)
-{
+QString State::getMooreOutputsStr(Machine *m /*=NULL*/,
+                                  Options *opt /*=NULL*/) {
   Convert conv;
   QString res;
 
-  //res = conv.X10ToBinStr(moore_outputs);
+  // res = conv.X10ToBinStr(moore_outputs);
   res = moore_outputs->convertToString(m, opt);
   return res;
 }
-
-
-

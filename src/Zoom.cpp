@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -21,10 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "DrawArea.h"
 
 /// Constructor
-Zoom::Zoom()
-{
-  scale=1.0;
-}
+Zoom::Zoom() { scale = 1.0; }
 
 /**
  * Zooms in/out the scrollview.
@@ -32,32 +29,31 @@ Zoom::Zoom()
  * @param p point which will be used as new center
  * @param zoomin if TRUE zooms in otherwise zooms out
  */
-void Zoom::zoom(DrawArea* sview, QPoint p, bool zoomin)
-{
+void Zoom::zoom(DrawArea *sview, QPoint p, bool zoomin) {
   double factor = ZOOM_FACTOR;
   int vp_width = sview->parentWidget()->width();
   int vp_height = sview->parentWidget()->height();
   int neww, newh;
 
   if (!zoomin)
-    factor = 1/ZOOM_FACTOR;
+    factor = 1 / ZOOM_FACTOR;
 
-  if (scale*factor<MAX_ZOOM && scale*factor>MIN_ZOOM)
-  {
-    scale*=factor;
+  if (scale * factor < MAX_ZOOM && scale * factor > MIN_ZOOM) {
+    scale *= factor;
 
-    //sview->setUpdatesEnabled(FALSE);
-    
-    neww = int(sview->width()*factor);
-    if (neww<vp_width)
-      neww=vp_width;
-    newh = int(sview->height()*factor);
-    if (newh<vp_height)
-      newh=vp_height;
+    // sview->setUpdatesEnabled(FALSE);
+
+    neww = int(sview->width() * factor);
+    if (neww < vp_width)
+      neww = vp_width;
+    newh = int(sview->height() * factor);
+    if (newh < vp_height)
+      newh = vp_height;
     sview->resize(neww, newh);
-//    sview->setContentsPos(int(p.x()*factor-vp_width/2), int(p.y()*factor-vp_height/2));
-//    sview->horizontalScrollBar()->setValue(int(p.x()*factor-vp_width/2));
-//    sview->verticalScrollBar()->setValue(int(p.y()*factor-vp_height/2));
+    //    sview->setContentsPos(int(p.x()*factor-vp_width/2),
+    //    int(p.y()*factor-vp_height/2));
+    //    sview->horizontalScrollBar()->setValue(int(p.x()*factor-vp_width/2));
+    //    sview->verticalScrollBar()->setValue(int(p.y()*factor-vp_height/2));
     /*
     sview->setUpdatesEnabled(TRUE);
     sview->repaint();
@@ -65,21 +61,17 @@ void Zoom::zoom(DrawArea* sview, QPoint p, bool zoomin)
   }
 }
 
-
-
 /**
- * Resets the zoom. 
+ * Resets the zoom.
  * Sets all the zooming parameters to the standard value (100%).
  */
-void Zoom::resetZoom(DrawArea* sview)
-{
+void Zoom::resetZoom(DrawArea *sview) {
 
-//  sview->resizeContents(CONT_WIDTH, CONT_HEIGHT);
-  sview->resize(int(sview->width()/scale),
-    int(sview->height()/scale));
+  //  sview->resizeContents(CONT_WIDTH, CONT_HEIGHT);
+  sview->resize(int(sview->width() / scale), int(sview->height() / scale));
   scale = 1.0;
-//  sview->setContentsPos(0,0);
-//  sview->horizontalScrollBar()->setValue(0);
-//  sview->verticalScrollBar()->setValue(0);
+  //  sview->setContentsPos(0,0);
+  //  sview->horizontalScrollBar()->setValue(0);
+  //  sview->verticalScrollBar()->setValue(0);
   sview->repaint();
 }

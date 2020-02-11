@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -35,47 +35,38 @@ contentsMouseMoveEvent calls repaint, instead.
 
 #include <q3scrollview.h>
 #include <qcursor.h>
-//Added by qt3to4:
+// Added by qt3to4:
 #include <QMouseEvent>
 #include <QPaintEvent>
-#include <QScrollArea>
 #include <QResizeEvent>
+#include <QScrollArea>
 
 #include "DRect.h"
-#include "GState.h"
 #include "GITransition.h"
+#include "GState.h"
 #include "Selection.h"
 
-
-
-class ScrollView :public QScrollArea
-{
+class ScrollView : public QScrollArea {
 
   Q_OBJECT
 
-  DrawArea*drawArea;
-  MainWindow*main;
+  DrawArea *drawArea;
+  MainWindow *main;
 
-  public:
-    ScrollView(QWidget* parent=0, const char* name=0);
+public:
+  ScrollView(QWidget *parent = 0, const char *name = 0);
 
-    DrawArea*getDrawArea()
-    { return drawArea; }
+  DrawArea *getDrawArea() { return drawArea; }
 
-    void updateBackground();
-    void updateSize(QResizeEvent* e=NULL);
+  void updateBackground();
+  void updateSize(QResizeEvent *e = NULL);
 
-  public slots:
-    void scrollContents(int dx,int dy);
-    void scrollContentsTo(int x,int y);
+public slots:
+  void scrollContents(int dx, int dy);
+  void scrollContentsTo(int x, int y);
 
-  protected:
-    virtual void resizeEvent(QResizeEvent*);
-
-
+protected:
+  virtual void resizeEvent(QResizeEvent *);
 };
 
-
 #endif
-
-

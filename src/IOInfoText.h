@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -35,51 +35,54 @@ class IOInfoBin;
  * @brief Stores ASCII Input/Ouput information.
  *
  */
-class IOInfoText : public IOInfo
-{
-  public:
-    IOInfoText(IOType t);
-    IOInfoText(IOType t, unsigned char );
-    IOInfoText(IOType t, QString );
-    ~IOInfoText();
+class IOInfoText : public IOInfo {
+public:
+  IOInfoText(IOType t);
+  IOInfoText(IOType t, unsigned char);
+  IOInfoText(IOType t, QString);
+  ~IOInfoText();
 
-    void setRangeInfo(IOInfo* range_start, IOInfo* range_end);
+  void setRangeInfo(IOInfo *range_start, IOInfo *range_end);
 
-    QString convertToString(Machine* m=NULL, Options* opt=NULL) const;
-    QString convertToComparableString(Machine* m=NULL, Options* opt=NULL) const;
-    QString convertToBinStr(Machine* m=NULL, Options* opt=NULL) const;
-    QString convertToHexStr() const;
-    bool convertToASCII(unsigned char* ascii, int maxlen, int& length, bool singlechar=FALSE) const;
-    IOInfoBin convertToBin(int numbits) const;
-    int convertToInt() const;
-    void convertToBinList(IOInfoList& list, bool resolve_invert=TRUE) const;
+  QString convertToString(Machine *m = NULL, Options *opt = NULL) const;
+  QString convertToComparableString(Machine *m = NULL,
+                                    Options *opt = NULL) const;
+  QString convertToBinStr(Machine *m = NULL, Options *opt = NULL) const;
+  QString convertToHexStr() const;
+  bool convertToASCII(unsigned char *ascii, int maxlen, int &length,
+                      bool singlechar = FALSE) const;
+  IOInfoBin convertToBin(int numbits) const;
+  int convertToInt() const;
+  void convertToBinList(IOInfoList &list, bool resolve_invert = TRUE) const;
 
-    int getLength() const { return info.length()*8; } ;
-    bool isSingle() const;
+  int getLength() const { return info.length() * 8; };
+  bool isSingle() const;
 
-    /// Returns the I/O info
-    QString getInfo() { return info; };
-    /// Sets the I/O info
-    void setInfo(QString i) { info = i.stripWhiteSpace(); };
-    void setBin(QString bin, int numbits);
-    void setASCII(const unsigned char* ascii, int asciilen, int numbits); 
-    void setString(QString string, int numbits);
-    IOInfo* getMinus1();
-    IOInfo* getPlus1();
+  /// Returns the I/O info
+  QString getInfo() { return info; };
+  /// Sets the I/O info
+  void setInfo(QString i) { info = i.stripWhiteSpace(); };
+  void setBin(QString bin, int numbits);
+  void setASCII(const unsigned char *ascii, int asciilen, int numbits);
+  void setString(QString string, int numbits);
+  IOInfo *getMinus1();
+  IOInfo *getPlus1();
 
-    QList<IOInfo*> getSingles();
-    QList<IOInfo*> getSinglesInversion();
+  QList<IOInfo *> getSingles();
+  QList<IOInfo *> getSinglesInversion();
 
-    IOInfo* clone() const;
-    void split(IOInfoList& , bool resolve_invert ) const;
-    void split(IOInfoList& , GState* ) const;
-    //int split(const IOInfo* ioinfo, IOInfoList& list);
-    QStringList getRagelConditions() { QStringList sl; return sl; };
+  IOInfo *clone() const;
+  void split(IOInfoList &, bool resolve_invert) const;
+  void split(IOInfoList &, GState *) const;
+  // int split(const IOInfo* ioinfo, IOInfoList& list);
+  QStringList getRagelConditions() {
+    QStringList sl;
+    return sl;
+  };
 
-  private:
-    /// I/O information
-    QString info;
+private:
+  /// I/O information
+  QString info;
 };
 
 #endif
-

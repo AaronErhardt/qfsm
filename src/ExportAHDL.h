@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -33,27 +33,26 @@ replaced Qt 3 interator through Qt 4 iterators
  * @brief Class that manages export to AHDL.
  *
  * The AHDL file can be used as a Altera Max2Plus text design file (tdf).
- * A tdf file can be compiled by the Max2Plus software and afterwards programmed into an
- * Altera chip.
+ * A tdf file can be compiled by the Max2Plus software and afterwards programmed
+ * into an Altera chip.
  */
 
-class ExportAHDL : public Export
-{
-  public:
-    ExportAHDL(Options* opt);
-    void doExport();
-    QString fileFilter();
-	QString defaultExtension();
+class ExportAHDL : public Export {
+public:
+  ExportAHDL(Options *opt);
+  void doExport();
+  QString fileFilter();
+  QString defaultExtension();
 
-  private:
-    void writeName();
-    void writeIO();
-    void writeVariables();
-    void writeMain();
-    void writeTransitions();
+private:
+  void writeName();
+  void writeIO();
+  void writeVariables();
+  void writeMain();
+  void writeTransitions();
 
-    bool sync_reset;
-    bool use_moore;
+  bool sync_reset;
+  bool use_moore;
 };
 
 #endif

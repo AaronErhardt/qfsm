@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -16,42 +16,36 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include <qprinter.h>
 #include <q3paintdevicemetrics.h>
+#include <qprinter.h>
 
-#include "PrintManager.h"
-#include "MainWindow.h"
 #include "Draw.h"
-#include "Machine.h"
 #include "Error.h"
+#include "Machine.h"
+#include "MainWindow.h"
+#include "PrintManager.h"
 
 /// Constructor
-PrintManager::PrintManager(QWidget* parent)
-	    : QObject(parent)
-{
-  main = (MainWindow*)parent;
+PrintManager::PrintManager(QWidget *parent) : QObject(parent) {
+  main = (MainWindow *)parent;
 
   printer = new QPrinter();
   draw = new Draw(main, main->getOptions());
 }
 
 /// Destructor
-PrintManager::~PrintManager()
-{
+PrintManager::~PrintManager() {
   delete printer;
   delete draw;
 }
 
-
 /**
  * Prints the current machine adjusting on one page.
  */
-void PrintManager::print()
-{
-  if (printer->setup(main))
-  {
+void PrintManager::print() {
+  if (printer->setup(main)) {
     QPainter p;
-    Machine* m = main->project->machine;
+    Machine *m = main->project->machine;
     int w, h;
     double scale;
     int canvw, canvh;
@@ -62,9 +56,8 @@ void PrintManager::print()
     QRect textrect;
 
     name = printer->printerName();
-//    qDebug(name);
-    if (!printer->outputToFile() && name.isEmpty())
-    {
+    //    qDebug(name);
+    if (!printer->outputToFile() && name.isEmpty()) {
       Error::info(tr("The printer could not be initialised."));
       return;
     }
@@ -73,23 +66,24 @@ void PrintManager::print()
     Q3PaintDeviceMetrics metrics(printer);
     w = metrics.width();
     h = metrics.height();
- 
+
     m->getCanvasSize(canvw, canvh);
-    scale = (double)w/canvw;
-    if (canvh*scale>h)
-      scale = (double)h/canvh;
+    scale = (double)w / canvw;
+    if (canvh * scale > h)
+      scale = (double)h / canvh;
 
     printer->setFullPage(FALSE);
 
-    draw->drawStates(m, &p, int(-mleft/scale), int(-mtop/scale), scale);
-    draw->drawTransitions(m, &p, int(-mleft/scale), int(-mtop/scale), scale) 
-      /*m->getNumInputs(), m->getNumOutputs()*/;
+    draw->drawStates(m, &p, int(-mleft / scale), int(-mtop / scale), scale);
+    draw->drawTransitions(m, &p, int(-mleft / scale), int(-mtop / scale), scale)
+        /*m->getNumInputs(), m->getNumOutputs()*/;
     if (m->getDrawITrans())
-      draw->drawInitialTransition(m, m->getInitialTransition(), &p, int(-mleft/scale),
-	int(-mtop/scale), scale, textrect, FALSE);
+      draw->drawInitialTransition(m, m->getInitialTransition(), &p,
+                                  int(-mleft / scale), int(-mtop / scale),
+                                  scale, textrect, FALSE);
     if (main->getOptions()->getPrintHeader())
       draw->drawHeadline(m, &p); //, scale);
-    
+
     p.end();
   }
 }
