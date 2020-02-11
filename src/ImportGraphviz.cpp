@@ -92,7 +92,6 @@ Project* ImportGraphviz::doImport()
   QString label,labelin, labelout, insub;
   int mtype = -1;
   QRect bb;
-  float maxsizex, maxsizey;
   float dpi;
   int graph_offsetx = 120;
   int graph_offsety = 50;
@@ -131,8 +130,6 @@ Project* ImportGraphviz::doImport()
     label = QString(lab);
   else
     label="";
-  maxsizex = label.section(",",1,1).toFloat();
-  maxsizey = label.section(",",2,2).toFloat();
 
   lab = agget(G, (char*)"dpi");
   if (lab && strcmp(lab,"\\N"))
@@ -143,16 +140,15 @@ Project* ImportGraphviz::doImport()
 
   // guess machine type
   int mtype_final=-1;
-  int prev_mtype=-1;
   int guess_count=0;
-  for (node = agfstnode(G); node && /*mtype_final==-1*/guess_count<=10; node = agnxtnode(G,node))
+  for (node = agfstnode(G); node && /*mtype_final==-1*/guess_count<=10; node = agnxtnode(G,node)) {
     for (edge = agfstout(G,node); edge; edge = agnxtout(G,edge))
     {
       lab = agget(edge, (char*)"label");
       if (lab && strcmp(lab,"\\N"))
-	label = QString(lab);
+	    label = QString(lab);
       else
-	label="";
+	    label="";
       //printf("label: %s\n", label);
       labelin = label.section(infosep, 0, 0);
       labelout = label.section(infosep, 1, 1);
@@ -162,16 +158,17 @@ Project* ImportGraphviz::doImport()
 	break;
 	*/
       if (mtype>mtype_final)
-	mtype_final = mtype;  // choose most general type
+	    mtype_final = mtype;  // choose most general type
       guess_count++;
       if (guess_count>10)
-	break;
-      prev_mtype=mtype;
+	    break;
     }
-    if (mtype_final==-1)  // if guess is unsucessful assume it's ASCII
-      m->setType(1);
-    else
-      m->setType(mtype_final);
+  }
+
+  if (mtype_final==-1)  // if guess is unsucessful assume it's ASCII
+    m->setType(1);
+  else
+    m->setType(mtype_final);
   /*
   qDebug("Machine type: %d", mtype);
   qDebug("Machine name: %s", G->name);
@@ -408,7 +405,7 @@ Project* ImportGraphviz::doImport()
 	//qDebug("len %d", sllen);
 	int ind=0;
 	int eind=-1;
-	int cpind, cpnum=0;  // cpnum holds the number of control points stored in stx, sty
+	int cpnum=0;  // cpnum holds the number of control points stored in stx, sty
 	for(int i=0;i<sllen; i++)
 	{
 	  if (sl.at(i).section(",",0,0)=="e")

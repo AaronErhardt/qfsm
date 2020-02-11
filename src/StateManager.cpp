@@ -324,10 +324,8 @@ QString StateManager::getNewBinCode()
   int code;
   Convert conv;
   QString result;
-  Machine* m;
   int bits;
 
-  m = main->project->machine;
   code = getNewCode();
   bits = int(log((float)code)/log(2.0))+1;
   if (bits<1)

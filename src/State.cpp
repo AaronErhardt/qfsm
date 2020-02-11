@@ -37,9 +37,6 @@ State::State(Machine* m, const QString n, QString d, int c, IOInfo* mooreout, bo
   sdescription = d;
   moore_outputs = mooreout;
   finalstate=ends;
-  
-
-   int stateCodeSize=machine->getNumEncodingBits();
 
   code=c;
   entry_actions = ena;

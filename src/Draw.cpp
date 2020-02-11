@@ -655,7 +655,6 @@ void Draw::drawCondition(Machine* m, GTransition* t, QPainter* p, int contx,
   double mx, my, condx, condy;
   QString sin, sep, sout;
   QString cond;
-  int numout;
   TransitionInfo* info;
   QRect bound;
   QBrush br(QColor(255,255,255));
@@ -664,8 +663,6 @@ void Draw::drawCondition(Machine* m, GTransition* t, QPainter* p, int contx,
   //int count, in_len, out_len;
   //QStringList::iterator it;
   //bool first;
-
-  numout = m->getNumOutputs();
 
   window = p->window();
   p->setViewport(-contx, -conty, int(window.width()*scale), 
@@ -909,7 +906,6 @@ void Draw::drawGrid(Grid* gr, QPainter* p, int contx, int conty, double scale)
 
   int numpointsx = float((contx+window.width())/scale-cx)/gu;
   int numpointsy = float((conty+window.height())/scale-cy)/gu;
-  int numpoints = numpointsx*numpointsy;
 
   while (gu*scale<6)
     gu *= 2;
@@ -1330,7 +1326,6 @@ QRect Draw::getBoundingBox(Machine* m, QPainter* p)
       else
       {
 	double bx1, by1, bx2, by2;
-	double dx, dy, m;
 	double t=-0.0;
 	
 	trans->bezierCurve(t, bx2, by2);
@@ -1449,7 +1444,6 @@ QRect Draw::getBoundingBox(Machine* m, QPainter* p)
     else
     {
       double bx1, by1, bx2, by2;
-      double dx, dy, m;
       double t=-0.0;
       
       trans->bezierCurve(t, bx2, by2);

@@ -45,7 +45,6 @@ void ExportPNG::doExport()
   using namespace std;
 
   // code adapted from Umbrello
-  bool exportSuccessful;
   QRect textrect;
 
 //  out->close();
@@ -68,7 +67,6 @@ void ExportPNG::doExport()
   if (!scrollview)
   {
     delete painter;
-    exportSuccessful = FALSE;
   }
 
   painter->translate(-rect.x(),-rect.y());

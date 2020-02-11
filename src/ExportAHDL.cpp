@@ -275,8 +275,8 @@ void ExportAHDL::writeTransitions()
 	QMutableListIterator<IOInfo*> ioit(iolist);
 
 
-  if(machine->getNumInputs()>0)
-        *out << "\t\t\tIF (";
+    if(machine->getNumInputs()>0)
+      *out << "\t\t\tIF (";
 
 	first = TRUE;
 	for(; ioit.hasNext();)

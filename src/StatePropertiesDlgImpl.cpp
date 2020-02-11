@@ -78,6 +78,7 @@ void StatePropertiesDlgImpl::validate()
    l = statePropertiesDlg.le_linewidth->text();
    c = statePropertiesDlg.le_code->text();
 
+   /* MEANINGLESS statements (icode set but unused) */
    if (mtype==Binary)
      icode = conv.binStrToInt(c);
    else

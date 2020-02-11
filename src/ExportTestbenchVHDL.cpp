@@ -665,13 +665,7 @@ void ExportTestbenchVHDL::writeObserverProcess(std::ofstream*out)
   int stimuli_counter;
   int c;
   QString bit_string;
-  bool io_names_t, synchronous_reset_t;
-
-
-  synchronous_reset_t=synchronous_reset;
-  io_names_t=io_names;
-
-
+  bool io_names_t=io_names;
 
 
   if (use_std_logic)
@@ -1125,11 +1119,7 @@ void ExportTestbenchVHDL::writeNewObserverProcess(std::ofstream*out)
 {
   using namespace std;
 
-  bool io_names_t, synchronous_reset_t;
-
-
-  synchronous_reset_t=synchronous_reset;
-  io_names_t=io_names;
+  bool io_names_t=io_names;
 
 
   *out << "    stimuli_observer : PROCESS" << endl;

@@ -62,7 +62,6 @@ void ExportVVVV::writeMain()
   QString tinfoi, tinfoo, sn1, sn2, reset_sn;
   State* stmp;
   TransitionInfo* tinfo;
-  bool first;
   QString reset_event_name, reset_action_name;
 
   // output reset state first

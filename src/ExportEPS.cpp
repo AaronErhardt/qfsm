@@ -46,7 +46,7 @@ void ExportEPS::doExport()
   using namespace std;
 
   // code adapted from Umbrello
-  bool exportSuccessful;
+  //bool exportSuccessful;
   QRect textrect;
 
   //out->close();
@@ -81,7 +81,7 @@ void ExportEPS::doExport()
     {
       delete painter;
       delete printer;
-      exportSuccessful = FALSE;
+      //exportSuccessful = FALSE;
     }
     Draw* draw = new Draw(scrollview, options);
     QRect rect = draw->getBoundingBox(machine, painter);
@@ -108,7 +108,7 @@ void ExportEPS::doExport()
     // modify bounding box from screen to eps resolution.
     rect.setWidth( int(ceil(rect.width() * 72.0/resolution)) );
     rect.setHeight( int(ceil(rect.height() * 72.0/resolution)) );
-    exportSuccessful = fixEPS(fileName,rect);
+    //exportSuccessful = fixEPS(fileName,rect);
 	
     // next painting will most probably be to a different device (i.e. the screen)
     //view->forceUpdateWidgetFontMetrics(0);

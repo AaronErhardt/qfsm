@@ -156,7 +156,6 @@ void ExportVHDL::writeEntity(std::ofstream*out)
 
   //take values into account depending on alliance value
   bool io_names_t=!alliance && io_names;            //true only when !alliance
-  bool state_encoding_t=!alliance && state_encoding;//true only when !alliance
   bool synchronous_reset_t=alliance || synchronous_reset;//false only when !alliance
 
 
@@ -261,9 +260,7 @@ void ExportVHDL::writeArchitecture(std::ofstream*out)
   const char* const bit_string=std_ulogicOrBit[use_std_logic];
 
   //take values into account depending on alliance value
-  bool io_names_t=!alliance && io_names;
   bool state_encoding_t=!alliance && state_encoding;
-  bool synchronous_reset_t=alliance || synchronous_reset;
 
 
 
@@ -354,7 +351,6 @@ void ExportVHDL::writeClockProcess(std::ofstream*out)
   using namespace std;
 
   //take values into account depending on alliance value
-  bool io_names_t=!alliance && io_names;
   bool state_encoding_t=!alliance && state_encoding;
   bool synchronous_reset_t=alliance || synchronous_reset;
 
@@ -484,7 +480,7 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
   QStringList inputs_array=(machine->retranslateNames(machine->getInputNameList())).split(",");
 
   QStringList::iterator i;
-  bool io_names_t, state_encoding_t, synchronous_reset_t;
+  bool io_names_t, state_encoding_t;
   int cond_notation_t;
   int numStateBits = numbits(machine->getNumStates());
   //qDebug("numStateBits: %d", numStateBits);
@@ -496,14 +492,13 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
   {
     io_names_t=false;
     state_encoding_t=false;
-    synchronous_reset_t=false;
     cond_notation_t=0; // IF-THEN notation
   }
   else
   {
     io_names_t=io_names;
     state_encoding_t=state_encoding;
-    synchronous_reset_t=synchronous_reset;
+
     cond_notation_t=cond_notation;
   }
 
@@ -537,7 +532,7 @@ void ExportVHDL::writeStateProcess(std::ofstream*out)
     // temporary variables
     if (machine->getNumInputs()>0)
       *out << "    VARIABLE temp_input : "<< bit_string << "_vector("<< machine->getNumInputs()-1 << " DOWNTO 0);" << endl;
-    if (machine->getNumMooreOutputs()>0 && !sync_look_ahead || debugStateBits)
+    if ((machine->getNumMooreOutputs()>0 && !sync_look_ahead) || debugStateBits)
       *out << "    VARIABLE temp_output : "<< bit_string << "_vector("<<  debugStateBits + machine->getNumMooreOutputs()-1 << " DOWNTO 0);" << endl;
     if (machine->getNumOutputs()>0)
       *out << "    VARIABLE temp_mealy_output : "<< bit_string << "_vector("<< machine->getNumOutputs()-1 << " DOWNTO 0);" << endl;
@@ -1109,16 +1104,14 @@ void ExportVHDL::writeOutputProcess(std::ofstream*out)
 
   QString out_bit_string;
 
-
-
-  bool io_names_t;
-
+  /* MEANINGLESS STATEMENTS --> can probably be removed
   if (machine->getType()==1) // Binary machine
     io_names_t=false;
 
   if (alliance && machine->getType()==0)
     io_names_t=false;
   else io_names_t=io_names;
+  */
 
 
   *out << "  lookahead_output_logic: PROCESS (next_state)\n" ;

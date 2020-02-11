@@ -273,7 +273,6 @@ void Machine::removeState(GState* s)
 
   QListIterator<GTransition*> ti(s->tlist);
   QListIterator<GTransition*> tir(s->reflist);
-  int i;
 
   GTransition* t;
 
@@ -697,10 +696,11 @@ int Machine::getNumStates()
  */
 void Machine::setMooreOutputNames(int num, QString string)
 {
-  int length, count=0;
+  //int length;
+  //int count=0;
   QString s, tmp;
 
-  length = string.length();
+  //length = string.length();
 
   output_names_moore.clear();
   output_names_moore=translateNames(string);
@@ -967,10 +967,10 @@ int Machine::getNumEncodingBits()
  */
 void Machine::setMealyInputNames(int num, QString string)
 {
-  int length, count=0;
+  //int length, count=0;
   QString s, tmp;
 
-  length = string.length();
+  //length = string.length();
 
   input_names.clear();
   input_names=translateNames(string);
@@ -1041,10 +1041,10 @@ QString Machine::getMealyInputNames(QString separator/*=", "*/)
  */
 void Machine::setMealyOutputNames(int num, QString string)
 {
-  int length, count=0;
+  //int length, count=0;
   QString s, tmp;
 
-  length = string.length();
+  //length = string.length();
 
   output_names.clear();
   output_names=translateNames(string);
@@ -1141,8 +1141,7 @@ int Machine::getNewCode()
 /// Search for state codes that were not unique and replace them
 void Machine::correctCodes()
 {
-  int newCode,bits;
-  GState *s1,*s2,*sc;
+  GState *s1,*s2; //,*sc;
   QListIterator <GState*> i1(state_list);
   
   while(i1.hasNext())
@@ -1167,7 +1166,6 @@ void Machine::correctCodes()
 ///returns true when every state code of the machine is unique
 bool Machine::checkStateCodes()
 {
-  int newCode,bits;
   GState *s1,*s2;
   QListIterator <GState*> i1(state_list);
   

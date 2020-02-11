@@ -46,7 +46,7 @@ void ExportSVG::doExport()
   using namespace std;
 
   // code adapted from Umbrello
-  bool exportSuccessful;
+  //bool exportSuccessful;
   QRect textrect;
 
   //out->close();
@@ -78,7 +78,7 @@ void ExportSVG::doExport()
   if (!scrollview)
   {
     delete painter;
-    exportSuccessful = FALSE;
+    //exportSuccessful = FALSE;
   }
 
 

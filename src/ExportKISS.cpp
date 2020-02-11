@@ -194,12 +194,11 @@ void ExportKISS::writeTransitions()
   TransitionInfo* tinfo;
   IOInfo* iosingle;
   IOInfo* tioinfo;
-  bool first;
 
   
   QMutableListIterator<GState*> is(machine->getSList());
 
-  for(; is.hasNext();)
+  while(is.hasNext())
   {
     s = is.next();
     if (s->isDeleted())
@@ -210,7 +209,7 @@ void ExportKISS::writeTransitions()
 
     QMutableListIterator<GTransition*> it(s->tlist);
 
-    for(; it.hasNext();)
+    while(it.hasNext())
     {
       t = it.next();
       tinfo = t->getInfo();
@@ -218,52 +217,48 @@ void ExportKISS::writeTransitions()
 
       if (!t->isDeleted() && t->getEnd())
       {
-//	QList<IOInfo> iolist;
-    QList<IOInfo*> iolist;
-	iolist = tioinfo->getSinglesInversion();
-//	iolist.setAutoDelete(TRUE);
+//   	QList<IOInfo> iolist;
+        QList<IOInfo*> iolist;
+    	iolist = tioinfo->getSinglesInversion();
+//   	iolist.setAutoDelete(TRUE);
 	
-//	QListIterator<IOInfo> ioit(iolist);
-    QListIterator<IOInfo*> ioit(iolist);
+//  	QListIterator<IOInfo> ioit(iolist);
+        QListIterator<IOInfo*> ioit(iolist);
 
-	first = TRUE;
-	for(; ioit.hasNext();)
-	{
+	    while(ioit.hasNext())
+	    {
+	      iosingle = ioit.next();
+	      tinfoi = iosingle->convertToBinStr();
+	      stmp = t->getEnd();
+	      tinfoo = tinfo->getOutputsStrBin();
 
-	  iosingle = ioit.next();
-	  tinfoi = iosingle->convertToBinStr();
-	  stmp = t->getEnd();
-	  tinfoo = tinfo->getOutputsStrBin();
+	      if (!tinfoi.isEmpty() && stmp)
+	      {
+	        int slen = tinfoi.length();
+	        int numin = machine->getNumInputs();
+	        for(int k=slen; k<numin; k++)
+	          *out << "0";
 
-	  if (!tinfoi.isEmpty() && stmp)
-	  {
-	    int slen = tinfoi.length();
-	    int numin = machine->getNumInputs();
-	    for(int k=slen; k<numin; k++)
-	      *out << "0";
+	        tinfoi.replace(QRegExp("x"), "-");
+	        *out << tinfoi.latin1() << " "; // << "\" ";
 
-	    tinfoi.replace(QRegExp("x"), "-");
-	    *out << tinfoi.latin1() << " "; // << "\" ";
-
-	    sn2 = stmp->getStateName();
+    	    sn2 = stmp->getStateName();
             sn2.replace(QRegExp(" "), "_");
 
-	    *out << sn1.latin1() << " " << sn2.latin1() << " ";
+	        *out << sn1.latin1() << " " << sn2.latin1() << " ";
 
-	    slen = tinfoo.length();
-	    int numout = machine->getNumOutputs();
-	    for(int l=slen; l<numout; l++)
-	      *out << "0";
+	        slen = tinfoo.length();
+	        int numout = machine->getNumOutputs();
+	        for(int l=slen; l<numout; l++)
+	          *out << "0";
 
-	    *out << tinfoo.latin1() << endl;
+	        *out << tinfoo.latin1() << endl;
 
-	    first=FALSE;
-	  }
-	}
+	      }
+	    }
       }
     }
   }
-
 }
 
 

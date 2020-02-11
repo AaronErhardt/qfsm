@@ -591,8 +591,8 @@ void GState::calcLoop(double x, double y, int rad, double mousex,
  */
 void GState::removeTransition(GTransition* trem)
 {
-  GState* s;
-  s = (GState*)trem->getEnd();
+  //GState* s;
+  //s = (GState*)trem->getEnd();
 
   trem->select(FALSE);
   trem->setDeleted();

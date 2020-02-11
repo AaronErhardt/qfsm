@@ -88,9 +88,7 @@ void ExportSMC::writeTransitions()
   QString tinfoi, tinfoo, sn1, sn2;
   State* stmp;
   TransitionInfo* tinfo;
-  IOInfo* iosingle;
   IOInfo* tioinfo;
-  bool first;
   QStringList tinfoo_list, action_list;
   QString tinfoi_processed, tinfoo_processed;
   QStringList::iterator sit;

@@ -178,8 +178,6 @@ bool Selection::selectRect(Machine* m, DRect& r, bool add)
   
   QListIterator<GState*> lsi(ls);
 
-  bool sel=FALSE;
-
   QListIterator<GState*> i(ssel_list);
 
   if (!add)
@@ -188,7 +186,6 @@ bool Selection::selectRect(Machine* m, DRect& r, bool add)
   for(; i.hasNext();)
   {
     tmp = i.next();
-    sel=TRUE;
     tmp->select(FALSE);
   }
   ssel_list.clear();
@@ -198,7 +195,6 @@ bool Selection::selectRect(Machine* m, DRect& r, bool add)
   for(; it.hasNext();)
   {
     t = it.next();
-    sel=TRUE;
     t->select(FALSE);
   }
   tsel_list.clear();

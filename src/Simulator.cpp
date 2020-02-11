@@ -173,7 +173,7 @@ void Simulator::setCurrentState(GState* s)
 void Simulator::next()
 {
   QString in, out;
-  int numin, numout;
+  int numin;
   GState* next_state;
   Convert conv;
   IOInfo* ioinfo;
@@ -182,7 +182,6 @@ void Simulator::next()
   Error err;
 
   numin = machine->getNumInputs();
-  numout = machine->getNumOutputs();
 
   in = simdlg->getInputs();
 //  bin = new char[numin+1];

@@ -164,8 +164,6 @@ QString IOInfoASCII::convertToHexStr() const
 IOInfoBin IOInfoASCII::convertToBin(int numbits) const
 {
   Convert conv;
-  unsigned char ascii[MAX_CHARARRAY_LENGTH];
-  int length;
   IOInfoBin result(type);
   QString binstr;
 

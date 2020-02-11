@@ -52,7 +52,7 @@ void UndoBuffer::tidyUp()
   GITransition* it;
   QList<GTransition*>* l;
 
-  for(; i.hasNext();)
+  while(i.hasNext())
   {
     u = i.next();
     

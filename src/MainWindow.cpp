@@ -3172,9 +3172,9 @@ void MainWindow::stateSetInitial()
 /// Set selected state as final state.
 void MainWindow::stateSetFinal()
 {
-  GState* s;
+  //GState* s;
 //  int otype;
-  s = NULL; //(GState*)wscroll->getContextObject(otype);
+  //s = NULL; //(GState*)wscroll->getContextObject(otype);
   Machine* m;
   
   if (!project)

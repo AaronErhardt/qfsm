@@ -79,9 +79,6 @@ void ExportSCXML::writeTransitions()
   QString tinfoi, tinfoo, sn1, sn2;
   State* stmp;
   TransitionInfo* tinfo;
-  IOInfo* iosingle;
-  IOInfo* tioinfo;
-  bool first;
   QStringList tinfoo_list;
   QString tinfoi_processed, tinfoo_processed;
   QStringList::iterator sit;
@@ -109,7 +106,6 @@ void ExportSCXML::writeTransitions()
     {
       t = it.next();
       tinfo = t->getInfo();
-      tioinfo = tinfo->getInputInfo();
 
       if (!t->isDeleted() && t->getEnd())
       {
