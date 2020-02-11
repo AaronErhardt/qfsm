@@ -1,0 +1,11 @@
+# Ignore auto-generated files
+moc*
+
+CMakeFiles/*
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+
+qfsm
+
+ui_Export*
