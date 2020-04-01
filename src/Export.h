@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -25,11 +25,10 @@ one of the .latin1() calls did not exist
 #ifndef EXPORT_H
 #define EXPORT_H
 
+#include <QObject>
 #include <fstream>
 #include <qstring.h>
-#include <QObject>
 
- 
 class Machine;
 class Options;
 class ScrollView;
@@ -40,41 +39,41 @@ class ScrollView;
  *
  */
 
-class Export : public QObject
-{
+class Export : public QObject {
   Q_OBJECT
 
-  public:
-    Export(Options* opt);
-    virtual ~Export();
+public:
+  Export(Options *opt);
+  virtual ~Export();
 
-    //void init(std::ofstream* ,Machine*, QString fn=QString::null, ScrollView* sv=NULL);
-    void init(std::ostream* ,Machine*, QString fn=QString::null, ScrollView* sv=NULL);
-    /// Does the actual exporting
-    virtual void doExport()=0;
-    /// Returns the appropriate filter string for the file dialog.
-    virtual QString fileFilter()=0;
-    /// Verifies if the machine is in a valid form for exporting 
-    virtual bool validateMachine(Machine* ) { return TRUE; };
-	/// Returns the default file extension
-	virtual QString defaultExtension()=0;
+  // void init(std::ofstream* ,Machine*, QString fn=QString::null, ScrollView*
+  // sv=NULL);
+  void init(std::ostream *, Machine *, QString fn = QString::null,
+            ScrollView *sv = NULL);
+  /// Does the actual exporting
+  virtual void doExport() = 0;
+  /// Returns the appropriate filter string for the file dialog.
+  virtual QString fileFilter() = 0;
+  /// Verifies if the machine is in a valid form for exporting
+  virtual bool validateMachine(Machine *) { return TRUE; };
+  /// Returns the default file extension
+  virtual QString defaultExtension() = 0;
 
+protected:
+  /// Output stream
+  // std::ofstream* out;
+  std::ostream *out;
+  /// Pointer to the machine that shall be exported
+  Machine *machine;
+  /// Application options
+  Options *options;
+  /// Output filename (only used for EPS and SVG export)
+  QString fileName;
+  /// ScrollView pointer (only used for EPS and SVG export);
+  ScrollView *scrollview;
 
-  protected:
-    /// Output stream 
-    //std::ofstream* out;
-    std::ostream* out;
-    /// Pointer to the machine that shall be exported
-    Machine* machine;
-    /// Application options
-    Options* options;
-    /// Output filename (only used for EPS and SVG export)
-    QString fileName;
-    /// ScrollView pointer (only used for EPS and SVG export);
-    ScrollView* scrollview;
-
-    /// Writes a comment to the top of the output stream 
-    virtual void writeHeader(QString commentstart, QString commentend="");
+  /// Writes a comment to the top of the output stream
+  virtual void writeHeader(QString commentstart, QString commentend = "");
 };
 
 #endif

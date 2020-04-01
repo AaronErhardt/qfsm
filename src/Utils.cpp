@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -20,18 +20,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "Utils.h"
 
-/// Transforms a string @a s to upper case, removes leading and trailing white spaces and replaces other white spaces to underscores
-QString Utils::toUpperNoWS(QString s)
-{
+/// Transforms a string @a s to upper case, removes leading and trailing white
+/// spaces and replaces other white spaces to underscores
+QString Utils::toUpperNoWS(QString s) {
   s = s.stripWhiteSpace();
   s = s.replace(QRegExp("\\s"), "_");
   s = s.upper();
   return s;
 }
 
-/// Removes leading and trailing white spaces and replaces other white spaces to underscores of string @a s
-QString Utils::noWS(QString s)
-{
+/// Removes leading and trailing white spaces and replaces other white spaces to
+/// underscores of string @a s
+QString Utils::noWS(QString s) {
   s = s.stripWhiteSpace();
   s = s.replace(QRegExp("\\s"), "_");
   return s;
@@ -41,19 +41,17 @@ QString Utils::noWS(QString s)
  * Validates the a string of binary digits.
  * @returns TRUE if string valid, otherwise FALSE.
  */
-bool Utils::binStringValid(QString s)
-{
+bool Utils::binStringValid(QString s) {
   QChar c;
   char cl;
-  int count=0;
+  int count = 0;
 
-  do
-  {
+  do {
     c = s[count++];
     cl = c.latin1();
-    if (cl!='0' && cl!='1' && c!=QChar::null)
+    if (cl != '0' && cl != '1' && c != QChar::null)
       return FALSE;
-  } while (c!=QChar::Null);
+  } while (c != QChar::Null);
 
   return TRUE;
 }

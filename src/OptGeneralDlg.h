@@ -3,7 +3,6 @@
 
 #include <qvariant.h>
 
-
 #include <Qt3Support/Q3MimeSourceFactory>
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
@@ -17,21 +16,19 @@
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
 
-class Ui_OptGeneralDlg
-{
+class Ui_OptGeneralDlg {
 public:
-    QWidget *Layout3;
-    QVBoxLayout *vboxLayout;
-    QHBoxLayout *hboxLayout;
-    QLabel *TextLabel12;
-    QComboBox *cmb_language;
-    QSpacerItem *spacerItem;
-    QLabel *TextLabel1;
+  QWidget *Layout3;
+  QVBoxLayout *vboxLayout;
+  QHBoxLayout *hboxLayout;
+  QLabel *TextLabel12;
+  QComboBox *cmb_language;
+  QSpacerItem *spacerItem;
+  QLabel *TextLabel1;
 
-    void setupUi(QDialog *OptGeneralDlg)
-    {
+  void setupUi(QDialog *OptGeneralDlg) {
     if (OptGeneralDlg->objectName().isEmpty())
-        OptGeneralDlg->setObjectName(QString::fromUtf8("OptGeneralDlg"));
+      OptGeneralDlg->setObjectName(QString::fromUtf8("OptGeneralDlg"));
     OptGeneralDlg->resize(336, 234);
     Layout3 = new QWidget(OptGeneralDlg);
     Layout3->setObjectName(QString::fromUtf8("Layout3"));
@@ -56,10 +53,10 @@ public:
 
     hboxLayout->addWidget(cmb_language);
 
-
     vboxLayout->addLayout(hboxLayout);
 
-    spacerItem = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    spacerItem =
+        new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
     vboxLayout->addItem(spacerItem);
 
@@ -70,37 +67,38 @@ public:
 
     vboxLayout->addWidget(TextLabel1);
 
-
     retranslateUi(OptGeneralDlg);
 
     QMetaObject::connectSlotsByName(OptGeneralDlg);
-    } // setupUi
+  } // setupUi
 
-    void retranslateUi(QDialog *OptGeneralDlg)
-    {
-    OptGeneralDlg->setWindowTitle(QApplication::translate("OptGeneralDlg", "General", 0, QApplication::UnicodeUTF8));
-    TextLabel12->setText(QApplication::translate("OptGeneralDlg", "Language:", 0, QApplication::UnicodeUTF8));
-    TextLabel1->setText(QApplication::translate("OptGeneralDlg", "Language settings go into effect the next time you start Qfsm.", 0, QApplication::UnicodeUTF8));
+  void retranslateUi(QDialog *OptGeneralDlg) {
+    OptGeneralDlg->setWindowTitle(QApplication::translate(
+        "OptGeneralDlg", "General", 0, QApplication::UnicodeUTF8));
+    TextLabel12->setText(QApplication::translate(
+        "OptGeneralDlg", "Language:", 0, QApplication::UnicodeUTF8));
+    TextLabel1->setText(QApplication::translate(
+        "OptGeneralDlg",
+        "Language settings go into effect the next time you start Qfsm.", 0,
+        QApplication::UnicodeUTF8));
     Q_UNUSED(OptGeneralDlg);
-    } // retranslateUi
-
+  } // retranslateUi
 };
 
 namespace Ui {
-    class OptGeneralDlg: public Ui_OptGeneralDlg {};
+class OptGeneralDlg : public Ui_OptGeneralDlg {};
 } // namespace Ui
 
-class OptGeneralDlg : public QDialog, public Ui::OptGeneralDlg
-{
-    Q_OBJECT
+class OptGeneralDlg : public QDialog, public Ui::OptGeneralDlg {
+  Q_OBJECT
 
 public:
-    OptGeneralDlg(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
-    ~OptGeneralDlg();
+  OptGeneralDlg(QWidget *parent = 0, const char *name = 0, bool modal = false,
+                Qt::WindowFlags fl = 0);
+  ~OptGeneralDlg();
 
 protected slots:
-    virtual void languageChange();
-
+  virtual void languageChange();
 };
 
 #endif // OPTGENERALDLG_H

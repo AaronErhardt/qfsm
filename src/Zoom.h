@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,32 +19,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef ZOOM_H
 #define ZOOM_H
 
-
 #include "ScrollView.h"
-//class ScrollView;
+// class ScrollView;
 
-/** 
+/**
  * @class Zoom
  * @brief Class providing zooming information and methods.
  */
-class Zoom
-{
-  public:
-    Zoom();
+class Zoom {
+public:
+  Zoom();
 
-    /// Sets the current scale.
-    void setScale(double s) { scale = s; }
-    /// Returns the current scale.
-    double getScale() { return scale; }
+  /// Sets the current scale.
+  void setScale(double s) { scale = s; }
+  /// Returns the current scale.
+  double getScale() { return scale; }
 
+  void zoom(DrawArea *, QPoint, bool);
+  void resetZoom(DrawArea *);
 
-    void zoom(DrawArea*, QPoint , bool );
-    void resetZoom(DrawArea* );
-    
-  private:
-    /// Scale factor
-    double scale;
+private:
+  /// Scale factor
+  double scale;
 };
-
 
 #endif

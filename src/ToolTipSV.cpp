@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -17,39 +17,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "ToolTipSV.h"
-#include "ScrollView.h"
 #include "DrawArea.h"
+#include "ScrollView.h"
 
 /// Constructor
-ToolTipSV::ToolTipSV(QWidget* parent)
-       : QObject(parent)
-{
-  par=parent;
+ToolTipSV::ToolTipSV(QWidget *parent) : QObject(parent) {
+  par = parent;
   QFont f("Courier");
   f.setStyleHint(QFont::TypeWriter);
   f.setFixedPitch(TRUE);
-//  setFont(f);
+  //  setFont(f);
   QToolTip::setFont(f);
 }
 
-
 /// Checks if there is a tooltip for point @a p
-void ToolTipSV::maybeTip(const QPoint& p)
-{
-//  ScrollView* sv = (ScrollView*)parentWidget();
-  ScrollView* sv = (ScrollView*)par;
-  QPoint offset = sv->mapTo(sv->widget(),QPoint(0,0));
+void ToolTipSV::maybeTip(const QPoint &p) {
+  //  ScrollView* sv = (ScrollView*)parentWidget();
+  ScrollView *sv = (ScrollView *)par;
+  QPoint offset = sv->mapTo(sv->widget(), QPoint(0, 0));
   QRect r;
   QString tiptext;
-//  QPoint offset(sv->contentsX(), sv->contentsY());
+  //  QPoint offset(sv->contentsX(), sv->contentsY());
 
-  r = sv->getDrawArea()->tooltipRect(p+offset, tiptext);
+  r = sv->getDrawArea()->tooltipRect(p + offset, tiptext);
 
   if (!r.isValid())
     return;
 
-//  tip(r, tiptext);
-  QToolTip::showText (p, tiptext, par, r );
+  //  tip(r, tiptext);
+  QToolTip::showText(p, tiptext, par, r);
 }
-
-

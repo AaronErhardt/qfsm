@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -34,20 +34,19 @@ class QListbox;
  *
  * Listbox item which paints the unfilled arrowhead for a transition.
  */
-class LBArrowLine : public Q3ListBoxItem
-{
-  public:
-    LBArrowLine(Q3ListBox*);
+class LBArrowLine : public Q3ListBoxItem {
+public:
+  LBArrowLine(Q3ListBox *);
 
-    int height(const Q3ListBox*) const;
-    int width(const Q3ListBox*) const;
-    void paint(QPainter*);
+  int height(const Q3ListBox *) const;
+  int width(const Q3ListBox *) const;
+  void paint(QPainter *);
 
-  private:
-    /// Height of the item
-    int h;
-    /// Width of the item
-    int w;
+private:
+  /// Height of the item
+  int h;
+  /// Width of the item
+  int w;
 };
 
 /**
@@ -55,64 +54,59 @@ class LBArrowLine : public Q3ListBoxItem
  * ListBox item for the machine properties dialog.
  * Listbox item which paints the filled arrowhead for a transition.
  */
-class LBArrowFilled : public Q3ListBoxItem
-{
-  public:
-    LBArrowFilled(Q3ListBox*);
+class LBArrowFilled : public Q3ListBoxItem {
+public:
+  LBArrowFilled(Q3ListBox *);
 
-    int height(const Q3ListBox*) const;
-    int width(const Q3ListBox*) const;
-    void paint(QPainter*);
+  int height(const Q3ListBox *) const;
+  int width(const Q3ListBox *) const;
+  void paint(QPainter *);
 
-  private:
-    /// Height of the item
-    int h;
-    /// Width of the item
-    int w;
+private:
+  /// Height of the item
+  int h;
+  /// Width of the item
+  int w;
 };
-
 
 /**
  * @class LBArrowWhite
  * ListBox item for the machine properties dialog.
  * Listbox item which paints the white arrowhead for a transition.
  */
-class LBArrowWhite : public Q3ListBoxItem
-{
-  public:
-    LBArrowWhite(Q3ListBox*);
+class LBArrowWhite : public Q3ListBoxItem {
+public:
+  LBArrowWhite(Q3ListBox *);
 
-    int height(const Q3ListBox*) const;
-    int width(const Q3ListBox*) const;
-    void paint(QPainter*);
+  int height(const Q3ListBox *) const;
+  int width(const Q3ListBox *) const;
+  void paint(QPainter *);
 
-  private:
-    /// Height of the item
-    int h;
-    /// Width of the item
-    int w;
+private:
+  /// Height of the item
+  int h;
+  /// Width of the item
+  int w;
 };
-
 
 /**
  * @class LBArrowFilledPointed
  * ListBox item for the machine properties dialog.
  * Listbox item which paints the filled pointed arrowhead for a transition.
  */
-class LBArrowFilledPointed : public Q3ListBoxItem
-{
-  public:
-    LBArrowFilledPointed(Q3ListBox*);
+class LBArrowFilledPointed : public Q3ListBoxItem {
+public:
+  LBArrowFilledPointed(Q3ListBox *);
 
-    int height(const Q3ListBox*) const;
-    int width(const Q3ListBox*) const;
-    void paint(QPainter*);
+  int height(const Q3ListBox *) const;
+  int width(const Q3ListBox *) const;
+  void paint(QPainter *);
 
-  private:
-    /// Height of the item
-    int h;
-    /// Width of the item
-    int w;
+private:
+  /// Height of the item
+  int h;
+  /// Width of the item
+  int w;
 };
 
 /**
@@ -120,21 +114,19 @@ class LBArrowFilledPointed : public Q3ListBoxItem
  * ListBox item for the machine properties dialog.
  * Listbox item which paints the white pointed arrowhead for a transition.
  */
-class LBArrowWhitePointed : public Q3ListBoxItem
-{
-  public:
-    LBArrowWhitePointed(Q3ListBox*);
+class LBArrowWhitePointed : public Q3ListBoxItem {
+public:
+  LBArrowWhitePointed(Q3ListBox *);
 
-    int height(const Q3ListBox*) const;
-    int width(const Q3ListBox*) const;
-    void paint(QPainter*);
+  int height(const Q3ListBox *) const;
+  int width(const Q3ListBox *) const;
+  void paint(QPainter *);
 
-  private:
-    /// Height of the item
-    int h;
-    /// Width of the item
-    int w;
+private:
+  /// Height of the item
+  int h;
+  /// Width of the item
+  int w;
 };
-
 
 #endif

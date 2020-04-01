@@ -7,14 +7,6 @@
 ** place of a destructor.
 *****************************************************************************/
 
+void ExportAHDLDlg::syncResetClicked() {}
 
-void ExportAHDLDlg::syncResetClicked()
-{
-
-}
-
-
-void ExportAHDLDlg::useMooreClicked()
-{
-
-}
+void ExportAHDLDlg::useMooreClicked() {}

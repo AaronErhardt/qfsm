@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -25,15 +25,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  * @class Utils
  * @brief Useful functions (static methods).
  */
-class Utils
-{
-  public:
-    static QString toUpperNoWS(QString s);
-    static QString noWS(QString s);
-    static bool binStringValid(QString s);
+class Utils {
+public:
+  static QString toUpperNoWS(QString s);
+  static QString noWS(QString s);
+  static bool binStringValid(QString s);
 };
 
-
-
 #endif
-

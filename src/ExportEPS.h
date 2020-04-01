@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -29,18 +29,17 @@ class Options;
  *
  */
 
-class ExportEPS : public Export
-{
-  public:
-    ExportEPS(Options* opt);
+class ExportEPS : public Export {
+public:
+  ExportEPS(Options *opt);
 
-    void doExport();
-    QString fileFilter();
-	QString defaultExtension();
+  void doExport();
+  QString fileFilter();
+  QString defaultExtension();
 
-  private:
-    void writeHeader(QString , QString ) { return; };
-    bool fixEPS(const QString &fileName, QRect rect) const;
+private:
+  void writeHeader(QString, QString) { return; };
+  bool fixEPS(const QString &fileName, QRect rect) const;
 };
 
 #endif

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -25,11 +25,11 @@ removed setAutoDelete(FALSE) calls
 #ifndef ICHECK_H
 #define ICHECK_H
 
-#include <QObject>
-#include <qwidget.h>
-#include <q3ptrlist.h>
-#include "Options.h"
 #include "ICheckDlgImpl.h"
+#include "Options.h"
+#include <QObject>
+#include <q3ptrlist.h>
+#include <qwidget.h>
 
 class Machine;
 class GState;
@@ -39,48 +39,48 @@ class MainWindow;
  * @class ICheck
  * @brief Integrity check routines.
  */
-class ICheck
-{
+class ICheck {
 
-  public:
-    ICheck(QWidget* parent);
-    virtual ~ICheck();
+public:
+  ICheck(QWidget *parent);
+  virtual ~ICheck();
 
-    virtual int checkMachine(Machine* m);
-    /// Shows the integrity check dialog
-    void showDlg() { icheckdlg->show(); };
-    /// Hides the integrity check dialog
-    void hideDlg() {icheckdlg->hide();};
+  virtual int checkMachine(Machine *m);
+  /// Shows the integrity check dialog
+  void showDlg() { icheckdlg->show(); };
+  /// Hides the integrity check dialog
+  void hideDlg() { icheckdlg->hide(); };
 
-    void connectMachine(Machine*m);
-    void disconnectMachine(Machine*m);
+  void connectMachine(Machine *m);
+  void disconnectMachine(Machine *m);
 
-  //private slots:
-    //void dialogReturned(int) {resetMarks();}
+  // private slots:
+  // void dialogReturned(int) {resetMarks();}
 
-  private:
-    virtual bool checkUnambiguousCond(Machine* m, Options* opt);
-    virtual bool checkInitialState(Machine* m);
-    virtual bool checkFinalState(Machine* m);
-    virtual bool checkDeadLocks(Machine* m);
-    virtual bool checkStateCodes(Machine* m);
+private:
+  virtual bool checkUnambiguousCond(Machine *m, Options *opt);
+  virtual bool checkInitialState(Machine *m);
+  virtual bool checkFinalState(Machine *m);
+  virtual bool checkDeadLocks(Machine *m);
+  virtual bool checkStateCodes(Machine *m);
 
-    virtual double checkCompleteness(Machine* m);
-    virtual double checkStatesReachable(Machine* m);
-    virtual double checkFinalStatesReachable(Machine* m);
-    virtual double checkConnections(Machine* m);
+  virtual double checkCompleteness(Machine *m);
+  virtual double checkStatesReachable(Machine *m);
+  virtual double checkFinalStatesReachable(Machine *m);
+  virtual double checkConnections(Machine *m);
 
-    bool isStateReachable(Machine* , GState* from, GState* state, QList<GState*>* visited);
-    //bool isStateBlocking(GState* state, QList<GState*> visited, QList<GState*> blocking_states);
-    void resetMarks();
+  bool isStateReachable(Machine *, GState *from, GState *state,
+                        QList<GState *> *visited);
+  // bool isStateBlocking(GState* state, QList<GState*> visited, QList<GState*>
+  // blocking_states);
+  void resetMarks();
 
-    /// Integrity check dialog
-    ICheckDlgImpl* icheckdlg;
-    /// Pointer to the main window
-    MainWindow* main;
-    /// Protocol of the last integrity check
-    QString protocol;
+  /// Integrity check dialog
+  ICheckDlgImpl *icheckdlg;
+  /// Pointer to the main window
+  MainWindow *main;
+  /// Protocol of the last integrity check
+  QString protocol;
 };
 
 #endif
-

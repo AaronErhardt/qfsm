@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -16,21 +16,19 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include <qdir.h>
 #include <q3textstream.h>
+#include <qdir.h>
 #include <qregexp.h>
 
 #include "MainWindow.h"
 #include "Options.h"
 
-
 /**
  * Constructor.
  * Initialises the options object with standard values.
  */
-Options::Options(QObject* parent/*=NULL*/, const char* name/*=0*/)
- 	:QObject(parent, name)
-{
+Options::Options(QObject *parent /*=NULL*/, const char *name /*=0*/)
+    : QObject(parent, name) {
   viewStateEncoding = FALSE;
   viewMoore = TRUE;
   viewMealyIn = TRUE;
@@ -51,10 +49,10 @@ Options::Options(QObject* parent/*=NULL*/, const char* name/*=0*/)
   ionames = FALSE;
   bdrawbox = FALSE;
 
-  initial_descriptor=tr("rst_n");
-  inversion_descriptor=tr("NOT");
-  any_input_descriptor="";//tr("any");
-  default_descriptor=tr("default");
+  initial_descriptor = tr("rst_n");
+  inversion_descriptor = tr("NOT");
+  any_input_descriptor = ""; // tr("any");
+  default_descriptor = tr("default");
 
   ahdl_sync_reset = FALSE;
   ahdl_use_moore = FALSE;
@@ -76,17 +74,17 @@ Options::Options(QObject* parent/*=NULL*/, const char* name/*=0*/)
 
   ver_sync_reset = FALSE;
 
-  testbench_stdlogic=TRUE;
-  testbench_io_header=TRUE;
-  testbench_ionames=TRUE;
-  testbench_negatedreset=TRUE;
-  testbench_synchronousreset=FALSE;
-  testbench_synchronousenable=FALSE;
-  testbench_algorithm=0;
-  testbench_vhdl_path="";
-  testvector_ascii_path="";
-  testbench_base_directory="";
-  testbench_logfile_path="";
+  testbench_stdlogic = TRUE;
+  testbench_io_header = TRUE;
+  testbench_ionames = TRUE;
+  testbench_negatedreset = TRUE;
+  testbench_synchronousreset = FALSE;
+  testbench_synchronousenable = FALSE;
+  testbench_algorithm = 0;
+  testbench_vhdl_path = "";
+  testvector_ascii_path = "";
+  testbench_base_directory = "";
+  testbench_logfile_path = "";
 
   statetable_includeout = FALSE;
   statetable_orientation = 0;
@@ -106,24 +104,22 @@ Options::Options(QObject* parent/*=NULL*/, const char* name/*=0*/)
 /**
  * Applies the options from the tab dialogs with the options.
  */
-void Options::applyOptions(MainWindow* pMain)
-{
+void Options::applyOptions(MainWindow *pMain) {
   // General
   QString lang;
   QString path;
   QDir dir = QDir::home();
-  path = dir.absPath()+"/.qfsm/language";
+  path = dir.absPath() + "/.qfsm/language";
 
   QFile file(path);
   Q3TextStream fout(&file);
 
-  if (!file.open(QIODevice::WriteOnly))
-  {
+  if (!file.open(QIODevice::WriteOnly)) {
     qDebug("language could not be saved");
     return;
   }
 
-  OptGeneralDlgImpl* optgen;
+  OptGeneralDlgImpl *optgen;
   optgen = pMain->getOptGeneral();
   lang = optgen->getLanguage();
   fout << lang << endl;
@@ -157,7 +153,7 @@ void Options::applyOptions(MainWindow* pMain)
 
   // VHDL
   vhdl_symbolic_states = pMain->getExportVHDL()->getSymbolicStates();
-  vhdl_inout_names  = pMain->getExportVHDL()->getInOutNames();
+  vhdl_inout_names = pMain->getExportVHDL()->getInOutNames();
   vhdl_sync_reset = pMain->getExportVHDL()->getSyncReset();
   vhdl_sync_enable = pMain->getExportVHDL()->getSyncEnable();
   vhdl_neg_reset = pMain->getExportVHDL()->getNegReset();
@@ -173,34 +169,37 @@ void Options::applyOptions(MainWindow* pMain)
   vhdl_entity_path = pMain->getExportVHDL()->getEntityPath();
   vhdl_state_debug = pMain->getExportVHDL()->getDebugState();
 
-
   // Testbench
-  testbench_stdlogic=pMain->getExportTestbench()->getStdLogic();
-  testbench_synchronousreset=pMain->getExportTestbench()->getSynchronousReset();
-  testbench_synchronousenable=pMain->getExportTestbench()->getSynchronousEnable();
-  testbench_negatedreset=pMain->getExportTestbench()->getNegatedReset();
-  testbench_io_header=pMain->getExportTestbench()->getIOheader();
-  testbench_ionames=pMain->getExportTestbench()->getIONames();
-  testbench_algorithm=pMain->getExportTestbench()->getAlgorithm();
-  testbench_vhdl_path=pMain->getExportTestbench()->getTestbenchVHDLPath();
-  testvector_ascii_path=pMain->getExportTestbench()->getTestvectorASCIIPath();
-  testpackage_vhdl_path=pMain->getExportTestbench()->getPackageVHDLPath();
-  testbench_logfile_path=pMain->getExportTestbench()->getLogfilePath();
-  testbench_base_directory=pMain->getExportTestbench()->getBaseDirectory();
+  testbench_stdlogic = pMain->getExportTestbench()->getStdLogic();
+  testbench_synchronousreset =
+      pMain->getExportTestbench()->getSynchronousReset();
+  testbench_synchronousenable =
+      pMain->getExportTestbench()->getSynchronousEnable();
+  testbench_negatedreset = pMain->getExportTestbench()->getNegatedReset();
+  testbench_io_header = pMain->getExportTestbench()->getIOheader();
+  testbench_ionames = pMain->getExportTestbench()->getIONames();
+  testbench_algorithm = pMain->getExportTestbench()->getAlgorithm();
+  testbench_vhdl_path = pMain->getExportTestbench()->getTestbenchVHDLPath();
+  testvector_ascii_path = pMain->getExportTestbench()->getTestvectorASCIIPath();
+  testpackage_vhdl_path = pMain->getExportTestbench()->getPackageVHDLPath();
+  testbench_logfile_path = pMain->getExportTestbench()->getLogfilePath();
+  testbench_base_directory = pMain->getExportTestbench()->getBaseDirectory();
 
   // Verilog
   ver_sync_reset = pMain->getExportVerilog()->getSyncReset();
-  //ver_register_out = pMain->getExportVerilog()->getRegisterOut();
+  // ver_register_out = pMain->getExportVerilog()->getRegisterOut();
 
   // State Table
   statetable_includeout = pMain->getExportStateTable()->getIncludeOutputs();
-  statetable_resolve_inverted = pMain->getExportStateTable()->getResolveInverted();
+  statetable_resolve_inverted =
+      pMain->getExportStateTable()->getResolveInverted();
   statetable_orientation = pMain->getExportStateTable()->getOrientation();
 
   // Ragel
   ragel_create_action = pMain->getExportRagel()->getCreateAction();
   ragel_lang_action = pMain->getExportRagel()->getLangAction();
-  ragel_default_transitions = pMain->getExportRagel()->getAddDefaultTransitions();
+  ragel_default_transitions =
+      pMain->getExportRagel()->getAddDefaultTransitions();
 
   // VVVV
   vvvv_reset = pMain->getExportVVVV()->getVVVVReset();
@@ -212,6 +211,3 @@ void Options::applyOptions(MainWindow* pMain)
 
   pMain->updateMenuBar();
 }
-
-
-

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -23,7 +23,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  * Constructor.
  * Initialises GObject object with the coordinates @x and @y.
  */
-GObject::GObject(double x, double y) //, QObject* par/*=0*/, const char* nam/*=0*/)
+GObject::GObject(double x,
+                 double y) //, QObject* par/*=0*/, const char* nam/*=0*/)
 //       : QObject(par, nam)
 {
   xpos = x;
@@ -33,15 +34,12 @@ GObject::GObject(double x, double y) //, QObject* par/*=0*/, const char* nam/*=0
 }
 
 /// Destructor
-GObject::~GObject()
-{
-}
+GObject::~GObject() {}
 
 /**
  * Moves the object by x rightwards and y downwards.
  */
-void GObject::move(double x, double y)
-{
+void GObject::move(double x, double y) {
   xpos += x;
   ypos += y;
 }
@@ -55,5 +53,3 @@ void GObject::alignToGrid(Grid* g)
   ypos = newypos;
 }
 */
-
-

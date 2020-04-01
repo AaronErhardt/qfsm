@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -24,16 +24,16 @@ There, the additional include windows.h is needed and
 the WinMain function is used instead of main.
 */
 
-#include <stdlib.h>
-#include <iostream>
-#include <qtranslator.h>
 #include <QApplication>
-#include <qstring.h>
-#include <qdir.h>
-#include <qstringlist.h>
-#include <QTextStream>
 #include <QMainWindow>
+#include <QTextStream>
+#include <iostream>
+#include <qdir.h>
 #include <qsettings.h>
+#include <qstring.h>
+#include <qstringlist.h>
+#include <qtranslator.h>
+#include <stdlib.h>
 
 /*
 #include "Convert.h"
@@ -41,39 +41,37 @@ the WinMain function is used instead of main.
 #include "IOInfoList.h"
 */
 
-#if QT_VERSION>=0x030300
-  #include <qlocale.h>
+#if QT_VERSION >= 0x030300
+#include <qlocale.h>
 #endif
 #ifdef WIN32
 #include <windows.h>
 #endif
-#include "MainWindow.h"
 #include "MainControl.h"
+#include "MainWindow.h"
 
-//using namespace std;
+// using namespace std;
 
-QString loadLanguage(QTranslator* trans);
+QString loadLanguage(QTranslator *trans);
 
 #ifdef WIN32
 
-int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR szCmdLine,int iCmdShow)
-{
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+                   LPSTR szCmdLine, int iCmdShow) {
 
-
-  LPWSTR*argw;
-  char**argv;
+  LPWSTR *argw;
+  char **argv;
   int argc;
 
-  argw = CommandLineToArgvW(GetCommandLineW(),&argc);
+  argw = CommandLineToArgvW(GetCommandLineW(), &argc);
 
-  argv=(char**)malloc(sizeof(char*)*(argc+1));
-  argv[argc]=NULL;
+  argv = (char **)malloc(sizeof(char *) * (argc + 1));
+  argv[argc] = NULL;
 
-  for(int c=0; c<argc; c++)
-  {
+  for (int c = 0; c < argc; c++) {
     size_t slen = wcslen(argw[c]) + 1;
     size_t convertedChars = 0;
-    argv[c]=(char*)malloc(slen);
+    argv[c] = (char *)malloc(slen);
 #ifdef __STDC_LIB_EXT1__
     wcstombs_s(&convertedChars, argv[c], slen, argw[c], _TRUNCATE);
 #else
@@ -81,12 +79,11 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR szCmdLine,i
 #endif
   }
 
-#else 
-int main(int argc, char** argv)
-{
+#else
+int main(int argc, char **argv) {
 #endif
-  //qDebug("%d", QT_VERSION);
-  QString lang="";
+  // qDebug("%d", QT_VERSION);
+  QString lang = "";
   QApplication qfsm(argc, argv);
 
   QTranslator trans(0);
@@ -94,13 +91,13 @@ int main(int argc, char** argv)
   qfsm.installTranslator(&trans);
 
   MainControl control(lang);
-  
-//  MainWindow wmain;
 
-//  qfsm.setMainWidget(&wmain);
-//  wmain.setLanguage(lang);
-//  wmain.resize(600, 500);
-//  wmain.show();
+  //  MainWindow wmain;
+
+  //  qfsm.setMainWidget(&wmain);
+  //  wmain.setLanguage(lang);
+  //  wmain.resize(600, 500);
+  //  wmain.show();
 
   /*
   IOInfoList res;
@@ -126,24 +123,20 @@ int main(int argc, char** argv)
     qDebug("%s", it.current()->convertToString().latin1());
   }
   */
-  
-  if (argc<=1)
+
+  if (argc <= 1)
     control.newWindow();
-  else
-  {
-    for(int i=1; i<argc; i++)
+  else {
+    for (int i = 1; i < argc; i++)
       control.newWindow(argv[i]);
   }
 
+  //  QApplication::connect(&qfsm, SIGNAL(lastWindowClosed()), qApp,
+  //  SLOT(quit()) );
 
+  //  QMessageBox::information(NULL, "debug info", "End of initialisation");
 
-//  QApplication::connect(&qfsm, SIGNAL(lastWindowClosed()), qApp, SLOT(quit()) );
-
-//  QMessageBox::information(NULL, "debug info", "End of initialisation");
-
- 
   return qfsm.exec();
-
 }
 
 /*
@@ -174,29 +167,24 @@ void loadLanguage(QTranslator* trans)
 }
 */
 
-
-
-QString loadLanguage(QTranslator* trans)
-{
+QString loadLanguage(QTranslator *trans) {
   using namespace std;
 
   QString qfsmpath;
   QDir dir = QDir::home();
-  QDir qfsmdir(dir.absPath()+"/.qfsm");
-  if (!qfsmdir.exists())
-  {
+  QDir qfsmdir(dir.absPath() + "/.qfsm");
+  if (!qfsmdir.exists()) {
     if (!dir.mkdir(".qfsm"))
       qDebug(".qfsm not created");
-//    qDebug(dir.absPath());
+    //    qDebug(dir.absPath());
   }
 
-  QFile file(qfsmdir.absPath()+"/language");
+  QFile file(qfsmdir.absPath() + "/language");
   QTextStream fin(&file);
-  
-//  qDebug(file.name());
 
-  if (file.isOpen())
-  {
+  //  qDebug(file.name());
+
+  if (file.isOpen()) {
     qDebug("language file already open");
     file.close();
   }
@@ -207,84 +195,80 @@ QString loadLanguage(QTranslator* trans)
     qDebug("language file does not exist");
   }
   */
-    
+
   QString s;
 
-  if (!file.open(QIODevice::ReadOnly))
-  {
+  if (!file.open(QIODevice::ReadOnly)) {
     qDebug("language file could not be opened.");
 
-#if QT_VERSION>=0x030300
+#if QT_VERSION >= 0x030300
     QLocale loc = QLocale::system();
-    switch (loc.language())
-    {
-      case QLocale::German: s="German"; break;
-      case QLocale::French: s="French"; break;
-      default: s="English"; break;
+    switch (loc.language()) {
+    case QLocale::German:
+      s = "German";
+      break;
+    case QLocale::French:
+      s = "French";
+      break;
+    default:
+      s = "English";
+      break;
     }
     qDebug("Most appropriate system locale: %s", s.latin1());
 #else
-      //return QString::null;
+    // return QString::null;
     QString s_lang, s2;
-    s_lang = getenv("LANG"); 
+    s_lang = getenv("LANG");
     s2 = s_lang.left(2);
-    if (s2=="de")
-      s="German";
-    else if (s2=="fr")
-      s="French";
-    else if (s2=="ru")
-      s="Russian";
+    if (s2 == "de")
+      s = "German";
+    else if (s2 == "fr")
+      s = "French";
+    else if (s2 == "ru")
+      s = "Russian";
     else
-      s="Englisch";
+      s = "Englisch";
     qDebug("Locale by $LANG: %s", s.latin1());
 #endif
-  }
-  else
-  {
+  } else {
     fin >> s;
     qDebug("Locale by language file: %s", s.latin1());
   }
 
-
   qfsmpath = getenv("QFSMDIR");
-//  QDir dir; //(qfsmpath);
-  if (qfsmpath.isEmpty())
-  {
+  //  QDir dir; //(qfsmpath);
+  if (qfsmpath.isEmpty()) {
     qDebug("$QFSMDIR not set!");
 #ifdef WIN32
     QString tmppath;
-    QSettings settings("HKEY_LOCAL_MACHINE\\Software\\Qfsm", QSettings::NativeFormat);
+    QSettings settings("HKEY_LOCAL_MACHINE\\Software\\Qfsm",
+                       QSettings::NativeFormat);
     tmppath = settings.value("Install_Dir", QVariant("-1")).toString();
     qDebug("tmppath: %s", tmppath.latin1());
-    if (tmppath=="-1")
-	    dir = QDir::current();
+    if (tmppath == "-1")
+      dir = QDir::current();
     else
-	    dir.cd(tmppath);
-//	dir.cdUp();
+      dir.cd(tmppath);
+    //	dir.cdUp();
 
     dir.cd(QFSM_LANGUAGE_DIR);
     qfsmpath = dir.absolutePath();
 #else
     qfsmpath = QFSM_LANGUAGE_DIR;
-    dir = QDir(qfsmpath); //QDir::current();
+    dir = QDir(qfsmpath); // QDir::current();
 #endif
     qDebug("Looking for language files in %s", qfsmpath.latin1());
-//	QMessageBox::information(NULL, "debug info", qfsmpath);
-  }
-  else
-  {
-    dir = QDir(qfsmpath); //QDir::current();
+    //	QMessageBox::information(NULL, "debug info", qfsmpath);
+  } else {
+    dir = QDir(qfsmpath); // QDir::current();
     if (!dir.cd("po"))
-		dir.cd(QFSM_LANGUAGE_DIR);
+      dir.cd(QFSM_LANGUAGE_DIR);
   }
 
   if (dir.exists())
-    trans->load(s+".qm", dir.absPath());
-
+    trans->load(s + ".qm", dir.absPath());
 
   file.close();
 
   return s;
 }
-
-

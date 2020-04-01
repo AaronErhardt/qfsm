@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -17,60 +17,53 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "MainControl.h"
-#include "MainWindow.h"
 #include "Const.h"
+#include "MainWindow.h"
 
 /// Constructor
-MainControl::MainControl(QString lang)
-{
-//  if (lang==QString::null || lang==0)
-  if(lang.isEmpty())
+MainControl::MainControl(QString lang) {
+  //  if (lang==QString::null || lang==0)
+  if (lang.isEmpty())
     language = tr("English");
   else
     language = lang;
 }
 
-
 /// Creates a new main window and opens it
-void MainControl::newWindow()
-{
-  MainWindow* w = new MainWindow(this);
+void MainControl::newWindow() {
+  MainWindow *w = new MainWindow(this);
   w->setLanguage(language);
   w->show();
 }
 
 /// Creates a new main window and opens the file named @a fileName in it
-void MainControl::newWindow(const char* fileName)
-{
-  MainWindow* w = new MainWindow(this);
+void MainControl::newWindow(const char *fileName) {
+  MainWindow *w = new MainWindow(this);
   w->setLanguage(language);
   w->show();
   w->fileOpenRecent(fileName);
 }
 
 /// Closes the main window @a w
-void MainControl::quitWindow(MainWindow* w)
-{
-//  w->hide();
-//  w->close();
+void MainControl::quitWindow(MainWindow *w) {
+  //  w->hide();
+  //  w->close();
   if (w->aboutToClose)
     delete w;
 }
 
 /// Adds an entry to the MRU file list
-void MainControl::addMRUEntry(QString fileName)
-{
+void MainControl::addMRUEntry(QString fileName) {
   QStringList::Iterator it;
-//  it = mru_list.find(fileName);
+  //  it = mru_list.find(fileName);
 
-//  if (it != mru_list.end())
-//  {
+  //  if (it != mru_list.end())
+  //  {
   mru_list.remove(fileName);
 
   mru_list.prepend(fileName);
-  
-  if (mru_list.count()>MAX_MRUENTRIES)
-  {
+
+  if (mru_list.count() > MAX_MRUENTRIES) {
     it = mru_list.fromLast();
     if (it != mru_list.end())
       mru_list.remove(it);
@@ -78,9 +71,6 @@ void MainControl::addMRUEntry(QString fileName)
 }
 
 /// Removes an entry from the MRU file list
-void MainControl::removeMRUEntry(QString fileName)
-{
+void MainControl::removeMRUEntry(QString fileName) {
   mru_list.remove(fileName);
 }
-
-

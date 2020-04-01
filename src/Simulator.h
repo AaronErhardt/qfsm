@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -21,7 +21,6 @@ Qt 4 Port by Rainer Strobel
 replaced Qt 3 iterators by Qt 4 iterators
 */
 
-
 #ifndef SIMULATOR_H
 #define SIMULATOR_H
 
@@ -33,42 +32,39 @@ class GState;
 class IOInfo;
 class SimulatorDlgImpl;
 
-
 /**
  * @class Simulator
  * @brief Class responsible for all simulation matters.
  */
-class Simulator : public QObject
-{
+class Simulator : public QObject {
   Q_OBJECT
 
-  public:
-    Simulator(MainWindow* );
-    ~Simulator();
+public:
+  Simulator(MainWindow *);
+  ~Simulator();
 
-    bool startSimulation(Machine* );
-    void enableButtons();
+  bool startSimulation(Machine *);
+  void enableButtons();
 
-  private:
-    /// Pointer to the main windows
-    MainWindow* main;
-    /// Simulator dialog
-    SimulatorDlgImpl* simdlg;
-    /// Pointer to the machine to simulate
-    Machine* machine;
+private:
+  /// Pointer to the main windows
+  MainWindow *main;
+  /// Simulator dialog
+  SimulatorDlgImpl *simdlg;
+  /// Pointer to the machine to simulate
+  Machine *machine;
 
-    /// Current state (during simulation)
-    GState* current_state;
+  /// Current state (during simulation)
+  GState *current_state;
 
-    GState* next(IOInfo* , QString& );
-    void setCurrentState(GState* );
+  GState *next(IOInfo *, QString &);
+  void setCurrentState(GState *);
 
-  public slots:
-    void reset();
-    void next();
-    void stopSimulation();
-    void closeDlg();
-    
+public slots:
+  void reset();
+  void next();
+  void stopSimulation();
+  void closeDlg();
 };
 
 #endif

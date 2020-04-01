@@ -7,23 +7,8 @@
 ** place of a destructor.
 *****************************************************************************/
 
+void ExportStateTableDlg::orientationClicked(int) {}
 
+void ExportStateTableDlg::includeOutputsClicked() {}
 
-void ExportStateTableDlg::orientationClicked( int )
-{
-
-}
-
-
-
-
-void ExportStateTableDlg::includeOutputsClicked()
-{
-
-}
-
-
-void ExportStateTableDlg::resolveInvertedClicked()
-{
-
-}
+void ExportStateTableDlg::resolveInvertedClicked() {}

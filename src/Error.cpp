@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -20,11 +20,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "Error.h"
 
-
 /// Constructor
-Error::Error()
-{
-}
+Error::Error() {}
 
 /**
  * Displays an information message box.
@@ -32,22 +29,19 @@ Error::Error()
  * @return return value of the message box
  */
 
-int Error::info(QString text)
-{
+int Error::info(QString text) {
   return QMessageBox::information(NULL, "Qfsm", text);
 }
-
 
 /**
  * Displays an warning message box with Ok and Cancel button.
  * @param text text to be displayed.
  * @return return value of message box
  */
-int Error::warningOkCancel(QString text)
-{
-  return QMessageBox::warning(NULL, "Qfsm", text, 
-    QMessageBox::Ok | QMessageBox::Default, 
-    QMessageBox::Cancel | QMessageBox::Escape);
+int Error::warningOkCancel(QString text) {
+  return QMessageBox::warning(NULL, "Qfsm", text,
+                              QMessageBox::Ok | QMessageBox::Default,
+                              QMessageBox::Cancel | QMessageBox::Escape);
 }
 
 /**
@@ -55,11 +49,8 @@ int Error::warningOkCancel(QString text)
  * @param text text to be displayed.
  * @return return value of message box
  */
-int Error::warningOk(QString text)
-{
-  return QMessageBox::warning(NULL, "Qfsm", text, 
-    QMessageBox::Ok | QMessageBox::Default, QMessageBox::NoButton);
+int Error::warningOk(QString text) {
+  return QMessageBox::warning(NULL, "Qfsm", text,
+                              QMessageBox::Ok | QMessageBox::Default,
+                              QMessageBox::NoButton);
 }
-
-
-

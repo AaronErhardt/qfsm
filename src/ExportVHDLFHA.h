@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -18,7 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 /*
 Qt 4 Port by Rainer Strobel
 
-modified VHDL export class which is compatible with the standards of 
+modified VHDL export class which is compatible with the standards of
 the university of applied sciences augsburg
 */
 
@@ -35,29 +35,29 @@ class Options;
  *
  */
 
-class ExportVHDLFHA : public Export
-{
-  public:
-    ExportVHDLFHA(Options* opt);
+class ExportVHDLFHA : public Export {
+public:
+  ExportVHDLFHA(Options *opt);
 
-    void doExport();
-    QString fileFilter();
+  void doExport();
+  QString fileFilter();
 
-  private:
-    /// Name of the machine to export
-    QString mname;
-    /// If TRUE, the reset signal will be handled synchronously, otherwise asynchronously.
-    bool synchronous_reset;
+private:
+  /// Name of the machine to export
+  QString mname;
+  /// If TRUE, the reset signal will be handled synchronously, otherwise
+  /// asynchronously.
+  bool synchronous_reset;
 
-    void writeEnvironment();
-    void writeEntity();
-    void writeArchitecture();
-    void writeClockProcess();
-    void writeStateProcess();
-    void writeDescription();
-    
-    /// Writes a comment to the top of the output stream 
-    virtual void writeHeader(QString commentstart, QString commentend="");
+  void writeEnvironment();
+  void writeEntity();
+  void writeArchitecture();
+  void writeClockProcess();
+  void writeStateProcess();
+  void writeDescription();
+
+  /// Writes a comment to the top of the output stream
+  virtual void writeHeader(QString commentstart, QString commentend = "");
 };
 
 #endif

@@ -6,14 +6,6 @@
 ** a constructor, and a destroy() slot in place of a destructor.
 *****************************************************************************/
 
+void StatePropertiesDlg::chooseFGColor() {}
 
-void StatePropertiesDlg::chooseFGColor()
-{
-
-}
-
-void StatePropertiesDlg::validate()
-{
-
-}
-
+void StatePropertiesDlg::validate() {}

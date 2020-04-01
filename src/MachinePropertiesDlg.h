@@ -3,7 +3,6 @@
 
 #include <qvariant.h>
 
-
 #include <Qt3Support/Q3ButtonGroup>
 #include <Qt3Support/Q3GroupBox>
 #include <Qt3Support/Q3ListBox>
@@ -24,54 +23,53 @@
 #include <QtGui/QSpinBox>
 #include <QtGui/QVBoxLayout>
 
-class Ui_MachinePropertiesDlg
-{
+class Ui_MachinePropertiesDlg {
 public:
-    QVBoxLayout *vboxLayout;
-    QHBoxLayout *hboxLayout;
-    QLabel *TextLabel1;
-    QLineEdit *le_name;
-    QHBoxLayout *hboxLayout1;
-    QLabel *TextLabel2_2;
-    QLineEdit *le_version;
-    Q3ButtonGroup *bg_type;
-    QHBoxLayout *hboxLayout2;
-    QRadioButton *rb_binary;
-    QRadioButton *rb_ascii;
-    QRadioButton *rb_text;
-    Q3GroupBox *bg_moore;
-    QHBoxLayout *hboxLayout3;
-    QLabel *TextLabel2;
-    QSpinBox *sb_mooreout;
-    QLabel *TextLabel5;
-    QLineEdit *le_mooreout;
-    Q3GroupBox *bg_mealy;
-    QGridLayout *gridLayout;
-    QLabel *TextLabel3;
-    QLabel *TextLabel6;
-    QLabel *TextLabel4;
-    QLabel *TextLabel7;
-    QSpinBox *sb_mealyout;
-    QLineEdit *le_mealyin;
-    QLineEdit *le_mealyout;
-    QSpinBox *sb_mealyin;
-    QGridLayout *gridLayout1;
-    Q3ListBox *lbox_arrowtype;
-    QLabel *lb_statefont;
-    QPushButton *pb_transfont;
-    QLabel *lb_transfont;
-    QPushButton *pb_statefont;
-    QLabel *TextLabel11;
-    QCheckBox *cb_inittrans;
-    QHBoxLayout *hboxLayout4;
-    QSpacerItem *spacerItem;
-    QPushButton *pb_ok;
-    QPushButton *pb_cancel;
+  QVBoxLayout *vboxLayout;
+  QHBoxLayout *hboxLayout;
+  QLabel *TextLabel1;
+  QLineEdit *le_name;
+  QHBoxLayout *hboxLayout1;
+  QLabel *TextLabel2_2;
+  QLineEdit *le_version;
+  Q3ButtonGroup *bg_type;
+  QHBoxLayout *hboxLayout2;
+  QRadioButton *rb_binary;
+  QRadioButton *rb_ascii;
+  QRadioButton *rb_text;
+  Q3GroupBox *bg_moore;
+  QHBoxLayout *hboxLayout3;
+  QLabel *TextLabel2;
+  QSpinBox *sb_mooreout;
+  QLabel *TextLabel5;
+  QLineEdit *le_mooreout;
+  Q3GroupBox *bg_mealy;
+  QGridLayout *gridLayout;
+  QLabel *TextLabel3;
+  QLabel *TextLabel6;
+  QLabel *TextLabel4;
+  QLabel *TextLabel7;
+  QSpinBox *sb_mealyout;
+  QLineEdit *le_mealyin;
+  QLineEdit *le_mealyout;
+  QSpinBox *sb_mealyin;
+  QGridLayout *gridLayout1;
+  Q3ListBox *lbox_arrowtype;
+  QLabel *lb_statefont;
+  QPushButton *pb_transfont;
+  QLabel *lb_transfont;
+  QPushButton *pb_statefont;
+  QLabel *TextLabel11;
+  QCheckBox *cb_inittrans;
+  QHBoxLayout *hboxLayout4;
+  QSpacerItem *spacerItem;
+  QPushButton *pb_ok;
+  QPushButton *pb_cancel;
 
-    void setupUi(QDialog *MachinePropertiesDlg)
-    {
+  void setupUi(QDialog *MachinePropertiesDlg) {
     if (MachinePropertiesDlg->objectName().isEmpty())
-        MachinePropertiesDlg->setObjectName(QString::fromUtf8("MachinePropertiesDlg"));
+      MachinePropertiesDlg->setObjectName(
+          QString::fromUtf8("MachinePropertiesDlg"));
     MachinePropertiesDlg->resize(374, 582);
     vboxLayout = new QVBoxLayout(MachinePropertiesDlg);
     vboxLayout->setSpacing(6);
@@ -94,7 +92,6 @@ public:
 
     hboxLayout->addWidget(le_name);
 
-
     vboxLayout->addLayout(hboxLayout);
 
     hboxLayout1 = new QHBoxLayout();
@@ -112,7 +109,6 @@ public:
 
     hboxLayout1->addWidget(le_version);
 
-
     vboxLayout->addLayout(hboxLayout1);
 
     bg_type = new Q3ButtonGroup(MachinePropertiesDlg);
@@ -123,7 +119,7 @@ public:
     hboxLayout2 = new QHBoxLayout();
     QBoxLayout *boxlayout = qobject_cast<QBoxLayout *>(bg_type->layout());
     if (boxlayout)
-        boxlayout->addLayout(hboxLayout2);
+      boxlayout->addLayout(hboxLayout2);
     hboxLayout2->setAlignment(Qt::AlignTop);
     hboxLayout2->setObjectName(QString::fromUtf8("hboxLayout2"));
     rb_binary = new QRadioButton(bg_type);
@@ -141,7 +137,6 @@ public:
 
     hboxLayout2->addWidget(rb_text);
 
-
     vboxLayout->addWidget(bg_type);
 
     bg_moore = new Q3GroupBox(MachinePropertiesDlg);
@@ -152,7 +147,7 @@ public:
     hboxLayout3 = new QHBoxLayout();
     QBoxLayout *boxlayout1 = qobject_cast<QBoxLayout *>(bg_moore->layout());
     if (boxlayout1)
-        boxlayout1->addLayout(hboxLayout3);
+      boxlayout1->addLayout(hboxLayout3);
     hboxLayout3->setAlignment(Qt::AlignTop);
     hboxLayout3->setObjectName(QString::fromUtf8("hboxLayout3"));
     TextLabel2 = new QLabel(bg_moore);
@@ -179,7 +174,6 @@ public:
 
     hboxLayout3->addWidget(le_mooreout);
 
-
     vboxLayout->addWidget(bg_moore);
 
     bg_mealy = new Q3GroupBox(MachinePropertiesDlg);
@@ -190,7 +184,7 @@ public:
     gridLayout = new QGridLayout();
     QBoxLayout *boxlayout2 = qobject_cast<QBoxLayout *>(bg_mealy->layout());
     if (boxlayout2)
-        boxlayout2->addLayout(gridLayout);
+      boxlayout2->addLayout(gridLayout);
     gridLayout->setAlignment(Qt::AlignTop);
     gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
     TextLabel3 = new QLabel(bg_mealy);
@@ -240,7 +234,6 @@ public:
 
     gridLayout->addWidget(sb_mealyin, 0, 1, 1, 1);
 
-
     vboxLayout->addWidget(bg_mealy);
 
     gridLayout1 = new QGridLayout();
@@ -283,7 +276,6 @@ public:
 
     gridLayout1->addWidget(TextLabel11, 2, 0, 1, 1);
 
-
     vboxLayout->addLayout(gridLayout1);
 
     cb_inittrans = new QCheckBox(MachinePropertiesDlg);
@@ -295,7 +287,8 @@ public:
     hboxLayout4->setSpacing(6);
     hboxLayout4->setMargin(0);
     hboxLayout4->setObjectName(QString::fromUtf8("hboxLayout4"));
-    spacerItem = new QSpacerItem(20, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    spacerItem =
+        new QSpacerItem(20, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
     hboxLayout4->addItem(spacerItem);
 
@@ -310,76 +303,103 @@ public:
 
     hboxLayout4->addWidget(pb_cancel);
 
-
     vboxLayout->addLayout(hboxLayout4);
 
-
     retranslateUi(MachinePropertiesDlg);
-    QObject::connect(pb_ok, SIGNAL(clicked()), MachinePropertiesDlg, SLOT(accept()));
-    QObject::connect(pb_cancel, SIGNAL(clicked()), MachinePropertiesDlg, SLOT(reject()));
-    QObject::connect(pb_statefont, SIGNAL(clicked()), MachinePropertiesDlg, SLOT(chooseSFont()));
-    QObject::connect(pb_transfont, SIGNAL(clicked()), MachinePropertiesDlg, SLOT(chooseTFont()));
-    QObject::connect(rb_binary, SIGNAL(clicked()), MachinePropertiesDlg, SLOT(binaryClicked()));
-    QObject::connect(rb_ascii, SIGNAL(clicked()), MachinePropertiesDlg, SLOT(asciiClicked()));
-    QObject::connect(rb_text, SIGNAL(clicked()), MachinePropertiesDlg, SLOT(freeTextClicked()));
-    QObject::connect(cb_inittrans, SIGNAL(clicked()), MachinePropertiesDlg, SLOT(drawITransClicked()));
+    QObject::connect(pb_ok, SIGNAL(clicked()), MachinePropertiesDlg,
+                     SLOT(accept()));
+    QObject::connect(pb_cancel, SIGNAL(clicked()), MachinePropertiesDlg,
+                     SLOT(reject()));
+    QObject::connect(pb_statefont, SIGNAL(clicked()), MachinePropertiesDlg,
+                     SLOT(chooseSFont()));
+    QObject::connect(pb_transfont, SIGNAL(clicked()), MachinePropertiesDlg,
+                     SLOT(chooseTFont()));
+    QObject::connect(rb_binary, SIGNAL(clicked()), MachinePropertiesDlg,
+                     SLOT(binaryClicked()));
+    QObject::connect(rb_ascii, SIGNAL(clicked()), MachinePropertiesDlg,
+                     SLOT(asciiClicked()));
+    QObject::connect(rb_text, SIGNAL(clicked()), MachinePropertiesDlg,
+                     SLOT(freeTextClicked()));
+    QObject::connect(cb_inittrans, SIGNAL(clicked()), MachinePropertiesDlg,
+                     SLOT(drawITransClicked()));
 
     QMetaObject::connectSlotsByName(MachinePropertiesDlg);
-    } // setupUi
+  } // setupUi
 
-    void retranslateUi(QDialog *MachinePropertiesDlg)
-    {
-    MachinePropertiesDlg->setWindowTitle(QApplication::translate("MachinePropertiesDlg", "Machine Properties", 0, QApplication::UnicodeUTF8));
-    TextLabel1->setText(QApplication::translate("MachinePropertiesDlg", "Name:", 0, QApplication::UnicodeUTF8));
-    TextLabel2_2->setText(QApplication::translate("MachinePropertiesDlg", "Version:", 0, QApplication::UnicodeUTF8));
-    bg_type->setTitle(QApplication::translate("MachinePropertiesDlg", "Type", 0, QApplication::UnicodeUTF8));
-    rb_binary->setText(QApplication::translate("MachinePropertiesDlg", "Binary", 0, QApplication::UnicodeUTF8));
-    rb_ascii->setText(QApplication::translate("MachinePropertiesDlg", "ASCII", 0, QApplication::UnicodeUTF8));
-    rb_text->setText(QApplication::translate("MachinePropertiesDlg", "Free Text", 0, QApplication::UnicodeUTF8));
-    bg_moore->setTitle(QApplication::translate("MachinePropertiesDlg", "Moore", 0, QApplication::UnicodeUTF8));
-    TextLabel2->setText(QApplication::translate("MachinePropertiesDlg", "Outputs:", 0, QApplication::UnicodeUTF8));
-    TextLabel5->setText(QApplication::translate("MachinePropertiesDlg", "Names:", 0, QApplication::UnicodeUTF8));
-    bg_mealy->setTitle(QApplication::translate("MachinePropertiesDlg", "Mealy", 0, QApplication::UnicodeUTF8));
-    TextLabel3->setText(QApplication::translate("MachinePropertiesDlg", "Inputs:", 0, QApplication::UnicodeUTF8));
-    TextLabel6->setText(QApplication::translate("MachinePropertiesDlg", "Names:", 0, QApplication::UnicodeUTF8));
-    TextLabel4->setText(QApplication::translate("MachinePropertiesDlg", "Outputs:", 0, QApplication::UnicodeUTF8));
-    TextLabel7->setText(QApplication::translate("MachinePropertiesDlg", "Names:", 0, QApplication::UnicodeUTF8));
+  void retranslateUi(QDialog *MachinePropertiesDlg) {
+    MachinePropertiesDlg->setWindowTitle(
+        QApplication::translate("MachinePropertiesDlg", "Machine Properties", 0,
+                                QApplication::UnicodeUTF8));
+    TextLabel1->setText(QApplication::translate(
+        "MachinePropertiesDlg", "Name:", 0, QApplication::UnicodeUTF8));
+    TextLabel2_2->setText(QApplication::translate(
+        "MachinePropertiesDlg", "Version:", 0, QApplication::UnicodeUTF8));
+    bg_type->setTitle(QApplication::translate("MachinePropertiesDlg", "Type", 0,
+                                              QApplication::UnicodeUTF8));
+    rb_binary->setText(QApplication::translate("MachinePropertiesDlg", "Binary",
+                                               0, QApplication::UnicodeUTF8));
+    rb_ascii->setText(QApplication::translate("MachinePropertiesDlg", "ASCII",
+                                              0, QApplication::UnicodeUTF8));
+    rb_text->setText(QApplication::translate(
+        "MachinePropertiesDlg", "Free Text", 0, QApplication::UnicodeUTF8));
+    bg_moore->setTitle(QApplication::translate("MachinePropertiesDlg", "Moore",
+                                               0, QApplication::UnicodeUTF8));
+    TextLabel2->setText(QApplication::translate(
+        "MachinePropertiesDlg", "Outputs:", 0, QApplication::UnicodeUTF8));
+    TextLabel5->setText(QApplication::translate(
+        "MachinePropertiesDlg", "Names:", 0, QApplication::UnicodeUTF8));
+    bg_mealy->setTitle(QApplication::translate("MachinePropertiesDlg", "Mealy",
+                                               0, QApplication::UnicodeUTF8));
+    TextLabel3->setText(QApplication::translate(
+        "MachinePropertiesDlg", "Inputs:", 0, QApplication::UnicodeUTF8));
+    TextLabel6->setText(QApplication::translate(
+        "MachinePropertiesDlg", "Names:", 0, QApplication::UnicodeUTF8));
+    TextLabel4->setText(QApplication::translate(
+        "MachinePropertiesDlg", "Outputs:", 0, QApplication::UnicodeUTF8));
+    TextLabel7->setText(QApplication::translate(
+        "MachinePropertiesDlg", "Names:", 0, QApplication::UnicodeUTF8));
     lb_statefont->setText(QString());
-    pb_transfont->setText(QApplication::translate("MachinePropertiesDlg", "Transition Font", 0, QApplication::UnicodeUTF8));
+    pb_transfont->setText(QApplication::translate("MachinePropertiesDlg",
+                                                  "Transition Font", 0,
+                                                  QApplication::UnicodeUTF8));
     lb_transfont->setText(QString());
-    pb_statefont->setText(QApplication::translate("MachinePropertiesDlg", "State Font", 0, QApplication::UnicodeUTF8));
-    TextLabel11->setText(QApplication::translate("MachinePropertiesDlg", "Arrow Type:", 0, QApplication::UnicodeUTF8));
-    cb_inittrans->setText(QApplication::translate("MachinePropertiesDlg", "Draw initial transition", 0, QApplication::UnicodeUTF8));
-    pb_ok->setText(QApplication::translate("MachinePropertiesDlg", "OK", 0, QApplication::UnicodeUTF8));
-    pb_cancel->setText(QApplication::translate("MachinePropertiesDlg", "Cancel", 0, QApplication::UnicodeUTF8));
+    pb_statefont->setText(QApplication::translate(
+        "MachinePropertiesDlg", "State Font", 0, QApplication::UnicodeUTF8));
+    TextLabel11->setText(QApplication::translate(
+        "MachinePropertiesDlg", "Arrow Type:", 0, QApplication::UnicodeUTF8));
+    cb_inittrans->setText(QApplication::translate("MachinePropertiesDlg",
+                                                  "Draw initial transition", 0,
+                                                  QApplication::UnicodeUTF8));
+    pb_ok->setText(QApplication::translate("MachinePropertiesDlg", "OK", 0,
+                                           QApplication::UnicodeUTF8));
+    pb_cancel->setText(QApplication::translate("MachinePropertiesDlg", "Cancel",
+                                               0, QApplication::UnicodeUTF8));
     Q_UNUSED(MachinePropertiesDlg);
-    } // retranslateUi
-
+  } // retranslateUi
 };
 
 namespace Ui {
-    class MachinePropertiesDlg: public Ui_MachinePropertiesDlg {};
+class MachinePropertiesDlg : public Ui_MachinePropertiesDlg {};
 } // namespace Ui
 
-class MachinePropertiesDlg : public QDialog, public Ui::MachinePropertiesDlg
-{
-    Q_OBJECT
+class MachinePropertiesDlg : public QDialog, public Ui::MachinePropertiesDlg {
+  Q_OBJECT
 
 public:
-    MachinePropertiesDlg(QWidget* parent = 0, const char* name = 0, bool modal = false, Qt::WindowFlags fl = 0);
-    ~MachinePropertiesDlg();
+  MachinePropertiesDlg(QWidget *parent = 0, const char *name = 0,
+                       bool modal = false, Qt::WindowFlags fl = 0);
+  ~MachinePropertiesDlg();
 
 public slots:
-    virtual void binaryClicked();
-    virtual void chooseSFont();
-    virtual void chooseTFont();
-    virtual void asciiClicked();
-    virtual void freeTextClicked();
-    virtual void drawITransClicked();
+  virtual void binaryClicked();
+  virtual void chooseSFont();
+  virtual void chooseTFont();
+  virtual void asciiClicked();
+  virtual void freeTextClicked();
+  virtual void drawITransClicked();
 
 protected slots:
-    virtual void languageChange();
-
+  virtual void languageChange();
 };
 
 #endif // MACHINEPROPERTIESDLG_H

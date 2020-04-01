@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -37,18 +37,17 @@ class Options;
  *
  */
 
-class ExportSCXML : public Export
-{
-  public:
-    ExportSCXML(Options* opt);
+class ExportSCXML : public Export {
+public:
+  ExportSCXML(Options *opt);
 
-    void doExport();
-    QString fileFilter();
-    QString defaultExtension();
+  void doExport();
+  QString fileFilter();
+  QString defaultExtension();
 
-  private:
-    void writeMain();
-    void writeTransitions();
+private:
+  void writeMain();
+  void writeTransitions();
 };
 
 #endif

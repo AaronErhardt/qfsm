@@ -1,5 +1,5 @@
 /*
-Copyright (C) Stefan Duffner 
+Copyright (C) Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -22,37 +22,36 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 class Options;
 
-class ExportVerilogDlgImpl : public QDialog
-{
-    Q_OBJECT
-        
-        Ui::ExportVerilogDlg exportVerilogDlg;
+class ExportVerilogDlgImpl : public QDialog {
+  Q_OBJECT
 
+  Ui::ExportVerilogDlg exportVerilogDlg;
 
 public:
-    ExportVerilogDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
-    ~ExportVerilogDlgImpl();
+  ExportVerilogDlgImpl(QWidget *parent = 0, const char *name = 0,
+                       bool modal = FALSE, Qt::WFlags fl = 0);
+  ~ExportVerilogDlgImpl();
 
-    /// Returns the 'synchronous reset' flag 
-    bool getSyncReset() { return sync_reset; };
-    /// Sets the 'synchronous reset' flag 
-    void setSyncReset(bool sr) { sync_reset = sr; };
-    /*
-    /// Returns the 'register mealy outputs' flag 
-    bool getRegisterOut() { return register_out; };
-    /// Sets the 'register mealy outputs' flag 
-    void setRegisterOut(bool ro) { register_out = ro; };
-    */
+  /// Returns the 'synchronous reset' flag
+  bool getSyncReset() { return sync_reset; };
+  /// Sets the 'synchronous reset' flag
+  void setSyncReset(bool sr) { sync_reset = sr; };
+  /*
+  /// Returns the 'register mealy outputs' flag
+  bool getRegisterOut() { return register_out; };
+  /// Sets the 'register mealy outputs' flag
+  void setRegisterOut(bool ro) { register_out = ro; };
+  */
 
-    void init(Options* opt);
+  void init(Options *opt);
 
 public slots:
-    void syncResetClicked();
-    //void registerOutClicked();
+  void syncResetClicked();
+  // void registerOutClicked();
 
 private:
-    bool sync_reset;
-    //bool register_out;
+  bool sync_reset;
+  // bool register_out;
 };
 
 #endif // EXPORTVERILOGDLGIMPL_H

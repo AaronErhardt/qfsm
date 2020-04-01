@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,16 +19,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "OptGeneral.h"
 
 /// Constructor
-OptGeneral::OptGeneral(QWidget* parent, const char* name)
-	  : QWidget(parent, name)
-{
-
-}
-
+OptGeneral::OptGeneral(QWidget *parent, const char *name)
+    : QWidget(parent, name) {}
 
 /// Destructor
-OptGeneral::~OptGeneral()
-{
-}
-
-
+OptGeneral::~OptGeneral() {}

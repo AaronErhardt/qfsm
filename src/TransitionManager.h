@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -29,32 +29,29 @@ replaced Qt 3 iterators by Qt 4 iterators
 class GState;
 class GTransition;
 class MainWindow;
-//class DTransitionProperties;
+// class DTransitionProperties;
 class TransitionPropertiesDlgImpl;
 class Machine;
-
 
 /**
  * @class TransitionManager
  * @brief Control class for transitions.
  */
-class TransitionManager
-{
-  public:
-    TransitionManager(MainWindow* );
-    ~TransitionManager();
+class TransitionManager {
+public:
+  TransitionManager(MainWindow *);
+  ~TransitionManager();
 
-    bool addTransition(GState* , GState* , int, int, double, double, double,
-      double, double, double, double, double);
-    void straightenSelection(QList<GTransition*>* );
-    void editTransition(Machine*, GTransition* );
+  bool addTransition(GState *, GState *, int, int, double, double, double,
+                     double, double, double, double, double);
+  void straightenSelection(QList<GTransition *> *);
+  void editTransition(Machine *, GTransition *);
 
-  private:
-    /// Pointer to the main window
-    MainWindow* main;
-    /// Transition properties dialog
-    TransitionPropertiesDlgImpl* trans_props;
+private:
+  /// Pointer to the main window
+  MainWindow *main;
+  /// Transition properties dialog
+  TransitionPropertiesDlgImpl *trans_props;
 };
-
 
 #endif

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -23,23 +23,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 class Options;
 
-
 /**
  * @class Grid
  * @brief Class for grid handling.
  *
  */
-class Grid
-{
-  public:
-    Grid(Options* );
+class Grid {
+public:
+  Grid(Options *);
 
-    void getPoint(double, double , double&, double&);
+  void getPoint(double, double, double &, double &);
 
-  private:
-    /// Pointer to the options
-    Options* options;
+private:
+  /// Pointer to the options
+  Options *options;
 };
-
 
 #endif

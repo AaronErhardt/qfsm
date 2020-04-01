@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -18,57 +18,46 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "TableBuilder.h"
 #include "Machine.h"
-#include "State.h"
 #include "Options.h"
+#include "State.h"
 
 /// Constructor
-TableBuilder::TableBuilder(QObject* parent, Machine* m, Options* opt)
-  	     : QObject(parent)
-{
+TableBuilder::TableBuilder(QObject *parent, Machine *m, Options *opt)
+    : QObject(parent) {
   machine = m;
   machine->updateDefaultTransitions();
-//  eventlist.setAutoDelete(TRUE);
+  //  eventlist.setAutoDelete(TRUE);
   machine->getEventList(eventlist, opt);
-//  eventlist.sort();
+  //  eventlist.sort();
   qSort(eventlist.begin(), eventlist.end(), IOInfoList::lessThan);
-//  qDebug("%d", eventlist.count());
+  //  qDebug("%d", eventlist.count());
   options = opt;
 }
 
 /// Destructor
-TableBuilder::~TableBuilder()
-{
-}
+TableBuilder::~TableBuilder() {}
 
 /// Returns the body of the table
-QString TableBuilder::getBody()
-{
+QString TableBuilder::getBody() {
   QString result;
   QString srow;
-  GState* s;
+  GState *s;
 
-  if (options->getStateTableOrientation()==0)
-  {
-    QListIterator<GState*> it(machine->getSList());
-    for(; it.hasNext();)
-    {
+  if (options->getStateTableOrientation() == 0) {
+    QListIterator<GState *> it(machine->getSList());
+    for (; it.hasNext();) {
       s = it.next();
-      if (!s->isDeleted())
-      {
-	srow = getRow(s);
-	result += srow;
+      if (!s->isDeleted()) {
+        srow = getRow(s);
+        result += srow;
       }
     }
-  }
-  else
-  {
-    QListIterator<IOInfo*> it(eventlist);
-    for(; it.hasNext();)
-    {
+  } else {
+    QListIterator<IOInfo *> it(eventlist);
+    for (; it.hasNext();) {
       srow = getRow(it.next());
       result += srow;
     }
   }
   return result;
 }
-

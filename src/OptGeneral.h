@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -21,20 +21,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <qwidget.h>
 
-
 /**
  * @class OptGeneral
  * @brief General options.
  */
-class OptGeneral : public QWidget
-{
-  public: 
-    OptGeneral(QWidget* =0, const char* name =0);
-    ~OptGeneral();
+class OptGeneral : public QWidget {
+public:
+  OptGeneral(QWidget * = 0, const char *name = 0);
+  ~OptGeneral();
 
-  private:
-
+private:
 };
-
 
 #endif

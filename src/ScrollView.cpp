@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -18,76 +18,68 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <q3scrollview.h>
 #include <qrect.h>
-//Added by qt3to4:
-#include <QMouseEvent>
-#include <QPaintEvent>
+// Added by qt3to4:
 #include <QDragEnterEvent>
 #include <QDropEvent>
+#include <QMouseEvent>
+#include <QPaintEvent>
 
-#include <list>
-#include "ScrollView.h"
-#include "MainWindow.h"
-#include "DocStatus.h"
-#include "GState.h"
-#include "Project.h"
-#include "Machine.h"
-#include "Selection.h"
 #include "Const.h"
-#include "Zoom.h"
+#include "DocStatus.h"
 #include "Draw.h"
-#include "TransitionInfoBin.h"
-#include "UndoBuffer.h"
-#include "StatusBar.h"
-#include "Grid.h"
-#include "ToolTipSV.h"
 #include "DrawArea.h"
+#include "GState.h"
+#include "Grid.h"
+#include "Machine.h"
 #include "MainWindow.h"
 #include "MimeMachine.h"
-
+#include "Project.h"
+#include "ScrollView.h"
+#include "Selection.h"
+#include "StatusBar.h"
+#include "ToolTipSV.h"
+#include "TransitionInfoBin.h"
+#include "UndoBuffer.h"
+#include "Zoom.h"
+#include <list>
 
 /// Constructor
-ScrollView::ScrollView(QWidget* parent, const char* name)
-    :QScrollArea(parent)
-{
-  drawArea=new DrawArea(this,(MainWindow*)parent,"");
+ScrollView::ScrollView(QWidget *parent, const char *name)
+    : QScrollArea(parent) {
+  drawArea = new DrawArea(this, (MainWindow *)parent, "");
   this->setWidget(drawArea);
-  main=(MainWindow*)parent;
+  main = (MainWindow *)parent;
 
   setWidgetResizable(false);
-  //setWidgetResizable(true);
+  // setWidgetResizable(true);
   setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
   setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
-    if(widget()!=NULL)
+  if (widget() != NULL)
     widget()->resize(CONT_WIDTH, CONT_HEIGHT);
-  parent->resize(CONT_WIDTH+40, CONT_HEIGHT+80);
+  parent->resize(CONT_WIDTH + 40, CONT_HEIGHT + 80);
 
-  connect(drawArea,SIGNAL(scrollWidget(int,int)),this,SLOT(scrollContents(int,int)));
-  connect(drawArea,SIGNAL(scrollWidgetTo(int,int)),this,SLOT(scrollContentsTo(int,int)));
-
+  connect(drawArea, SIGNAL(scrollWidget(int, int)), this,
+          SLOT(scrollContents(int, int)));
+  connect(drawArea, SIGNAL(scrollWidgetTo(int, int)), this,
+          SLOT(scrollContentsTo(int, int)));
 }
 
-
-
 /// Scroll view contents by a distance of @param dx, @param dy
-void ScrollView::scrollContents(int dx,int dy)
-{
-  horizontalScrollBar()->setValue(horizontalScrollBar()->value()+dx);
-  verticalScrollBar()->setValue(verticalScrollBar()->value()+dy);
+void ScrollView::scrollContents(int dx, int dy) {
+  horizontalScrollBar()->setValue(horizontalScrollBar()->value() + dx);
+  verticalScrollBar()->setValue(verticalScrollBar()->value() + dy);
 }
 
 /// Scroll view contents to @param x, @param y
-void ScrollView::scrollContentsTo(int x,int y)
-{
-  horizontalScrollBar()->setValue(x-width()/2);
-  verticalScrollBar()->setValue(y-height()/2);
+void ScrollView::scrollContentsTo(int x, int y) {
+  horizontalScrollBar()->setValue(x - width() / 2);
+  verticalScrollBar()->setValue(y - height() / 2);
 }
 
 /// Updates the background
-void ScrollView::updateBackground()
-{
-  if (main)
-  {
+void ScrollView::updateBackground() {
+  if (main) {
     QColor bgcol;
     if (main->project && main->project->machine)
       bgcol.setRgb(255, 255, 255);
@@ -99,20 +91,16 @@ void ScrollView::updateBackground()
   }
 }
 
-
-void ScrollView::resizeEvent(QResizeEvent*e)
-{
-  //qDebug("ScrollView::resizeEvent() called");
+void ScrollView::resizeEvent(QResizeEvent *e) {
+  // qDebug("ScrollView::resizeEvent() called");
   updateSize(e);
 }
 
-
-void ScrollView::updateSize(QResizeEvent* e)
-{
+void ScrollView::updateSize(QResizeEvent *e) {
   double scale;
-  int sx,sy;
-  int x,y;
-  int new_width,new_height;
+  int sx, sy;
+  int x, y;
+  int new_width, new_height;
 
   /*
   new_width=maximumViewportSize().width();
@@ -132,8 +120,8 @@ void ScrollView::updateSize(QResizeEvent* e)
   main->project->machine->getCanvasSize(x, y);
   scale = drawArea->getScale();
 
-  sx = (int)((double)x*scale);
-  sy = (int)((double)y*scale);
+  sx = (int)((double)x * scale);
+  sy = (int)((double)y * scale);
 
   /*
   new_width=maximumViewportSize().width();
@@ -142,26 +130,24 @@ void ScrollView::updateSize(QResizeEvent* e)
   new_width = viewport()->contentsRect().width();
   new_height = viewport()->contentsRect().height();
 
-  if(new_width<=sx)
-    new_width=sx;
-  if(new_height<=sy)
-    new_height=sy;
+  if (new_width <= sx)
+    new_width = sx;
+  if (new_height <= sy)
+    new_height = sy;
 
-  //if(new_width!=sy || new_height!=sy || new_width>drawArea->width() || new_height>drawArea->height())
+  // if(new_width!=sy || new_height!=sy || new_width>drawArea->width() ||
+  // new_height>drawArea->height())
   {
-    drawArea->resizeContents(new_width,new_height);
-    //main->project->machine->updateCanvasSize(new_width,new_height);
+    drawArea->resizeContents(new_width, new_height);
+    // main->project->machine->updateCanvasSize(new_width,new_height);
   }
   if (e)
     QScrollArea::resizeEvent(e);
 
+  // qDebug("SV:resizeEvent: "+QString::number(new_width)+"
+  // "+QString::number(new_height)+" "+QString::number(sx)+"
+  // "+QString::number(sy)+" draw area: "+QString::number(drawArea->width())+"
+  // "+QString::number(drawArea->height()));
 
-  //qDebug("SV:resizeEvent: "+QString::number(new_width)+" "+QString::number(new_height)+" "+QString::number(sx)+" "+QString::number(sy)+" draw area: "+QString::number(drawArea->width())+" "+QString::number(drawArea->height()));
-
-
-//  main->project->machine->updateCanvasSize(new_width,new_height,drawArea->getScale());
-
+  //  main->project->machine->updateCanvasSize(new_width,new_height,drawArea->getScale());
 }
-
-
-

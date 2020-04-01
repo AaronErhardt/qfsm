@@ -6,35 +6,14 @@
 ** a constructor, and a destroy() slot in place of a destructor.
 *****************************************************************************/
 
+void MachinePropertiesDlg::binaryClicked() {}
 
-void MachinePropertiesDlg::binaryClicked()
-{
+void MachinePropertiesDlg::chooseSFont() {}
 
-}
+void MachinePropertiesDlg::chooseTFont() {}
 
-void MachinePropertiesDlg::chooseSFont()
-{
+void MachinePropertiesDlg::asciiClicked() {}
 
-}
+void MachinePropertiesDlg::freeTextClicked() {}
 
-void MachinePropertiesDlg::chooseTFont()
-{
-
-}
-
-void MachinePropertiesDlg::asciiClicked()
-{
-
-}
-
-
-void MachinePropertiesDlg::freeTextClicked()
-{
-
-}
-
-
-void MachinePropertiesDlg::drawITransClicked()
-{
-
-}
+void MachinePropertiesDlg::drawITransClicked() {}

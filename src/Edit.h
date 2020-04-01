@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -38,16 +38,14 @@ class Project;
  * @brief Class providing various editing features.
  *
  */
-class Edit : public QObject
-{
+class Edit : public QObject {
   Q_OBJECT
-  public:
-    Edit(QWidget* parent=0, const char* name=0);
+public:
+  Edit(QWidget *parent = 0, const char *name = 0);
 
-    void deleteSelection(Selection* , Machine* );
-    bool copy(Selection*, Project*, Machine*, QString& data);
-    bool paste(Selection*, Project*, Machine*, QString data);
+  void deleteSelection(Selection *, Machine *);
+  bool copy(Selection *, Project *, Machine *, QString &data);
+  bool paste(Selection *, Project *, Machine *, QString data);
 };
-
 
 #endif

@@ -7,14 +7,6 @@
 ** place of a destructor.
 *****************************************************************************/
 
+void ExportVerilogDlg::syncResetClicked() {}
 
-void ExportVerilogDlg::syncResetClicked()
-{
-
-}
-
-
-void ExportVerilogDlg::registerOutClicked()
-{
-
-}
+void ExportVerilogDlg::registerOutClicked() {}

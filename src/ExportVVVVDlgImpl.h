@@ -1,5 +1,5 @@
 /*
-Copyright (C) Stefan Duffner 
+Copyright (C) Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -24,48 +24,52 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 class Options;
 class Machine;
 
-class ExportVVVVDlgImpl : public QDialog
-{
-    Q_OBJECT
-    Ui::ExportVVVVDlg exportVVVVDlg;
+class ExportVVVVDlgImpl : public QDialog {
+  Q_OBJECT
+  Ui::ExportVVVVDlg exportVVVVDlg;
 
 public:
-    ExportVVVVDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
-    ~ExportVVVVDlgImpl();
+  ExportVVVVDlgImpl(QWidget *parent = 0, const char *name = 0,
+                    bool modal = FALSE, Qt::WFlags fl = 0);
+  ~ExportVVVVDlgImpl();
 
-    void init(Options* opt, Machine* m);
+  void init(Options *opt, Machine *m);
 
-    /// Returns the reset option
-    bool getVVVVReset() { return vvvv_reset; };
-    /// Sets the reset option
-    void setVVVVReset(bool vr) { vvvv_reset = vr; };
-    /// Returns the vvvv reset event name
-    QString getVVVVResetEvent() { reset_event.replace(QRegExp(" "), "_"); return reset_event; }
-    /// Sets the vvvv reset event name
-    void setVVVVResetEvent(QString re) { reset_event = re; }
-    /// Returns the vvvv reset action name
-    QString getVVVVResetAction() { reset_action.replace(QRegExp(" "), "_"); return reset_action; }
-      /// Sets the vvvv reset action name
-    void setVVVVResetAction(QString ra) { reset_action = ra; }
+  /// Returns the reset option
+  bool getVVVVReset() { return vvvv_reset; };
+  /// Sets the reset option
+  void setVVVVReset(bool vr) { vvvv_reset = vr; };
+  /// Returns the vvvv reset event name
+  QString getVVVVResetEvent() {
+    reset_event.replace(QRegExp(" "), "_");
+    return reset_event;
+  }
+  /// Sets the vvvv reset event name
+  void setVVVVResetEvent(QString re) { reset_event = re; }
+  /// Returns the vvvv reset action name
+  QString getVVVVResetAction() {
+    reset_action.replace(QRegExp(" "), "_");
+    return reset_action;
+  }
+  /// Sets the vvvv reset action name
+  void setVVVVResetAction(QString ra) { reset_action = ra; }
 
-    void setText(QString s);
+  void setText(QString s);
 
 signals:
-    void updateCode();
+  void updateCode();
 
 public slots:
-    void resetClicked();
-    //void updateCode();
-    void resetEventChanged();
-    void resetActionChanged();
+  void resetClicked();
+  // void updateCode();
+  void resetEventChanged();
+  void resetActionChanged();
 
-private:    
-    Options* options;
-    bool vvvv_reset;
-    QString reset_event;
-    QString reset_action;
-
+private:
+  Options *options;
+  bool vvvv_reset;
+  QString reset_event;
+  QString reset_action;
 };
 
 #endif
-

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -23,24 +23,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 class Options;
 
-
 /**
  * @class ExportSMC
  * @brief Class that manages export to a SMC .sm file.
  *
  */
-class ExportSMC : public Export
-{
-  public:
-    ExportSMC(Options* opt);
+class ExportSMC : public Export {
+public:
+  ExportSMC(Options *opt);
 
-    void doExport();
-    QString fileFilter();
-    QString defaultExtension();
+  void doExport();
+  QString fileFilter();
+  QString defaultExtension();
 
-  private:
-    void writeMain();
-    void writeTransitions();
+private:
+  void writeMain();
+  void writeTransitions();
 };
 
 #endif

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -16,100 +16,73 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#include <iostream>
-#include <qregexp.h>
-#include <qpainter.h>
-#include <qfile.h>
 #include <QPixmap>
+#include <iostream>
+#include <qfile.h>
+#include <qpainter.h>
+#include <qregexp.h>
 
 #include "ExportPNG.h"
 #include "Machine.h"
 #include "TransitionInfo.h"
 //#include "AppInfo.h"
-#include "IOInfo.h"
 #include "Draw.h"
-#include "ScrollView.h"
 #include "DrawArea.h"
+#include "IOInfo.h"
+#include "ScrollView.h"
 
-//using namespace std;
+// using namespace std;
 
-
-ExportPNG::ExportPNG(Options* opt)
-  	  : Export(opt)
-{
-}
+ExportPNG::ExportPNG(Options *opt) : Export(opt) {}
 
 /// Writes all the relevant data into the png file.
-void ExportPNG::doExport()
-{
+void ExportPNG::doExport() {
   using namespace std;
 
   // code adapted from Umbrello
-  bool exportSuccessful;
   QRect textrect;
 
-//  out->close();
+  //  out->close();
 
   machine->calcCanvasSize();
-  QPixmap pic(scrollview->widget()->width()+10,scrollview->widget()->height()+10);
-  
-
+  QPixmap pic(scrollview->widget()->width() + 10,
+              scrollview->widget()->height() + 10);
 
   pic.fill(Qt::white);
-  //only to get image size
-
-
+  // only to get image size
 
   QPainter *painter = new QPainter(&pic);
-  Draw* draw = new Draw(scrollview, options);
+  Draw *draw = new Draw(scrollview, options);
   QRect rect = draw->getBoundingBox(machine, painter);
 
-
-  if (!scrollview)
-  {
+  if (!scrollview) {
     delete painter;
-    exportSuccessful = FALSE;
   }
 
-  painter->translate(-rect.x(),-rect.y());
+  painter->translate(-rect.x(), -rect.y());
 
-  //int resolution = printer->resolution();
-
+  // int resolution = printer->resolution();
 
   if (scrollview)
     scrollview->getDrawArea()->getSelection()->deselectAll(machine);
   draw->drawStates(machine, painter, 0, 0, 1.0);
   draw->drawTransitions(machine, painter, 0, 0, 1.0);
   if (machine->getDrawITrans())
-    draw->drawInitialTransition(machine, machine->getInitialTransition(), painter, 0, 0, 1.0, textrect, FALSE);
-  
-  
+    draw->drawInitialTransition(machine, machine->getInitialTransition(),
+                                painter, 0, 0, 1.0, textrect, FALSE);
+
   painter->end();
-  QPixmap saveMap=pic.copy(0,0,rect.width()+10,rect.height()+10);
-  
-  saveMap.save(fileName,"PNG");
+  QPixmap saveMap = pic.copy(0, 0, rect.width() + 10, rect.height() + 10);
+
+  saveMap.save(fileName, "PNG");
   // delete painter and printer before we try to open and fix the file
   delete painter;
   delete draw;
 
-
-
-	
   if (scrollview)
     scrollview->getDrawArea()->reset();
-
 }
 
+QString ExportPNG::fileFilter() { return "Portable Network Graphics (*.png)"; }
 
-QString ExportPNG::fileFilter()
-{
-  return "Portable Network Graphics (*.png)";
-}
-
-QString ExportPNG::defaultExtension()
-{
-	return "png";
-}
-
-
-
+QString ExportPNG::defaultExtension() { return "png"; }

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,11 +19,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef IMPORT_H
 #define IMPORT_H
 
+#include <QObject>
 #include <fstream>
 #include <qstring.h>
-#include <QObject>
 
- 
 class Project;
 class Options;
 class ScrollView;
@@ -35,37 +34,35 @@ class MainWindow;
  *
  */
 
-class Import : public QObject
-{
+class Import : public QObject {
   Q_OBJECT
 
-  public:
-    Import(Options* opt);
-    virtual ~Import();
+public:
+  Import(Options *opt);
+  virtual ~Import();
 
-    void init(std::istream* , MainWindow* main, QString fn=QString::null, ScrollView* sv=NULL);
-    /// Does the actual exporting
-    virtual Project* doImport()=0;
-    /// Returns the appropriate filter string for the file dialog.
-    virtual QString fileFilter()=0;
-    /// Verifies if the machine is in a valid form for exporting 
-    //virtual bool validateMachine(Machine* ) { return TRUE; };
-    /// Returns the default file extension
-    virtual QString defaultExtension()=0;
+  void init(std::istream *, MainWindow *main, QString fn = QString::null,
+            ScrollView *sv = NULL);
+  /// Does the actual exporting
+  virtual Project *doImport() = 0;
+  /// Returns the appropriate filter string for the file dialog.
+  virtual QString fileFilter() = 0;
+  /// Verifies if the machine is in a valid form for exporting
+  // virtual bool validateMachine(Machine* ) { return TRUE; };
+  /// Returns the default file extension
+  virtual QString defaultExtension() = 0;
 
-
-  protected:
-    /// Input stream 
-    std::istream* in;
-    /// Pointer to the project that is imported
-    Project* project;
-    /// Application options
-    Options* options;
-    /// Input filename 
-    QString fileName;
-    /// ScrollView pointer 
-    ScrollView* scrollview;
-
+protected:
+  /// Input stream
+  std::istream *in;
+  /// Pointer to the project that is imported
+  Project *project;
+  /// Application options
+  Options *options;
+  /// Input filename
+  QString fileName;
+  /// ScrollView pointer
+  ScrollView *scrollview;
 };
 
 #endif

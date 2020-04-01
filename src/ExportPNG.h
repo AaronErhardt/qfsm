@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -16,7 +16,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-
 #ifndef EXPORTPNG_H
 #define EXPORTPNG_H
 
@@ -30,18 +29,17 @@ class Options;
  *
  */
 
-class ExportPNG : public Export
-{
-  public:
-    ExportPNG(Options* opt);
+class ExportPNG : public Export {
+public:
+  ExportPNG(Options *opt);
 
-    void doExport();
-    QString fileFilter();
-	QString defaultExtension();
+  void doExport();
+  QString fileFilter();
+  QString defaultExtension();
 
-  private:
-    void writeHeader(QString , QString ) { return; };
-    //bool fixEPS(const QString &fileName, QRect rect) const;
+private:
+  void writeHeader(QString, QString) { return; };
+  // bool fixEPS(const QString &fileName, QRect rect) const;
 };
 
 #endif

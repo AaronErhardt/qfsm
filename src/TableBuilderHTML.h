@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -30,24 +30,23 @@ replaced Qt 3 iterators by Qt 4 iterators
  * @class TableBuilderHTML
  * @brief Constructs a state table in HTML format.
  */
-class TableBuilderHTML : public TableBuilder
-{
+class TableBuilderHTML : public TableBuilder {
   Q_OBJECT
 
-  public:
-    TableBuilderHTML(QObject* par, Machine* m, Options* opt);
-    ~TableBuilderHTML();
+public:
+  TableBuilderHTML(QObject *par, Machine *m, Options *opt);
+  ~TableBuilderHTML();
 
-    QString getHead();
-    QString getFoot();
-    QString fileFilter();
-	QString defaultExtension();
-    QString getCommentStart() { return "<!--"; };
-    QString getCommentEnd() { return "-->"; };
+  QString getHead();
+  QString getFoot();
+  QString fileFilter();
+  QString defaultExtension();
+  QString getCommentStart() { return "<!--"; };
+  QString getCommentEnd() { return "-->"; };
 
-  private:
-    QString getRow(GState* );
-    QString getRow(IOInfo* );
+private:
+  QString getRow(GState *);
+  QString getRow(IOInfo *);
 };
 
 #endif

@@ -7,20 +7,8 @@
 ** place of a destructor.
 *****************************************************************************/
 
+void ExportVHDLDlg::symbolicNamesClicked() {}
 
-void ExportVHDLDlg::symbolicNamesClicked()
-{
+void ExportVHDLDlg::synchronousResetClicked() {}
 
-}
-
-
-void ExportVHDLDlg::synchronousResetClicked()
-{
-
-}
-
-
-void ExportVHDLDlg::useStdLogicClicked()
-{
-
-}
+void ExportVHDLDlg::useStdLogicClicked() {}

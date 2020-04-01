@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -31,23 +31,19 @@ that it calls the static functions of QToolTip
 
 #include <qtooltip.h>
 
-
 /**
  * @class ToolTipSV
  * @brief Tooltip for the scroll view.
  */
-class ToolTipSV : public QObject
-{
-  public:
-    ToolTipSV(QWidget* parent);
+class ToolTipSV : public QObject {
+public:
+  ToolTipSV(QWidget *parent);
 
-  protected:
-    void maybeTip(const QPoint& );
-    
-  private:
-    QWidget *par;
+protected:
+  void maybeTip(const QPoint &);
+
+private:
+  QWidget *par;
 };
 
-
 #endif
-

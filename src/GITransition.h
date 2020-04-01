@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -30,48 +30,51 @@ class GState;
 
 /**
  * @class GITransition
- * @brief Stores information about the graphical object of the initial transition.
+ * @brief Stores information about the graphical object of the initial
+ * transition.
  *
- */ 
-class GITransition : public GObject, public Transition
-{
-  public:
-    GITransition();
-    GITransition(State* , GState*);
-    ~GITransition();
+ */
+class GITransition : public GObject, public Transition {
+public:
+  GITransition();
+  GITransition(State *, GState *);
+  ~GITransition();
 
-    void getEndPos(double& x, double& y) /// Gets coordinates of end point
-      { x=endx; y=endy; };
-    void setEndPos(double x, double y) /// Sets coordinates of end point
-      { endx=x; endy=y; };
-    /// Sets the x coordinate of the end point
-    void setEndPosX(double x) 
-      { endx = x; };
-    /// Sets the y coordinate of the end point
-    void setEndPosY(double y)
-      { endy = y; };
-    
-    void move(double, double);
-    bool contains(double, double);
-    int onControlPoint(double, double , double);
+  void getEndPos(double &x, double &y) /// Gets coordinates of end point
+  {
+    x = endx;
+    y = endy;
+  };
+  void setEndPos(double x, double y) /// Sets coordinates of end point
+  {
+    endx = x;
+    endy = y;
+  };
+  /// Sets the x coordinate of the end point
+  void setEndPosX(double x) { endx = x; };
+  /// Sets the y coordinate of the end point
+  void setEndPosY(double y) { endy = y; };
 
-    QString getToolTipInfo(Machine* =NULL, Options* =NULL);
-    QRect getToolTipRect(const QPoint& );
-    
-    /// Returns TRUE if the transition is being dragged
-    bool isDragged() { return dragged; };
-    /// Sets the dragged state to @a ds
-    void setDragged(bool ds) { dragged = ds; };
+  void move(double, double);
+  bool contains(double, double);
+  int onControlPoint(double, double, double);
 
-  private:
-    /// End x position
-    double endx;
-    /// End y position
-    double endy;
-    
-    /// IF TRUE the transition is being dragged by the user
-    bool dragged;
+  QString getToolTipInfo(Machine * = NULL, Options * = NULL);
+  QRect getToolTipRect(const QPoint &);
+
+  /// Returns TRUE if the transition is being dragged
+  bool isDragged() { return dragged; };
+  /// Sets the dragged state to @a ds
+  void setDragged(bool ds) { dragged = ds; };
+
+private:
+  /// End x position
+  double endx;
+  /// End y position
+  double endy;
+
+  /// IF TRUE the transition is being dragged by the user
+  bool dragged;
 };
-
 
 #endif

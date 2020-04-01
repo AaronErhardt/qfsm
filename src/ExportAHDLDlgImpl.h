@@ -1,5 +1,5 @@
 /*
-Copyright (C) Stefan Duffner 
+Copyright (C) Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -22,36 +22,36 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 class Options;
 
-class ExportAHDLDlgImpl : public QDialog
-{
-    Q_OBJECT
+class ExportAHDLDlgImpl : public QDialog {
+  Q_OBJECT
 
-        Ui::ExportAHDLDlg exportAHDLDlg;
+  Ui::ExportAHDLDlg exportAHDLDlg;
 
 public:
-    ExportAHDLDlgImpl( QWidget* parent = 0, const char* name = 0, bool modal = FALSE, Qt::WFlags fl = 0 );
-    ~ExportAHDLDlgImpl();
+  ExportAHDLDlgImpl(QWidget *parent = 0, const char *name = 0,
+                    bool modal = FALSE, Qt::WFlags fl = 0);
+  ~ExportAHDLDlgImpl();
 
-    /// Returns the 'synchronous reset' flag 
-    bool getSyncReset() { return sync_reset; };
-    /// Sets the 'synchronous reset' flag 
-    void setSyncReset(bool sr) { sync_reset = sr; };
-    /// Returns the 'use moore outputs' flag 
-    bool getUseMoore() { return use_moore; };
-    /// Sets the 'use moore outputs' flag 
-    void setUseMoore(bool um) { use_moore = um; };
+  /// Returns the 'synchronous reset' flag
+  bool getSyncReset() { return sync_reset; };
+  /// Sets the 'synchronous reset' flag
+  void setSyncReset(bool sr) { sync_reset = sr; };
+  /// Returns the 'use moore outputs' flag
+  bool getUseMoore() { return use_moore; };
+  /// Sets the 'use moore outputs' flag
+  void setUseMoore(bool um) { use_moore = um; };
 
-    void init(Options* opt);
+  void init(Options *opt);
 
 public slots:
-    void syncResetClicked();
-    void useMooreClicked();
+  void syncResetClicked();
+  void useMooreClicked();
 
 private:
-    /// If TRUE use synchronous reset, otherwise asynchronous reset
-    bool sync_reset;
-    /// If TRUE use moore outputs, otherwise use only state code
-    bool use_moore;
+  /// If TRUE use synchronous reset, otherwise asynchronous reset
+  bool sync_reset;
+  /// If TRUE use moore outputs, otherwise use only state code
+  bool use_moore;
 };
 
 #endif // EXPORTAHDLDLGIMPL_H

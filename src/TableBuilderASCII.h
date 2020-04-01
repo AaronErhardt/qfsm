@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2000,2001 Stefan Duffner 
+Copyright (C) 2000,2001 Stefan Duffner
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -30,25 +30,23 @@ replaced Qt 3 iterators by Qt 4 iterators
  * @class TableBuilderASCII
  * @brief Constructs a state table in ASCII format.
  */
-class TableBuilderASCII : public TableBuilder
-{
+class TableBuilderASCII : public TableBuilder {
   Q_OBJECT
 
-  public:
-    TableBuilderASCII(QObject* par, Machine* m, Options* opt);
-    ~TableBuilderASCII();
+public:
+  TableBuilderASCII(QObject *par, Machine *m, Options *opt);
+  ~TableBuilderASCII();
 
-    QString getHead();
-    QString getFoot();
-    QString fileFilter();
-	QString defaultExtension();
-    QString getCommentStart() { return "#"; };
-    QString getCommentEnd() { return ""; };
+  QString getHead();
+  QString getFoot();
+  QString fileFilter();
+  QString defaultExtension();
+  QString getCommentStart() { return "#"; };
+  QString getCommentEnd() { return ""; };
 
-
-  private:
-    QString getRow(GState* );
-    QString getRow(IOInfo* );
+private:
+  QString getRow(GState *);
+  QString getRow(IOInfo *);
 };
 
 #endif

@@ -6,43 +6,16 @@
 ** a constructor, and a destroy() slot in place of a destructor.
 *****************************************************************************/
 
+void TransitionPropertiesDlg::asciiClicked() {}
 
-void TransitionPropertiesDlg::asciiClicked()
-{
+void TransitionPropertiesDlg::binaryClicked() {}
 
-}
+void TransitionPropertiesDlg::validate() {}
 
-void TransitionPropertiesDlg::binaryClicked()
-{
+void TransitionPropertiesDlg::anyClicked() {}
 
-}
+void TransitionPropertiesDlg::defaultClicked() {}
 
-void TransitionPropertiesDlg::validate()
-{
+void TransitionPropertiesDlg::invertClicked() {}
 
-}
-
-
-
-void TransitionPropertiesDlg::anyClicked()
-{
-
-}
-
-
-void TransitionPropertiesDlg::defaultClicked()
-{
-
-}
-
-
-void TransitionPropertiesDlg::invertClicked()
-{
-
-}
-
-
-void TransitionPropertiesDlg::freeTextClicked()
-{
-
-}
+void TransitionPropertiesDlg::freeTextClicked() {}
