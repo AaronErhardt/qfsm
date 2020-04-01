@@ -52,21 +52,21 @@ private:
   QString testpackage_name;
   /// Name of the log file
   QString logfile_name;
-  /// If TRUE, the names of the inputs/outputs are used, otherwise the vectors
+  /// If true, the names of the inputs/outputs are used, otherwise the vectors
   /// a,o,q
   bool io_names;
-  /// If TRUE, the reset signal will be handled synchronously, otherwise
+  /// If true, the reset signal will be handled synchronously, otherwise
   /// asynchronously.
   bool synchronous_reset;
-  /// If TRUE, a synchronous enable signal will be added
+  /// If true, a synchronous enable signal will be added
   bool synchronous_enable;
-  /// If TRUE, the negated reset signal will be used
+  /// If true, the negated reset signal will be used
   bool neg_reset;
-  /// If TRUE, 'std_logic' is used instead of 'bit'
+  /// If true, 'std_logic' is used instead of 'bit'
   bool use_std_logic;
-  /// If TRUE, an I/O description is written in the header
+  /// If true, an I/O description is written in the header
   bool io_header;
-  /// If TRUE, produce Alliance compliant code
+  /// If true, produce Alliance compliant code
   bool alliance;
 
   void writeEnvironment(std::ofstream *);

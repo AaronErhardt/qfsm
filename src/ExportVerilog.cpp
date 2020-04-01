@@ -81,7 +81,7 @@ void ExportVerilog::writeModule() {
   QList<GState *> slist = machine->getSList();
   QString stmp;
   QMutableListIterator<GState *> it(slist);
-  bool first = TRUE;
+  bool first = true;
   for (; it.hasNext();) {
     GState *st = it.next();
     if (st->isDeleted())
@@ -92,7 +92,7 @@ void ExportVerilog::writeModule() {
     stmp +=
         " = " + QString::number(machine->getNumEncodingBits()) + "\'b" +
         Convert::intToBinStr(st->getEncoding(), machine->getNumEncodingBits());
-    first = FALSE;
+    first = false;
   }
   *out << stmp.latin1() << ";" << endl << endl;
 
@@ -241,7 +241,7 @@ void ExportVerilog::writeStateProcess() {
 
     QMutableListIterator<GTransition *> it(s->tlist);
 
-    first_trans = TRUE;
+    first_trans = true;
 
     for (; it.hasNext();) {
       t = it.next();
@@ -250,8 +250,8 @@ void ExportVerilog::writeStateProcess() {
 
       if (!t->isDeleted() && t->getEnd()) {
         IOInfoList iolist;
-        tioinfo->convertToBinList(iolist, FALSE);
-        //	iolist.setAutoDelete(TRUE);
+        tioinfo->convertToBinList(iolist, false);
+        //	iolist.setAutoDelete(true);
 
         QMutableListIterator<IOInfo *> ioit(iolist);
 
@@ -264,9 +264,9 @@ void ExportVerilog::writeStateProcess() {
         else
           *out << "==";
         *out << machine->getNumInputs() << "\'b";
-        first_trans = FALSE;
+        first_trans = false;
 
-        first = TRUE;
+        first = true;
         for (; ioit.hasNext();) {
 
           iosingle = ioit.next();
@@ -292,7 +292,7 @@ void ExportVerilog::writeStateProcess() {
               *out << "0";
 
             *out << tinfoi.latin1();
-            first = FALSE;
+            first = false;
           }
         }
         *out << ")" << endl;

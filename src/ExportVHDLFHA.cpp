@@ -111,13 +111,13 @@ void ExportVHDLFHA::writeArchitecture() {
   QList<GState *> slist = machine->getSList();
   QString stmp;
   QMutableListIterator<GState *> it(slist);
-  bool first = TRUE;
+  bool first = true;
   for (; it.hasNext();) {
     GState *st = it.next();
     if (!first)
       stmp += ", ";
     stmp += Utils::noWS(st->getStateName());
-    first = FALSE;
+    first = false;
   }
   *out << "TYPE state_type IS (" << stmp.latin1() << ");" << endl;
   *out << "SIGNAL next_state, current_state : state_type;" << endl << endl;
@@ -260,12 +260,12 @@ void ExportVHDLFHA::writeStateProcess() {
 
         if (!t->isDeleted() && t->getEnd()) {
           IOInfoList iolist;
-          tioinfo->convertToBinList(iolist, FALSE);
+          tioinfo->convertToBinList(iolist, false);
 
           QMutableListIterator<IOInfo *> ioit(iolist);
           *out << endl << "          WHEN ";
 
-          first = TRUE;
+          first = true;
           for (; ioit.hasNext();) {
 
             iosingle = ioit.next();
@@ -283,7 +283,7 @@ void ExportVHDLFHA::writeStateProcess() {
                 *out << "0";
 
               *out << tinfoi.latin1() << "\"";
-              first = FALSE;
+              first = false;
             }
           }
 

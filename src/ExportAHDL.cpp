@@ -112,7 +112,7 @@ void ExportAHDL::writeVariables() {
 
   QString sn, c;
   GState *s;
-  bool first = TRUE;
+  bool first = true;
 
   *out << "VARIABLE" << endl;
   *out << "\tfsm\t:\tMACHINE OF BITS(" << /*machine->getMooreOutputNames()*/
@@ -141,7 +141,7 @@ void ExportAHDL::writeVariables() {
       *out << ",";
     *out << endl << "\t\t\t\t\t";
     *out << sn.latin1() << " = B\"" << c.latin1() << "\"";
-    first = FALSE;
+    first = false;
   }
 
   i.toFront();
@@ -158,7 +158,7 @@ void ExportAHDL::writeVariables() {
         *out << ",";
       *out << endl << "\t\t\t\t\t";
       *out << sn.latin1() << " = B\"" << c.latin1() << "\"";
-      first = FALSE;
+      first = false;
     }
   }
   *out << ");" << endl;
@@ -245,14 +245,14 @@ void ExportAHDL::writeTransitions() {
       if (!t->isDeleted() && t->getEnd()) {
         QList<IOInfo *> iolist;
         iolist = tioinfo->getSingles();
-        //	iolist.setAutoDelete(TRUE);
+        //	iolist.setAutoDelete(true);
 
         QMutableListIterator<IOInfo *> ioit(iolist);
 
         if (machine->getNumInputs() > 0)
           *out << "\t\t\tIF (";
 
-        first = TRUE;
+        first = true;
         for (; ioit.hasNext();) {
 
           iosingle = ioit.next();
@@ -280,7 +280,7 @@ void ExportAHDL::writeTransitions() {
               *out << "0";
 
             *out << tinfoi.latin1() << "\" ";
-            first = FALSE;
+            first = false;
           }
         }
 

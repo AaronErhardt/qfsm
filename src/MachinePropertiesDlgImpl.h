@@ -50,7 +50,7 @@ class MachinePropertiesDlgImpl : public QDialog {
 
 public:
   MachinePropertiesDlgImpl(QWidget *parent = 0, const char *name = 0,
-                           bool modal = FALSE, Qt::WindowFlags fl = 0);
+                           bool modal = false, Qt::WindowFlags fl = 0);
   ~MachinePropertiesDlgImpl();
 
   /// Returns the name of the machine.

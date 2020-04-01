@@ -146,9 +146,9 @@ public:
   bool runDragOperation(bool force_copy);
 
   //    void repaintView() { wscroll->viewport()->repaint(); };
-  /// Returns TRUE if the shift key is pressed otherwise FALSE
+  /// Returns true if the shift key is pressed otherwise false
   bool shiftPressed() { return shift_pressed; }
-  /// Returns TRUE if the control key is pressed otherwise FALSE
+  /// Returns true if the control key is pressed otherwise false
   bool controlPressed() { return control_pressed; }
 
   /// The project this window contains
@@ -167,7 +167,7 @@ public:
   /// Returns the current mode.
   int getMode() { return doc_status.getMode(); }
 
-  /// TRUE if this window is about to close
+  /// true if this window is about to close
   bool aboutToClose;
 
 protected:
@@ -417,12 +417,12 @@ private:
   /// Integrity checker
   ICheck *ichecker;
 
-  /// If TRUE the shift key was pressed
+  /// If true the shift key was pressed
   bool shift_pressed;
-  /// If TRUE the control key was pressed
+  /// If true the control key was pressed
   bool control_pressed;
 
-  /// TRUE if a cut operation, FALSE if a copy operation is performed (used in
+  /// true if a cut operation, false if a copy operation is performed (used in
   /// paste)
   bool bcut;
   /// Language

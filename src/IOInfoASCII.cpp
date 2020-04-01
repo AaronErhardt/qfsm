@@ -56,8 +56,8 @@ void IOInfoASCII::setRangeInfo(IOInfo *rstart, IOInfo *rend) {
   Convert conv;
   QString ss, se;
 
-  rstart->convertToASCII(as, MAX_CHARARRAY_LENGTH, lena, TRUE);
-  rend->convertToASCII(ae, MAX_CHARARRAY_LENGTH, lene, TRUE);
+  rstart->convertToASCII(as, MAX_CHARARRAY_LENGTH, lena, true);
+  rend->convertToASCII(ae, MAX_CHARARRAY_LENGTH, lene, true);
 
   if (lena != 1 || lene != 1)
     return;
@@ -66,15 +66,15 @@ void IOInfoASCII::setRangeInfo(IOInfo *rstart, IOInfo *rend) {
   se = conv.asciiToReadableStr(ae, lene);
   if (ss == se) {
     info = ss;
-    range = FALSE;
+    range = false;
   } else {
     info = ss + "-" + se;
-    range = TRUE;
+    range = true;
     range_start = int((unsigned char)as[0]);
     range_end = int((unsigned char)ae[0]);
   }
   type = rstart->getType();
-  role = FALSE;
+  role = false;
 }
 
 /// Destructor
@@ -89,7 +89,7 @@ QString IOInfoASCII::convertToComparableString(Machine * /*m=NULL*/,
                                                Options * /*opt=NULL*/) const {
   /*
   IOInfoList list;
-  list.setAutoDelete(TRUE);
+  list.setAutoDelete(true);
   split(list);
   IOInfo* io;
 
@@ -172,7 +172,7 @@ int IOInfoASCII::convertToInt() const {
 }
 
 void IOInfoASCII::convertToBinList(IOInfoList &list,
-                                   bool resolve_invert /*=TRUE*/) const {
+                                   bool resolve_invert /*=true*/) const {
   unsigned char ascii[MAX_CHARARRAY_LENGTH];
   int calen;
 
@@ -205,7 +205,7 @@ void IOInfoASCII::setBin(QString bin, int) {
   unsigned char ascii[MAX_CHARARRAY_LENGTH];
   int length;
 
-  if (conv.binStrToASCII(bin, ascii, MAX_CHARARRAY_LENGTH, length, FALSE))
+  if (conv.binStrToASCII(bin, ascii, MAX_CHARARRAY_LENGTH, length, false))
     info = conv.asciiToReadableStr(ascii, length);
 }
 
@@ -219,7 +219,7 @@ void IOInfoASCII::setASCII(const unsigned char *ascii, int asciilen, int) {
 void IOInfoASCII::setString(QString string, int) { info = string; }
 
 bool IOInfoASCII::convertToASCII(unsigned char *ascii, int maxlen, int &length,
-                                 bool singlechar /*=FALSE*/) const {
+                                 bool singlechar /*=false*/) const {
   Convert conv;
   if (singlechar) {
     unsigned char asctmp[MAX_CHARARRAY_LENGTH];
@@ -232,7 +232,7 @@ bool IOInfoASCII::convertToASCII(unsigned char *ascii, int maxlen, int &length,
   } else
     conv.resolveEscapes(info, ascii, maxlen, length);
 
-  return TRUE;
+  return true;
 }
 
 /// Converts an escape character into the ASCII character
@@ -276,15 +276,15 @@ QString IOInfoASCII::charToEscape(char c) {
 bool IOInfoASCII::matchesOld(IOInfo* io)
 {
   if (!io->isSingle())
-    return FALSE;
+    return false;
 
   unsigned char c;
   int i=0; //, fpos=0;
   int len;
 //  char lc, rc;
   unsigned char ctmp, cprev=0;
-  bool nextisescape=FALSE;
-  bool nextisdigit, previsdigit=FALSE;
+  bool nextisescape=false;
+  bool nextisdigit, previsdigit=false;
   QString sinf;
   Convert conv;
   int tmplen;
@@ -292,20 +292,20 @@ bool IOInfoASCII::matchesOld(IOInfo* io)
 
   len = info.length();
   if (!io->convertToASCII(carray, sizeof(carray), tmplen))
-    return FALSE;
+    return false;
 
   for (int ti=0; ti<tmplen-1; ti++)
     if (carray[ti]!=0)		// not a single char
-      return FALSE;
+      return false;
 
   if (tmplen==0)
-    return FALSE;
+    return false;
 
   c = carray[tmplen-1];
 
   while (i<len)
   {
-    nextisdigit=FALSE;
+    nextisdigit=false;
 
     ctmp = info[i].latin1();
     if (ctmp=='\\')		// escape sequence
@@ -319,8 +319,8 @@ bool IOInfoASCII::matchesOld(IOInfo* io)
       if (cnext=='d')		// digit
       {
         if (c>='0' && c<='9')
-          return TRUE;
-        previsdigit=TRUE;
+          return true;
+        previsdigit=true;
       }
       else
       {
@@ -347,7 +347,7 @@ the character)
           ctmp = escapeToChar(info[(i+1)].latin1());
 
         if (ctmp==c)
-          return TRUE;
+          return true;
       }
 
       i++;
@@ -362,7 +362,7 @@ the character)
       cnext = info[(i+1)].latin1();
       if (cnext=='\\')		// last char. of range is escape character
       {
-        nextisescape=TRUE;
+        nextisescape=true;
 
         if (i==len-2)
           break;
@@ -371,7 +371,7 @@ the character)
 
         if (cnext=='d')		// digit
         {
-          nextisdigit=TRUE;
+          nextisdigit=true;
         }
         else
         {
@@ -400,7 +400,7 @@ character)
         }
       }
       else
-        nextisescape=FALSE;
+        nextisescape=false;
 
 
 
@@ -411,29 +411,29 @@ character)
           if (cnext<'0')	// x-9
           {
             if (c>=cnext && c<='9')
-              return TRUE;
+              return true;
           }
           else if (cnext<='9')	// 0-9
           {
             if (c>='0' && c<='9')
-              return TRUE;
+              return true;
           }
           else			// 0-x
             //if (c>=0 && c<=cnext)
             if (c<=cnext)
-              return TRUE;
+              return true;
         }
         else
         {
           if (cprev<cnext)	// range normal
           {
             if (c>=cprev && c<=cnext)
-              return TRUE;
+              return true;
           }
           else			// range reversed
           {
             if (c>=cnext && c<=cprev)
-              return TRUE;
+              return true;
           }
         }
       }
@@ -442,7 +442,7 @@ character)
         if (previsdigit)	// 0-9
         {
           if (c>='0' && c<='9')
-            return TRUE;
+            return true;
         }
         else
         {
@@ -450,17 +450,17 @@ character)
           if (cprev<'0')	// x-9
           {
             if (c>=cprev && c<='9')
-              return TRUE;
+              return true;
           }
           else if (cprev<='9')	// 0-9	(\d-\d should be rare)
           {
             if (c>='0' && c<='9')
-              return TRUE;
+              return true;
           }
           else			// 0-x
             //if (c>=0 && c<=cprev)
             if (c<=cprev)
-              return TRUE;
+              return true;
         }
       }
 
@@ -472,12 +472,12 @@ character)
     }
     else			// trivial case (normal character)
       if (c==ctmp)
-        return TRUE;
+        return true;
 
     i++;
     cprev=ctmp;
   }
-  return FALSE;
+  return false;
 }
 */
 
@@ -490,23 +490,23 @@ char carray1[MAX_CHARARRAY_LENGTH];
 char carray2[MAX_CHARARRAY_LENGTH];
 
 if (!convertToASCII(carray1, sizeof(carray1), calen1))
-  return FALSE;
+  return false;
 if (!io->convertToASCII(carray2, sizeof(carray2), calen2))
-  return FALSE;
+  return false;
 
 for(int i=0; i<calen2; i++)
 {
   if (findChar(carray1, calen1, carray2[i])==-1)
-    return FALSE;
+    return false;
 }
 
-return TRUE;
+return true;
 */
 /*
 IOInfoList list1;
 IOInfoList list2;
-list1.setAutoDelete(TRUE);
-list2.setAutoDelete(TRUE);
+list1.setAutoDelete(true);
+list2.setAutoDelete(true);
 
 convertToBinList(list1);
 io->convertToBinList(list2);
@@ -515,9 +515,9 @@ QListIterator<IOInfo> it(list2);
 for(;it.current(); ++it)
 {
   if (!list1.contains(it.current()))
-    return FALSE;
+    return false;
 }
-return TRUE;
+return true;
 */
 //}
 
@@ -552,10 +552,10 @@ bool IOInfoASCII::isSingle() const {
   int ccount=0;
   int i=0, len;
   unsigned char ctmp;
-  bool escprev=FALSE;
+  bool escprev=false;
 
   if (info.isEmpty())
-    return FALSE;
+    return false;
 
   stmp = info.stripWhiteSpace();
   len = stmp.length();
@@ -563,37 +563,37 @@ bool IOInfoASCII::isSingle() const {
   while(i<len)
   {
     ctmp=info[i].latin1();
-    if (ctmp=='\\' && escprev==FALSE)
+    if (ctmp=='\\' && escprev==false)
     {
-      escprev=TRUE;
+      escprev=true;
 
       if (i<len-1)
       {
         if (info[(i+1)]=='0')
         {
           if (i>=len-3)
-            return FALSE;
+            return false;
           i+=2;
         }
         else if (info[(i+1)]=='d')
-          return FALSE;
+          return false;
       }
     }
 //    else if (ctmp=='-')
-//      return FALSE;
+//      return false;
     else
     {
       ccount++;
-      escprev=FALSE;
+      escprev=false;
     }
 
     i++;
   }
 
   if (ccount==1)
-    return TRUE;
+    return true;
   else
-    return FALSE;
+    return false;
     */
 }
 
@@ -614,12 +614,12 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
   int len;
 //  char lc, rc;
   unsigned char ctmp=0, cprev=0, cnext;
-  bool nextisescape=FALSE;
-  bool previsdigit=FALSE, nextisdigit=FALSE;
+  bool nextisescape=false;
+  bool previsdigit=false, nextisdigit=false;
   QString sinf;
   QList<IOInfo*> list;
   Convert conv;
-  bool firstadded=FALSE;
+  bool firstadded=false;
 
   len = info.length();
 
@@ -632,7 +632,7 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
       if(i==len-1)
         break;
 
-      bool append=TRUE;
+      bool append=true;
 //      ctmp = escapeToChar(info[i+1].latin1());
       QString sesc;
       //QString cnext;
@@ -641,7 +641,7 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
       {
         if (i>=len-3)
         {
-          append=FALSE;
+          append=false;
           i=len;
         }
         else
@@ -652,11 +652,11 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
           int asciilen;
           conv.resolveEscapes(sesc, &ctmp, 1, asciilen);
         }
-        previsdigit=FALSE;
+        previsdigit=false;
       }
       else if (cnext=='d')
       {
-        previsdigit=TRUE;
+        previsdigit=true;
         if (i>=len-2 || (info[(i+2)].latin1()!='-'))	// append just 10 digits
         {
           for(unsigned char r='0'; r<='9'; r++)
@@ -664,11 +664,11 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
             list.append(new IOInfoASCII(type, r));
           }
         }
-        append=FALSE;
+        append=false;
       }
       else
       {
-        previsdigit=FALSE;
+        previsdigit=false;
         //sesc = "\\" + cnext;
         sesc.sprintf("\\%c",cnext);
       }
@@ -676,17 +676,17 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
       if (append)
       {
         list.append(new IOInfoASCII(type, sesc));
-        firstadded=TRUE;
+        firstadded=true;
       }
       else
-        firstadded=FALSE;
+        firstadded=false;
 
       i++;
     }
     else if (ctmp=='-')
     {
       unsigned char cnext;
-      bool includefirst=FALSE;
+      bool includefirst=false;
 
       if (len==1)
       {
@@ -699,7 +699,7 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
       cnext = info[(i+1)].latin1();
       if (cnext=='\\')
       {
-        nextisescape=TRUE;
+        nextisescape=true;
 
         if (i==len-2)
           break;
@@ -707,12 +707,12 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
 
         if (info[(i+2)].latin1()=='d')
         {
-          nextisdigit=TRUE;
+          nextisdigit=true;
           if (previsdigit)
           {
             cprev='0';
             cnext='9';
-            includefirst=TRUE;
+            includefirst=true;
           }
           else if (cprev<'0')
           {
@@ -721,20 +721,20 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
           else if (cprev>'9')
           {
             cnext='0';
-            //includefirst=TRUE;
+            //includefirst=true;
           }
           else
           {
             cprev='0';
             cnext='9';
-            includefirst=TRUE;
+            includefirst=true;
           }
         }
         else if (info[(i+2)].latin1()=='0')
         {
           if (i>=len-4)
           {
-//	    append=FALSE;
+//	    append=false;
             cnext=cprev;
             i=len;
           }
@@ -753,7 +753,7 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
       }
       else
       {
-        nextisescape=FALSE;
+        nextisescape=false;
       }
 
       if (previsdigit)
@@ -768,7 +768,7 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
         {
           cprev='0';
           cnext='9';
-          includefirst=TRUE;
+          includefirst=true;
         }
       }
 
@@ -779,7 +779,7 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
         cnext=cprev;
         cprev=chartmp;
         if (firstadded)
-          includefirst=TRUE;
+          includefirst=true;
       }
       if (!firstadded || includefirst)
         cprev--;
@@ -788,7 +788,7 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
         list.append(new IOInfoASCII(type, (unsigned char)r));
 
       }
-      firstadded=TRUE;
+      firstadded=true;
 
       i++;
       if (nextisescape)
@@ -799,10 +799,10 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
       list.append(new IOInfoASCII(type, ctmp));
 
       if (ctmp>='0' && ctmp<='9')
-        previsdigit=TRUE;
+        previsdigit=true;
       else if (ctmp!='\\')
-        previsdigit=FALSE;
-      firstadded=TRUE;
+        previsdigit=false;
+      firstadded=true;
     }
 
     i++;
@@ -815,7 +815,7 @@ QList<IOInfo *> IOInfoASCII::getSingles() {
 
 QList<IOInfo *> IOInfoASCII::getSinglesInversion() {
   QList<IOInfo *> list;
-  //  list.setAutoDelete(FALSE);
+  //  list.setAutoDelete(false);
   if (!invert)
     return getSingles();
 
@@ -838,16 +838,16 @@ int IOInfoASCII::getNumSingles() {
   return ltmp.count();
 }
 
-/// Returns TRUE if the character @a cp is readable
+/// Returns true if the character @a cp is readable
 bool IOInfoASCII::isReadable(unsigned char cp) {
   unsigned char c = (unsigned char)cp;
 
   if (c == 0x0f || c == 0x12 || c == 0x13 || c == 0x15 || c == 0x16 ||
       (c >= 0x21 && c <= 0x7e)) // ||
                                 //      (c>=0x80 && c<=0xa8))
-    return TRUE;
+    return true;
 
-  return FALSE;
+  return false;
 }
 
 /*
@@ -878,8 +878,8 @@ void IOInfoASCII::splitOld(IOInfoList& list)
   int len=info.length();
   QString rangestart;
   QString letter;
-  bool range=FALSE;
-//  bool escape=FALSE;
+  bool range=false;
+//  bool escape=false;
   IOInfoASCII* ioa;
 
   list.clear();
@@ -920,7 +920,7 @@ void IOInfoASCII::splitOld(IOInfoList& list)
       srange += "-" + letter;
       ioa = new IOInfoASCII(type, srange);
       list.append(ioa);
-      range=FALSE;
+      range=false;
       count++;
       continue;
     }
@@ -931,14 +931,14 @@ void IOInfoASCII::splitOld(IOInfoList& list)
       {
         rangestart=letter;
         count+=2;
-        range=TRUE;
+        range=true;
         continue;
       }
     }
 
     ioa = new IOInfoASCII(type, letter);
     list.append(ioa);
-    range=FALSE;
+    range=false;
     count++;
   }
 }
@@ -988,7 +988,7 @@ int IOInfoASCII::split(const IOInfo* ioinfo, IOInfoList& list)
   int i;
   Convert conv;
   IOInfoList result;
-  result.setAutoDelete(TRUE);
+  result.setAutoDelete(true);
 
   convertToASCII(ascii1, MAX_CHARARRAY_LENGTH, length1);
   ioinfo->convertToASCII(ascii2, MAX_CHARARRAY_LENGTH, length2);
@@ -1139,11 +1139,11 @@ bool IOInfoASCII::expandList(IOInfoList& input, IOInfoList& list)
   bool split_occured;
 
   IOInfoList thislist, res;
-  thislist.setAutoDelete(TRUE);
-  res.setAutoDelete(TRUE);
+  thislist.setAutoDelete(true);
+  res.setAutoDelete(true);
   split(thislist);
   IOInfoList newlist;
-  newlist.setAutoDelete(FALSE);
+  newlist.setAutoDelete(false);
 
   QListIterator<IOInfo> thisit(thislist);
 
@@ -1210,7 +1210,7 @@ IOInfo *IOInfoASCII::getPlus1() {
   if (!isSingle())
     return NULL;
 
-  if (!convertToASCII(&c, 1, len, TRUE))
+  if (!convertToASCII(&c, 1, len, true))
     return NULL;
 
   if (c == 255) //'\255')
@@ -1230,7 +1230,7 @@ IOInfo *IOInfoASCII::getMinus1() {
   if (!isSingle())
     return NULL;
 
-  if (!convertToASCII(&c, 1, len, TRUE))
+  if (!convertToASCII(&c, 1, len, true))
     return NULL;
 
   if (c == 0)
@@ -1259,7 +1259,7 @@ QStringList IOInfoASCII::getRagelConditions() {
   if (length == 0)
     return result;
 
-  conv.asciiToIOList(asctmp, length, list, FALSE);
+  conv.asciiToIOList(asctmp, length, list, false);
 
   QListIterator<IOInfo *> it(list);
 
@@ -1411,11 +1411,11 @@ void IOInfoASCII::updateDefaultInfo(const IOInfoList &other) {
     unsigned char a = (unsigned char)i;
     IOInfoASCII ioa(IO_MealyIn, a);
 
-    others_contain = FALSE;
+    others_contain = false;
     QListIterator<IOInfo *> it(other);
     for (; it.hasNext();) {
       if (it.next()->matches(&ioa))
-        others_contain = TRUE;
+        others_contain = true;
     }
     if (!others_contain) // put ascii char it into default condition
       ascii[alen++] = a;

@@ -34,7 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 /// Constructor
 StateManager::StateManager(MainWindow *parent) : QObject(parent) {
   //    state_props = new DStateProperties;
-  state_props = new StatePropertiesDlgImpl((QWidget *)parent, 0, TRUE);
+  state_props = new StatePropertiesDlgImpl((QWidget *)parent, 0, true);
   state_props->setMainWindow(parent);
   main = parent;
 }
@@ -56,7 +56,7 @@ bool StateManager::addState(double x, double y) {
   QString ena = "", exa = "";
 
   if (!main->project)
-    return FALSE;
+    return false;
 
   mtype = main->project->machine->getType();
 
@@ -119,15 +119,15 @@ bool StateManager::addState(double x, double y) {
 
     main->project->machine->addState(
         name, description, code, mooreout, x, y, radius,
-        main->getScrollView()->getDrawArea()->getScale(), pen, FALSE, TRUE, ena,
+        main->getScrollView()->getDrawArea()->getScale(), pen, false, true, ena,
         exa);
     main->project->setChanged();
     main->updateAll();
     main->repaintViewport();
 
-    return TRUE;
+    return true;
   }
-  return FALSE;
+  return false;
 }
 
 /**

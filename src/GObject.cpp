@@ -29,8 +29,8 @@ GObject::GObject(double x,
 {
   xpos = x;
   ypos = y;
-  selected = FALSE;
-  deleted = FALSE;
+  selected = false;
+  deleted = false;
 }
 
 /// Destructor

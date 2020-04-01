@@ -37,10 +37,10 @@ StatusBar::StatusBar(QWidget *parent, const char *name)
   selected = new QLabel(this);
   selected->setAlignment(Qt::AlignCenter);
 
-  //  addWidget(lmessage, 10, FALSE);
-  addWidget(zoom, 2, FALSE);
-  addWidget(selected, 1, FALSE);
-  addWidget(position, 4, FALSE);
+  //  addWidget(lmessage, 10, false);
+  addWidget(zoom, 2, false);
+  addWidget(selected, 1, false);
+  addWidget(position, 4, false);
 
   //  message(tr("Ready."), 2000);
 }

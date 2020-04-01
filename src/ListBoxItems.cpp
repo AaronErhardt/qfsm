@@ -36,7 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 LBArrowLine::LBArrowLine(Q3ListBox *lb) : Q3ListBoxItem(lb) {
   h = 30;
   w = 30;
-  setCustomHighlighting(TRUE);
+  setCustomHighlighting(true);
 }
 
 /// Returns the height of the listbox item
@@ -95,7 +95,7 @@ void LBArrowLine::paint(QPainter *p) {
 LBArrowFilled::LBArrowFilled(Q3ListBox *lb) : Q3ListBoxItem(lb) {
   h = 30;
   w = 30;
-  setCustomHighlighting(TRUE);
+  setCustomHighlighting(true);
 }
 
 /// Returns the height of the listbox
@@ -140,7 +140,7 @@ void LBArrowFilled::paint(QPainter *p) {
                                       listBox());
 
     //    listBox()->style().drawFocusRect(p, r, listBox()->colorGroup(),
-    //      &p->backgroundColor(), TRUE);
+    //      &p->backgroundColor(), true);
   }
 
   h = 2 * wi;
@@ -169,7 +169,7 @@ void LBArrowFilled::paint(QPainter *p) {
 LBArrowWhite::LBArrowWhite(Q3ListBox *lb) : Q3ListBoxItem(lb) {
   h = 30;
   w = 30;
-  setCustomHighlighting(TRUE);
+  setCustomHighlighting(true);
 }
 
 /// Returns the height of the listbox
@@ -214,7 +214,7 @@ void LBArrowWhite::paint(QPainter *p) {
                                       listBox());
 
     //    listBox()->style().drawFocusRect(p, r, listBox()->colorGroup(),
-    //      &p->backgroundColor(), TRUE);
+    //      &p->backgroundColor(), true);
   }
 
   h = 2 * wi;
@@ -243,7 +243,7 @@ void LBArrowWhite::paint(QPainter *p) {
 LBArrowFilledPointed::LBArrowFilledPointed(Q3ListBox *lb) : Q3ListBoxItem(lb) {
   h = 30;
   w = 30;
-  setCustomHighlighting(TRUE);
+  setCustomHighlighting(true);
 }
 
 /// Returns the height of the listbox
@@ -288,7 +288,7 @@ void LBArrowFilledPointed::paint(QPainter *p) {
                                       listBox());
 
     //    listBox()->style().drawFocusRect(p, r, listBox()->colorGroup(),
-    //      &p->backgroundColor(), TRUE);
+    //      &p->backgroundColor(), true);
   }
 
   h = 2 * wi;
@@ -317,7 +317,7 @@ void LBArrowFilledPointed::paint(QPainter *p) {
 LBArrowWhitePointed::LBArrowWhitePointed(Q3ListBox *lb) : Q3ListBoxItem(lb) {
   h = 30;
   w = 30;
-  setCustomHighlighting(TRUE);
+  setCustomHighlighting(true);
 }
 
 /// Returns the height of the listbox
@@ -362,7 +362,7 @@ void LBArrowWhitePointed::paint(QPainter *p) {
                                       listBox());
 
     //    listBox()->style().drawFocusRect(p, r, listBox()->colorGroup(),
-    //      &p->backgroundColor(), TRUE);
+    //      &p->backgroundColor(), true);
   }
 
   h = 2 * wi;

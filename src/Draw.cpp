@@ -196,7 +196,7 @@ void Draw::drawStates(Machine *m, QPainter *p, int contx, int conty,
  * @param contx current x scroll position
  * @param conty current y scroll position
  * @param scale current scale factor
- * @param drawxor if TRUE draws in xor mode otherwise draws with the respective
+ * @param drawxor if true draws in xor mode otherwise draws with the respective
  * color.
  */
 /*
@@ -496,11 +496,11 @@ void Draw::drawTransitions(Machine *m, QPainter *p, int contx, int conty,
  * @param scale current scale factor
  * @param numin number of input bits
  * @param numout number of output bits
- * @param drawxor if TRUE draws in xor otherwise not
- * @param dotted if TRUE draws a dotted otherwise a solid line
- * @param control_lines if TRUE draws with the control lines otherwise it draws
+ * @param drawxor if true draws in xor otherwise not
+ * @param dotted if true draws a dotted otherwise a solid line
+ * @param control_lines if true draws with the control lines otherwise it draws
  * only the transition line
- * @param first if TRUE it draws the first line of a sequence (e.g. when
+ * @param first if true it draws the first line of a sequence (e.g. when
  * dragging) i.e. it erases the visible transition.
  */
 
@@ -737,16 +737,16 @@ void Draw::drawCondition(Machine *m, GTransition *t, QPainter *p, int contx,
  * @param conty current y scroll position
  * @param scale current scale factor
  * @param textrect bounding rectangle of the resulting text ("Reset")
- * @param drawxor if TRUE draws in xor mode otherwise not
- * @param first if TRUE draws the first transition in a sequence (e.g. when
+ * @param drawxor if true draws in xor mode otherwise not
+ * @param first if true draws the first transition in a sequence (e.g. when
  * dragging)
  * @param transptext draws text transparently
  */
 void Draw::drawInitialTransition(Machine *m, GITransition *t, QPainter *p,
                                  int contx, int conty, double scale,
-                                 QRect &textrect, bool drawxor /*=TRUE*/,
-                                 bool first /*=FALSE*/,
-                                 bool transptext /*=FALSE*/) {
+                                 QRect &textrect, bool drawxor /*=true*/,
+                                 bool first /*=false*/,
+                                 bool transptext /*=false*/) {
   if (!t)
     return;
 

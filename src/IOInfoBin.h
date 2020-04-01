@@ -37,9 +37,9 @@ class IOInfoASCII;
  */
 class IOInfoBin : public IOInfo {
 public:
-  IOInfoBin(IOType t, QString, bool inv = FALSE);
-  IOInfoBin(IOType t, bool inv = FALSE);
-  IOInfoBin(IOType t, int code, int len, bool inv = FALSE);
+  IOInfoBin(IOType t, QString, bool inv = false);
+  IOInfoBin(IOType t, bool inv = false);
+  IOInfoBin(IOType t, int code, int len, bool inv = false);
   ~IOInfoBin();
   IOInfoBin(const IOInfoBin &);
   IOInfoBin &operator=(const IOInfoBin &);
@@ -70,10 +70,10 @@ public:
   QString convertToBinStr(Machine *m = NULL, Options *opt = NULL) const;
   QString convertToHexStr() const;
   bool convertToASCII(unsigned char *ascii, int maxlen, int &length,
-                      bool singlechar = FALSE) const;
+                      bool singlechar = false) const;
   IOInfoBin convertToBin(int numbits) const;
   int convertToInt() const;
-  void convertToBinList(IOInfoList &list, bool resolve_invert = TRUE) const;
+  void convertToBinList(IOInfoList &list, bool resolve_invert = true) const;
   QString setBinFormat(QString);
 
   IOInfo *clone() const;

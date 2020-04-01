@@ -308,7 +308,7 @@ QList<GState *> TestvectorGenerator::getPathRec(QList<GState *> path) {
       }
     }
     qDebug(QString("State marked: ") + s->getStateName());
-    s->setMark(TRUE);
+    s->setMark(true);
   }
 
   // recursion

@@ -69,7 +69,7 @@ void ExportPNG::doExport() {
   draw->drawTransitions(machine, painter, 0, 0, 1.0);
   if (machine->getDrawITrans())
     draw->drawInitialTransition(machine, machine->getInitialTransition(),
-                                painter, 0, 0, 1.0, textrect, FALSE);
+                                painter, 0, 0, 1.0, textrect, false);
 
   painter->end();
   QPixmap saveMap = pic.copy(0, 0, rect.width() + 10, rect.height() + 10);

@@ -57,10 +57,10 @@ public:
   /// Returns the moore outputs of the state.
   IOInfo *getMooreOutputs() { return moore_outputs; };
   /// Sets/clears the 'end state' flag
-  void setFinalState(bool fs = TRUE) { finalstate = fs; };
+  void setFinalState(bool fs = true) { finalstate = fs; };
   /// Toggles the 'end state' flag
   void toggleFinalState() { finalstate = !finalstate; };
-  /// Returns TRUE if this state is an end state, otherwise FALSE
+  /// Returns true if this state is an end state, otherwise false
   bool isFinalState() { return finalstate; }
 
   QString getCodeStr(int type = -1);
@@ -89,7 +89,7 @@ protected:
   int code;
   /// Moore outputs of the state
   IOInfo *moore_outputs;
-  /// If TRUE, this state is a final state
+  /// If true, this state is a final state
   bool finalstate;
   /// Entry actions (used for Free-text-type machines and SMC export)
   QString entry_actions;

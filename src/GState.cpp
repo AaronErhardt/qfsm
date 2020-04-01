@@ -57,8 +57,8 @@ GState::GState(Machine *m, const QString n, QString d, int c, IOInfo *moore,
   radius = r;
   mark = false;
 
-  //  tlist.setAutoDelete(TRUE);
-  //  reflist.setAutoDelete(FALSE);
+  //  tlist.setAutoDelete(true);
+  //  reflist.setAutoDelete(false);
 }
 
 /**
@@ -75,8 +75,8 @@ GState::GState(Machine *m) : QObject(), State(m), GObject(0, 0) {
   radius = 40;
   mark = false;
 
-  //  tlist.setAutoDelete(TRUE);
-  //  reflist.setAutoDelete(FALSE);
+  //  tlist.setAutoDelete(true);
+  //  reflist.setAutoDelete(false);
 }
 
 /// Constructor
@@ -89,8 +89,8 @@ GState::GState() : QObject(), State(), GObject(0, 0) {
   radius = 40;
   mark = false;
 
-  //  tlist.setAutoDelete(TRUE);
-  //  reflist.setAutoDelete(FALSE);
+  //  tlist.setAutoDelete(true);
+  //  reflist.setAutoDelete(false);
 }
 
 /// Copy Constructor (dummy)
@@ -102,25 +102,25 @@ GState::GState(GState &gs) : QObject(), State(), GObject(0, 0) {
   setLineWidth(gs.getLineWidth());
   setMark(gs.getMark());
 
-  //  tlist.setAutoDelete(TRUE);
-  //  reflist.setAutoDelete(FALSE);
+  //  tlist.setAutoDelete(true);
+  //  reflist.setAutoDelete(false);
 }
 
 /**
  * Makes a deep copy of the transitions of a state.
  * A deep copy is also made of the transitions ending at this state.
  * @param s state containing the transitions to copy
- * @param deleteold if TRUE deletes the old transitions in this state otherwise
+ * @param deleteold if true deletes the old transitions in this state otherwise
  * not.
  */
-void GState::copyTransitions(GState *s, bool deleteold /*=FALSE*/) {
+void GState::copyTransitions(GState *s, bool deleteold /*=false*/) {
   QMutableListIterator<GTransition *> i(s->tlist);
   QMutableListIterator<GTransition *> j(s->reflist);
 
   GTransition *t, *tmp, *tr;
 
   //  tlist.setAutoDelete(deleteold);
-  //  reflist.setAutoDelete(deleteold); //FALSE);
+  //  reflist.setAutoDelete(deleteold); //false);
   if (deleteold) {
     qDeleteAll(tlist);
     qDeleteAll(reflist);
@@ -148,8 +148,8 @@ void GState::copyTransitions(GState *s, bool deleteold /*=FALSE*/) {
       reflist.append(tmp); // tr); //tmp);
     }
   }
-  //  tlist.setAutoDelete(TRUE);
-  //  reflist.setAutoDelete(TRUE);
+  //  tlist.setAutoDelete(true);
+  //  reflist.setAutoDelete(true);
 }
 
 /**
@@ -305,15 +305,15 @@ void GState::copyAttributes(GState *s) {
  * @param c1y y coordinate of the first control point
  * @param c2x x coordinate of the second control point
  * @param c2y y coordinate of the second control point
- * @param str if TRUE the transition will be straight otherwise the transition
+ * @param str if true the transition will be straight otherwise the transition
  *   will be treated as not straight
- * @param withundo If TRUE this step will be put into the undo buffer.
+ * @param withundo If true this step will be put into the undo buffer.
  */
 void GState::addTransition(Project *p, GState *s, TransitionInfo *i, double sx,
                            double sy, double ex, double ey, double c1x /*=0*/,
                            double c1y /*=0*/, double c2x /*=0*/,
                            double c2y /*=0*/, QString description /*=""*/,
-                           bool str /*=TRUE*/, bool withundo /*=TRUE*/) {
+                           bool str /*=true*/, bool withundo /*=true*/) {
   GTransition *t;
   if (c1x == 0 && c1y == 0 && c2x == 0 && c2y == 0) {
     t = new GTransition(this, s, i, /*numin, in, numout, out,*/ sx, sy, ex, ey,
@@ -336,10 +336,10 @@ void GState::addTransition(Project *p, GState *s, TransitionInfo *i, double sx,
  *
  * @param p Project that contains the state
  * @param t Transition to add
- * @param withundo If TRUE this step will be put into the undo buffer.
+ * @param withundo If true this step will be put into the undo buffer.
  */
 void GState::addTransition(Project *p, GTransition *t,
-                           bool withundo /*=TRUE*/) {
+                           bool withundo /*=true*/) {
   tlist.append(t);
   if (withundo)
     p->getUndoBuffer()->addTransition(t);
@@ -355,11 +355,11 @@ void GState::addTransition(Project *p, GTransition *t,
  * @param y y value to move
  * @param sv respective scrollview
  * @param m machine constaining this state
- * @param redraw if TRUE the scrollview will be redrawn otherwise it won't
- * @param firstRedraw if TRUE it is the first movement of a series
+ * @param redraw if true the scrollview will be redrawn otherwise it won't
+ * @param firstRedraw if true it is the first movement of a series
  */
 void GState::move(double x, double y, DrawArea *sv, Machine *m,
-                  bool redraw /*=TRUE*/, bool firstRedraw /*=FALSE*/) {
+                  bool redraw /*=true*/, bool firstRedraw /*=false*/) {
   GTransition *t;
   QMutableListIterator<GTransition *> it(reflist);
   QMutableListIterator<GTransition *> i(tlist);
@@ -374,22 +374,22 @@ void GState::move(double x, double y, DrawArea *sv, Machine *m,
 
     if (t->getEnd() == NULL && sv->getDragMultiple()) { // transitions w/o dest
       if (t->isSelected()) {
-        t->moveStart(x, y, FALSE, TRUE);
-        t->moveEnd(x, y, FALSE, FALSE);
+        t->moveStart(x, y, false, true);
+        t->moveEnd(x, y, false, false);
       } else
         t->moveStart(x, y);
     } else if (t->getEnd() != this) // no loops
     {
       if (sv->getDragMultiple() && ((GState *)t->getEnd())->isSelected() &&
           !t->isStraight()) {
-        t->moveStart(x, y, FALSE, TRUE, FALSE);
+        t->moveStart(x, y, false, true, false);
       } else if (t->isStraight())
         t->moveStart(x, y);
       else
-        t->moveStart(x, y, FALSE, TRUE, FALSE);
+        t->moveStart(x, y, false, true, false);
     } else // loops
     {
-      t->moveStart(x, y, FALSE, TRUE);
+      t->moveStart(x, y, false, true);
     }
 
     if (redraw)
@@ -406,8 +406,8 @@ void GState::move(double x, double y, DrawArea *sv, Machine *m,
     if (t->getStart() == m->getPhantomState() &&
         sv->getDragMultiple()) { // transition from phantom state
       if (t->isSelected()) {
-        t->moveStart(x, y, FALSE, FALSE);
-        t->moveEnd(x, y, FALSE, TRUE);
+        t->moveStart(x, y, false, false);
+        t->moveEnd(x, y, false, true);
       } else
         t->moveEnd(x, y);
     } else if (t->getStart() != this) // no loops
@@ -415,10 +415,10 @@ void GState::move(double x, double y, DrawArea *sv, Machine *m,
       if (t->isStraight())
         t->moveEnd(x, y);
       else
-        t->moveEnd(x, y, FALSE, TRUE, FALSE);
+        t->moveEnd(x, y, false, true, false);
     } else // loops
     {
-      t->moveEnd(x, y, FALSE);
+      t->moveEnd(x, y, false);
     }
 
     if (redraw)
@@ -541,7 +541,7 @@ void GState::removeTransition(GTransition *trem) {
   // GState* s;
   // s = (GState*)trem->getEnd();
 
-  trem->select(FALSE);
+  trem->select(false);
   trem->setDeleted();
 }
 
@@ -709,7 +709,7 @@ void GState::updateDefaultTransition() {
   TransitionInfo *tinfo;
   IOInfo *def_info = NULL;
   IOInfoList list;
-  //  list.setAutoDelete(TRUE);
+  //  list.setAutoDelete(true);
 
   for (; i.hasNext();) {
     t = i.next();

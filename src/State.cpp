@@ -49,7 +49,7 @@ State::State(Machine *m) {
   sname = "";
   sdescription = "";
   code = 0;
-  finalstate = FALSE;
+  finalstate = false;
   moore_outputs = NULL;
   entry_actions = "";
   exit_actions = "";
@@ -61,7 +61,7 @@ State::State() {
   sname = "";
   sdescription = "";
   code = 0;
-  finalstate = FALSE;
+  finalstate = false;
   moore_outputs = NULL;
   entry_actions = "";
   exit_actions = "";
@@ -112,7 +112,7 @@ State::~State() {}
  *
  * @param mtype Machine type
  * @param s String to validate
- * @returns TRUE if the code is valid, otherwise FALSE
+ * @returns true if the code is valid, otherwise false
  */
 bool State::codeValid(int mtype, QString s) {
   if (mtype == Binary) {
@@ -131,13 +131,13 @@ bool State::codeValid(int mtype, QString s) {
  *
  * @param mtype Machine type
  * @param s String to validate
- * @returns TRUE if the moore output is valid, otherwise FALSE
+ * @returns true if the moore output is valid, otherwise false
  */
 bool State::mooreOutputValid(int mtype, QString s) {
   if (mtype == Binary) {
     return Utils::binStringValid(s);
   } else {
-    return (Transition::conditionValid(mtype, s, FALSE) == 0);
+    return (Transition::conditionValid(mtype, s, false) == 0);
   }
 }
 

@@ -37,8 +37,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 /// Constructor
 XMLHandler::XMLHandler(Project *newProject, Selection *sel /*=NULL*/,
-                       bool keepquiet /*=TRUE*/,
-                       bool createnewmachine /*=TRUE*/)
+                       bool keepquiet /*=true*/,
+                       bool createnewmachine /*=true*/)
     : QObject((QObject *)newProject) {
   project = newProject;
   machine = NULL;
@@ -79,8 +79,8 @@ XMLHandler::XMLHandler(Project *newProject, Selection *sel /*=NULL*/,
   numin = 0;
   numout = 0;
   state_code_size = 1;
-  //  undostatelist.setAutoDelete(FALSE);
-  //  undotranslist.setAutoDelete(FALSE);
+  //  undostatelist.setAutoDelete(false);
+  //  undotranslist.setAutoDelete(false);
 }
 
 /// Starts a new document
@@ -90,20 +90,20 @@ bool XMLHandler::startDocument() {
   version = ai.getVersionDouble();
   itransition = NULL;
   saveinitialstate = -1;
-  inamescont = FALSE;
-  onamescont = FALSE;
-  monamescont = FALSE;
-  snamecont = FALSE;
-  hascode = FALSE;
-  fromcont = FALSE;
-  tocont = FALSE;
-  tincont = FALSE;
-  toutcont = FALSE;
-  hasfrom = FALSE;
-  hasto = FALSE;
+  inamescont = false;
+  onamescont = false;
+  monamescont = false;
+  snamecont = false;
+  hascode = false;
+  fromcont = false;
+  tocont = false;
+  tincont = false;
+  toutcont = false;
+  hasfrom = false;
+  hasto = false;
   rstatelist.clear();
   codemap.clear();
-  return TRUE;
+  return true;
 }
 
 /// Called when a start element was parsed
@@ -128,9 +128,9 @@ bool XMLHandler::startElement(const QString & /*namespaceURI*/,
     if (create_new_machine || !machine)
       machine = new Machine(project);
     if (machine->getInitialState())
-      hasinitialstate = TRUE;
+      hasinitialstate = true;
     else
-      hasinitialstate = FALSE;
+      hasinitialstate = false;
     if (!create_new_machine) {
       oldnummooreout = machine->getNumMooreOutputs();
       oldnumin = machine->getNumInputs();
@@ -141,10 +141,10 @@ bool XMLHandler::startElement(const QString & /*namespaceURI*/,
       undotranslist.clear();
     }
     saveinitialstate = -1;
-    inamescont = FALSE;
-    onamescont = FALSE;
-    monamescont = FALSE;
-    snamecont = FALSE;
+    inamescont = false;
+    onamescont = false;
+    monamescont = false;
+    snamecont = false;
     itransition = NULL;
     rstatelist.clear();
     codemap.clear();
@@ -214,7 +214,7 @@ bool XMLHandler::startElement(const QString & /*namespaceURI*/,
             // if (!quiet)
             Error::warningOk(
                 tr("The types of the two machines are not compatible."));
-            return FALSE;
+            return false;
           }
         }
       }
@@ -265,19 +265,19 @@ bool XMLHandler::startElement(const QString & /*namespaceURI*/,
 
   } else if (qName == "outputnames_moore") {
     monames = "";
-    monamescont = TRUE;
+    monamescont = true;
   } else if (qName == "inputnames") {
     inames = "";
-    inamescont = TRUE;
+    inamescont = true;
   } else if (qName == "outputnames") {
     onames = "";
-    onamescont = TRUE;
+    onamescont = true;
   } else if (qName == "state") {
     if (machine) {
       QString aname;
       state = new GState(machine);
 
-      hascode = FALSE;
+      hascode = false;
 
       for (int i = 0; i < atts.length(); i++) {
         aname = atts.qName(i);
@@ -289,11 +289,11 @@ bool XMLHandler::startElement(const QString & /*namespaceURI*/,
             int newcode = machine->getNewCode();
             codemap.insert(code, newcode);
             code = newcode;
-            addstate = TRUE;
+            addstate = true;
           } else
-            addstate = TRUE;
+            addstate = true;
           state->setEncoding(code);
-          hascode = TRUE;
+          hascode = true;
           if (version <= 0.41) {
             IOInfoBin *iotmp =
                 new IOInfoBin(IO_MooreOut, code, machine->getNumMooreOutputs());
@@ -337,17 +337,17 @@ bool XMLHandler::startElement(const QString & /*namespaceURI*/,
       }
 
       sname = "";
-      snamecont = TRUE;
+      snamecont = true;
     }
   } else if (qName == "transition") {
     iinfo = "";
     oinfo = "";
-    tincont = FALSE;
-    toutcont = FALSE;
-    fromcont = FALSE;
-    tocont = FALSE;
-    hasfrom = FALSE;
-    hasto = FALSE;
+    tincont = false;
+    toutcont = false;
+    fromcont = false;
+    tocont = false;
+    hasfrom = false;
+    hasto = false;
     if (machine) {
       QString aname;
       transition = new GTransition();
@@ -380,18 +380,18 @@ bool XMLHandler::startElement(const QString & /*namespaceURI*/,
       }
     }
   } else if (qName == "from") {
-    hasfrom = TRUE;
+    hasfrom = true;
     from = "";
-    fromcont = TRUE;
+    fromcont = true;
   } else if (qName == "to") {
-    hasto = TRUE;
+    hasto = true;
     to = "";
-    tocont = TRUE;
+    tocont = true;
   } else if (qName == "inputs") {
     iinfo = "";
-    invert = FALSE;
-    any = FALSE;
-    def = FALSE;
+    invert = false;
+    any = false;
+    def = false;
     int len = atts.length();
     for (int i = 0; i < len; i++) {
       aname = atts.qName(i);
@@ -402,10 +402,10 @@ bool XMLHandler::startElement(const QString & /*namespaceURI*/,
       else if (aname == "default")
         def = (bool)atts.value(i).toInt();
     }
-    tincont = TRUE;
+    tincont = true;
   } else if (qName == "outputs") {
     oinfo = "";
-    toutcont = TRUE;
+    toutcont = true;
   } else if (qName == "itransition") {
     if (machine) {
       QString aname;
@@ -425,7 +425,7 @@ bool XMLHandler::startElement(const QString & /*namespaceURI*/,
       }
     }
   }
-  return TRUE;
+  return true;
 }
 
 /// Called when a closing tag was parsed
@@ -479,31 +479,31 @@ bool XMLHandler::endElement(const QString &, const QString &,
     if (machine)
       machine->setMealyInputNames(machine->getNumInputs(), inames);
     inames = "";
-    inamescont = FALSE;
+    inamescont = false;
   } else if (qName == "outputnames") {
     if (machine)
       machine->setMealyOutputNames(machine->getNumOutputs(), onames);
     onames = "";
-    onamescont = FALSE;
+    onamescont = false;
   } else if (qName == "outputnames_moore") {
     if (machine)
       machine->setMooreOutputNames(machine->getNumMooreOutputs(), monames);
     monames = "";
-    monamescont = FALSE;
+    monamescont = false;
   } else if (qName == "state") {
     state->setStateName(sname);
     if (machine) {
       if (addstate) {
-        machine->addState(state, FALSE);
+        machine->addState(state, false);
         undostatelist.append(state);
         if (selection)
-          selection->select(state, FALSE);
+          selection->select(state, false);
         if (!hascode)
           state->setEncoding(machine->getNewCode());
       }
     }
     sname = "";
-    snamecont = FALSE;
+    snamecont = false;
   } else if (qName == "transition") {
     if (machine) {
       TransitionInfo *info;
@@ -564,24 +564,24 @@ bool XMLHandler::endElement(const QString &, const QString &,
       transition->setStart(sfrom);
       if (transition->isStraight())
         transition->straighten();
-      sfrom->addTransition(project, transition, FALSE);
+      sfrom->addTransition(project, transition, false);
       undotranslist.append(transition);
       if (selection)
-        selection->select(transition, FALSE);
+        selection->select(transition, false);
     }
     iinfo = "";
     oinfo = "";
-    fromcont = tocont = tincont = toutcont = FALSE;
+    fromcont = tocont = tincont = toutcont = false;
   } else if (qName == "from")
-    fromcont = FALSE;
+    fromcont = false;
   else if (qName == "to")
-    tocont = FALSE;
+    tocont = false;
   else if (qName == "inputs")
-    tincont = FALSE;
+    tincont = false;
   else if (qName == "outputs")
-    toutcont = FALSE;
+    toutcont = false;
 
-  return TRUE;
+  return true;
 }
 
 /// Deprecated
@@ -603,5 +603,5 @@ bool XMLHandler::characters(const QString &ch) {
   else if (tocont)
     to += ch;
 
-  return TRUE;
+  return true;
 }

@@ -31,7 +31,7 @@ MachineManager::MachineManager(QObject *parent, const char *name)
     : QObject(parent, name) {
   main = (MainWindow *)parent;
   //  machine_props = new DMachineProperties;
-  machine_props = new MachinePropertiesDlgImpl((QWidget *)parent, 0, TRUE);
+  machine_props = new MachinePropertiesDlgImpl((QWidget *)parent, 0, true);
 }
 
 /// Destructor
@@ -55,7 +55,7 @@ int MachineManager::addMachine(Project *p) {
   int ires;
   Error err;
 
-  machine_props->enableType(TRUE);
+  machine_props->enableType(true);
   machine_props->setType(0);
   machine_props->setNumMooreOutputs(0);
   machine_props->setMooreOutputNames("");
@@ -67,7 +67,7 @@ int MachineManager::addMachine(Project *p) {
   machine_props->setTFont(f);
   machine_props->selectFirst();
   machine_props->setArrowType(atype);
-  machine_props->setDrawITrans(TRUE);
+  machine_props->setDrawITrans(true);
   machine_props->setName("FSM");
 
   while (true) {
@@ -136,7 +136,7 @@ void MachineManager::editMachine(Project *p) {
   m = p->machine;
 
   numbit = m->getNumMooreOutputs();
-  machine_props->enableType(FALSE);
+  machine_props->enableType(false);
   mtype = m->getType();
   numin = m->getNumInputs();
   numout = m->getNumOutputs();
@@ -230,7 +230,7 @@ void MachineManager::editMachine(Project *p) {
     m->setDrawITrans(machine_props->getDrawITrans());
 
     if (!m->getDrawITrans())
-      m->getInitialTransition()->select(FALSE);
+      m->getInitialTransition()->select(false);
 
     p->getMain()->updateIOView(m);
     main->project->setChanged();

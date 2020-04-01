@@ -35,9 +35,9 @@ public:
   GTransition();
   //    GTransition(const GTransition&);
   GTransition(State *, State *, TransitionInfo *, double, double, double,
-              double, QString, bool str = TRUE);
+              double, QString, bool str = true);
   GTransition(State *, State *, TransitionInfo *, double, double, double,
-              double, double, double, double, double, QString, bool str = TRUE);
+              double, double, double, double, double, QString, bool str = true);
 
   void setStartPos(double, double);
   void setEndPos(double x, double y);
@@ -76,17 +76,17 @@ public:
     x = control2x;
     y = control2y;
   };
-  /// Returns TRUE if the transition is straight otherwise FALSE
+  /// Returns true if the transition is straight otherwise false
   bool isStraight() { return straight; };
-  /** If @a s is TRUE declares the transition as straight otherwise declare
+  /** If @a s is true declares the transition as straight otherwise declare
     it as not straight */
-  void setStraight(bool s = TRUE) { straight = s; };
+  void setStraight(bool s = true) { straight = s; };
 
   void move(double, double);
-  void moveStart(double, double, bool move_cont_rel = TRUE,
-                 bool move_cont = FALSE, bool move_cont_both = TRUE);
-  void moveEnd(double, double, bool move_cont_rel = TRUE,
-               bool move_cont = FALSE, bool move_cont_both = TRUE);
+  void moveStart(double, double, bool move_cont_rel = true,
+                 bool move_cont = false, bool move_cont_both = true);
+  void moveEnd(double, double, bool move_cont_rel = true,
+               bool move_cont = false, bool move_cont_both = true);
   void moveCPoint1(double, double);
   void moveCPoint2(double, double);
 
@@ -104,7 +104,7 @@ public:
   /// Sets the descriptionn of the transition
   void setDescription(QString d) { description = d; };
 
-  /// Returns TRUE if the transition is being dragged
+  /// Returns true if the transition is being dragged
   bool isDragged() { return dragged; };
   /// Sets the dragged state to @a ds
   void setDragged(bool ds) { dragged = ds; };
@@ -131,12 +131,12 @@ private:
   double endx;
   /// Y coordinate of the end point
   double endy;
-  /// If TRUE the transition will be drawn as straight line (not as bezier
+  /// If true the transition will be drawn as straight line (not as bezier
   /// curve)
   bool straight;
   /// Description
   QString description;
-  /// IF TRUE the transition is being dragged by the user
+  /// IF true the transition is being dragged by the user
   bool dragged;
   /// Marker for testbench export
   int mark;

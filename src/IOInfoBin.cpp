@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  * Initialises the IOInfo object with the bits contained in the array @a io
  * with the length @a len.
  */
-IOInfoBin::IOInfoBin(IOType t, QString io, bool inv /*=FALSE*/)
+IOInfoBin::IOInfoBin(IOType t, QString io, bool inv /*=false*/)
     : IOInfo(t, inv) {
   /*  int len=0;
     while (io[len]!=10)
@@ -49,7 +49,7 @@ IOInfoBin::IOInfoBin(IOType t, QString io, bool inv /*=FALSE*/)
  * Standard constructor.
  * Sets no information.
  */
-IOInfoBin::IOInfoBin(IOType t, bool inv /*=FALSE*/) : IOInfo(t, inv) {
+IOInfoBin::IOInfoBin(IOType t, bool inv /*=false*/) : IOInfo(t, inv) {
   info = QString("");
   //  length=0;
 }
@@ -60,7 +60,7 @@ IOInfoBin::IOInfoBin(IOType t, bool inv /*=FALSE*/) : IOInfo(t, inv) {
  * @param code I/O info in decimal form
  * @param len Length of the I/O info (in bits)
  */
-IOInfoBin::IOInfoBin(IOType t, int code, int len, bool inv /*=FALSE*/)
+IOInfoBin::IOInfoBin(IOType t, int code, int len, bool inv /*=false*/)
     : IOInfo(t, inv) {
   Convert conv;
   QString stmp;
@@ -77,7 +77,7 @@ IOInfoBin::IOInfoBin(IOType t, int code, int len, bool inv /*=FALSE*/)
 void IOInfoBin::setRangeInfo(IOInfo *range_start, IOInfo * /*range_end*/) {
   if (range_start != NULL) {
     *this = range_start->convertToBin(getLength());
-    role = FALSE;
+    role = false;
   }
 }
 
@@ -200,14 +200,14 @@ bool IOInfoBin::isSingle() const {
     while (info[i]!=10) //end of info is marked with 10?
     {
     if (info[i]==2)
-    return FALSE;
+    return false;
     i++;
   }
-    return TRUE;*/
+    return true;*/
   if (info.contains('X') || info.contains('|'))
-    return FALSE;
+    return false;
   else
-    return TRUE;
+    return true;
 }
 
 QString IOInfoBin::convertToString(Machine *m /*=NULL*/,
@@ -263,7 +263,7 @@ QString IOInfoBin::convertToBinStr(Machine *m /*=NULL*/,
       len = stmp.length();
 
       count = 0;
-      first = TRUE;
+      first = true;
       for (it = names.begin(); it != names.end(); ++it) {
         if (count < len) {
           if (stmp[count] == 'x')
@@ -272,7 +272,7 @@ QString IOInfoBin::convertToBinStr(Machine *m /*=NULL*/,
             if (!first)
               stmp2 += ", ";
             stmp2 += *it + "=" + stmp[count++];
-            first = FALSE;
+            first = false;
           }
         }
       }
@@ -311,7 +311,7 @@ QString IOInfoBin::convertToBinStr(Machine *m /*=NULL*/,
     len = stmp.length();
 
     count=0;
-    first=TRUE;
+    first=true;
     for(it = names.begin(); it!=names.end(); ++it)
     {
     if (count<len)
@@ -323,7 +323,7 @@ QString IOInfoBin::convertToBinStr(Machine *m /*=NULL*/,
     if (!first)
     stmp2 += ", ";
     stmp2 += *it + "=" + stmp[count++];
-    first=FALSE;
+    first=false;
   }
   }
   }
@@ -349,7 +349,7 @@ QString IOInfoBin::convertToHexStr() const {
 }
 
 bool IOInfoBin::convertToASCII(unsigned char *ascii, int maxlen, int &length,
-                               bool singlechar /*=FALSE*/) const {
+                               bool singlechar /*=false*/) const {
   Convert conv;
 
   return conv.X10ToASCII(*this, ascii, maxlen, length, singlechar);
@@ -542,7 +542,7 @@ bool IOInfoBin::equals(IOInfo* io)
   char *buf1, *buf2;
 
   if (len1!=len2)
-    return FALSE;
+    return false;
 
   buf1 = info;
   buf2 = iotmp->getInfo();
@@ -550,9 +550,9 @@ bool IOInfoBin::equals(IOInfo* io)
   for(int i=0; i<len1; i++)
 {
     if (buf1[i]!=buf2[i] && buf1[i]!=2 && buf2[i]!=2)
-      return FALSE;
+      return false;
 }
-  return TRUE;
+  return true;
 
 }
 
@@ -569,7 +569,7 @@ bool IOInfoBin::equals(IOInfo* io)
   int maxlen = len1>len2?len1:len2;
 
 //  if (len1!=len2)
-//    return FALSE;
+//    return false;
 
   IOInfoBin iotmp1 = convertToBin(maxlen); //(IOInfoBin*)io;
   IOInfoBin iotmp2 = io->convertToBin(maxlen); //(IOInfoBin*)io;
@@ -580,9 +580,9 @@ bool IOInfoBin::equals(IOInfo* io)
   for(int i=0; i<maxlen; i++)
 {
     if (buf1[i]!=buf2[i] && buf1[i]!=2 && buf2[i]!=2)
-      return FALSE;
+      return false;
 }
-  return TRUE;
+  return true;
 
 }*/
 
@@ -682,7 +682,7 @@ void IOInfoBin::split(IOInfoList &list, bool resolve_invert) const {
     int len = 1 << getLength();
     for (int i = 0; i < len; i++) {
       IOInfoBin *iotmp = new IOInfoBin(type, i, getLength());
-      xlist.setInvert(FALSE);
+      xlist.setInvert(false);
       if (!xlist.contains(iotmp)) {
         list.append(iotmp);
       } else
@@ -739,7 +739,7 @@ bool IOInfoBin::expandList(IOInfoList&, input, IOInfoList& list)
 {
   IOInfoList iolist;
   IOInfo *infos, *infoc;
-  iolist.setAutoDelete(TRUE);
+  iolist.setAutoDelete(true);
 
   split(iolist);
 
@@ -758,7 +758,7 @@ bool IOInfoBin::expandList(IOInfoList&, input, IOInfoList& list)
 */
 
 void IOInfoBin::convertToBinList(IOInfoList &list,
-                                 bool resolve_invert /*=TRUE*/) const {
+                                 bool resolve_invert /*=true*/) const {
   // resolveX(*this, list);
   split(list, resolve_invert);
 }
@@ -834,7 +834,7 @@ void IOInfoBin::resolveX(IOInfoBin bin, IOInfoList &list) {
 }
 
 /**
- * Returns TRUE if @a io matches this object (i.e. this I/O info contains @a
+ * Returns true if @a io matches this object (i.e. this I/O info contains @a
  * io). IOInfo::matches() also works but is less efficient (especially for lots
  * of "don't care" bits).
  */
@@ -852,10 +852,10 @@ bool IOInfoBin::matches(IOInfo *io) {
   b2 = io->convertToBin(maxlen);
 
   if (any) // any input is accepted
-    return TRUE;
+    return true;
 
   if (def && io->isDefault()) // can this case occur?
-    return FALSE;
+    return false;
 
   l1 = b1.getSingles();
   b2.split(l2, true);

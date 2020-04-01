@@ -50,7 +50,7 @@ Simulator::~Simulator() { delete simdlg; }
 /**
  * Starts simulation.
  * Opens the simulation dialog and resets the machine @a m.
- * @return TRUE if simulation was started, FALSE if an error occured.
+ * @return true if simulation was started, false if an error occured.
  */
 bool Simulator::startSimulation(Machine *m) {
   Error err;
@@ -59,12 +59,12 @@ bool Simulator::startSimulation(Machine *m) {
   QString out;
 
   if (!m)
-    return FALSE;
+    return false;
   machine = m;
 
   if (m->getInitialState() == NULL) {
     err.info(tr("You have to define an initial state."));
-    return FALSE;
+    return false;
   }
 
   m->updateDefaultTransitions();
@@ -88,7 +88,7 @@ bool Simulator::startSimulation(Machine *m) {
   //  sim_dlg->show();
   simdlg->show();
 
-  return TRUE;
+  return true;
 }
 
 /**
@@ -129,14 +129,14 @@ void Simulator::enableButtons() {
   simdlg->enable14(num > 14);
   simdlg->enable15(num > 15);
 
-  simdlg->enableFrequency(TRUE);
-  simdlg->enableSend(TRUE);
+  simdlg->enableFrequency(true);
+  simdlg->enableSend(true);
 }
 
 /// Sets @a s the current state of the simulation.
 void Simulator::setCurrentState(GState *s) {
   if (current_state)
-    current_state->select(FALSE);
+    current_state->select(false);
 
   current_state = s;
   s->select();
@@ -169,7 +169,7 @@ void Simulator::next() {
   //  bin = new char[numin+1];
   if (simdlg->isIBinChecked()) {
 
-    if (Transition::conditionValid(Binary, in, FALSE)) {
+    if (Transition::conditionValid(Binary, in, false)) {
       if (!simdlg->isClockOn())
         err.info(tr("Input is not in binary format."));
       else

@@ -61,7 +61,7 @@ void Edit::deleteSelection(Selection *sel, Machine *m) {
       m->getProject()->getUndoBuffer()->deleteState(s);
 
       if (s == m->getInitialState())
-        sel->selectITrans(FALSE);
+        sel->selectITrans(false);
       m->removeState(s);
       break;
 
@@ -91,7 +91,7 @@ void Edit::deleteSelection(Selection *sel, Machine *m) {
     for (; si.hasNext();) {
       s = si.next();
       if (s == m->getInitialState())
-        sel->selectITrans(FALSE);
+        sel->selectITrans(false);
       m->removeState(s);
     }
 
@@ -107,11 +107,11 @@ void Edit::deleteSelection(Selection *sel, Machine *m) {
  * @param p Pointer to the project that contains the objects to copy.
  * @param m Pointer to the machine that contains the objects to copy.
  * @param s String that contains the XML data
- * @returns TRUE if successful
+ * @returns true if successful
  */
 bool Edit::copy(Selection *, Project *p, Machine *m, QString &s) {
   if (!p || !m)
-    return FALSE;
+    return false;
 
   GObject *contextobject;
   QDomDocument domdoc;
@@ -119,7 +119,7 @@ bool Edit::copy(Selection *, Project *p, Machine *m, QString &s) {
 
   contextobject = NULL; // sel->getContextObject(otype);
 
-  domdoc = p->getDomDocument(TRUE, contextobject);
+  domdoc = p->getDomDocument(true, contextobject);
 
   QTextStream tstream(&s, QIODevice::WriteOnly);
 
@@ -127,7 +127,7 @@ bool Edit::copy(Selection *, Project *p, Machine *m, QString &s) {
 
   domdoc.save(tstream, 1);
 
-  return TRUE;
+  return true;
   /*
   QList<GState> list;
   QList<GTransition> tlist;
@@ -218,7 +218,7 @@ bool Edit::copy(Selection *, Project *p, Machine *m, QString &s) {
     }
 
 
-  return TRUE;
+  return true;
 */
 }
 
@@ -229,17 +229,17 @@ bool Edit::copy(Selection *, Project *p, Machine *m, QString &s) {
  * @param p Project to paste the objects into
  * @param m Machine to paste the objects into
  * @param data XML string (produced by Edit::copy())
- * @returns TRUE if successful
+ * @returns true if successful
  */
 bool Edit::paste(Selection *sel, Project *p, Machine *m, QString data) {
   if (!p || !m || data == QString::null || data.isEmpty())
-    return FALSE;
+    return false;
 
   //    QTextStream s(&data, IO_ReadOnly);
 
   QXmlInputSource source;
   source.setData(data);
-  XMLHandler handler(p, sel, FALSE, FALSE);
+  XMLHandler handler(p, sel, false, false);
   QXmlSimpleReader reader;
 
   reader.setContentHandler(&handler);
@@ -266,7 +266,7 @@ bool Edit::paste(Selection *sel, Project *p, Machine *m, QString data) {
   IOInfoBin bin, bout;
   TransitionInfo* info=NULL;
   int scount, tcount;
-  bool ok = FALSE;
+  bool ok = false;
   QList<GState> undostatelist;
   QList<GTransition> undotranslist;
   GState *oldinitialstate, *newinitialstate;
@@ -277,12 +277,12 @@ bool Edit::paste(Selection *sel, Project *p, Machine *m, QString data) {
   bool hasinitialstate;
 
   if (m->getInitialState())
-    hasinitialstate=TRUE;
+    hasinitialstate=true;
   else
-    hasinitialstate=FALSE;
+    hasinitialstate=false;
 
-  undostatelist.setAutoDelete(FALSE);
-  undotranslist.setAutoDelete(FALSE);
+  undostatelist.setAutoDelete(false);
+  undotranslist.setAutoDelete(false);
 
   oldinitialstate = m->getInitialState();
   oldinitialtrans = m->getInitialTransition();
@@ -292,7 +292,7 @@ bool Edit::paste(Selection *sel, Project *p, Machine *m, QString data) {
   s >> version_major;
   s >> version_minor;
   if (version_major==0 && version_minor<2)
-    return FALSE;
+    return false;
   s.readLine();
   mname = s.readLine();
   s >> numbits >> numin >> numout;
@@ -301,7 +301,7 @@ bool Edit::paste(Selection *sel, Project *p, Machine *m, QString data) {
   s >> scount >> tcount;
 
   if (s.atEnd())
-    return FALSE;
+    return false;
 
   oldnumbits = m->getNumBits();
   oldnumin = m->getNumInputs();
@@ -349,7 +349,7 @@ bool Edit::paste(Selection *sel, Project *p, Machine *m, QString data) {
     QColor bcol((QRgb)brushcolor);
     QPen pen(pcol, linewidth );
     QBrush brush(bcol);
-    bool addstate=TRUE;
+    bool addstate=true;
 
     if (m->getState(scode))
     {
@@ -361,22 +361,22 @@ bool Edit::paste(Selection *sel, Project *p, Machine *m, QString data) {
           return ok;
         else
           rstatelist.append(scode);
-        addstate=FALSE;
+        addstate=false;
       }
       else
       {
         int newcode = m->getNewCode();
         codemap.insert(scode, newcode);
         scode=newcode;
-        addstate=TRUE;
+        addstate=true;
       }
     }
     if (addstate)
     {
-      m->addState(sname, scode, xpos, ypos, radius, 1.0, pen, FALSE);
+      m->addState(sname, scode, xpos, ypos, radius, 1.0, pen, false);
       undostatelist.append(m->getSList().last());
       sel->select(m->getSList().last());
-      ok = TRUE;
+      ok = true;
     }
   }
 
@@ -449,10 +449,10 @@ bool Edit::paste(Selection *sel, Project *p, Machine *m, QString data) {
           desttmp = NULL;
 
         start_state->addTransition(m->getProject(), desttmp, info, xpos, ypos,
-          endx, endy, c1x, c1y, c2x, c2y, (bool)straight, FALSE);
+          endx, endy, c1x, c1y, c2x, c2y, (bool)straight, false);
         undotranslist.append(start_state->tlist.last());
         sel->select(start_state->tlist.last());
-        ok = TRUE;
+        ok = true;
       }
 
     }

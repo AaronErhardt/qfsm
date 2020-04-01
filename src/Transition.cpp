@@ -110,11 +110,11 @@ Transition &Transition::operator=(const Transition &t) {
 /**
  * Validates a condition.
  * @param bits string with bits to validate
- * @param input if TRUE string may contain 'don't care'-positions ('x's)
+ * @param input if true string may contain 'don't care'-positions ('x's)
  *   otherwise string may only contain 0's and 1's.
- * @return TRUE if condition is valid otherwise FALSE.
+ * @return true if condition is valid otherwise false.
  */
-int Transition::conditionValid(int type, QString string, bool input /*=TRUE*/) {
+int Transition::conditionValid(int type, QString string, bool input /*=true*/) {
   Convert conv;
 
   if (type == Binary) // **************** Binary
@@ -220,7 +220,7 @@ int Transition::conditionValid(int type, QString string, bool input /*=TRUE*/) {
     /*    else
         {
         if (ccount<1)
-        return FALSE;
+        return false;
       }
     */
 

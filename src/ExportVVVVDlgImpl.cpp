@@ -7,7 +7,7 @@ ExportVVVVDlgImpl::ExportVVVVDlgImpl(QWidget *parent, const char *name,
   // load ui design for the current object
   exportVVVVDlg.setupUi(this);
 
-  exportVVVVDlg.pb_update->setVisible(FALSE);
+  exportVVVVDlg.pb_update->setVisible(false);
   // connect(exportVVVVDlg.pb_update, SIGNAL(clicked()), this,
   // SIGNAL(updateClicked()));
 }

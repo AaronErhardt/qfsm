@@ -29,7 +29,7 @@ class ExportAHDLDlgImpl : public QDialog {
 
 public:
   ExportAHDLDlgImpl(QWidget *parent = 0, const char *name = 0,
-                    bool modal = FALSE, Qt::WFlags fl = 0);
+                    bool modal = false, Qt::WFlags fl = 0);
   ~ExportAHDLDlgImpl();
 
   /// Returns the 'synchronous reset' flag
@@ -48,9 +48,9 @@ public slots:
   void useMooreClicked();
 
 private:
-  /// If TRUE use synchronous reset, otherwise asynchronous reset
+  /// If true use synchronous reset, otherwise asynchronous reset
   bool sync_reset;
-  /// If TRUE use moore outputs, otherwise use only state code
+  /// If true use moore outputs, otherwise use only state code
   bool use_moore;
 };
 

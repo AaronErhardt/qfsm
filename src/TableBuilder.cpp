@@ -26,7 +26,7 @@ TableBuilder::TableBuilder(QObject *parent, Machine *m, Options *opt)
     : QObject(parent) {
   machine = m;
   machine->updateDefaultTransitions();
-  //  eventlist.setAutoDelete(TRUE);
+  //  eventlist.setAutoDelete(true);
   machine->getEventList(eventlist, opt);
   //  eventlist.sort();
   qSort(eventlist.begin(), eventlist.end(), IOInfoList::lessThan);

@@ -64,7 +64,7 @@ public:
   UndoBuffer(QObject *);
   ~UndoBuffer();
 
-  /// Returns TRUE if the undo list is empty, otherwise FALSE
+  /// Returns true if the undo list is empty, otherwise false
   bool isEmpty() { return undolist.isEmpty(); };
   /// Clears the undo list
   void clear() {

@@ -29,7 +29,7 @@ class ExportVHDLDlgImpl : public QDialog {
 
 public:
   ExportVHDLDlgImpl(QWidget *parent = 0, const char *name = 0,
-                    bool modal = FALSE, Qt::WFlags fl = 0);
+                    bool modal = false, Qt::WFlags fl = 0);
   ~ExportVHDLDlgImpl();
 
   /// Returns the 'symbolic states' flag
@@ -119,29 +119,29 @@ public slots:
   void debugStateClicked();
 
 private:
-  /// If TRUE use symbolic names for states
+  /// If true use symbolic names for states
   bool symbolic_states;
-  /// if TRUE use input/output names
+  /// if true use input/output names
   bool inout_names;
-  /// If TRUE use synchronous reset, otherwise asynchronous reset
+  /// If true use synchronous reset, otherwise asynchronous reset
   bool sync_reset;
-  /// If TRUE add synchronous enable port
+  /// If true add synchronous enable port
   bool sync_enable;
-  /// If TRUE use negated reset
+  /// If true use negated reset
   bool neg_reset;
-  /// if TRUE use std_logic_1164 package
+  /// if true use std_logic_1164 package
   bool stdlogic;
-  /// if TRUE write input/output description into header
+  /// if true write input/output description into header
   bool io_header;
-  /// if TRUE write Alliance compliant code
+  /// if true write Alliance compliant code
   bool alliance;
   /// 0: IF-THEN condition notation  1: CASE-WHEN notation
   int cond_notation;
-  /// if TRUE state codes were exported
+  /// if true state codes were exported
   bool state_code;
   /// architecture name
   QString architecture_name;
-  /// if TRUE, export architecture and entity in separate files
+  /// if true, export architecture and entity in separate files
   bool sep_files;
   /// export state machine with synchronous look-ahead-buffer
   bool sync_look_ahead;
@@ -152,7 +152,7 @@ private:
   QString path_architecture;
   /// Name of the current machine (used to generate default file names)
   QString machine_name;
-  /// if TRUE debug state is exported
+  /// if true debug state is exported
   bool debug_state;
 };
 

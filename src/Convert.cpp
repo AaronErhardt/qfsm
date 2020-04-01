@@ -63,7 +63,7 @@ int Convert::binStrToInt(QString s) {
  *
  * @param hex String with the hexidecimal number
  * @param ires Resulting integer value
- * @returns TRUE if successful
+ * @returns true if successful
  */
 bool Convert::hexStrToInt(QString hex, int &ires) {
   int len;
@@ -79,7 +79,7 @@ bool Convert::hexStrToInt(QString hex, int &ires) {
     dezdig = hexdig.find(tmp[i].upper());
     if (dezdig < 0) {
       ires = 0;
-      return FALSE;
+      return false;
     }
 
     sum += dezdig * int(pow(16.0, count));
@@ -87,7 +87,7 @@ bool Convert::hexStrToInt(QString hex, int &ires) {
     count++;
   }
   ires = sum;
-  return TRUE;
+  return true;
 }
 
 /**
@@ -209,7 +209,7 @@ QString Convert::X10ToBinStr(IOInfoBin io) {
  *
  * @param io Object containing binary information
  * @param dec Resulting decimal representation
- * @returns TRUE if successful
+ * @returns true if successful
  */
 bool Convert::X10ToDec(IOInfoBin io, int &dec) {
   /*
@@ -225,23 +225,23 @@ bool Convert::X10ToDec(IOInfoBin io, int &dec) {
       if (btmp==1)
         sum += (int)pow(2.0, len-count-1);
       else if (btmp==2)
-        return FALSE;
+        return false;
       count++;
     }
 
     dec = sum;
 
-    return TRUE;
+    return true;
     */
   QString info = io.getInfo();
   dec = 0;
   if (!io.isSingle())
-    return FALSE;
+    return false;
 
   for (int c = info.length() - 1; c >= 0; c--)
     if (info[c] == '1')
       dec += 1 << c;
-  return TRUE;
+  return true;
 }
 
 /**
@@ -251,11 +251,11 @@ bool Convert::X10ToDec(IOInfoBin io, int &dec) {
  * @param ascii Resulting array of ascii characters
  * @param asciiarraylen Length of @a ascii
  * @param length Number of characters that have been converted
- * @param singlechar If TRUE only a single character is converted
- * @returns TRUE if successful
+ * @param singlechar If true only a single character is converted
+ * @returns true if successful
  */
 bool Convert::X10ToASCII(IOInfoBin io, unsigned char *ascii, int asciiarraylen,
-                         int &length, bool singlechar /*=TRUE*/) {
+                         int &length, bool singlechar /*=true*/) {
   /*
   int itmp;
   bool ok;
@@ -270,9 +270,9 @@ bool Convert::X10ToASCII(IOInfoBin io, unsigned char *ascii, int asciiarraylen,
   binstr = X10ToBinStr(io);
   if (!binStrToASCII(binstr, ascii, asciiarraylen, length, singlechar)) {
     length = 0;
-    return FALSE;
+    return false;
   }
-  return TRUE;
+  return true;
 }
 
 /*
@@ -548,14 +548,14 @@ QString Convert::binStrToHexStr(const QString bin) {
  * @param ascii Array holding the resulting string of ASCII characters
  * @param arraymaxlen Length of the array @a ascii
  * @param length Number of converted characters
- * @param singlechar If TRUE only the first character is converted.
- * @returns TRUE if successful
+ * @param singlechar If true only the first character is converted.
+ * @returns true if successful
  */
 bool Convert::binStrToASCII(const QString bin, unsigned char *ascii,
                             int arraymaxlen, int &length,
-                            bool singlechar /*=TRUE*/, int arrayoffset /*=0*/) {
+                            bool singlechar /*=true*/, int arrayoffset /*=0*/) {
   if (arraymaxlen == 0)
-    return FALSE;
+    return false;
 
   int itmp;
   int binlen;
@@ -571,14 +571,14 @@ bool Convert::binStrToASCII(const QString bin, unsigned char *ascii,
   rbin.replace(QRegExp("\\s"), "");
   if (singlechar) {
     if (rbin.find(QRegExp("[^01]")) != -1)
-      return FALSE;
+      return false;
   } else {
     if (rbin.find(QRegExp("[^01xX]")) != -1)
-      return FALSE;
+      return false;
   }
 
-  //  cx = rbin.contains("x", FALSE);
-  firstxpos = rbin.find("x", 0, FALSE);
+  //  cx = rbin.contains("x", false);
+  firstxpos = rbin.find("x", 0, false);
   if (firstxpos != -1) {
     rbin.replace(firstxpos, 1, "0");
     binStrToASCII(rbin, ascii, arraymaxlen, tmplength1, singlechar,
@@ -609,7 +609,7 @@ bool Convert::binStrToASCII(const QString bin, unsigned char *ascii,
       if (bin8.isEmpty())
         bin8 = rbin.mid(0, scanend + 1);
       if (bin8.isEmpty())
-        return FALSE;
+        return false;
 
       if (!bin8.isEmpty()) {
         itmp = binStrToInt(bin8);
@@ -621,7 +621,7 @@ bool Convert::binStrToASCII(const QString bin, unsigned char *ascii,
       scanend -= 8;
     }
   }
-  return TRUE;
+  return true;
 }
 
 /**
@@ -706,12 +706,12 @@ QString Convert::hexStrToBinStr(int maxlen, const QString hex) {
  * @param ascii Array holding the resulting string of ASCII characters
  * @param maxarraylen Length of the array @a ascii
  * @param length Number of converted characters
- * @param singlechar If TRUE only the first character is converted.
- * @returns TRUE if successful
+ * @param singlechar If true only the first character is converted.
+ * @returns true if successful
  */
 bool Convert::hexStrToASCII(const QString hex, unsigned char *ascii,
                             int maxarraylen, int &length,
-                            bool singlechar /*=TRUE*/) {
+                            bool singlechar /*=true*/) {
   int itmp;
   QString rhex;
   int count = 0, aindex;
@@ -722,7 +722,7 @@ bool Convert::hexStrToASCII(const QString hex, unsigned char *ascii,
   rhex = hex;
   rhex.replace(QRegExp("\\s"), "");
   if (rhex.find(QRegExp("[^\\da-fA-F]")) != -1)
-    return FALSE;
+    return false;
   hexlen = rhex.length();
   if (hexlen % 2)
     rhex = "0" + rhex;
@@ -734,10 +734,10 @@ bool Convert::hexStrToASCII(const QString hex, unsigned char *ascii,
   while (count < hexlen && aindex < maxarraylen) {
     if (count + 1 < hexlen) {
       if (!hexStrToInt(rhex.mid(count, 2), itmp))
-        return FALSE;
+        return false;
     } else {
       if (!hexStrToInt(rhex.mid(count, 1), itmp))
-        return FALSE;
+        return false;
     }
     ctmp = (unsigned char)itmp;
 
@@ -746,7 +746,7 @@ bool Convert::hexStrToASCII(const QString hex, unsigned char *ascii,
     count += 2;
   }
   length = aindex;
-  return TRUE;
+  return true;
 }
 
 /**
@@ -965,8 +965,8 @@ void Convert::resolveEscapes(QString estr, unsigned char *cres, int arraymaxlen,
   int i = 0;
   int len;
   unsigned char ctmp, cprev = 0;
-  bool nextisescape = FALSE;
-  bool nextisdigit, previsdigit = FALSE;
+  bool nextisescape = false;
+  bool nextisdigit, previsdigit = false;
   QString sinf;
   Convert conv;
   int fc;
@@ -976,7 +976,7 @@ void Convert::resolveEscapes(QString estr, unsigned char *cres, int arraymaxlen,
   len = estr.length();
 
   while (i < len) {
-    nextisdigit = FALSE;
+    nextisdigit = false;
 
     ctmp = estr[i].latin1();
     if (ctmp == '\\') // escape sequence
@@ -995,7 +995,7 @@ void Convert::resolveEscapes(QString estr, unsigned char *cres, int arraymaxlen,
           cres[length++] = fc;
         }
 
-        previsdigit = TRUE;
+        previsdigit = true;
       } else {
         if (cnext ==
             '0') // hex code (\0xx where xx is the hex code of the character)
@@ -1041,7 +1041,7 @@ void Convert::resolveEscapes(QString estr, unsigned char *cres, int arraymaxlen,
       cnext = estr[i + 1].latin1();
       if (cnext == '\\') // last char of range is escape character
       {
-        nextisescape = TRUE;
+        nextisescape = true;
 
         if (i == len - 2)
           break;
@@ -1050,7 +1050,7 @@ void Convert::resolveEscapes(QString estr, unsigned char *cres, int arraymaxlen,
 
         if (cnext == 'd') // digit
         {
-          nextisdigit = TRUE;
+          nextisdigit = true;
         } else {
           if (cnext ==
               '0') // hex code (\0xx where xx is the hex code of the character)
@@ -1073,14 +1073,14 @@ void Convert::resolveEscapes(QString estr, unsigned char *cres, int arraymaxlen,
             cnext = IOInfoASCII::escapeToChar(estr[i + 2].latin1());
         }
       } else
-        nextisescape = FALSE;
+        nextisescape = false;
 
       if (!nextisdigit) {
         if (previsdigit) {
           if (cnext < '0') // x-9
           {
             //	    if (c>=cnext && c<='9')
-            //	      return TRUE;
+            //	      return true;
             for (fc = cnext; fc < '0'; fc++) {
               if (length >= arraymaxlen)
                 return;
@@ -1098,7 +1098,7 @@ void Convert::resolveEscapes(QString estr, unsigned char *cres, int arraymaxlen,
               cres[length++] = fc;
             }
           //	    if (c>=0 && c<=cnext)
-          //	      return TRUE;
+          //	      return true;
         } else {
           if (cprev < cnext) // range normal
           {
@@ -1108,7 +1108,7 @@ void Convert::resolveEscapes(QString estr, unsigned char *cres, int arraymaxlen,
               cres[length++] = fc;
             }
             //	    if (c>=cprev && c<=cnext)
-            //	      return TRUE;
+            //	      return true;
           } else // range reversed
           {
             for (fc = cnext; fc <= cprev; fc++) {
@@ -1117,7 +1117,7 @@ void Convert::resolveEscapes(QString estr, unsigned char *cres, int arraymaxlen,
               cres[length++] = fc;
             }
             //	    if (c>=cnext && c<=cprev)
-            //	      return TRUE;
+            //	      return true;
           }
         }
       } else // end of range is a digit
@@ -1126,13 +1126,13 @@ void Convert::resolveEscapes(QString estr, unsigned char *cres, int arraymaxlen,
         {
           // should already been added
           //	  if (c>='0' && c<='9')
-          //	    return TRUE;
+          //	    return true;
         } else {
           // normal or reversed?
           if (cprev < '0') // x-9
           {
             //	    if (c>=cprev && c<='9')
-            //	      return TRUE;
+            //	      return true;
             for (fc = cprev; fc < '0'; fc++) {
               if (length >= arraymaxlen)
                 return;
@@ -1141,7 +1141,7 @@ void Convert::resolveEscapes(QString estr, unsigned char *cres, int arraymaxlen,
           } else if (cprev <= '9') // 5-\d (all digits)
           {
             //	    if (c>='0' && c<='9')
-            //	      return TRUE;
+            //	      return true;
             for (fc = '0'; fc <= '9'; fc++) {
               if (fc != cprev) // add all numbers except the one already added
               {
@@ -1158,7 +1158,7 @@ void Convert::resolveEscapes(QString estr, unsigned char *cres, int arraymaxlen,
             }
 
           //	    if (c>=0 && c<=cprev)
-          //	      return TRUE;
+          //	      return true;
         }
       }
 
@@ -1229,12 +1229,12 @@ QString Convert::asciiToReadableStr(const unsigned char *asciiarray,
  * @param result Resulting IOInfo list
  */
 void Convert::asciiToIOList(const unsigned char *asciiarray, int asciilength,
-                            IOInfoList &result, bool invert /*=FALSE*/) {
+                            IOInfoList &result, bool invert /*=false*/) {
   unsigned char c, cnext, cfirst;
   QString stmp, stmp2;
   QString hex;
   QString sres;
-  bool inrange = FALSE;
+  bool inrange = false;
   unsigned char *asciiarray2;
   int asciilength2;
 
@@ -1273,7 +1273,7 @@ void Convert::asciiToIOList(const unsigned char *asciiarray, int asciilength,
         if (inrange) {
         } else {
           cfirst = c;
-          inrange = TRUE;
+          inrange = true;
         }
       } else // not a range
       {
@@ -1287,7 +1287,7 @@ void Convert::asciiToIOList(const unsigned char *asciiarray, int asciilength,
           if (!result.contains(info))
             result.append(info);
 
-          inrange = FALSE;
+          inrange = false;
         } else // we are not and we won't be in a range
         {
           sres = asciiToReadableStr(&c, 1);

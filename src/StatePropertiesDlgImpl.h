@@ -41,7 +41,7 @@ class StatePropertiesDlgImpl : public QDialog {
 
 public:
   StatePropertiesDlgImpl(QWidget *parent = 0, const char *name = 0,
-                         bool modal = FALSE, Qt::WFlags fl = 0);
+                         bool modal = false, Qt::WFlags fl = 0);
   ~StatePropertiesDlgImpl();
 
   /// Dialog mode

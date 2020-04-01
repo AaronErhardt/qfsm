@@ -34,11 +34,11 @@ class ICheckDlgImpl : public QDialog {
   Ui::ICheckDlg iCheckDlg;
 
 public:
-  ICheckDlgImpl(QWidget *parent = 0, const char *name = 0, bool modal = FALSE,
+  ICheckDlgImpl(QWidget *parent = 0, const char *name = 0, bool modal = false,
                 Qt::WFlags fl = 0);
   ~ICheckDlgImpl();
 
-  void enableCompleteness(bool ec = TRUE) {
+  void enableCompleteness(bool ec = true) {
     iCheckDlg.lb_completeness_val->setEnabled(ec);
     iCheckDlg.lb_completeness->setEnabled(ec);
   };

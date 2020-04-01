@@ -63,7 +63,7 @@ enum UndoAction {
  */
 struct dtlist {
   /// Constructor
-  //  dtlist() {tlist.setAutoDelete(FALSE); rlist.setAutoDelete(FALSE); };
+  //  dtlist() {tlist.setAutoDelete(false); rlist.setAutoDelete(false); };
   /// First list of transitions
   QList<GTransition *> tlist;
   /// Second list of transition
@@ -167,7 +167,7 @@ private:
   int action;
   /// Pointer to the project
   Project *project;
-  /// TRUE if the project was modified before the action
+  /// true if the project was modified before the action
   bool modified;
   /// State
   GState *state;

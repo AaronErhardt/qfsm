@@ -198,7 +198,7 @@ public:
 
   static bool checkMachineNames(Machine *m, Options *o,
                                 QStringList *invalidNames) {
-    bool result = TRUE;
+    bool result = true;
     QStringList names;
     QString mname, sname;
     QStringList::const_iterator i;
@@ -213,7 +213,7 @@ public:
 
     if (!checkName(mname)) {
       (*invalidNames) << mname;
-      result = FALSE;
+      result = false;
     }
 
     if (o->getVHDLInOutNames()) {
@@ -233,14 +233,14 @@ public:
         for (i = names.constBegin(); i != names.constEnd(); ++i) {
           if (!checkName(*i)) {
             (*invalidNames) << *i;
-            result = FALSE;
+            result = false;
           }
         }
 
         for (c = 0; c < names.size(); c++) {
           if (names.indexOf(names.at(c), c + 1) != -1) {
             (*invalidNames) << names.at(c);
-            result = FALSE;
+            result = false;
           }
         }
       }
@@ -254,7 +254,7 @@ public:
 
         if (!checkName(sname)) {
           (*invalidNames) << sname;
-          result = FALSE;
+          result = false;
         }
 
         is2.toFront();
@@ -263,7 +263,7 @@ public:
           if (sname.compare(s2->getStateName()) == 0 && s != s2) {
             if (i != names.constEnd()) {
               (*invalidNames) << *i;
-              result = FALSE;
+              result = false;
             }
           }
         }
@@ -273,7 +273,7 @@ public:
           for (i = names.constBegin(); i != names.constEnd(); ++i) {
             if (sname.compare(*i) == 0) {
               (*invalidNames) << *i;
-              result = FALSE;
+              result = false;
             }
           }
         }
@@ -282,7 +282,7 @@ public:
           for (i = names.constBegin(); i != names.constEnd(); ++i) {
             if (sname.compare(*i) == 0) {
               (*invalidNames) << *i;
-              result = FALSE;
+              result = false;
             }
           }
         }
@@ -291,7 +291,7 @@ public:
           for (i = names.constBegin(); i != names.constEnd(); ++i) {
             if (sname.compare(*i) == 0) {
               (*invalidNames) << *i;
-              result = FALSE;
+              result = false;
             }
           }
         }
@@ -304,32 +304,32 @@ public:
 private:
   /// Name of the machine to export
   QString mname;
-  /// If TRUE, the fixed encoding for the states is used, otherwise an enum
+  /// If true, the fixed encoding for the states is used, otherwise an enum
   /// type.
   bool state_encoding;
-  /// If TRUE, the names of the inputs/outputs are used, otherwise the vectors
+  /// If true, the names of the inputs/outputs are used, otherwise the vectors
   /// a,o,q
   bool io_names;
-  /// If TRUE, the reset signal will be handled synchronously, otherwise
+  /// If true, the reset signal will be handled synchronously, otherwise
   /// asynchronously.
   bool synchronous_reset;
-  /// If TRUE, add synchronous enable port
+  /// If true, add synchronous enable port
   bool synchronous_enable;
-  /// If TRUE, the negated reset signal will be used
+  /// If true, the negated reset signal will be used
   bool neg_reset;
-  /// If TRUE, 'std_logic' is used instead of 'bit'
+  /// If true, 'std_logic' is used instead of 'bit'
   bool use_std_logic;
-  /// If TRUE, an I/O description is written in the header
+  /// If true, an I/O description is written in the header
   bool io_header;
-  /// If TRUE, produce Alliance compliant code
+  /// If true, produce Alliance compliant code
   bool alliance;
   /// 0: IF-THEN condition notation,  1: CASE-WHEN notation
   int cond_notation;
-  /// If TRUE, state codes were exported
+  /// If true, state codes were exported
   bool state_code;
   /// architecture name
   QString architecture_name;
-  /// if TRUE, export architecture and entity in separate files
+  /// if true, export architecture and entity in separate files
   bool sep_files;
   /// export state machine with synchronous look-ahead-buffer
   bool sync_look_ahead;

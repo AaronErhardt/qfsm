@@ -29,68 +29,68 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 Options::Options(QObject *parent /*=NULL*/, const char *name /*=0*/)
     : QObject(parent, name) {
-  viewStateEncoding = FALSE;
-  viewMoore = TRUE;
-  viewMealyIn = TRUE;
-  viewMealyOut = FALSE;
-  viewGrid = FALSE;
-  viewIOView = FALSE;
+  viewStateEncoding = false;
+  viewMoore = true;
+  viewMealyIn = true;
+  viewMealyOut = false;
+  viewGrid = false;
+  viewIOView = false;
 
   gridSize = 10;
   gridColor.setRgb(200, 200, 200);
-  lockstates = TRUE;
-  locktransitions = TRUE;
+  lockstates = true;
+  locktransitions = true;
 
-  stateShadows = TRUE;
+  stateShadows = true;
   stateShadowColor = QColor(Qt::darkGray);
 
-  tooltips = TRUE;
-  iomark = FALSE;
-  ionames = FALSE;
-  bdrawbox = FALSE;
+  tooltips = true;
+  iomark = false;
+  ionames = false;
+  bdrawbox = false;
 
   initial_descriptor = tr("rst_n");
   inversion_descriptor = tr("NOT");
   any_input_descriptor = ""; // tr("any");
   default_descriptor = tr("default");
 
-  ahdl_sync_reset = FALSE;
-  ahdl_use_moore = FALSE;
+  ahdl_sync_reset = false;
+  ahdl_use_moore = false;
 
-  vhdl_symbolic_states = TRUE;
-  vhdl_inout_names = TRUE;
-  vhdl_sync_reset = FALSE;
-  vhdl_sync_enable = FALSE;
-  vhdl_neg_reset = TRUE;
-  vhdl_stdlogic = TRUE;
-  vhdl_io_header = TRUE;
-  vhdl_alliance = FALSE;
-  vhdl_state_code = FALSE;
+  vhdl_symbolic_states = true;
+  vhdl_inout_names = true;
+  vhdl_sync_reset = false;
+  vhdl_sync_enable = false;
+  vhdl_neg_reset = true;
+  vhdl_stdlogic = true;
+  vhdl_io_header = true;
+  vhdl_alliance = false;
+  vhdl_state_code = false;
   vhdl_cond_notation = 0;
   vhdl_architecture_name = "behave";
-  vhdl_sep_files = FALSE;
-  vhdl_sync_look_ahead = FALSE;
+  vhdl_sep_files = false;
+  vhdl_sync_look_ahead = false;
   vhdl_state_debug = false;
 
-  ver_sync_reset = FALSE;
+  ver_sync_reset = false;
 
-  testbench_stdlogic = TRUE;
-  testbench_io_header = TRUE;
-  testbench_ionames = TRUE;
-  testbench_negatedreset = TRUE;
-  testbench_synchronousreset = FALSE;
-  testbench_synchronousenable = FALSE;
+  testbench_stdlogic = true;
+  testbench_io_header = true;
+  testbench_ionames = true;
+  testbench_negatedreset = true;
+  testbench_synchronousreset = false;
+  testbench_synchronousenable = false;
   testbench_algorithm = 0;
   testbench_vhdl_path = "";
   testvector_ascii_path = "";
   testbench_base_directory = "";
   testbench_logfile_path = "";
 
-  statetable_includeout = FALSE;
+  statetable_includeout = false;
   statetable_orientation = 0;
   statetable_resolve_inverted = 0;
 
-  ragel_create_action = FALSE;
+  ragel_create_action = false;
   ragel_lang_action = 0;
   ragel_default_transitions = false;
 
@@ -98,7 +98,7 @@ Options::Options(QObject *parent /*=NULL*/, const char *name /*=0*/)
   vvvv_reset_event = "Reset";
   vvvv_reset_action = "DoReset";
 
-  print_header = TRUE;
+  print_header = true;
 }
 
 /**

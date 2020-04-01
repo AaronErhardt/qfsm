@@ -39,7 +39,7 @@ ExportRagel::ExportRagel(Options *opt) : Export(opt) {
 
 bool ExportRagel::validateMachine(Machine *m) {
   QMutableListIterator<GState *> is(m->getSList());
-  bool result = TRUE;
+  bool result = true;
   QString msg = tr("The state name \'%1\' is invalid as it is has a special "
                    "meaning for the Ragel state machine compiler.");
   QString msg2 =
@@ -50,21 +50,21 @@ bool ExportRagel::validateMachine(Machine *m) {
     //   and if every state name begins with a letter
     QString n = is.next()->getStateName();
     if (n == "start") {
-      result = FALSE;
+      result = false;
       if (Error::warningOkCancel(msg.arg("start")) == QMessageBox::Cancel)
-        return FALSE;
+        return false;
     } else if (n == "final") {
-      result = FALSE;
+      result = false;
       if (Error::warningOkCancel(msg.arg("final")) == QMessageBox::Cancel)
-        return FALSE;
+        return false;
     }
     QString firstletter;
     firstletter = n[0];
     QRegExp regexp("[a-zA-Z_]");
     if (!regexp.exactMatch(firstletter)) {
-      result = FALSE;
+      result = false;
       if (Error::warningOkCancel(msg2.arg(n)) == QMessageBox::Cancel)
-        return FALSE;
+        return false;
     }
   }
   return result;
@@ -140,7 +140,7 @@ void ExportRagel::writeTransitions() {
   IOInfo *tioinfo;
   //  Convert conv;
   bool first;
-  bool sfirst = TRUE;
+  bool sfirst = true;
   bool tfirst;
 
   //*out << "\tCASE fsm IS" << endl;
@@ -168,7 +168,7 @@ void ExportRagel::writeTransitions() {
     }
 
     QMutableListIterator<GTransition *> it(s->tlist);
-    tfirst = TRUE;
+    tfirst = true;
 
     for (; it.hasNext();) {
       t = it.next();
@@ -188,7 +188,7 @@ void ExportRagel::writeTransitions() {
         if (strlist.count() > 1)
           *out << "( ";
 
-        first = TRUE;
+        first = true;
         for (ioit = strlist.begin(); ioit != strlist.end(); ++ioit) {
           iosingle = *ioit;
 
@@ -212,7 +212,7 @@ void ExportRagel::writeTransitions() {
             *out << ")";
             */
 
-          first = FALSE;
+          first = false;
         }
 
         if (strlist.count() > 1)
@@ -231,14 +231,14 @@ void ExportRagel::writeTransitions() {
           *out << " @not_accept ";
         *out << " -> " << sn.latin1();
 
-        tfirst = FALSE;
+        tfirst = false;
       }
     }
 
     // if (s->countTransitions()>0)
     *out << ")";
 
-    sfirst = FALSE;
+    sfirst = false;
   }
 }
 

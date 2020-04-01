@@ -48,20 +48,20 @@ private:
   /// TestvectorGenerator object for current machine
   TestvectorGenerator *generator;
 
-  /// If TRUE, the reset signal will be handled synchronously, otherwise
+  /// If true, the reset signal will be handled synchronously, otherwise
   /// asynchronously.
   bool synchronous_reset;
 
-  /// If TRUE an enable signal will be added
+  /// If true an enable signal will be added
   bool synchronous_enable;
 
-  /// If TRUE the reset signal is negated
+  /// If true the reset signal is negated
   bool negated_reset;
 
-  /// If TRUE, 'std_logic' is used instead of 'bit'
+  /// If true, 'std_logic' is used instead of 'bit'
   bool use_std_logic;
 
-  /// If TRUE, the names of the inputs/outputs are used, otherwise the vectors
+  /// If true, the names of the inputs/outputs are used, otherwise the vectors
   /// a,o,q
   bool io_names;
 };

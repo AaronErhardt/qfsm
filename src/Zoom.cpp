@@ -27,7 +27,7 @@ Zoom::Zoom() { scale = 1.0; }
  * Zooms in/out the scrollview.
  * @param sview pointer to scrollview
  * @param p point which will be used as new center
- * @param zoomin if TRUE zooms in otherwise zooms out
+ * @param zoomin if true zooms in otherwise zooms out
  */
 void Zoom::zoom(DrawArea *sview, QPoint p, bool zoomin) {
   double factor = ZOOM_FACTOR;
@@ -41,7 +41,7 @@ void Zoom::zoom(DrawArea *sview, QPoint p, bool zoomin) {
   if (scale * factor < MAX_ZOOM && scale * factor > MIN_ZOOM) {
     scale *= factor;
 
-    // sview->setUpdatesEnabled(FALSE);
+    // sview->setUpdatesEnabled(false);
 
     neww = int(sview->width() * factor);
     if (neww < vp_width)
@@ -55,7 +55,7 @@ void Zoom::zoom(DrawArea *sview, QPoint p, bool zoomin) {
     //    sview->horizontalScrollBar()->setValue(int(p.x()*factor-vp_width/2));
     //    sview->verticalScrollBar()->setValue(int(p.y()*factor-vp_height/2));
     /*
-    sview->setUpdatesEnabled(TRUE);
+    sview->setUpdatesEnabled(true);
     sview->repaint();
     */
   }

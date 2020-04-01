@@ -40,6 +40,6 @@ QString WSpinBox::mapValueToText(int value) {
 
 /// Converts the text of this widget into an integer
 int WSpinBox::mapTextToValue(bool *ok) {
-  *ok = TRUE;
+  *ok = true;
   return int(text().toFloat() * 10);
 }

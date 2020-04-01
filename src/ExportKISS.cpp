@@ -101,7 +101,7 @@ void ExportKISS::writeVariables()
 {
   QString sn, c;
   GState* s;
-  bool first=TRUE;
+  bool first=true;
 
   *out << "VARIABLE" << endl;
   *out << "\tfsm\t:\tMACHINE OF BITS(" << machine->getMooreOutputNames() << ")"
@@ -126,7 +126,7 @@ i.current()==machine->getInitialState())
       *out << ",";
     *out << endl << "\t\t\t\t\t";
     *out << sn << " = B\"" << c << "\"";
-    first=FALSE;
+    first=false;
   }
   i.toFirst();
 
@@ -144,7 +144,7 @@ i.current()==machine->getInitialState())
         *out << ",";
       *out << endl << "\t\t\t\t\t";
       *out << sn << " = B\"" << c << "\"";
-      first=FALSE;
+      first=false;
     }
   }
   *out << ");" << endl << endl;
@@ -197,7 +197,7 @@ void ExportKISS::writeTransitions() {
         //   	QList<IOInfo> iolist;
         QList<IOInfo *> iolist;
         iolist = tioinfo->getSinglesInversion();
-        //   	iolist.setAutoDelete(TRUE);
+        //   	iolist.setAutoDelete(true);
 
         //  	QListIterator<IOInfo> ioit(iolist);
         QListIterator<IOInfo *> ioit(iolist);

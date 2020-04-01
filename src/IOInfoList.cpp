@@ -106,7 +106,7 @@ int IOInfoList::compareItems(IOInfo *ci1, IOInfo *ci2) {
     role2 = io2->getRole();
     if (role1 == role2)
       return 0;
-    else if (role1 == TRUE && role2 == FALSE)
+    else if (role1 == true && role2 == false)
       return -1;
     else
       return 1;

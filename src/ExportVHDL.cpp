@@ -246,7 +246,7 @@ void ExportVHDL::writeArchitecture(std::ofstream *out) {
     QList<GState *> slist = machine->getSList();
     QString stmp;
     QMutableListIterator<GState *> it(slist);
-    bool first = TRUE;
+    bool first = true;
     for (; it.hasNext();) {
       GState *st = it.next();
       if (st->isDeleted())
@@ -254,7 +254,7 @@ void ExportVHDL::writeArchitecture(std::ofstream *out) {
       if (!first)
         stmp += ", ";
       stmp += Utils::noWS(st->getStateName());
-      first = FALSE;
+      first = false;
     }
 
     if (state_code) {
@@ -630,7 +630,7 @@ void ExportVHDL::writeStateProcess(std::ofstream *out) {
                  << endl;
         }
 
-        first_trans = TRUE;
+        first_trans = true;
 
         while (it.hasNext() || default_tr) {
 
@@ -667,7 +667,7 @@ void ExportVHDL::writeStateProcess(std::ofstream *out) {
               } else // CASE-WHEN notation
                 tioinfo->convertToBinList(iolist, true);
 
-              //  iolist.setAutoDelete(TRUE);
+              //  iolist.setAutoDelete(true);
 
               QMutableListIterator<IOInfo *> ioit(iolist);
 
@@ -704,7 +704,7 @@ void ExportVHDL::writeStateProcess(std::ofstream *out) {
               if (!tioinfo->isDefault()) {
                 *out << "\"";
 
-                first = TRUE;
+                first = true;
                 while (ioit.hasNext()) {
 
                   iosingle = ioit.next();
@@ -732,7 +732,7 @@ void ExportVHDL::writeStateProcess(std::ofstream *out) {
                       *out << '0';
 
                     *out << tinfoi.toLatin1().constData() << "\" ";
-                    first = FALSE;
+                    first = false;
                   }
                 }
               }
@@ -781,7 +781,7 @@ void ExportVHDL::writeStateProcess(std::ofstream *out) {
                    << ";" << endl;
             }
 
-            first_trans = FALSE;
+            first_trans = false;
           }
         }
         if (!any_tr) {

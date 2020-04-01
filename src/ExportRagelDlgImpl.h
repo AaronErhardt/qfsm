@@ -17,7 +17,7 @@ class ExportRagelDlgImpl : public QDialog {
 
 public:
   ExportRagelDlgImpl(QWidget *parent = 0, const char *name = 0,
-                     bool modal = FALSE, Qt::WFlags fl = 0);
+                     bool modal = false, Qt::WFlags fl = 0);
   ~ExportRagelDlgImpl();
 
   /// Returns the 'create action file' flag
@@ -43,11 +43,11 @@ public slots:
   void addDefaultTransClicked();
 
 private:
-  /// If TRUE create action file
+  /// If true create action file
   bool create_action;
   /// Language of action file. 0: C/C++   1: Java   2: Ruby
   int lang_action;
-  /// If TRUE, temporarily adds a default transition to every state for
+  /// If true, temporarily adds a default transition to every state for
   /// exporting
   bool add_default_transitions;
 };

@@ -139,9 +139,9 @@ public:
   QStringList translateNames(QString);
   QString retranslateNames(QStringList);
   bool addState(const QString, QString, int code, IOInfo *mooreout, double,
-                double, int, double, QPen, bool endstate, bool withundo = TRUE,
+                double, int, double, QPen, bool endstate, bool withundo = true,
                 QString entry_actions = "", QString exit_actions = "");
-  bool addState(GState *, bool withundo = TRUE);
+  bool addState(GState *, bool withundo = true);
   GState *getState(QPoint, double);
   GObject *getObject(QPoint p, double scale, int &type);
   void removeState(GState *);

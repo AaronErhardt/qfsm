@@ -34,7 +34,7 @@ class OptDisplayDlgImpl : public QDialog {
 
 public:
   OptDisplayDlgImpl(QWidget *parent = 0, const char *name = 0,
-                    bool modal = FALSE, Qt::WFlags fl = 0);
+                    bool modal = false, Qt::WFlags fl = 0);
   ~OptDisplayDlgImpl();
 
   /// Returns the color used to draw the grid
@@ -45,7 +45,7 @@ public:
   int getGridSize() { return optDisplayDlg.sb_gridsize->value(); };
   /// Sets the distance between the grid points
   void setGridSize(int s) { optDisplayDlg.sb_gridsize->setValue(s); };
-  /// Returns TRUE if shadows shall be displayed, otherwise FALSE
+  /// Returns true if shadows shall be displayed, otherwise false
   bool getShadows() { return bshadows; };
   /// Sets/clears the 'display shadows' flag
   void setShadows(bool s) { bshadows = s; };
@@ -54,20 +54,20 @@ public:
   /// Sets the shadow color
   void setShadowColor(QColor c) { shadowcolor = c; };
 
-  /// Returns TRUE if tooltips shall be shown, otherwise FALSE
+  /// Returns true if tooltips shall be shown, otherwise false
   bool getToolTips() { return btooltips; };
   /// Sets/clears the 'show tooltips' flag
   void setToolTips(bool t) { btooltips = t; };
-  /// Returns TRUE if ?/! shall be shown, otherwise FALSE
+  /// Returns true if ?/! shall be shown, otherwise false
   bool getIOMark() { return iomark; };
   /// Sets/clears the 'show ?/!' flag
   void setIOMark(bool m) { iomark = m; };
-  /// Returns TRUE if I/O names shall be shown over the transitions, otherwise
-  /// FALSE
+  /// Returns true if I/O names shall be shown over the transitions, otherwise
+  /// false
   bool getDisplayIONames() { return ionames; };
   /// Sets/clears the 'Display I/O names' flag
   void setDisplayIONames(bool dio) { ionames = dio; };
-  /// Returns TRUE if a box around the I/O shall be drawn, otherwise FALSE
+  /// Returns true if a box around the I/O shall be drawn, otherwise false
   bool getDrawBox() { return bdrawbox; };
   /// Sets/clears the 'Draw box' flag
   void setDrawBox(bool db) { bdrawbox = db; };
@@ -115,17 +115,17 @@ private:
   QString default_descriptor;
   /// Grid color
   QColor gridcolor;
-  /// If TRUE, tooltips are shown
+  /// If true, tooltips are shown
   bool btooltips;
   /// Shadow color
   QColor shadowcolor;
-  /// If TRUE, shadows are displayed
+  /// If true, shadows are displayed
   bool bshadows;
-  /// If TRUE, ? and ! are shown
+  /// If true, ? and ! are shown
   bool iomark;
-  /// If TRUE, the input/output names are displayed over the transitions
+  /// If true, the input/output names are displayed over the transitions
   bool ionames;
-  /// If TRUE a box is drawn around the inputs/outputs over a transition
+  /// If true a box is drawn around the inputs/outputs over a transition
   bool bdrawbox;
 };
 

@@ -26,7 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *  name @a name and widget flags set to @a f
  *
  *  The dialog will by default be modeless, unless you set @a modal to
- *  TRUE to construct a modal dialog.
+ *  true to construct a modal dialog.
  */
 ICheckDlgImpl::ICheckDlgImpl(QWidget *parent, const char *name, bool modal,
                              Qt::WFlags fl)

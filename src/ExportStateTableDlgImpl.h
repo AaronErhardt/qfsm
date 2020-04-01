@@ -19,7 +19,7 @@ class ExportStateTableDlgImpl : public QDialog {
 
 public:
   ExportStateTableDlgImpl(QWidget *parent = 0, const char *name = 0,
-                          bool modal = FALSE, Qt::WFlags fl = 0);
+                          bool modal = false, Qt::WFlags fl = 0);
   ~ExportStateTableDlgImpl();
 
   bool getIncludeOutputs() { return includeout; };

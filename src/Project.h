@@ -48,17 +48,17 @@ public:
                   bool draw_it);
   void addMachine(Machine *m);
 
-  /// Returns TRUE if the project has changed otherwise FALSE
+  /// Returns true if the project has changed otherwise false
   bool hasChanged() { return changed; };
-  /** If @a ch is TRUE marks the project as changed otherwise marks it as
+  /** If @a ch is true marks the project as changed otherwise marks it as
     unchanged */
-  void setChanged(bool ch = TRUE) { changed = ch; };
+  void setChanged(bool ch = true) { changed = ch; };
   /// Returns the undo buffer
   UndoBuffer *getUndoBuffer() { return undobuffer; };
   /// Returns the main window
   MainWindow *getMain() { return main; };
 
-  QDomDocument getDomDocument(bool onlyselected = FALSE, GObject *obj = NULL);
+  QDomDocument getDomDocument(bool onlyselected = false, GObject *obj = NULL);
 
   /// Machine (projects can currently contain only a single machine)
   Machine *machine;
@@ -68,7 +68,7 @@ private:
   MainWindow *main;
   /// Undo buffer
   UndoBuffer *undobuffer;
-  /// If TRUE, the project has been changed
+  /// If true, the project has been changed
   bool changed;
 };
 

@@ -67,10 +67,10 @@ public:
   void reset();
   void updateBackground();
   /// Sets the state to dragging multiple objects
-  void setDragMultiple(bool dm = TRUE) { dragMultiple = dm; }
-  /// Returns TRUE if user drags several objects at once otherwise FALSE
+  void setDragMultiple(bool dm = true) { dragMultiple = dm; }
+  /// Returns true if user drags several objects at once otherwise false
   bool getDragMultiple() { return dragMultiple; }
-  /// Returns TRUE is user drags something
+  /// Returns true is user drags something
   bool getDrag() { return drag; }
   /// Returns current selection
   Selection *getSelection() { return selection; }
@@ -80,8 +80,8 @@ public:
   /// Sets the current seleciton rectangle
   void setSelectionRect(DRect r) { selectionRect = r; }
 
-  void drawTransition(GTransition *, bool clear = FALSE);
-  void drawInitialTransition(GITransition *, bool clear = FALSE);
+  void drawTransition(GTransition *, bool clear = false);
+  void drawInitialTransition(GITransition *, bool clear = false);
 
   QRect tooltipRect(const QPoint &p, QString &info);
 
@@ -95,13 +95,13 @@ private:
   QCursor oldCursor;
   /// Position where the left mouse button was clicked most recently
   QPoint lastLClicked;
-  /// TRUE if the left mouse button is down
+  /// true if the left mouse button is down
   bool left_down;
-  /// TRUE if the middle mouse button is down
+  /// true if the middle mouse button is down
   bool middle_down;
-  /// If TRUE mouse dragging is initiated
+  /// If true mouse dragging is initiated
   bool drag;
-  /// If TRUE mouse dragging (with middle button) is initiated
+  /// If true mouse dragging (with middle button) is initiated
   bool drag_middle;
   /// X coordinate of drag start position (aligned to grid)
   double dragStartgX;
@@ -176,16 +176,16 @@ private:
   GITransition savedITrans;
   /// Control of the transition that was clicked most recently
   int lastTransitionControl;
-  /// If TRUE, this is the first step when dragging a transition
+  /// If true, this is the first step when dragging a transition
   bool firstTransitionDraw;
-  /// If TRUE, the (dotted) control lines of a transition are drawn (when
+  /// If true, the (dotted) control lines of a transition are drawn (when
   /// dragging)
   bool drawControlLines;
-  /// If TRUE, a rectangle is being dragged
+  /// If true, a rectangle is being dragged
   bool dragRect;
-  /// If TRUE, a multiple selection has been made
+  /// If true, a multiple selection has been made
   bool dragMultiple;
-  /// If TRUE, the user has clicked on the selection
+  /// If true, the user has clicked on the selection
   bool onSelection;
   /// Selection rectangle
   DRect selectionRect;

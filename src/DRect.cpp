@@ -80,9 +80,9 @@ bool DRect::contains(double x, double y) {
   maxy = (y1 > y2 ? y1 : y2);
 
   if (x > minx && x < maxx && y > miny && y < maxy)
-    return TRUE;
+    return true;
 
-  return FALSE;
+  return false;
 }
 
 /**

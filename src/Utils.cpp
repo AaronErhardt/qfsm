@@ -39,7 +39,7 @@ QString Utils::noWS(QString s) {
 
 /**
  * Validates the a string of binary digits.
- * @returns TRUE if string valid, otherwise FALSE.
+ * @returns true if string valid, otherwise false.
  */
 bool Utils::binStringValid(QString s) {
   QChar c;
@@ -50,8 +50,8 @@ bool Utils::binStringValid(QString s) {
     c = s[count++];
     cl = c.latin1();
     if (cl != '0' && cl != '1' && c != QChar::null)
-      return FALSE;
+      return false;
   } while (c != QChar::Null);
 
-  return TRUE;
+  return true;
 }

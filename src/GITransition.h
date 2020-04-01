@@ -62,7 +62,7 @@ public:
   QString getToolTipInfo(Machine * = NULL, Options * = NULL);
   QRect getToolTipRect(const QPoint &);
 
-  /// Returns TRUE if the transition is being dragged
+  /// Returns true if the transition is being dragged
   bool isDragged() { return dragged; };
   /// Sets the dragged state to @a ds
   void setDragged(bool ds) { dragged = ds; };
@@ -73,7 +73,7 @@ private:
   /// End y position
   double endy;
 
-  /// IF TRUE the transition is being dragged by the user
+  /// IF true the transition is being dragged by the user
   bool dragged;
 };
 

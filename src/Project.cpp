@@ -32,7 +32,7 @@ Project::Project(QObject *parent /*=NULL*/, const char *name /*=0*/)
   main = (MainWindow *)parent;
   machine = NULL;
   undobuffer = new UndoBuffer(this);
-  changed = FALSE;
+  changed = false;
 }
 
 /// Destructor
@@ -93,12 +93,12 @@ void Project::addMachine(Machine *m) {
 /**
  * Creates a DOM document of this project and returns it.
  *
- * @param onlyselected If TRUE, only selected objects are used, otherwise the
+ * @param onlyselected If true, only selected objects are used, otherwise the
  * whole project is used
  * @param obj If != NULL, only @a obj is used from the project
  * @returns The DOM document
  */
-QDomDocument Project::getDomDocument(bool onlyselected /*=FALSE*/,
+QDomDocument Project::getDomDocument(bool onlyselected /*=false*/,
                                      GObject *obj /*=NULL*/) {
   Machine *m = machine;
   m->correctCodes();

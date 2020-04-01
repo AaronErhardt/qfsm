@@ -70,7 +70,7 @@ void ExportSVG::doExport() {
 
   if (!scrollview) {
     delete painter;
-    // exportSuccessful = FALSE;
+    // exportSuccessful = false;
   }
 
   painter->translate(-rect.x(), -rect.y());
@@ -83,7 +83,7 @@ void ExportSVG::doExport() {
   draw->drawTransitions(machine, painter, 0, 0, 1.0);
   if (machine->getDrawITrans())
     draw->drawInitialTransition(machine, machine->getInitialTransition(),
-                                painter, 0, 0, 1.0, textrect, FALSE);
+                                painter, 0, 0, 1.0, textrect, false);
 
   // delete painter and printer before we try to open and fix the file
   delete painter;

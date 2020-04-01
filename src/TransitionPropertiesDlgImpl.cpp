@@ -31,7 +31,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  * the name 'name' and widget flags set to 'f'
  *
  *  The dialog will by default be modeless, unless you set 'modal' to
- *  TRUE to construct a modal dialog.
+ *  true to construct a modal dialog.
  */
 TransitionPropertiesDlgImpl::TransitionPropertiesDlgImpl(QWidget *parent,
                                                          const char *name,
@@ -90,7 +90,7 @@ void TransitionPropertiesDlgImpl::validate() {
     }
     return;
   } else {
-    cres = Transition::conditionValid(type, out, FALSE);
+    cres = Transition::conditionValid(type, out, false);
     if (cres) {
       switch (cres) {
       case 1:
@@ -139,10 +139,10 @@ int TransitionPropertiesDlgImpl::getType() {
 }
 
 void TransitionPropertiesDlgImpl::resetFields() {
-  transitionPropertiesDlg.cb_default->setEnabled(FALSE);
-  transitionPropertiesDlg.cb_invert->setEnabled(FALSE);
-  transitionPropertiesDlg.cb_any->setEnabled(FALSE);
-  transitionPropertiesDlg.le_input->setEnabled(TRUE);
+  transitionPropertiesDlg.cb_default->setEnabled(false);
+  transitionPropertiesDlg.cb_invert->setEnabled(false);
+  transitionPropertiesDlg.cb_any->setEnabled(false);
+  transitionPropertiesDlg.le_input->setEnabled(true);
   transitionPropertiesDlg.le_input->clear();
   transitionPropertiesDlg.le_output->clear();
 }
@@ -151,27 +151,27 @@ void TransitionPropertiesDlgImpl::resetFields() {
 void TransitionPropertiesDlgImpl::setType(int t) {
   // qDebug("setType %d", t);
   if (t == Binary) {
-    transitionPropertiesDlg.rb_bin->setEnabled(TRUE);
-    transitionPropertiesDlg.rb_ascii->setEnabled(TRUE);
-    transitionPropertiesDlg.rb_text->setEnabled(FALSE);
-    transitionPropertiesDlg.rb_bin->setChecked(TRUE);
+    transitionPropertiesDlg.rb_bin->setEnabled(true);
+    transitionPropertiesDlg.rb_ascii->setEnabled(true);
+    transitionPropertiesDlg.rb_text->setEnabled(false);
+    transitionPropertiesDlg.rb_bin->setChecked(true);
     binaryClicked();
   }
   if (t == Ascii) {
-    transitionPropertiesDlg.rb_bin->setEnabled(TRUE);
-    transitionPropertiesDlg.rb_ascii->setEnabled(TRUE);
-    transitionPropertiesDlg.rb_text->setEnabled(FALSE);
+    transitionPropertiesDlg.rb_bin->setEnabled(true);
+    transitionPropertiesDlg.rb_ascii->setEnabled(true);
+    transitionPropertiesDlg.rb_text->setEnabled(false);
 
-    transitionPropertiesDlg.rb_ascii->setChecked(TRUE);
-    // transitionPropertiesDlg.cb_default->setEnabled(TRUE); // not needed -
+    transitionPropertiesDlg.rb_ascii->setChecked(true);
+    // transitionPropertiesDlg.cb_default->setEnabled(true); // not needed -
     // this is done in asciiClicked() below
     asciiClicked();
   } else if (t == Text) {
-    transitionPropertiesDlg.rb_bin->setEnabled(FALSE);
-    transitionPropertiesDlg.rb_ascii->setEnabled(FALSE);
-    transitionPropertiesDlg.rb_text->setEnabled(TRUE);
+    transitionPropertiesDlg.rb_bin->setEnabled(false);
+    transitionPropertiesDlg.rb_ascii->setEnabled(false);
+    transitionPropertiesDlg.rb_text->setEnabled(true);
 
-    transitionPropertiesDlg.rb_text->setChecked(TRUE);
+    transitionPropertiesDlg.rb_text->setChecked(true);
     /*
      // not needed - this is done in freeTextClicked() below
     transitionPropertiesDlg.cb_default->setEnabled(false);
@@ -253,9 +253,9 @@ void TransitionPropertiesDlgImpl::freeTextClicked() {
   transitionPropertiesDlg.cb_invert->setChecked(false);
   /*
 if (!cb_any->isChecked() && !cb_invert->isChecked())
-  cb_default->setEnabled(TRUE);
+  cb_default->setEnabled(true);
 else
-  cb_default->setEnabled(FALSE);
+  cb_default->setEnabled(false);
 defaultClicked();
 anyClicked();
 invertClicked();
@@ -276,39 +276,39 @@ invertClicked();
 
 void TransitionPropertiesDlgImpl::anyClicked() {
   if (transitionPropertiesDlg.cb_any->isChecked()) {
-    transitionPropertiesDlg.cb_invert->setEnabled(FALSE);
-    transitionPropertiesDlg.cb_default->setEnabled(FALSE);
-    transitionPropertiesDlg.le_input->setEnabled(FALSE);
+    transitionPropertiesDlg.cb_invert->setEnabled(false);
+    transitionPropertiesDlg.cb_default->setEnabled(false);
+    transitionPropertiesDlg.le_input->setEnabled(false);
   } else {
-    transitionPropertiesDlg.cb_invert->setEnabled(TRUE);
-    transitionPropertiesDlg.cb_default->setEnabled(TRUE);
-    transitionPropertiesDlg.le_input->setEnabled(TRUE);
+    transitionPropertiesDlg.cb_invert->setEnabled(true);
+    transitionPropertiesDlg.cb_default->setEnabled(true);
+    transitionPropertiesDlg.le_input->setEnabled(true);
   }
 }
 
 void TransitionPropertiesDlgImpl::defaultClicked() {
   if (transitionPropertiesDlg.cb_default->isChecked()) {
-    transitionPropertiesDlg.cb_invert->setEnabled(FALSE);
-    transitionPropertiesDlg.cb_any->setEnabled(FALSE);
-    transitionPropertiesDlg.le_input->setEnabled(FALSE);
+    transitionPropertiesDlg.cb_invert->setEnabled(false);
+    transitionPropertiesDlg.cb_any->setEnabled(false);
+    transitionPropertiesDlg.le_input->setEnabled(false);
     transitionPropertiesDlg.le_input->setText("");
   } else {
     if (getType() != Text) {
-      transitionPropertiesDlg.cb_invert->setEnabled(TRUE);
-      transitionPropertiesDlg.cb_any->setEnabled(TRUE);
+      transitionPropertiesDlg.cb_invert->setEnabled(true);
+      transitionPropertiesDlg.cb_any->setEnabled(true);
     }
-    transitionPropertiesDlg.le_input->setEnabled(TRUE);
+    transitionPropertiesDlg.le_input->setEnabled(true);
   }
 }
 
 void TransitionPropertiesDlgImpl::invertClicked() {
   if (transitionPropertiesDlg.cb_invert->isChecked()) {
-    transitionPropertiesDlg.le_input->setEnabled(TRUE);
-    transitionPropertiesDlg.cb_default->setEnabled(FALSE);
-    transitionPropertiesDlg.cb_any->setEnabled(FALSE);
+    transitionPropertiesDlg.le_input->setEnabled(true);
+    transitionPropertiesDlg.cb_default->setEnabled(false);
+    transitionPropertiesDlg.cb_any->setEnabled(false);
   } else {
-    transitionPropertiesDlg.cb_default->setEnabled(TRUE);
-    transitionPropertiesDlg.cb_any->setEnabled(TRUE);
+    transitionPropertiesDlg.cb_default->setEnabled(true);
+    transitionPropertiesDlg.cb_any->setEnabled(true);
     transitionPropertiesDlg.cb_default->setEnabled(true);
   }
 }

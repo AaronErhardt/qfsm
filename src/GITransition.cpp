@@ -26,7 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 /// Constructor
 GITransition::GITransition() : GObject(0, 0), Transition(NULL, NULL, NULL) {
-  dragged = FALSE;
+  dragged = false;
   endx = 0;
   endy = 0;
 }
@@ -49,7 +49,7 @@ GITransition::GITransition(State *s, GState *e)
   ypos = ey;
   endx = ex - radius;
   endy = ey;
-  dragged = FALSE;
+  dragged = false;
 }
 
 /// Destructor
@@ -87,9 +87,9 @@ bool GITransition::contains(double x, double y) {
   else {
     // orthogonal line
     if (y > ymin && y < ymax)
-      return TRUE;
+      return true;
     else
-      return FALSE;
+      return false;
   }
 
   if (x > xmin && x < xmax) {
@@ -97,9 +97,9 @@ bool GITransition::contains(double x, double y) {
 
     gy = m * x + b;
     if (y > gy - 5 && y < gy + 5)
-      return TRUE;
+      return true;
   }
-  return FALSE;
+  return false;
 }
 
 /**

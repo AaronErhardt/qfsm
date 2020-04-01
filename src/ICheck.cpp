@@ -84,9 +84,9 @@ int ICheck::checkMachine(Machine *m) {
 
   if (m->getType() == Text) {
     icheckdlg->setComplete("");
-    icheckdlg->enableCompleteness(FALSE);
+    icheckdlg->enableCompleteness(false);
   } else {
-    icheckdlg->enableCompleteness(TRUE);
+    icheckdlg->enableCompleteness(true);
     icheckdlg->setComplete(stmp);
   }
   protocol += "Check: unambiguous state codes..\n";
@@ -129,7 +129,7 @@ bool ICheck::checkUnambiguousCond(Machine *m, Options *opt) {
   GState *s;
   GTransition *t, *ttmp;
   TransitionInfo *info, *infotmp;
-  bool ret = TRUE;
+  bool ret = true;
 
   QMutableListIterator<GState *> sit(m->getSList());
   for (; sit.hasNext();) {
@@ -156,7 +156,7 @@ bool ICheck::checkUnambiguousCond(Machine *m, Options *opt) {
       if (infotmp!=info)
       {
       if (info->intersection(infotmp))
-      return FALSE;
+      return false;
     }
     }
     }
@@ -197,8 +197,8 @@ bool ICheck::checkUnambiguousCond(Machine *m, Options *opt) {
 /// Checks if the machine @a m has an initial state
 bool ICheck::checkInitialState(Machine *m) {
   if (m->getInitialState() == NULL)
-    return FALSE;
-  return TRUE;
+    return false;
+  return true;
 }
 
 /// Checks if the machine @a m has at least one final state
@@ -208,9 +208,9 @@ bool ICheck::checkFinalState(Machine *m) {
   for (; it.hasNext();) {
     s = it.next();
     if (!s->isDeleted() && s->isFinalState())
-      return TRUE;
+      return true;
   }
-  return FALSE;
+  return false;
 }
 
 /// Checks if there are dead locks in the machine @a m
@@ -218,7 +218,7 @@ bool ICheck::checkDeadLocks(Machine *m) {
   /*
   GState *s, *es;
   QList<GState*> elist = m->getEndStates();
-//  elist.setAutoDelete(FALSE);
+//  elist.setAutoDelete(false);
 
   QMutableListIterator<GState*> it(m->getSList());
   for(; it.hasNext();)
@@ -227,7 +227,7 @@ bool ICheck::checkDeadLocks(Machine *m) {
 
     if (!s->isDeleted())
     {
-      bool deadlock=TRUE;
+      bool deadlock=true;
       QMutableListIterator<GState*> eit(elist);
       while (eit.hasNext() && deadlock)
       {
@@ -235,14 +235,14 @@ bool ICheck::checkDeadLocks(Machine *m) {
         QList<GState*> visited, ivisited;
         if (isStateReachable(m, s, es, &visited) ||
             !isStateReachable(m, m->getInitialState(), s, &ivisited))
-          deadlock=FALSE;
+          deadlock=false;
       }
 
       // check loops of non-end states
 
       if (!s->isEndState() && m->getNumInputs()<=31)
       {
-        bool loop=TRUE;
+        bool loop=true;
         int i=0;
         int comb = (int)pow(2.0, m->getNumInputs());
         IOInfo *io_out;
@@ -251,18 +251,18 @@ bool ICheck::checkDeadLocks(Machine *m) {
         {
           IOInfoBin iobin(IO_MealyIn, i, m->getNumInputs());
           if (s->next(&iobin, io_out)!=s)
-            loop=FALSE;
+            loop=false;
           i++;
         }
         if (loop)
-          deadlock=TRUE;
+          deadlock=true;
       }
 
       if (deadlock)
-        return FALSE;
+        return false;
     }
   }
-  return TRUE;
+  return true;
   */
   /*
   QList<GState*> visited_states, blocking_states;
@@ -567,20 +567,20 @@ bool ICheck::checkStateCodes(Machine *m) {
  * @param from Starting state
  * @param state State that is to be checked for reachability
  * @param visited List of visited states.
- * @returns TRUE if state @a state is reachable from state @a from.
+ * @returns true if state @a state is reachable from state @a from.
  */
 bool ICheck::isStateReachable(Machine *m, GState *from, GState *state,
                               QList<GState *> *visited) {
   GTransition *t;
   GState *s;
 
-  //  visited->setAutoDelete(FALSE);
+  //  visited->setAutoDelete(false);
 
   if (!from || !state)
-    return FALSE;
+    return false;
 
   if (from == state)
-    return TRUE;
+    return true;
 
   //  QListIterator<GState> it(m->getSList());
   visited->append(state);
@@ -593,11 +593,11 @@ bool ICheck::isStateReachable(Machine *m, GState *from, GState *state,
       if (s && s != m->getPhantomState() && !s->isDeleted() &&
           !visited->contains(s)) {
         if (isStateReachable(m, from, s, visited))
-          return TRUE;
+          return true;
       }
     }
   }
-  return FALSE;
+  return false;
 }
 
 /**

@@ -28,7 +28,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 /// Constructor
 UndoBuffer::UndoBuffer(QObject *parent) {
   project = (Project *)parent;
-  //  undolist.setAutoDelete(TRUE);
+  //  undolist.setAutoDelete(true);
 }
 
 /// Destructor
@@ -142,7 +142,7 @@ void UndoBuffer::changeState(GState *old, GState *newSt, GITransition *oldit) {
 
   undo->setInitialTransition(it);
 
-  //  ulist->setAutoDelete(FALSE);
+  //  ulist->setAutoDelete(false);
 
   undo->setState(tmp);
   undo->setState2(newSt);
@@ -233,8 +233,8 @@ void UndoBuffer::moveMultiple(QList<GState *> *sl, QList<GTransition *> *tl,
   //  QList<GObject>* sellist= undo->getSelList();
   QList<GState *> ssellist;
   QList<GTransition *> tsellist;
-  //  ssellist.setAutoDelete(FALSE);
-  //  tsellist.setAutoDelete(FALSE);
+  //  ssellist.setAutoDelete(false);
+  //  tsellist.setAutoDelete(false);
 
   undo->setModified(project->hasChanged());
   undo->setAction(MoveMultiple);
@@ -408,7 +408,7 @@ void UndoBuffer::setFinalStates(const QList<GState *> &sl) {
   undo->setAction(SetFinalStates);
 
   *(undo->getSList()) = sl;
-  //  undo->getSList()->setAutoDelete(FALSE);
+  //  undo->getSList()->setAutoDelete(false);
 
   undolist.append(undo);
 }
@@ -468,8 +468,8 @@ void UndoBuffer::paste(QList<GState *> *sl, QList<GTransition *> *tl,
   undo->setAction(Paste);
   *(undo->getSList()) = *sl;
   *(undo->getTList()) = *tl;
-  //  undo->getSList()->setAutoDelete(FALSE);
-  //  undo->getTList()->setAutoDelete(FALSE);
+  //  undo->getSList()->setAutoDelete(false);
+  //  undo->getTList()->setAutoDelete(false);
   undo->setState(oldistate);
   undo->setState2(newistate);
   undo->setInitialTransition(olditrans);
@@ -552,7 +552,7 @@ void UndoBuffer::undoAddState(Undo *u) {
   }
 
   p->getMain()->getScrollView()->getDrawArea()->getSelection()->select(
-      u->getState(), FALSE);
+      u->getState(), false);
   //  p->machine->getSList().removeRef(u->getState());
   // l=p->machine->getSList();
   i = p->machine->getSList().indexOf(u->getState());
@@ -573,9 +573,9 @@ void UndoBuffer::undoAddTransition(Undo *u) {
   to = (GState *)t->getEnd();
 
   p->getMain()->getScrollView()->getDrawArea()->getSelection()->select(t,
-                                                                       FALSE);
+                                                                       false);
   //  if (t->isSelected())
-  //    t->select(FALSE);
+  //    t->select(false);
 
   if (to)
     to->reflist.remove(t);
@@ -612,9 +612,9 @@ void UndoBuffer::undoChangeState(Undo *u) {
 
   news->setTransitionsToRadius(project->machine, news->getRadius());
 
-  //  news->tlist.setAutoDelete(TRUE);
-  //  olds->tlist.setAutoDelete(TRUE);
-  //  olds->reflist.setAutoDelete(TRUE);
+  //  news->tlist.setAutoDelete(true);
+  //  olds->tlist.setAutoDelete(true);
+  //  olds->reflist.setAutoDelete(true);
   delete olds;
 }
 
@@ -640,10 +640,10 @@ void UndoBuffer::undoChangeTransition(Undo *u) {
   *newt = *oldt;
   newt->select(sel);
 
-  //  newstart->tlist.setAutoDelete(FALSE);
+  //  newstart->tlist.setAutoDelete(false);
   //  result = newstart->tlist.removeRef(newt);
   result = newstart->tlist.removeAll(newt);
-  //  newstart->tlist.setAutoDelete(TRUE);
+  //  newstart->tlist.setAutoDelete(true);
   oldstart->tlist.append(newt);
 
   if (newend)
@@ -733,7 +733,7 @@ void UndoBuffer::undoMoveMultiple(Undo *u) {
   {
     s = i.current();
     s->move(-x, -y, project->getMain()->getScrollView(), project->machine,
-  FALSE);
+  false);
   }
   */
   //  dragmultiple = sv->getDragMultiple();
@@ -786,7 +786,7 @@ void UndoBuffer::undoDeleteSelection(Undo *u) {
       t = ti1.next();
       t->setStart(s);
       s->tlist.append(t);
-      //      ph->tlist.setAutoDelete(FALSE);
+      //      ph->tlist.setAutoDelete(false);
       //      ph->tlist.removeRef(t);
       ph->tlist.removeAll(t);
     }
@@ -796,14 +796,14 @@ void UndoBuffer::undoDeleteSelection(Undo *u) {
       s->reflist.append(t);
     }
 
-    s->setDeleted(FALSE);
+    s->setDeleted(false);
   }
 
   // undo delete transitions
   for (; j.hasNext();) {
     t = j.next();
 
-    t->setDeleted(FALSE);
+    t->setDeleted(false);
   }
 
   it = u->getInitialTransition();
@@ -838,7 +838,7 @@ void UndoBuffer::undoDeleteState(Undo *u) {
     t = ti1.next();
     t->setStart(s);
     s->tlist.append(t);
-    //      ph->tlist.setAutoDelete(FALSE);
+    //      ph->tlist.setAutoDelete(false);
     //      ph->tlist.removeRef(t);
     ph->tlist.removeAll(t);
   }
@@ -848,7 +848,7 @@ void UndoBuffer::undoDeleteState(Undo *u) {
     s->reflist.append(t);
   }
 
-  s->setDeleted(FALSE);
+  s->setDeleted(false);
 
   it = u->getInitialTransition();
   if (it) {
@@ -867,7 +867,7 @@ void UndoBuffer::undoDeleteTransition(Undo *u) {
   //  GITransition* it=NULL;
 
   t = u->getTransition();
-  t->setDeleted(FALSE);
+  t->setDeleted(false);
 }
 
 /// Undo setting the initial state.
@@ -946,7 +946,7 @@ void UndoBuffer::undoPaste(Undo *u) {
 
   GState *oldistate, *newistate;
   GITransition *olditrans, *newitrans;
-  bool anyobject = FALSE;
+  bool anyobject = false;
 
   oldistate = u->getState();
   newistate = u->getState2();
@@ -955,13 +955,13 @@ void UndoBuffer::undoPaste(Undo *u) {
 
   if (oldistate != newistate) {
     p->machine->setInitialState(oldistate);
-    anyobject = TRUE;
+    anyobject = true;
   }
   if (olditrans != newitrans) {
     p->machine->setInitialTransition(olditrans);
     if (newitrans)
       delete newitrans;
-    anyobject = TRUE;
+    anyobject = true;
   }
 
   for (; j.hasNext();) {
@@ -971,14 +971,14 @@ void UndoBuffer::undoPaste(Undo *u) {
     delete j.peekNext();
     start->tlist.removeAll(j.next());
     //    p->machine->getTList().removeRef(j.current());
-    anyobject = TRUE;
+    anyobject = true;
   }
 
   for (; i.hasNext();) {
     //    p->machine->getSList().removeRef(i.current());
     delete i.peekNext();
     p->machine->getSList().removeAll(i.next());
-    anyobject = TRUE;
+    anyobject = true;
   }
 
   if (p->machine->getNumMooreOutputs() != u->getNumMooreOutputs())

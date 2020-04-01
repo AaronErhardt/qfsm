@@ -75,7 +75,7 @@ void ExportEPS::doExport() {
   if (!scrollview) {
     delete painter;
     delete printer;
-    // exportSuccessful = FALSE;
+    // exportSuccessful = false;
   }
   Draw *draw = new Draw(scrollview, options);
   QRect rect = draw->getBoundingBox(machine, painter);
@@ -92,7 +92,7 @@ void ExportEPS::doExport() {
   draw->drawTransitions(machine, painter, 0, 0, 1.0);
   if (machine->getDrawITrans())
     draw->drawInitialTransition(machine, machine->getInitialTransition(),
-                                painter, 0, 0, 1.0, textrect, FALSE);
+                                painter, 0, 0, 1.0, textrect, false);
 
   // delete painter and printer before we try to open and fix the file
   delete painter;

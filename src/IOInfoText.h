@@ -50,10 +50,10 @@ public:
   QString convertToBinStr(Machine *m = NULL, Options *opt = NULL) const;
   QString convertToHexStr() const;
   bool convertToASCII(unsigned char *ascii, int maxlen, int &length,
-                      bool singlechar = FALSE) const;
+                      bool singlechar = false) const;
   IOInfoBin convertToBin(int numbits) const;
   int convertToInt() const;
-  void convertToBinList(IOInfoList &list, bool resolve_invert = TRUE) const;
+  void convertToBinList(IOInfoList &list, bool resolve_invert = true) const;
 
   int getLength() const { return info.length() * 8; };
   bool isSingle() const;

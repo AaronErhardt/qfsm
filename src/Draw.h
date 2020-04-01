@@ -63,19 +63,19 @@ public:
 
   void drawStates(Machine *, QPainter *, int, int, double);
   //    void drawState(Machine* m, GState* , QPainter* , int , int , double ,
-  //     bool drawxor=TRUE);
+  //     bool drawxor=true);
   void drawTransitions(Machine *, QPainter *, int, int, double /*, int, int*/);
   void drawTransition(Machine *, GTransition *, QPainter *, int, int, double,
-                      /*int, int,*/ bool drawxor = TRUE, bool dotted = TRUE,
-                      bool control_lines = FALSE, bool first = FALSE);
+                      /*int, int,*/ bool drawxor = true, bool dotted = true,
+                      bool control_lines = false, bool first = false);
   void drawArrow(GTransition *, QPainter *, QPen, int);
   void drawArrow(GITransition *, QPainter *, QPen, int);
   void drawCondition(Machine *m, GTransition *, QPainter *, int, int,
                      double /*, int, int*/);
   void drawInitialTransition(Machine *m, GITransition *, QPainter *, int contx,
                              int conty, double scale, QRect &textrect,
-                             bool drawxor = FALSE, bool first = FALSE,
-                             bool transptext = FALSE);
+                             bool drawxor = false, bool first = false,
+                             bool transptext = false);
   void drawGrid(Grid *, QPainter *, int, int, double);
 
   void calcArrow(GTransition *, double &, double &, double &, double &,

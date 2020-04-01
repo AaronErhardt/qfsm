@@ -47,20 +47,20 @@ public:
   QString X10ToBinStr(IOInfoBin);
   QString X10ToHexStr(IOInfoBin);
   bool X10ToASCII(IOInfoBin io, unsigned char *cres, int asciiarraylen,
-                  int &length, bool singlechar = TRUE);
+                  int &length, bool singlechar = true);
   bool X10ToDec(IOInfoBin io, int &ires);
 
   int binStrToInt(QString);
   IOInfoBin binStrToX10(int maxlen, const QString, IOType t);
   QString binStrToHexStr(const QString);
   bool binStrToASCII(const QString, unsigned char *ascii, int arraymaxlen,
-                     int &len, bool singlechar = TRUE, int arrayoffset = 0);
+                     int &len, bool singlechar = true, int arrayoffset = 0);
 
   bool hexStrToInt(QString, int &);
   IOInfoBin hexStrToX10(int, const QString, IOType t);
   QString hexStrToBinStr(int maxlen, const QString);
   bool hexStrToASCII(const QString, unsigned char *ascii, int arraymaxlen,
-                     int &len, bool singlechar = TRUE);
+                     int &len, bool singlechar = true);
 
   IOInfoBin asciiToX10(int maxlen, const unsigned char ascii, IOType t);
   IOInfoBin asciiToX10(int maxlen, const unsigned char *ascii, int asciilen,
@@ -74,7 +74,7 @@ public:
                       int &length);
   QString asciiToReadableStr(const unsigned char *ascii, int asciilength);
   void asciiToIOList(const unsigned char *asciiarray, int asciilength,
-                     IOInfoList &result, bool invert = FALSE);
+                     IOInfoList &result, bool invert = false);
 };
 
 #endif

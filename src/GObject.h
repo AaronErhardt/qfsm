@@ -59,16 +59,16 @@ public:
   /// Sets the y coordinate of the position
   virtual void setYPos(const double y) { ypos = y; };
   //    virtual void alignToGrid(Grid* g);
-  /// Returns TRUE if object is selected otherwise FALSE
+  /// Returns true if object is selected otherwise false
   bool isSelected() { return selected; };
-  /// If @a select is TRUE selects object otherwise deselects it.
-  void select(bool select = TRUE) { selected = select; };
+  /// If @a select is true selects object otherwise deselects it.
+  void select(bool select = true) { selected = select; };
   /// Toggles the select state
   void toggleSelect() { selected = !selected; };
-  /// Returns TRUE if object is deleted otherwise FALSE.
+  /// Returns true if object is deleted otherwise false.
   bool isDeleted() { return deleted; };
-  /// If @a d is TRUE deletes object otherwise undeletes it.
-  void setDeleted(bool d = TRUE) { deleted = d; };
+  /// If @a d is true deletes object otherwise undeletes it.
+  void setDeleted(bool d = true) { deleted = d; };
 
   virtual void move(double, double);
   /// Returns the tooltip string for this object
@@ -82,9 +82,9 @@ protected:
   double xpos;
   /// Y coordinate of the position
   double ypos;
-  /// If TRUE the object is selected
+  /// If true the object is selected
   bool selected;
-  /// If TRUE the object is marked as deleted (and not drawn)
+  /// If true the object is marked as deleted (and not drawn)
   bool deleted;
 };
 
