@@ -1641,7 +1641,7 @@ Project* FileIO::importFile(Import* imp, ScrollView* sv/*=NULL*/)
   ifstream fin(act_importfile);
 
   if (!fin)
-    return FALSE;
+    return NULL;
 
   emit setWaitCursor();
 

@@ -127,7 +127,7 @@ class ExportVHDL : public Export
   bool result=TRUE;
   QStringList names;
   QString mname,sname;
-  QStringList::const_iterator i,i2;
+  QStringList::const_iterator i;
   int c;
   GState* s, *s2;
   QMutableListIterator<GState*> is(m->getSList());
@@ -202,8 +202,10 @@ class ExportVHDL : public Export
         s2=is2.next();
         if(sname.compare(s2->getStateName())==0 && s!=s2)
         {
+          if(i!=names.constEnd()) {
             (*invalidNames) << *i;
             result =FALSE;
+          }
         }
       }
 
