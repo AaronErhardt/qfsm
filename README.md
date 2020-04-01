@@ -46,7 +46,7 @@ shall be opened on startup.
 
 Bugs
 ----
-Please report bugs at http://www.sourceforge.net/projects/qfsm
+Please report bugs through the [issue tracker on GitHub](https://github.com/AaronErhardt/qfsm)
 
 
 Contact
