@@ -47,7 +47,7 @@ Install the above-mentioned required software. If you install them via a package
 
 Unpack the source code into the current directory
 
-  tar xvfz qfsm-0.54.0-Source.tar.gz --directory . 
+  unzip qfsm-0.55.0-Source.zip 
 
 and change to that directory.
 

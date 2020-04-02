@@ -1,8 +1,7 @@
-Major features I would like to implement: 
+Major features I would like to implement:
 -----------------------------------------
 
+- Port to Qt5
 - Regular expression generation for ASCII machines
 - More import filters
 - More export filters
-
-

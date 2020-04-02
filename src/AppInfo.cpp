@@ -30,9 +30,9 @@ AppInfo::AppInfo(QWidget *par) : QObject(par) {
   parent_widget = par;
   version_major = 0;
 
-  version_minor = 54;
-  date = "2015-01-01";
-  author = "Stefan Duffner, Rainer Strobel";
+  version_minor = 55;
+  date = "2020-01-01";
+  author = "Stefan Duffner, Rainer Strobel, Aaron Erhardt";
 }
 
 double AppInfo::getVersionDouble() {
@@ -58,7 +58,7 @@ void AppInfo::about() {
          "\n";
   text += tr("Version %1.%2").arg(version_major).arg(version_minor) + "\n";
   text += tr("Development version %1").arg(date) + "\n";
-  text += tr("Copyright 2000-2015 by ") + author + "\n";
+  text += tr("Copyright 2000-2020 by ") + author + "\n";
   text += tr("email: qfsm@duffner-net.de");
 
   // QMessageBox::about(parent_widget, tr("Qfsm"), text);

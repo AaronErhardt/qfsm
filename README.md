@@ -1,13 +1,13 @@
-Qfsm 0.54
+Qfsm 0.55
 =========
 
 About
 -----
 Qfsm is a graphical tool for designing finite state machine.
-It is written in C++ using the Qt library. 
+It is written in C++ using the Qt library.
 Features include:
 
-- Drawing, Editing and Printing of states diagrams 
+- Drawing, Editing and Printing of states diagrams
 - Binary, ASCII or "free text" condition codes
 - Integrity check
 - Interactive simulation
@@ -23,9 +23,9 @@ Features include:
 
 Requirements
 ------------
-- Qt 4.8 or higher (available from https://www.qt.io)
+- Qt 4.8 (available from https://www.qt.io)
 
-Optional: 
+Optional:
 - graphviz  (to import graphviz (.gv) files)
 
 

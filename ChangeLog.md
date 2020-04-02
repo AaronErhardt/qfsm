@@ -1,5 +1,15 @@
-Change log for Qfsm (c) 2000-2015 Stefan Duffner
+Change log for Qfsm (c) 2000-2020 Stefan Duffner
 -------------------------------------------------
+
+Version 0.55
+------------
+
+* switched to git as VCS and moved project to GitHub
+
+* eliminated a lot of dead code
+
+* several important bug fixes
+
 
 Version 0.54
 ------------
@@ -46,7 +56,7 @@ Version 0.52
 
 * Russian translation (thanks to Nick Shaforostoff)
 
-* Improvments in VHDL export 
+* Improvments in VHDL export
 
 * Bug fixes
 
@@ -76,9 +86,9 @@ Version 0.50
 
 * Enhanced VHDL export functionality
 
-* Optimized integrity check 
+* Optimized integrity check
 
-* Added PNG export function 
+* Added PNG export function
 
 * Fixed several minor bugs
 
@@ -110,13 +120,13 @@ Version 0.45
 Version 0.44
 ------------
 
-* Wrote (English) user documentation 
+* Wrote (English) user documentation
 
 * Introduced possibility of default transition
 
 * Added Ragel file export
 
-* Introduced input condition "any" 
+* Introduced input condition "any"
 
 * Introduced possibility to invert transition conditions
 
@@ -140,7 +150,7 @@ Version 0.43
 
 * Added intput/output name display over transitions and in state table
 
-* Added option to display asynchronous outputs in state tables 
+* Added option to display asynchronous outputs in state tables
 
 * Removed compiler warnings due to iostream etc.
 
@@ -222,4 +232,3 @@ Version 0.25
 ------------
 
 * Initial release. Changes will be logged from now on.
-
