@@ -23,7 +23,7 @@ Features include:
 
 Download
 --------
-Pre-compiled binaries Qfsm and the source code of the latest releases are available at: https://github.com/AaronErhardt/qfsm/releases.
+Pre-compiled binaries of Qfsm and the source code of the latest releases are available at: https://github.com/AaronErhardt/qfsm/releases.
 
 
 Requirements
