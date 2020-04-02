@@ -21,6 +21,11 @@ Features include:
 - Import of DOT files (Graphviz) and automatic creation of state diagrams from textual descriptions
 
 
+Download
+--------
+Pre-compiled binaries Qfsm and the source code of the latest releases are available at: https://github.com/AaronErhardt/qfsm/releases.
+
+
 Requirements
 ------------
 - Qt 4.8 (available from https://download.qt.io/archive/qt/4.8/4.8.7/)
