@@ -23,7 +23,7 @@ Features include:
 
 Requirements
 ------------
-- Qt 4.8 (available from https://www.qt.io)
+- Qt 4.8 (available from https://download.qt.io/archive/qt/4.8/4.8.7/)
 
 Optional:
 - graphviz  (to import graphviz (.gv) files)
@@ -44,16 +44,28 @@ As parameters you can specify an arbitrary number of files that
 shall be opened on startup.
 
 
+Manual
+------
+The user manual can be found at this url: [https://aaronerhardt.github.io/qfsm/manual](https://aaronerhardt.github.io/qfsm/manual/).
+
+
+Docs for developers
+------
+The documentation of Qfsm can be found at this url: [https://aaronerhardt.github.io/qfsm/docs](https://aaronerhardt.github.io/qfsm/docs/).
+
+
 Bugs
 ----
 Please report bugs through the [issue tracker on GitHub](https://github.com/AaronErhardt/qfsm)
 
 
+Contribution
+-------
+Simply fork this repository, create your own branch, apply changes and open a pull request. This allows us to review your code easily and merge into the code base.
+
 Contact
 -------
-If you have questions, suggestions, comments or want to contribute, 
+If you have questions, suggestions, comments or want to contribute,
 please contact us by e-mail:
 
 qfsm (at) duffner (dash) net (dot) de
-
-
