@@ -36,7 +36,7 @@ Optional:
 
 Installation
 ------------
-Follow the standard installation procedure as explained in the file 'INSTALL'.
+Follow the standard installation procedure as explained in the file [INSTALL.md](https://github.com/AaronErhardt/qfsm/blob/master/INSTALL.md).
 
 
 Running
