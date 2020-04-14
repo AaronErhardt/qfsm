@@ -41,9 +41,11 @@ Follow the standard installation procedure as explained in the file [INSTALL.md]
 
 Running
 -------
-To run Qfsm type:
+If installed correctly you can simply start Qfsm from your application launcher.
 
-qfsm [file ... ]
+If you want to run Qfsm from the console however, type:
+
+`qfsm [file ... ]`
 
 As parameters you can specify an arbitrary number of files that
 shall be opened on startup.
@@ -55,8 +57,13 @@ The user manual can be found at this url: [https://aaronerhardt.github.io/qfsm/m
 
 
 Docs for developers
-------
+-------------------
 The documentation of Qfsm can be found at this url: [https://aaronerhardt.github.io/qfsm/docs](https://aaronerhardt.github.io/qfsm/docs/).
+
+
+Older Versions
+--------------
+Older versions of Qfsm are available from [Sourceforge](https://sourceforge.net/projects/qfsm/). The older Versions include a Windows installer, rpm packages and the source code. But keep in mind that several bug fixes aren't included in older releases.
 
 
 Bugs
