@@ -4,17 +4,16 @@ Installation Instructions
 Binary installation
 ===================
 
+Linux
+-----
+Linux binaries are available from the [GitHub repository](https://github.com/AaronErhardt/qfsm/releases). We recommend to **simply download and run the [AppImage](https://github.com/AaronErhardt/qfsm/releases/download/0.55/qfsm-0_55-x86_64.AppImage) version** available from the release page. The AppImage version ships with all requirements included so you just need to make the file executable and your ready to go. Keep in mind however that the AppImage doesn't receive any updates so you might have do download newer version manually.  
+Raw binaries are also available but require you to install qt4 (likely called libqt4) and graphviz (likely called libgraphviz-dev) by yourself. Currently this might be not be possible because qt4 is already deprecated on many Linux distributions.
+
 Windows
 -------
 Currently pre-compiled binaries are available at the [GitHub repository](https://github.com/AaronErhardt/qfsm/releases). However you might still need to install QT4 and graphviz yourself. If you know how to build a Windows installer your help would be appreciated a lot.
 
 There exists a (graphical) Windows installer for older versions however that can be downloaded from http://www.sourceforge.net/projects/qfsm. The installation should be straightforward and doesn't require any other software to be installed.
-
-
-Linux
------
-Linux binaries are available from the [GitHub repository](https://github.com/AaronErhardt/qfsm/releases). Currently only raw binaries are available which means that you need to install QT4 (likely called libqt4) and graphviz (likely called libgraphviz-dev) by yourself. In the future we will try to provide packages that can be installed more easily on various Linux distributions.
-
 
 Mac OS X
 --------
