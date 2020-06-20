@@ -23,16 +23,19 @@ Features include:
 
 Download
 --------
-Pre-compiled binaries of Qfsm and the source code of the latest releases are available at: https://github.com/AaronErhardt/qfsm/releases.
+AppImage packages, pre-compiled binaries of Qfsm and the source code of the latest releases are available at: https://github.com/AaronErhardt/qfsm/releases.
 
 
 Requirements
 ------------
+
+> The AppImage version has all dependencies included so you don't need to install anything by yourself.
+
 - Qt 4.8 (available from https://download.qt.io/archive/qt/4.8/4.8.7/)
 
 Optional:
-- graphviz  (to import graphviz (.gv) files)
 
+- graphviz  (to import graphviz (.gv) files)
 
 Installation
 ------------
@@ -75,9 +78,9 @@ Contribution
 -------
 Simply fork this repository, create your own branch, apply changes and open a pull request. This allows us to review your code easily and merge into the code base.
 
+
 Contact
 -------
-If you have questions, suggestions, comments or want to contribute,
-please contact us by e-mail:
+If you have questions, suggestions, comments or want to contribute, please contact us by e-mail:
 
 qfsm (at) duffner (dash) net (dot) de
