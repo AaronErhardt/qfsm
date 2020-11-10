@@ -153,7 +153,7 @@ private:
   /// Name of the current machine (used to generate default file names)
   QString machine_name;
   /// if true debug state is exported
-  bool debug_state;
+  bool debug_state = false;
 };
 
 #endif // EXPORTVHDLDLGIMPL_H
