@@ -1,6 +1,12 @@
 Change log for Qfsm (c) 2000-2020 Stefan Duffner
 -------------------------------------------------
 
+Version 0.56
+------------
+
+* minor bug fixes
+
+
 Version 0.55
 ------------
 

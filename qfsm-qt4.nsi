@@ -10,7 +10,7 @@
 Name "qfsm-qt4-2015-01-25"
 
 ; The file to write
-OutFile "qfsm-0.55.exe"
+OutFile "qfsm-0.56.exe"
 
 ; The default installation directory
 InstallDir $PROGRAMFILES\Qfsm

@@ -1,6 +1,6 @@
 Begin4
 Title:          Qfsm
-Version:        0.55
+Version:        0.56
 Entered-date:   2020-01-01
 Description:    A graphical tool for designing finite state machines
 Keywords:       graphical editor, design, finite state machine, state chart, diagram, FSM, AHDL, VHDL, Verilog DHL, KISS, Ragel, SCXML, vvvv, automata, code generation, state table, graphviz

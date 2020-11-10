@@ -6,7 +6,7 @@ Binary installation
 
 Linux
 -----
-Linux binaries are available from the [GitHub repository](https://github.com/AaronErhardt/qfsm/releases). We recommend to **simply download and run the [AppImage](https://github.com/AaronErhardt/qfsm/releases/download/0.55/qfsm-0_55-x86_64.AppImage) version** available from the release page. The AppImage version ships with all requirements included so you just need to make the file executable and your ready to go. Keep in mind however that the AppImage doesn't receive any updates so you might have do download newer version manually.  
+Linux binaries are available from the [GitHub repository](https://github.com/AaronErhardt/qfsm/releases). We recommend to **simply download and run the [AppImage](https://github.com/AaronErhardt/qfsm/releases/download/0.56/qfsm-0_55-x86_64.AppImage) version** available from the release page. The AppImage version ships with all requirements included so you just need to make the file executable and your ready to go. Keep in mind however that the AppImage doesn't receive any updates so you might have do download newer version manually.  
 Raw binaries are also available but require you to install qt4 (likely called libqt4) and graphviz (likely called libgraphviz-dev) by yourself. Currently this might be not be possible because qt4 is already deprecated on many Linux distributions.
 
 Windows
