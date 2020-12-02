@@ -49,7 +49,7 @@ On Debian-based systems (like Ubuntu and Linux Mint) you will likely need to ins
 
 Unpack the source code into the current directory
 
-`unzip qfsm-0.55.0-Source.zip`
+`unzip qfsm-0.56.0-Source.zip`
 
 and change to that directory.
 
