@@ -30,7 +30,7 @@ AppInfo::AppInfo(QWidget *par) : QObject(par) {
   parent_widget = par;
   version_major = 0;
 
-  version_minor = 55;
+  version_minor = 56;
   date = "2020-01-01";
   author = "Stefan Duffner, Rainer Strobel, Aaron Erhardt";
 }
